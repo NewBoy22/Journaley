@@ -26,7 +26,7 @@
         /// <summary>
         /// The backing field for the MD5Instance property.
         /// </summary>
-        private static MD5 md5 = null;
+        private static MD5 md5;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Settings"/> class.
