@@ -27,7 +27,7 @@
         /// <value>
         /// The value.
         /// </value>
-        public DateTime Value { get; private set; }
+        public DateTime Value { get; }
 
         /// <summary>
         /// Saves this PList data to XML.

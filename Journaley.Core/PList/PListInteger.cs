@@ -26,7 +26,7 @@
         /// <value>
         /// The value.
         /// </value>
-        public int Value { get; private set; }
+        public int Value { get; }
 
         /// <summary>
         /// Saves this PList data to XML.

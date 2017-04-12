@@ -112,7 +112,7 @@
         /// <value>
         /// The file system watcher for the entry folder.
         /// </value>
-        private FileSystemWatcher EntryFolderWatcher { get; set; }
+        private FileSystemWatcher EntryFolderWatcher { get; }
 
         /// <summary>
         /// Gets or sets the file system watcher for the photo folder.
@@ -120,7 +120,7 @@
         /// <value>
         /// The file system watcher for the photo folder.
         /// </value>
-        private FileSystemWatcher PhotoFolderWatcher { get; set; }
+        private FileSystemWatcher PhotoFolderWatcher { get; }
 
         /// <summary>
         /// Gets the entry deletion timers dictionary.
@@ -158,7 +158,7 @@
         /// <value>
         /// The synchronizing object.
         /// </value>
-        private ISynchronizeInvoke SynchronizingObject { get; set; }
+        private ISynchronizeInvoke SynchronizingObject { get; }
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.

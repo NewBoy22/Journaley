@@ -42,7 +42,7 @@
         /// <value>
         /// The UUID.
         /// </value>
-        public Guid UUID { get; private set; }
+        public Guid UUID { get; }
 
         /// <summary>
         /// Gets the change type.
@@ -50,7 +50,7 @@
         /// <value>
         /// The change type.
         /// </value>
-        public ChangeType Type { get; private set; }
+        public ChangeType Type { get; }
 
         /// <summary>
         /// Gets the full path.
@@ -58,6 +58,6 @@
         /// <value>
         /// The full path.
         /// </value>
-        public string FullPath { get; private set; }
+        public string FullPath { get; }
     }
 }

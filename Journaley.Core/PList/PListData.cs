@@ -29,7 +29,7 @@
         /// <value>
         /// The value.
         /// </value>
-        public byte[] Value { get; private set; }
+        public byte[] Value { get; }
 
         /// <summary>
         /// Gets the Base64 encoded string data.
@@ -37,7 +37,7 @@
         /// <value>
         /// The Base64 encoded string data.
         /// </value>
-        public string Base64String { get; private set; }
+        public string Base64String { get; }
 
         /// <summary>
         /// Saves this PList data to XML.
