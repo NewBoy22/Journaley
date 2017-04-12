@@ -167,7 +167,7 @@
                 return false;
             }
 
-            return Enumerable.SequenceEqual(this, other);
+            return this.SequenceEqual(other);
         }
 
         /// <summary>
