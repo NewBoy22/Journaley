@@ -120,14 +120,12 @@ namespace Pabo.Calendar
 
         public void RemoveKeyboardHook()
         {
-            bool retKeyboard = true;
-
-            try
+	        try
             {
 
                 if(m_keyboardHook != 0)
                 {
-                    retKeyboard = NativeMethods.UnhookWindowsHookEx(m_keyboardHook);
+                    NativeMethods.UnhookWindowsHookEx(m_keyboardHook);
                     m_keyboardHook = 0;
                 }
             }

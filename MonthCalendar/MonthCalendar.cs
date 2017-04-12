@@ -1454,16 +1454,9 @@ namespace Pabo.Calendar
         public DateItemCollection Dates => this.m_dateItemCollection;
 
         [Browsable(false)]
-        public SelectedDatesCollection SelectedDates
-        {
-            get
-            {
-                SelectedDatesCollection dc = new SelectedDatesCollection(this);
-                return UpdateSelectedCollection();
-            }
-        }
+        public SelectedDatesCollection SelectedDates => UpdateSelectedCollection();
 
-        [Browsable(true)]
+	    [Browsable(true)]
         [Category("Appearance")]
         [Description("The color used to mark todays date.")]
         [DefaultValue(typeof(Color),"Red")]
@@ -1992,8 +1985,7 @@ namespace Pabo.Calendar
             // Check if message is KEY_DOWN
             if (msg.Msg == NativeMethods.WM_KEYDOWN)
             {
-                Keys keyData = ((Keys)(int)msg.WParam) | ModifierKeys;
-                Keys keyCode = ((Keys)(int)msg.WParam);
+	            Keys keyCode = ((Keys)(int)msg.WParam);
                 // Make sure we handle certain keys
                 switch (keyCode)
                 {

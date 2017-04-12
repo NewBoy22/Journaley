@@ -244,7 +244,6 @@ namespace Journaley.Utilities
                 // Opening quote
                 MoveAhead();
                 // Find end of value
-                int start = _pos;
                 _pos = _html.IndexOfAny(new char[] { c, '\r', '\n' }, _pos);
                 if (_pos < 0)
                     _pos = _html.Length;

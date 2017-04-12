@@ -243,7 +243,7 @@ namespace Pabo.Calendar
                         data.SetData(DataFormats.Bitmap,_imageList.Images[nImage]);
                         try
                         {
-                            DragDropEffects dde = DoDragDrop(data, DragDropEffects.Copy | DragDropEffects.Move);
+	                        DoDragDrop(data, DragDropEffects.Copy | DragDropEffects.Move);
                         }
                         catch
                         {

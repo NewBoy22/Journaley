@@ -251,10 +251,9 @@
             }
 
             // Second, see if the entry is parsable.
-            Entry entry = null;
-            try
+	        try
             {
-                entry = Entry.LoadFromFile(e.FullPath, null, true);
+                Entry.LoadFromFile(e.FullPath, null, true);
             }
             catch (Exception)
             {
@@ -300,10 +299,9 @@
             }
 
             // Second, see if the entry is parsable.
-            Entry entry = null;
-            try
+	        try
             {
-                entry = Entry.LoadFromFile(e.FullPath, null, true);
+                Entry.LoadFromFile(e.FullPath, null, true);
             }
             catch (Exception)
             {
