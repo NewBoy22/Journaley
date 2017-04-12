@@ -124,7 +124,7 @@
 	        };
 
 	        var version = Assembly.GetEntryAssembly().GetName().Version;
-            this.Creator.Add("Software Agent", string.Format("Journaley/{0}", version.ToString(2)));
+            this.Creator.Add("Software Agent", $"Journaley/{version.ToString(2)}");
         }
 
         /// <summary>
@@ -685,7 +685,7 @@
         /// </returns>
         public override string ToString()
         {
-            return string.Format("Date: {0}, Entry Text: \"{1}\"", this.CreationDate, this.EntryText);
+            return $"Date: {this.CreationDate}, Entry Text: \"{this.EntryText}\"";
         }
 
         #region IEquatable<Entry> Members

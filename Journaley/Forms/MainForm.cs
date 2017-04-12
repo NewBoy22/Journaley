@@ -614,13 +614,8 @@
 
             string docType = "<!DOCTYPE html>";
 
-            string formattedString = string.Format(
-                    "{0}\n<style type=\"text/css\">\n<!-- Font CSS -->\n{1}\n<!-- Size CSS -->\n{2}\n<!-- Custom CSS -->\n{3}\n</style>\n<html>\n<body>\n<div>\n{4}</div>\n</body>\n</html>",
-                    docType,
-                    this.GetWebBrowserTypefaceCSS(),
-                    this.GetWebBrowserSizeCSS(),
-                    this.CustomCSS ?? string.Empty,
-                    PostMarkdownParser.PostMarkdown(Markdown.Transform(initialString)));
+            string formattedString =
+	            $"{docType}\n<style type=\"text/css\">\n<!-- Font CSS -->\n{this.GetWebBrowserTypefaceCSS()}\n<!-- Size CSS -->\n{this.GetWebBrowserSizeCSS()}\n<!-- Custom CSS -->\n{this.CustomCSS ?? string.Empty}\n</style>\n<html>\n<body>\n<div>\n{PostMarkdownParser.PostMarkdown(Markdown.Transform(initialString))}</div>\n</body>\n</html>";
 
             this.webBrowser.DocumentText = formattedString;
         }
@@ -754,9 +749,8 @@
             if (noEntry)
             {
                 this.spellCheckedEntryText.Text = string.Empty;
-                this.webBrowser.DocumentText = string.Format(
-                    "<style type=\"text/css\">\n{0}\n</style><html><body></body></html>",
-                    this.GetWebBrowserSizeCSS());
+                this.webBrowser.DocumentText =
+	                $"<style type=\"text/css\">\n{this.GetWebBrowserSizeCSS()}\n</style><html><body></body></html>";
             }
 
             this.tableLayoutSidebar.Visible = !noEntry;
@@ -2925,7 +2919,7 @@
             /// </returns>
             public override string ToString()
             {
-                return string.Format("Year of {0} ({1} {2})", this.Year, this.Count, this.Count > 1 ? "entries" : "entry");
+                return $"Year of {this.Year} ({this.Count} {(this.Count > 1 ? "entries" : "entry")})";
             }
         }
 
@@ -2969,7 +2963,7 @@
             /// </returns>
             public override string ToString()
             {
-                return string.Format("{0} ({1} {2})", this.Tag, this.Count, this.Count > 1 ? "entries" : "entry");
+                return $"{this.Tag} ({this.Count} {(this.Count > 1 ? "entries" : "entry")})";
             }
         }
 

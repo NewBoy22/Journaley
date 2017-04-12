@@ -213,7 +213,7 @@
                 }
                 else
                 {
-                    this.linkVersionNumber.Text = string.Format("{0} (dev)", versionString);
+                    this.linkVersionNumber.Text = $"{versionString} (dev)";
                 }
 
                 this.linkVersionNumber.Links[0].LinkData =
