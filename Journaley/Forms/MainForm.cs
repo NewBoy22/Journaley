@@ -14,7 +14,6 @@
     using System.Runtime.InteropServices;
     using System.Threading;
     using System.Windows.Forms;
-    using BlackBeltCoder;
     using Journaley.Controls;
     using Journaley.Core.Models;
     using Journaley.Core.Utilities;

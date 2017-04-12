@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Web;
 
-namespace BlackBeltCoder
+namespace Journaley.Utilities
 {
     /// <summary>
     /// Converts HTML to plain text.
