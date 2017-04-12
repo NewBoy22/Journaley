@@ -68,12 +68,7 @@ namespace Pabo.Calendar
         protected virtual ImageList GetImageList(object component)
         {
             DateItem item = component as DateItem;
-            if (item != null)
-            {
-                return item.GetImageList();
-            }
-
-            return null ;
+	        return item?.GetImageList();
         }
 
         #endregion

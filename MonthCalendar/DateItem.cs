@@ -93,15 +93,11 @@ namespace Pabo.Calendar
             {
                 if (disposing)
                 {
+	                m_image?.Dispose();
+	                m_bgImage?.Dispose();
 
-                    if (m_image!=null)
-                        m_image.Dispose();
-                    if (m_bgImage != null)
-                        m_bgImage.Dispose();
-
-                    //There is nothing to clean.
-                    if(Disposed != null)
-                        Disposed(this,EventArgs.Empty);
+	                //There is nothing to clean.
+	                Disposed?.Invoke(this,EventArgs.Empty);
                 }
                 // shared cleanup logic
                 disposed = true;
@@ -446,10 +442,7 @@ namespace Pabo.Calendar
 
         internal ImageList GetImageList()
         {
-            if (m_calendar!=null)
-                return m_calendar.ImageList;
-            else
-                return null;
+	        return m_calendar?.ImageList;
         }
 
         #endregion

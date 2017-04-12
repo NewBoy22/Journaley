@@ -86,9 +86,9 @@
                 bool prev = this.hover;
                 this.hover = value;
 
-                if (prev != value && this.PropertyChanged != null)
+                if (prev != value)
                 {
-                    this.PropertyChanged(this, new PropertyChangedEventArgs("Hover"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Hover"));
                 }
             }
         }

@@ -589,27 +589,18 @@
         {
             if (this.Expanded && this.BackButtonHover)
             {
-                // Raise the BackButtonClick event.
-                if (this.BackButtonClick != null)
-                {
-                    this.BackButtonClick(this, EventArgs.Empty);
-                }
+	            // Raise the BackButtonClick event.
+	            BackButtonClick?.Invoke(this, EventArgs.Empty);
             }
             else if (this.Expanded && this.PopoutButtonHover)
             {
-                // Raise the PopoutButtonClick event.
-                if (this.PopoutButtonClick != null)
-                {
-                    this.PopoutButtonClick(this, EventArgs.Empty);
-                }
+	            // Raise the PopoutButtonClick event.
+	            PopoutButtonClick?.Invoke(this, EventArgs.Empty);
             }
             else if (this.ImageHover)
             {
-                // Raise the ImageClick event.
-                if (this.ImageClick != null)
-                {
-                    this.ImageClick(this, EventArgs.Empty);
-                }
+	            // Raise the ImageClick event.
+	            ImageClick?.Invoke(this, EventArgs.Empty);
             }
 
             base.OnMouseDown(e);

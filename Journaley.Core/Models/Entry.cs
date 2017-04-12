@@ -727,10 +727,7 @@
         /// </summary>
         protected virtual void OnPhotoChanged()
         {
-            if (this.PhotoChanged != null)
-            {
-                this.PhotoChanged(this);
-            }
+	        PhotoChanged?.Invoke(this);
         }
 
         #endregion

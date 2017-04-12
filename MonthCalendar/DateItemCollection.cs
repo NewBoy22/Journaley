@@ -79,8 +79,7 @@ namespace Pabo.Calendar
 
         public void ModifiedEvent()
         {
-            if (DateItemModified!=null)
-                DateItemModified(this,new EventArgs());
+	        DateItemModified?.Invoke(this,new EventArgs());
         }
 
         public void Add(DateItem value)

@@ -135,9 +135,8 @@ namespace Pabo.Calendar
                 if (m_borderColor!=value)
                 {
                     m_borderColor = value;
-                    if (PropertyChanged!=null)
-                        PropertyChanged(this,new WeekdayPropertyEventArgs(mcWeekdayProperty.BorderColor));
-                    m_calendar.Invalidate();
+	                PropertyChanged?.Invoke(this,new WeekdayPropertyEventArgs(mcWeekdayProperty.BorderColor));
+	                m_calendar.Invalidate();
                 }
             }
         }
@@ -155,9 +154,8 @@ namespace Pabo.Calendar
                 if (m_backColor1!=value)
                 {
                     m_backColor1 = value;
-                    if (PropertyChanged!=null)
-                        PropertyChanged(this,new WeekdayPropertyEventArgs(mcWeekdayProperty.BackColor1));
-                    m_calendar.Invalidate();
+	                PropertyChanged?.Invoke(this,new WeekdayPropertyEventArgs(mcWeekdayProperty.BackColor1));
+	                m_calendar.Invalidate();
                 }
             }
         }
@@ -175,9 +173,8 @@ namespace Pabo.Calendar
                 if (m_backColor2 != value)
                 {
                     m_backColor2 = value;
-                    if (PropertyChanged != null)
-                        PropertyChanged(this, new WeekdayPropertyEventArgs(mcWeekdayProperty.BackColor2));
-                    m_calendar.Invalidate();
+	                PropertyChanged?.Invoke(this, new WeekdayPropertyEventArgs(mcWeekdayProperty.BackColor2));
+	                m_calendar.Invalidate();
                 }
             }
         }
@@ -195,9 +192,8 @@ namespace Pabo.Calendar
                 if (m_gradientMode != value)
                 {
                     m_gradientMode = value;
-                    if (PropertyChanged != null)
-                        PropertyChanged(this, new WeekdayPropertyEventArgs(mcWeekdayProperty.GradientMode ));
-                    m_calendar.Invalidate();
+	                PropertyChanged?.Invoke(this, new WeekdayPropertyEventArgs(mcWeekdayProperty.GradientMode ));
+	                m_calendar.Invalidate();
                 }
             }
         }
@@ -228,9 +224,8 @@ namespace Pabo.Calendar
                 if (m_dayFormat!=value)
                 {
                     m_dayFormat = value;
-                    if (PropertyChanged!=null)
-                        PropertyChanged(this,new WeekdayPropertyEventArgs(mcWeekdayProperty.Format));
-                    m_calendar.Invalidate();
+	                PropertyChanged?.Invoke(this,new WeekdayPropertyEventArgs(mcWeekdayProperty.Format));
+	                m_calendar.Invalidate();
                 }
             }
         }
@@ -248,9 +243,8 @@ namespace Pabo.Calendar
                 if (m_align!=value)
                 {
                     m_align = value;
-                    if (PropertyChanged!=null)
-                        PropertyChanged(this,new WeekdayPropertyEventArgs(mcWeekdayProperty.Align));
-                    m_calendar.Invalidate();
+	                PropertyChanged?.Invoke(this,new WeekdayPropertyEventArgs(mcWeekdayProperty.Align));
+	                m_calendar.Invalidate();
                 }
             }
         }
@@ -269,9 +263,8 @@ namespace Pabo.Calendar
                 {
                     m_font = value;
                     m_calendar.DoLayout();
-                    if (PropertyChanged!=null)
-                        PropertyChanged(this,new WeekdayPropertyEventArgs(mcWeekdayProperty.Font));
-                    m_calendar.Invalidate();
+	                PropertyChanged?.Invoke(this,new WeekdayPropertyEventArgs(mcWeekdayProperty.Font));
+	                m_calendar.Invalidate();
                 }
             }
         }
@@ -289,9 +282,8 @@ namespace Pabo.Calendar
                 if (m_textColor!=value)
                 {
                     m_textColor = value;
-                    if (PropertyChanged!=null)
-                        PropertyChanged(this,new WeekdayPropertyEventArgs(mcWeekdayProperty.TextColor));
-                    m_calendar.Invalidate();
+	                PropertyChanged?.Invoke(this,new WeekdayPropertyEventArgs(mcWeekdayProperty.TextColor));
+	                m_calendar.Invalidate();
                 }
             }
         }
@@ -315,15 +307,13 @@ namespace Pabo.Calendar
             {
 	            var day = (mouseLocation.X / (int)m_calendar.Month.DayWidth);
 	            if (mode == mcClickMode.Single)
-                {
-                    if (this.Click!=null)
-                        this.Click(this,new WeekdayClickEventArgs(day,button));
-                }
+	            {
+		            Click?.Invoke(this,new WeekdayClickEventArgs(day,button));
+	            }
                 else
-                {
-                    if (this.DoubleClick!=null)
-                        this.DoubleClick(this,new WeekdayClickEventArgs(day,button));
-                }
+	            {
+		            DoubleClick?.Invoke(this,new WeekdayClickEventArgs(day,button));
+	            }
             }
 
         }

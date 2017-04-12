@@ -155,17 +155,11 @@
         /// </summary>
         public void Dispose()
         {
-            if (this.EntryFolderWatcher != null)
-            {
-                this.EntryFolderWatcher.Dispose();
-            }
+	        EntryFolderWatcher?.Dispose();
 
-            if (this.PhotoFolderWatcher != null)
-            {
-                this.PhotoFolderWatcher.Dispose();
-            }
+	        PhotoFolderWatcher?.Dispose();
 
-            foreach (var timer in this.EntryDeletionTimers.Values)
+	        foreach (var timer in this.EntryDeletionTimers.Values)
             {
                 if (timer != null)
                 {

@@ -71,12 +71,9 @@ namespace Pabo.Calendar
             object returnObject = base.EditValue(context, provider, value);
 
             DateItemCollection collection = returnObject as DateItemCollection;
-            if (collection !=null)
-            {
-                collection.ModifiedEvent();
-            }
+	        collection?.ModifiedEvent();
 
-            return returnObject;
+	        return returnObject;
         }
 
 
