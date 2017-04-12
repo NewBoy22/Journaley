@@ -1174,7 +1174,7 @@ namespace Pabo.Calendar
 			if (ShowHeader)
 			{
 				if (m_header.Font.Height > 31)
-					y = 2 + this.Font.Height + 2;
+					y = 2 + this.FontHeight + 2;
 				else 
 					y = 31;
 				
