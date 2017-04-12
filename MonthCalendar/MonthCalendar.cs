@@ -3748,11 +3748,8 @@ namespace Pabo.Calendar
         {
             get
             {
-                if (null == actionLists)
-                {
-	                actionLists = new DesignerActionListCollection {new CalendarActionList(this.Component)};
-                }
-                return actionLists;
+	            return actionLists ?? (actionLists =
+		                   new DesignerActionListCollection {new CalendarActionList(this.Component)});
             }
         }
 

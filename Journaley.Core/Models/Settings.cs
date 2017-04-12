@@ -189,15 +189,7 @@
         /// </value>
         private static MD5 MD5Instance
         {
-            get
-            {
-                if (md5 == null)
-                {
-                    md5 = MD5.Create();
-                }
-
-                return md5;
-            }
+            get { return md5 ?? (md5 = MD5.Create()); }
         }
 
         /// <summary>

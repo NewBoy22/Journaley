@@ -123,12 +123,8 @@
         {
             get
             {
-                if (zoomInCursor == null)
-                {
-                    zoomInCursor = CursorReader.LoadCursorFromResource(Properties.Resources.ZoomInCursor);
-                }
-
-                return zoomInCursor;
+	            return zoomInCursor ?? (zoomInCursor =
+		                   CursorReader.LoadCursorFromResource(Properties.Resources.ZoomInCursor));
             }
         }
 
@@ -142,12 +138,8 @@
         {
             get
             {
-                if (zoomOutCursor == null)
-                {
-                    zoomOutCursor = CursorReader.LoadCursorFromResource(Properties.Resources.ZoomOutCursor);
-                }
-
-                return zoomOutCursor;
+	            return zoomOutCursor ?? (zoomOutCursor =
+		                   CursorReader.LoadCursorFromResource(Properties.Resources.ZoomOutCursor));
             }
         }
 

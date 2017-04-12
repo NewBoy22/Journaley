@@ -440,16 +440,11 @@
         {
             get
             {
-                if (this.markdown == null)
-                {
-	                this.markdown = new Markdown
-	                {
-		                ExtraMode = true,
-		                SafeMode = false
-	                };
-                }
-
-                return this.markdown;
+	            return this.markdown ?? (this.markdown = new Markdown
+	            {
+		            ExtraMode = true,
+		            SafeMode = false
+	            });
             }
         }
 
@@ -461,15 +456,7 @@
         /// </value>
         private HtmlToText HtmlToText
         {
-            get
-            {
-                if (this.htmlToText == null)
-                {
-                    this.htmlToText = new HtmlToText();
-                }
-
-                return this.htmlToText;
-            }
+            get { return this.htmlToText ?? (this.htmlToText = new HtmlToText()); }
         }
 
         /// <summary>

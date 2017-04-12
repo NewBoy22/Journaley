@@ -128,15 +128,7 @@
         /// </value>
         public Settings Settings
         {
-            get
-            {
-                if (this.settings == null)
-                {
-                    this.settings = new Settings();
-                }
-
-                return this.settings;
-            }
+            get { return this.settings ?? (this.settings = new Settings()); }
 
             set
             {
