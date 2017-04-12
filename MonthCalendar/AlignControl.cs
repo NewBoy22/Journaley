@@ -252,9 +252,7 @@ namespace Pabo.Calendar
 
         private void SetupButtons()
         {
-	        ;
-
-            var w = this.Width/3;
+	        var w = this.Width/3;
             var h = this.Height/3;
 
             m_topLeft = new Rectangle(0,0,w,h);
