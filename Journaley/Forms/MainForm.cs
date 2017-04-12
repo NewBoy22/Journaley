@@ -778,7 +778,7 @@
         /// </summary>
         private void UpdatePhotoButton()
         {
-            this.buttonPhoto.Selected = this.SelectedEntry != null && this.SelectedEntry.PhotoPath != null;
+            this.buttonPhoto.Selected = SelectedEntry?.PhotoPath != null;
         }
 
         /// <summary>
@@ -853,7 +853,7 @@
         {
             // Save the currently selected tag, if any.
             TagCountEntry selected = this.listBoxTags.SelectedItem as TagCountEntry;
-            string selectedTagName = selected != null ? selected.Tag : null;
+            string selectedTagName = selected?.Tag;
 
             // Clear everything.
             this.listBoxTags.Items.Clear();
@@ -1477,7 +1477,7 @@
         /// </summary>
         private void UpdatePhotoArea()
         {
-            if (this.SelectedEntry == null || this.SelectedEntry.PhotoPath == null)
+            if (SelectedEntry?.PhotoPath == null)
             {
                 this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 0, SizeType = SizeType.Absolute };
                 this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 100, SizeType = SizeType.Percent };
@@ -1503,7 +1503,7 @@
         /// </summary>
         private void UpdatePhoto()
         {
-            if (this.SelectedEntry != null && this.SelectedEntry.PhotoPath != null)
+            if (SelectedEntry?.PhotoPath != null)
             {
                 using (Image image = Image.FromFile(this.SelectedEntry.PhotoPath))
                 {

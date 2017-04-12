@@ -403,7 +403,7 @@
         {
             // Set the initial location. 
             // Offset location if MainForm not maximized, and center if it is.
-            if (this.Owner != null && this.Owner is MainForm)
+            if (Owner is MainForm)
             {
                 if (this.Owner.WindowState == FormWindowState.Maximized)
                 {
@@ -420,7 +420,7 @@
             // Set the font of the font size buttons to Noto Serif.
             // The font family is force set to in-memory Noto Serif.
             // Other properties (size, style) will be inherited from the designer settings.
-            if (this.Owner != null && this.Owner is MainForm)
+            if (Owner is MainForm)
             {
                 var notoSans = ((MainForm)this.Owner).FontFamilyNotoSansRegular;
                 var notoSerif = ((MainForm)this.Owner).FontFamilyNotoSerifRegular;

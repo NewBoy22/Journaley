@@ -70,7 +70,7 @@
                 .Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
                 .FirstOrDefault();
 
-            return result == null ? string.Empty : result;
+            return result ?? string.Empty;
         }
 
         /// <summary>

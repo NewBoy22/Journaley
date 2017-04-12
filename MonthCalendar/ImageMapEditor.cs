@@ -107,7 +107,7 @@ namespace Pabo.Calendar
 
         public override System.Drawing.Design.UITypeEditorEditStyle GetEditStyle(System.ComponentModel.ITypeDescriptorContext context)
         {
-            if(context != null && context.Instance != null )
+            if(context?.Instance != null )
             {
                 return UITypeEditorEditStyle.DropDown ;
             }
