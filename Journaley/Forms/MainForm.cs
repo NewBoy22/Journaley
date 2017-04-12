@@ -1834,10 +1834,8 @@
         private async void MainForm_Shown(object sender, EventArgs e)
         {
             string updateUrl = @"http://journaley.s3.amazonaws.com/stable";
-
-            string updateSrcFile = Path.Combine(
-                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
-                "UpdateSource");
+	        
+			string updateSrcFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),"UpdateSource");
 
             if (File.Exists(updateSrcFile))
             {

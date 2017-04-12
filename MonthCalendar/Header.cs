@@ -454,6 +454,8 @@ namespace Pabo.Calendar
         {
             Assembly myAssembly = System.Reflection.Assembly.GetExecutingAssembly();
             Stream myStream = myAssembly.GetManifestResourceStream("Pabo.Calendar.Images."+name);
+	        if (myStream == null)
+		        return new Bitmap("");
             Bitmap image = new Bitmap(myStream);
             return image;
         }
@@ -616,8 +618,9 @@ namespace Pabo.Calendar
                     }
 
                 }
-
-                if ((m_calendar.Enabled) && (state!=mcButtonState.Inactive))
+	            if (image == null)
+		            return;
+				if ((m_calendar.Enabled) && (state!=mcButtonState.Inactive))
                     e.DrawImageUnscaled(image, new Point(x,y));
                 else
                     ControlPaint.DrawImageDisabled(e, image, x, y, Color.Transparent);

@@ -243,7 +243,9 @@
             Guid uuid;
             try
             {
-                uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
+	            if (e.Name == null)
+		            return;
+				uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
             }
             catch (Exception)
             {
@@ -290,7 +292,9 @@
             Guid uuid;
             try
             {
-                uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
+	            if (e.Name == null)
+		            return;
+				uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
             }
             catch (Exception)
             {
@@ -333,19 +337,21 @@
         /// <param name="e">The <see cref="FileSystemEventArgs"/> instance containing the event data.</param>
         private void EntryFolderWatcher_Deleted(object sender, FileSystemEventArgs e)
         {
-            // IMPORTANT NOTE ---
-            //
-            // Even when a deletion event is caught,
-            // wait for a few more seconds and see if it is in fact a deletion.
-            //
-            // In case of using Dropbox synchronization,
-            // A file is updated by first being deleted and then being replaced with a new file.
-            // In this case, three events, (1) EntryDeleted, (2) EntryAdded, (3) EntryChanged, will occur,
-            // (the second one might be omitted)
-            // and we want to handle only the last EntryChanged event.
-            //
-            // Use a Timer object to achieve this.
-            Guid uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
+			// IMPORTANT NOTE ---
+			//
+			// Even when a deletion event is caught,
+			// wait for a few more seconds and see if it is in fact a deletion.
+			//
+			// In case of using Dropbox synchronization,
+			// A file is updated by first being deleted and then being replaced with a new file.
+			// In this case, three events, (1) EntryDeleted, (2) EntryAdded, (3) EntryChanged, will occur,
+			// (the second one might be omitted)
+			// and we want to handle only the last EntryChanged event.
+			//
+			// Use a Timer object to achieve this.
+			if (e.Name == null)
+				return;
+			Guid uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
 
             if (!this.EntryDeletionTimers.ContainsKey(uuid))
             {
@@ -374,7 +380,9 @@
             Guid uuid;
             try
             {
-                uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
+	            if (e.Name == null)
+		            return;
+				uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
             }
             catch (Exception)
             {
@@ -425,7 +433,9 @@
             Guid uuid;
             try
             {
-                uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
+	            if (e.Name == null)
+		            return;
+				uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
             }
             catch (Exception)
             {
@@ -464,10 +474,12 @@
         /// <param name="e">The <see cref="FileSystemEventArgs"/> instance containing the event data.</param>
         private void PhotoFolderWatcher_Deleted(object sender, FileSystemEventArgs e)
         {
-            // IMPORTANT NOTE ---
-            //
-            // (refer to the note in EntryFolderWatcher_Deleted method)
-            Guid uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
+			// IMPORTANT NOTE ---
+			//
+			// (refer to the note in EntryFolderWatcher_Deleted method)
+			if (e.Name == null)
+				return;
+			Guid uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
 
             if (!this.PhotoDeletionTimers.ContainsKey(uuid))
             {
