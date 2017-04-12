@@ -59,11 +59,8 @@ namespace Pabo.Calendar
 
 
         #region Constructor
-        public ImageListPanel()
-        {
 
-        }
-        #endregion
+	    #endregion
 
         #region Public Methods
         public bool Init(ImageList imageList, int horizontal, int vertical, int columns, int defaultImage)

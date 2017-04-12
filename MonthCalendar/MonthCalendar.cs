@@ -2029,12 +2029,7 @@ namespace Pabo.Calendar
             base.OnLostFocus(e);
         }
 
-        protected override void OnGotFocus(EventArgs e)
-        {
-            base.OnGotFocus(e);
-        }
-
-        protected override void OnEnter(EventArgs e)
+	    protected override void OnEnter(EventArgs e)
         {
             this.Focus();
             if ((m_month.DayInFocus==-1) && (m_activeRegion!=mcCalendarRegion.Month))
@@ -2070,12 +2065,7 @@ namespace Pabo.Calendar
             }
         }
 
-        protected override void OnDragEnter(DragEventArgs drgevent)
-        {
-            base.OnDragEnter (drgevent);
-        }
-
-        protected override void OnDragOver(DragEventArgs drgevent)
+	    protected override void OnDragOver(DragEventArgs drgevent)
         {
             base.OnDragOver (drgevent);
             if ((drgevent.AllowedEffect & DragDropEffects.Move) == DragDropEffects.Move)
@@ -2085,13 +2075,8 @@ namespace Pabo.Calendar
             }
         }
 
-        protected override void OnDragLeave(EventArgs e)
-        {
-            base.OnDragLeave (e);
-        }
 
-
-        protected override void OnSystemColorsChanged(EventArgs e)
+	    protected override void OnSystemColorsChanged(EventArgs e)
         {
             base.OnSystemColorsChanged (e);
             if (Theme)
@@ -3720,12 +3705,7 @@ namespace Pabo.Calendar
 
         private DesignerActionListCollection actionLists;
 
-        public MonthCalendarDesigner()
-        {
-
-        }
-
-        [System.Obsolete]
+	    [System.Obsolete]
         public override void OnSetComponentDefaults()
         {
             base.OnSetComponentDefaults();

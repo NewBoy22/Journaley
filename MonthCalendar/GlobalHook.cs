@@ -64,12 +64,7 @@ namespace Pabo.Calendar
 
         #region Constructor
 
-        public GlobalHook()
-        {
-
-        }
-
-        #endregion
+	    #endregion
 
         #region IDisposable Members
 
