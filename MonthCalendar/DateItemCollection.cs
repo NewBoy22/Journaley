@@ -60,7 +60,7 @@ namespace Pabo.Calendar
 
         #region Constructor
 
-        public DateItemCollection(MonthCalendar owner) : base()
+        public DateItemCollection(MonthCalendar owner)
         {
 	        this.owner = owner ?? throw new ArgumentNullException(nameof(owner));
         }

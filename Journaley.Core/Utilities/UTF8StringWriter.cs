@@ -14,7 +14,6 @@
         /// Initializes a new instance of the <see cref="UTF8StringWriter"/> class.
         /// </summary>
         public UTF8StringWriter()
-            : base()
         {
         }
 

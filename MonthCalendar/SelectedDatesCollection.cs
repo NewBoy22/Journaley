@@ -47,7 +47,7 @@ namespace Pabo.Calendar
 
         #region Constructor
 
-        public SelectedDatesCollection(MonthCalendar owner) : base()
+        public SelectedDatesCollection(MonthCalendar owner)
         {
 	        this.owner = owner ?? throw new ArgumentNullException(nameof(owner));
         }

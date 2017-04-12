@@ -151,7 +151,6 @@
         /// Initializes a new instance of the <see cref="EntryListBox"/> class.
         /// </summary>
         public EntryListBox()
-            : base()
         {
             this.ScrollAlwaysVisible = true;
 
