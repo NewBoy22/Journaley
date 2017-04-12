@@ -1,4 +1,0 @@
-language: csharp
-solution: Journaley.sln
-os:
- -windowsxp
