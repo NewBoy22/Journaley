@@ -277,9 +277,8 @@ namespace Pabo.Calendar
             Region rightBtnRgn = new Region(m_nextBtnRect);
             Region leftYearBtnRgn = new Region(m_prevYearBtnRect);
             Region rightYearBtnRgn = new Region(m_nextYearBtnRect);
-            MouseButtons selectButton;
 
-            selectButton = SystemInformation.MouseButtonsSwapped ? MouseButtons.Right : MouseButtons.Left;
+	        var selectButton = SystemInformation.MouseButtonsSwapped ? MouseButtons.Right : MouseButtons.Left;
 
             bool btnClick = false;
 
