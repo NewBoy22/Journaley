@@ -396,11 +396,13 @@
 
             Brush brush = new SolidBrush(this.ForeColor);
 
-            StringFormat stringFormat = new StringFormat();
-            stringFormat.Alignment = StringAlignment.Center;
-            stringFormat.LineAlignment = StringAlignment.Center;
+	        StringFormat stringFormat = new StringFormat
+	        {
+		        Alignment = StringAlignment.Center,
+		        LineAlignment = StringAlignment.Center
+	        };
 
-            e.Graphics.DrawString(this.Text, this.Font, brush, this.ClientRectangle, stringFormat);
+	        e.Graphics.DrawString(this.Text, this.Font, brush, this.ClientRectangle, stringFormat);
 
             e.Graphics.TextRenderingHint = oldHint;
 

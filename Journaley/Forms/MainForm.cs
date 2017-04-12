@@ -442,9 +442,11 @@
             {
                 if (this.markdown == null)
                 {
-                    this.markdown = new Markdown();
-                    this.markdown.ExtraMode = true;
-                    this.markdown.SafeMode = false;
+	                this.markdown = new Markdown
+	                {
+		                ExtraMode = true,
+		                SafeMode = false
+	                };
                 }
 
                 return this.markdown;
@@ -1266,21 +1268,23 @@
         /// </summary>
         private void AskToChooseExistingPhoto()
         {
-            OpenFileDialog openDialog = new OpenFileDialog();
-            openDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-            openDialog.Filter =
-                "All Supported Images (*.bmp;*.gif;*.jpeg;*.jpg;*.png;*.tiff;*.tif)|*.bmp;*.gif;*.jpeg;*.jpg;*.png;*.tiff;*.tif|" +
-                "Bitmap Images (*.bmp)|*.bmp|" +
-                "GIF Images (*.gif)|*.gif|" +
-                "JPEG Images (*.jpeg;*.jpg)|*.jpeg;*.jpg|" +
-                "PNG Images (*.png)|*.png|" +
-                "TIFF Images (*.tiff;*.tif)|*.tiff;*.tif";
-            openDialog.FilterIndex = 1;
-            openDialog.RestoreDirectory = true;
-            openDialog.CheckFileExists = true;
-            openDialog.Multiselect = false;
+	        OpenFileDialog openDialog = new OpenFileDialog
+	        {
+		        InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures),
+		        Filter =
+			        "All Supported Images (*.bmp;*.gif;*.jpeg;*.jpg;*.png;*.tiff;*.tif)|*.bmp;*.gif;*.jpeg;*.jpg;*.png;*.tiff;*.tif|" +
+			        "Bitmap Images (*.bmp)|*.bmp|" +
+			        "GIF Images (*.gif)|*.gif|" +
+			        "JPEG Images (*.jpeg;*.jpg)|*.jpeg;*.jpg|" +
+			        "PNG Images (*.png)|*.png|" +
+			        "TIFF Images (*.tiff;*.tif)|*.tiff;*.tif",
+		        FilterIndex = 1,
+		        RestoreDirectory = true,
+		        CheckFileExists = true,
+		        Multiselect = false
+	        };
 
-            if (openDialog.ShowDialog() != DialogResult.OK)
+	        if (openDialog.ShowDialog() != DialogResult.OK)
             {
                 return;
             }
@@ -1399,10 +1403,10 @@
                         if (jpgEncoder != null)
                         {
                             Encoder encoder = Encoder.Quality;
-                            EncoderParameters encoderParameters = new EncoderParameters(1);
-                            encoderParameters.Param[0] = new EncoderParameter(encoder, 100L);
+	                        EncoderParameters encoderParameters =
+		                        new EncoderParameters(1) {Param = {[0] = new EncoderParameter(encoder, 100L)}};
 
-                            try
+	                        try
                             {
                                 this.Watcher.EnableRaisingEvents = false;
                                 b.Save(targetFullPath, jpgEncoder, encoderParameters);
@@ -1623,10 +1627,12 @@
         /// </summary>
         private void SetupAutoSaveTimer()
         {
-            this.AutoSaveTimer = new System.Timers.Timer(AutoSaveThreshold);
-            this.AutoSaveTimer.AutoReset = false;
-            this.AutoSaveTimer.SynchronizingObject = this;
-            this.AutoSaveTimer.Elapsed += this.AutoSaveTimer_Elapsed;
+	        this.AutoSaveTimer = new System.Timers.Timer(AutoSaveThreshold)
+	        {
+		        AutoReset = false,
+		        SynchronizingObject = this
+	        };
+	        this.AutoSaveTimer.Elapsed += this.AutoSaveTimer_Elapsed;
         }
 
         /// <summary>
@@ -2030,12 +2036,15 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtonSettings_Click(object sender, EventArgs e)
         {
-            SettingsForm form = new SettingsForm();
-            form.Settings = new Settings(this.Settings);    // pass a copied settings object
-            form.UpdateAvailable = this.UpdateAvailable;
-            form.CurrentVersion = this.CurrentlyInstalledVersion;
+	        SettingsForm form = new SettingsForm
+	        {
+		        Settings = new Settings(this.Settings),
+		        UpdateAvailable = this.UpdateAvailable,
+		        CurrentVersion = this.CurrentlyInstalledVersion
+	        };
+	        // pass a copied settings object
 
-            DialogResult result = form.ShowDialog(this);
+	        DialogResult result = form.ShowDialog(this);
             if (result == DialogResult.OK)
             {
                 bool dayOneFolderChanged = this.Settings.DayOneFolderPath != form.Settings.DayOneFolderPath;
@@ -2150,9 +2159,8 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtonTag_Click(object sender, EventArgs e)
         {
-            TagEditForm tagEditForm = new TagEditForm();
-            tagEditForm.StartPosition = FormStartPosition.Manual;
-            tagEditForm.Location = this.buttonTag.PointToScreen(new Point(-tagEditForm.Width, -8));
+	        TagEditForm tagEditForm = new TagEditForm {StartPosition = FormStartPosition.Manual};
+	        tagEditForm.Location = this.buttonTag.PointToScreen(new Point(-tagEditForm.Width, -8));
 
             tagEditForm.AssignedTags.AddRange(this.SelectedEntry.Tags.OrderBy(x => x));
             tagEditForm.OtherTags.AddRange(this.Entries.Values.SelectMany(x => x.Tags).Distinct().Where(x => !this.SelectedEntry.Tags.Contains(x)).OrderBy(x => x));
@@ -2536,10 +2544,9 @@
             EntryListBox activeEntryList = this.GetActiveEntryList();
             if (activeEntryList != null)
             {
-                PInvoke.SCROLLINFO scrollInfo = new PInvoke.SCROLLINFO();
-                scrollInfo.fMask = (int)PInvoke.ScrollInfoMask.SIF_ALL;
+	            PInvoke.SCROLLINFO scrollInfo = new PInvoke.SCROLLINFO {fMask = (int) PInvoke.ScrollInfoMask.SIF_ALL};
 
-                PInvoke.GetScrollInfo(activeEntryList.Handle, (int)PInvoke.SBFlags.SB_VERT, ref scrollInfo);
+	            PInvoke.GetScrollInfo(activeEntryList.Handle, (int)PInvoke.SBFlags.SB_VERT, ref scrollInfo);
 
                 // Divide into 100 scrolls.
                 for (int i = 1; i <= 100; ++i)

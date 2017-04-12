@@ -35,19 +35,23 @@
         /// <param name="synchronizingObject">The synchronizing object. (can be null).</param>
         public EntryWatcher(string entryFolderPath, string photoFolderPath, ISynchronizeInvoke synchronizingObject)
         {
-            this.EntryFolderWatcher = new FileSystemWatcher(entryFolderPath);
-            this.EntryFolderWatcher.NotifyFilter =
-                NotifyFilters.DirectoryName | NotifyFilters.FileName | NotifyFilters.LastWrite | NotifyFilters.Size;
+	        this.EntryFolderWatcher = new FileSystemWatcher(entryFolderPath)
+	        {
+		        NotifyFilter = NotifyFilters.DirectoryName | NotifyFilters.FileName | NotifyFilters.LastWrite |
+		                       NotifyFilters.Size
+	        };
 
-            this.EntryFolderWatcher.Created += new FileSystemEventHandler(this.EntryFolderWatcher_Created);
+	        this.EntryFolderWatcher.Created += new FileSystemEventHandler(this.EntryFolderWatcher_Created);
             this.EntryFolderWatcher.Changed += new FileSystemEventHandler(this.EntryFolderWatcher_Changed);
             this.EntryFolderWatcher.Deleted += new FileSystemEventHandler(this.EntryFolderWatcher_Deleted);
 
-            this.PhotoFolderWatcher = new FileSystemWatcher(photoFolderPath);
-            this.PhotoFolderWatcher.NotifyFilter =
-                NotifyFilters.DirectoryName | NotifyFilters.FileName | NotifyFilters.LastWrite | NotifyFilters.Size;
+	        this.PhotoFolderWatcher = new FileSystemWatcher(photoFolderPath)
+	        {
+		        NotifyFilter = NotifyFilters.DirectoryName | NotifyFilters.FileName | NotifyFilters.LastWrite |
+		                       NotifyFilters.Size
+	        };
 
-            this.PhotoFolderWatcher.Created += new FileSystemEventHandler(this.PhotoFolderWatcher_Created);
+	        this.PhotoFolderWatcher.Created += new FileSystemEventHandler(this.PhotoFolderWatcher_Created);
             this.PhotoFolderWatcher.Changed += new FileSystemEventHandler(this.PhotoFolderWatcher_Changed);
             this.PhotoFolderWatcher.Deleted += new FileSystemEventHandler(this.PhotoFolderWatcher_Deleted);
 
@@ -355,10 +359,12 @@
 
             if (!this.EntryDeletionTimers.ContainsKey(uuid))
             {
-                System.Timers.Timer timer = new System.Timers.Timer(DeletionDeferTime);
-                timer.AutoReset = false;
-                timer.SynchronizingObject = this.SynchronizingObject;
-                timer.Elapsed += delegate(object s, System.Timers.ElapsedEventArgs e2)
+	            System.Timers.Timer timer = new System.Timers.Timer(DeletionDeferTime)
+	            {
+		            AutoReset = false,
+		            SynchronizingObject = this.SynchronizingObject
+	            };
+	            timer.Elapsed += delegate(object s, System.Timers.ElapsedEventArgs e2)
                 {
                     this.FireDeleted(uuid, e.FullPath, this.EntryDeleted, ChangeType.EntryDeleted);
                 };
@@ -483,10 +489,12 @@
 
             if (!this.PhotoDeletionTimers.ContainsKey(uuid))
             {
-                System.Timers.Timer timer = new System.Timers.Timer(DeletionDeferTime);
-                timer.AutoReset = false;
-                timer.SynchronizingObject = this.SynchronizingObject;
-                timer.Elapsed += delegate(object s, System.Timers.ElapsedEventArgs e2)
+	            System.Timers.Timer timer = new System.Timers.Timer(DeletionDeferTime)
+	            {
+		            AutoReset = false,
+		            SynchronizingObject = this.SynchronizingObject
+	            };
+	            timer.Elapsed += delegate(object s, System.Timers.ElapsedEventArgs e2)
                 {
                     this.FireDeleted(uuid, e.FullPath, this.PhotoDeleted, ChangeType.PhotoDeleted);
                 };

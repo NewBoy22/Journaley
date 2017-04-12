@@ -251,9 +251,11 @@
         {
             while (true)
             {
-                FolderBrowserDialog folderDialog = new FolderBrowserDialog();
-                folderDialog.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                DialogResult result = folderDialog.ShowDialog(this);
+	            FolderBrowserDialog folderDialog = new FolderBrowserDialog
+	            {
+		            SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+	            };
+	            DialogResult result = folderDialog.ShowDialog(this);
 
                 if (result == DialogResult.Cancel)
                 {
@@ -364,9 +366,11 @@
         {
             while (true)
             {
-                FolderBrowserDialog folderDialog = new FolderBrowserDialog();
-                folderDialog.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                DialogResult result = folderDialog.ShowDialog(this);
+	            FolderBrowserDialog folderDialog = new FolderBrowserDialog
+	            {
+		            SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+	            };
+	            DialogResult result = folderDialog.ShowDialog(this);
 
 	            if (result == DialogResult.Cancel)
                 {
@@ -694,10 +698,12 @@
             if (this.bottomPanel6Complete.Visible)
             {
                 // Launch the last welcome screen on top of this form, and close this form.
-                WelcomeFormLastScreen lastScreen = new WelcomeFormLastScreen();
-                lastScreen.Location = this.Location;
-                lastScreen.WelcomeForm = this;
-                lastScreen.Show();
+	            WelcomeFormLastScreen lastScreen = new WelcomeFormLastScreen
+	            {
+		            Location = this.Location,
+		            WelcomeForm = this
+	            };
+	            lastScreen.Show();
             }
         }
 

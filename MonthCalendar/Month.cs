@@ -161,9 +161,11 @@ namespace Pabo.Calendar
             m_days = new Day[42];
             for (int i = 0;i<42;i++)
             {
-                m_days[i] = new Day();
-                m_days[i].Month = this;
-                m_days[i].Calendar = m_calendar;
+	            m_days[i] = new Day
+	            {
+		            Month = this,
+		            Calendar = m_calendar
+	            };
             }
 
             m_colors = new MonthColors(this);
@@ -1224,9 +1226,8 @@ namespace Pabo.Calendar
                         {
                             // day is not user drawn
                             m_days[i].UserDrawn = false;
-                            DateItem dayInfo = new DateItem();
-                            dayInfo.Calendar = m_calendar;
-                            DayQueryInfoEventArgs info = new DayQueryInfoEventArgs(dayInfo, m_days[i].Date, m_days[i].State);
+	                        DateItem dayInfo = new DateItem {Calendar = m_calendar};
+	                        DayQueryInfoEventArgs info = new DayQueryInfoEventArgs(dayInfo, m_days[i].Date, m_days[i].State);
                             DayQueryInfo(this, info);
                             if (!info.OwnerDraw)
                                 dayInfo = null;
@@ -2581,11 +2582,13 @@ namespace Pabo.Calendar
                     if (ss.Length==2)
                     {
                         // Create new PaddingCollection
-                        MonthPadding item = new MonthPadding((Month)context.Instance);
-                        // Set properties
-                        item.Horizontal = int.Parse(ss[0]);
-                        item.Vertical = int.Parse(ss[1]);
-                        return item;
+	                    MonthPadding item = new MonthPadding((Month) context.Instance)
+	                    {
+		                    Horizontal = int.Parse(ss[0]),
+		                    Vertical = int.Parse(ss[1])
+	                    };
+	                    // Set properties
+	                    return item;
                     }
                 }
                 return base.ConvertFrom (context, culture, value);
@@ -2637,12 +2640,15 @@ namespace Pabo.Calendar
                     if (ss.Length == 2)
                     {
                         // Create new PaddingCollection
-                        TransparencyCollection item = new TransparencyCollection((Month)context.Instance);
-                        // Set properties
-                        item.Background = int.Parse(ss[0]);
-                        item.Text = int.Parse(ss[1]);
+	                    TransparencyCollection item =
+		                    new TransparencyCollection((Month) context.Instance)
+		                    {
+			                    Background = int.Parse(ss[0]),
+			                    Text = int.Parse(ss[1])
+		                    };
+	                    // Set properties
 
-                        if (item.Text > 255)
+	                    if (item.Text > 255)
                             item.Text = 255;
                         if (item.Text < 0)
                             item.Text = 0;

@@ -352,12 +352,15 @@
         {
             string text = dateTime.ToString(MonthFormat);
 
-            StringFormat stringFormat = new StringFormat(StringFormat.GenericDefault);
-            stringFormat.Alignment = StringAlignment.Center;
-            stringFormat.LineAlignment = StringAlignment.Center;
-            stringFormat.Trimming = StringTrimming.EllipsisCharacter;
+	        StringFormat stringFormat =
+		        new StringFormat(StringFormat.GenericDefault)
+		        {
+			        Alignment = StringAlignment.Center,
+			        LineAlignment = StringAlignment.Center,
+			        Trimming = StringTrimming.EllipsisCharacter
+		        };
 
-            Rectangle bounds = e.Bounds;
+	        Rectangle bounds = e.Bounds;
             bounds.Height -= 1;
 
             e.Graphics.FillRectangle(MonthBackgroundBrush, bounds);
@@ -581,11 +584,14 @@
                 ? Brushes.Black
                 : (entry.Starred ? Brushes.Yellow : Brushes.White);
 
-            StringFormat stringFormat = new StringFormat(StringFormat.GenericDefault);
-            stringFormat.Alignment = StringAlignment.Near;
-            stringFormat.LineAlignment = StringAlignment.Center;
+	        StringFormat stringFormat =
+		        new StringFormat(StringFormat.GenericDefault)
+		        {
+			        Alignment = StringAlignment.Near,
+			        LineAlignment = StringAlignment.Center
+		        };
 
-            var dayString = entry.LocalTime.ToString("%d");
+	        var dayString = entry.LocalTime.ToString("%d");
 
             var oldHint = e.Graphics.TextRenderingHint;
             e.Graphics.TextRenderingHint = TextRenderingHint.AntiAlias;
@@ -621,10 +627,10 @@
                 ? Brushes.Black
                 : (entry.Starred ? Brushes.Yellow : Brushes.White);
 
-            StringFormat stringFormat = new StringFormat(StringFormat.GenericDefault);
-            stringFormat.Alignment = StringAlignment.Near;
+	        StringFormat stringFormat =
+		        new StringFormat(StringFormat.GenericDefault) {Alignment = StringAlignment.Near};
 
-            e.Graphics.DrawString(entry.LocalTime.ToString("ddd"), EntryDayOfWeekFont, brush, bounds, stringFormat);
+	        e.Graphics.DrawString(entry.LocalTime.ToString("ddd"), EntryDayOfWeekFont, brush, bounds, stringFormat);
         }
 
         /// <summary>
@@ -647,11 +653,14 @@
                 ? Brushes.Black
                 : (entry.Starred ? Brushes.Yellow : Brushes.White);
 
-            StringFormat stringFormat = new StringFormat(StringFormat.GenericDefault);
-            stringFormat.Alignment = StringAlignment.Near;
-            stringFormat.LineAlignment = StringAlignment.Center;
+	        StringFormat stringFormat =
+		        new StringFormat(StringFormat.GenericDefault)
+		        {
+			        Alignment = StringAlignment.Near,
+			        LineAlignment = StringAlignment.Center
+		        };
 
-            var timeString = entry.LocalTime.ToString("h:mm tt").ToLower();
+	        var timeString = entry.LocalTime.ToString("h:mm tt").ToLower();
 
             SizeF measuredSize = e.Graphics.MeasureString(timeString, entryTimeFont);
             while (measuredSize.Width > bounds.Width)
@@ -690,10 +699,9 @@
             worker.RunWorkerCompleted += delegate(object sender, RunWorkerCompletedEventArgs args)
             {
                 // Start the timer to do the fade in animation.
-                Timer timer = new Timer();
-                timer.Interval = 1;
+	            Timer timer = new Timer {Interval = 1};
 
-                long initialTimestamp = DateTime.Now.Ticks;
+	            long initialTimestamp = DateTime.Now.Ticks;
 
                 timer.Tick += delegate(object s, EventArgs e)
                 {

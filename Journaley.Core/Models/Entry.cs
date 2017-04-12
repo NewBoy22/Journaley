@@ -389,9 +389,8 @@
                         fileContent = fileContent.Replace(ch.ToString(), string.Empty);
                     }
 
-                    XmlDocument doc = new XmlDocument();
-                    doc.XmlResolver = null;
-                    doc.LoadXml(fileContent);
+	                XmlDocument doc = new XmlDocument {XmlResolver = null};
+	                doc.LoadXml(fileContent);
 
                     XmlNode dictNode = doc.SelectSingleNode("//dict");
                     Debug.Assert(dictNode.ChildNodes.Count % 2 == 0, "A dict node must have even number of children (key, value)");
@@ -509,10 +508,9 @@
         /// <param name="folderPath">The folder path.</param>
         public void Save(string folderPath)
         {
-            XmlDocument doc = new XmlDocument();
-            doc.XmlResolver = null;
+	        XmlDocument doc = new XmlDocument {XmlResolver = null};
 
-            // <?xml ...?>
+	        // <?xml ...?>
             var decl = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
             doc.AppendChild(decl);
 
