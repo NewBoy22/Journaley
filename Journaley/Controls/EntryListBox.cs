@@ -178,13 +178,7 @@
         /// <value>
         /// The thumbnail cache.
         /// </value>
-        private ImageCache ThumbnailCache
-        {
-            get
-            {
-                return this.thumbnailCache;
-            }
-        }
+        private ImageCache ThumbnailCache => this.thumbnailCache;
 
         /// <summary>
         /// Gets the wide thumbnail cache.
@@ -192,13 +186,7 @@
         /// <value>
         /// The wide thumbnail cache.
         /// </value>
-        private ImageCache WideThumbnailCache
-        {
-            get
-            {
-                return this.wideThumbnailCache;
-            }
-        }
+        private ImageCache WideThumbnailCache => this.wideThumbnailCache;
 
         /// <summary>
         /// Gets the photo alpha values.
@@ -206,13 +194,7 @@
         /// <value>
         /// The photo alpha values.
         /// </value>
-        private Dictionary<Entry, int> PhotoAlphaValues
-        {
-            get
-            {
-                return this.photoAlphaValues;
-            }
-        }
+        private Dictionary<Entry, int> PhotoAlphaValues => this.photoAlphaValues;
 
         /// <summary>
         /// The list's window procedure.

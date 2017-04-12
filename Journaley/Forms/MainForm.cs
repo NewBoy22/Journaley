@@ -187,13 +187,7 @@
         /// <value>
         /// The Open Sans font family.
         /// </value>
-        internal FontFamily FontFamilyNotoSansRegular
-        {
-            get
-            {
-                return this.fontFamilyNotoSansRegular;
-            }
-        }
+        internal FontFamily FontFamilyNotoSansRegular => this.fontFamilyNotoSansRegular;
 
         /// <summary>
         /// Gets the Open Sans font family.
@@ -201,13 +195,7 @@
         /// <value>
         /// The Open Sans font family.
         /// </value>
-        internal FontFamily FontFamilyNotoSerifRegular
-        {
-            get
-            {
-                return this.fontFamilyNotoSerifRegular;
-            }
-        }
+        internal FontFamily FontFamilyNotoSerifRegular => this.fontFamilyNotoSerifRegular;
 
         /// <summary>
         /// Gets the Noto Sans font family for WPF.
@@ -215,13 +203,7 @@
         /// <value>
         /// The Noto Sans font family for WPF.
         /// </value>
-        internal System.Windows.Media.FontFamily FontFamilyNotoSansWPF
-        {
-            get
-            {
-                return this.fontFamilyNotoSansWPF;
-            }
-        }
+        internal System.Windows.Media.FontFamily FontFamilyNotoSansWPF => this.fontFamilyNotoSansWPF;
 
         /// <summary>
         /// Gets the Noto Serif font family for WPF.
@@ -229,13 +211,7 @@
         /// <value>
         /// The Noto Serif font family for WPF.
         /// </value>
-        internal System.Windows.Media.FontFamily FontFamilyNotoSerifWPF
-        {
-            get
-            {
-                return this.fontFamilyNotoSerifWPF;
-            }
-        }
+        internal System.Windows.Media.FontFamily FontFamilyNotoSerifWPF => this.fontFamilyNotoSerifWPF;
 
         /// <summary>
         /// Gets or sets the currently installed version.
@@ -333,13 +309,7 @@
         /// <value>
         /// The entries.
         /// </value>
-        private Dictionary<Guid, Entry> Entries
-        {
-            get
-            {
-                return this.EntryList.Entries;
-            }
-        }
+        private Dictionary<Guid, Entry> Entries => this.EntryList.Entries;
 
         /// <summary>
         /// Gets or sets the selected entry.
@@ -3029,13 +2999,7 @@
             /// <summary>
             /// Gets the solid color to use when a <see cref="T:System.Windows.Forms.ToolStripMenuItem" /> other than the top-level <see cref="T:System.Windows.Forms.ToolStripMenuItem" /> is selected.
             /// </summary>
-            public override Color MenuItemSelected
-            {
-                get
-                {
-                    return Color.FromArgb(41, 161, 249);
-                }
-            }
+            public override Color MenuItemSelected => Color.FromArgb(41, 161, 249);
         }
 
         #endregion

@@ -208,13 +208,7 @@
         /// <value>
         /// The hover color to display.
         /// </value>
-        private Color HoverColorToDisplay
-        {
-            get
-            {
-                return this.Selected ? this.SelectedHoverColor : this.HoverColor;
-            }
-        }
+        private Color HoverColorToDisplay => this.Selected ? this.SelectedHoverColor : this.HoverColor;
 
         /// <summary>
         /// Gets down color to display.
@@ -222,13 +216,7 @@
         /// <value>
         /// The down color to display.
         /// </value>
-        private Color DownColorToDisplay
-        {
-            get
-            {
-                return this.Selected ? this.SelectedDownColor : this.DownColor;
-            }
-        }
+        private Color DownColorToDisplay => this.Selected ? this.SelectedDownColor : this.DownColor;
 
         /// <summary>
         /// Notifies a control that it is the default button so that its appearance and behavior is adjusted accordingly.

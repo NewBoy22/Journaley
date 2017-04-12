@@ -221,21 +221,9 @@ namespace Pabo.Calendar
             }
         }
 
-        internal bool MouseDown
-        {
-            get
-            {
-                return m_mouseDown;
-            }
-        }
+        internal bool MouseDown => m_mouseDown;
 
-        internal MonthCalendar Calendar
-        {
-            get
-            {
-                return m_calendar;
-            }
-        }
+        internal MonthCalendar Calendar => m_calendar;
 
         internal DateTime SelectedMonth
         {
@@ -262,21 +250,9 @@ namespace Pabo.Calendar
             }
         }
 
-        internal float DayWidth
-        {
-            get
-            {
-                return m_dayWidth;
-            }
-        }
+        internal float DayWidth => m_dayWidth;
 
-        internal float DayHeight
-        {
-            get
-            {
-                return m_dayHeight;
-            }
-        }
+        internal float DayHeight => m_dayHeight;
 
         [Browsable(true)]
         [Description("Indicates wether formatting should be applied to trailing dates.")]
@@ -472,23 +448,11 @@ namespace Pabo.Calendar
 
         [Description("Borders used in calendar.")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public MonthBorderStyles BorderStyles
-        {
-            get
-            {
-                return m_borderStyles;
-            }
-        }
+        public MonthBorderStyles BorderStyles => m_borderStyles;
 
         [Description("Colors used in calendar.")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public MonthColors Colors
-        {
-            get
-            {
-                return m_colors;
-            }
-        }
+        public MonthColors Colors => m_colors;
 
         [Description("Font used for date.")]
         [DefaultValue(typeof(Font),"Microsoft Sans Serif; 8,25pt")]
@@ -1443,63 +1407,27 @@ namespace Pabo.Calendar
 
             [Description("Trailing Colors.")]
             [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-            public TrailingColors Trailing
-            {
-                get
-                {
-                    return m_trailingColors;
-                }
-            }
+            public TrailingColors Trailing => m_trailingColors;
 
             [Description("Trailing Colors.")]
             [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-            public DayColors Days
-            {
-                get
-                {
-                    return m_dayColors;
-                }
-            }
+            public DayColors Days => m_dayColors;
 
             [Description("Weekend Colors.")]
             [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-            public WeekendColors Weekend
-            {
-                get
-                {
-                    return m_weekendColors;
-                }
-            }
+            public WeekendColors Weekend => m_weekendColors;
 
             [Description("Disabled Colors.")]
             [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-            public DisabledColors Disabled
-            {
-                get
-                {
-                    return m_disabledColors;
-                }
-            }
+            public DisabledColors Disabled => m_disabledColors;
 
             [Description("Selected Colors.")]
             [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-            public SelectedColors Selected
-            {
-                get
-                {
-                    return m_selectedColors;
-                }
-            }
+            public SelectedColors Selected => m_selectedColors;
 
             [Description("Focus Colors.")]
             [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-            public FocusColors Focus
-            {
-                get
-                {
-                    return m_focusColors;
-                }
-            }
+            public FocusColors Focus => m_focusColors;
 
 
             [Description("Background color when day is not selected or has focus.")]
@@ -2822,13 +2750,7 @@ namespace Pabo.Calendar
 
         #region Properties
 
-        public mcMonthProperty Property
-        {
-            get
-            {
-                return this.m_property;
-            }
-        }
+        public mcMonthProperty Property => this.m_property;
 
         #endregion
     }
@@ -2866,13 +2788,7 @@ namespace Pabo.Calendar
 
         #region Properties
 
-        public mcMonthColor Color
-        {
-            get
-            {
-                return this.m_color;
-            }
-        }
+        public mcMonthColor Color => this.m_color;
 
         #endregion
     }
@@ -2910,13 +2826,7 @@ namespace Pabo.Calendar
 
         #region Properties
 
-        public mcMonthBorderStyle BorderStyle
-        {
-            get
-            {
-                return this.m_borderStyle;
-            }
-        }
+        public mcMonthBorderStyle BorderStyle => this.m_borderStyle;
 
         #endregion
     }

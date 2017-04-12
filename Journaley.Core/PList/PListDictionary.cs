@@ -29,13 +29,7 @@
         /// <value>
         /// The count.
         /// </value>
-        public int Count
-        {
-            get
-            {
-                return this.dict.Count;
-            }
-        }
+        public int Count => this.dict.Count;
 
         /// <summary>
         /// Gets the key collection.
@@ -43,13 +37,7 @@
         /// <value>
         /// The key collection.
         /// </value>
-        public Dictionary<string, IPListElement>.KeyCollection Keys
-        {
-            get
-            {
-                return this.dict.Keys;
-            }
-        }
+        public Dictionary<string, IPListElement>.KeyCollection Keys => this.dict.Keys;
 
         /// <summary>
         /// Gets the value collection.
@@ -57,13 +45,7 @@
         /// <value>
         /// The value collection.
         /// </value>
-        public Dictionary<string, IPListElement>.ValueCollection Values
-        {
-            get
-            {
-                return this.dict.Values;
-            }
-        }
+        public Dictionary<string, IPListElement>.ValueCollection Values => this.dict.Values;
 
         /// <summary>
         /// Gets the <see cref="IPListElement"/> with the specified key.
@@ -73,13 +55,7 @@
         /// </value>
         /// <param name="key">The key.</param>
         /// <returns>The <see cref="IPListElement"/> value associated with the specified key.</returns>
-        public IPListElement this[string key]
-        {
-            get
-            {
-                return this.dict[key];
-            }
-        }
+        public IPListElement this[string key] => this.dict[key];
 
         /// <summary>
         /// Adds the specified key value pair.

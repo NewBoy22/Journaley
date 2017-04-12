@@ -190,15 +190,9 @@
         /// <value>
         /// The hover image to display.
         /// </value>
-        private Image HoverImageToDisplay
-        {
-            get
-            {
-                return (this.SelectedImage != null && this.SelectedHoverImage != null && this.Selected)
-                    ? this.SelectedHoverImage
-                    : this.HoverImage;
-            }
-        }
+        private Image HoverImageToDisplay => (this.SelectedImage != null && this.SelectedHoverImage != null && this.Selected)
+            ? this.SelectedHoverImage
+            : this.HoverImage;
 
         /// <summary>
         /// Gets down image to display.
@@ -206,15 +200,9 @@
         /// <value>
         /// Down image to display.
         /// </value>
-        private Image DownImageToDisplay
-        {
-            get
-            {
-                return (this.SelectedImage != null && this.SelectedDownImage != null && this.Selected)
-                    ? this.SelectedDownImage
-                    : this.DownImage;
-            }
-        }
+        private Image DownImageToDisplay => (this.SelectedImage != null && this.SelectedDownImage != null && this.Selected)
+            ? this.SelectedDownImage
+            : this.DownImage;
 
         /// <summary>
         /// Notifies a control that it is the default button so that its appearance and behavior is adjusted accordingly.

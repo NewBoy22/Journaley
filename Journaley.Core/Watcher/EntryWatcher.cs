@@ -127,13 +127,7 @@
         /// <value>
         /// The entry deletion timers.
         /// </value>
-        private IDictionary<Guid, System.Timers.Timer> EntryDeletionTimers
-        {
-            get
-            {
-                return this.entryDeletionTimers;
-            }
-        }
+        private IDictionary<Guid, System.Timers.Timer> EntryDeletionTimers => this.entryDeletionTimers;
 
         /// <summary>
         /// Gets the photo deletion timers dictionary.
@@ -142,13 +136,7 @@
         /// <value>
         /// The photo deletion timers.
         /// </value>
-        private IDictionary<Guid, System.Timers.Timer> PhotoDeletionTimers
-        {
-            get
-            {
-                return this.photoDeletionTimers;
-            }
-        }
+        private IDictionary<Guid, System.Timers.Timer> PhotoDeletionTimers => this.photoDeletionTimers;
 
         /// <summary>
         /// Gets or sets the synchronizing object.

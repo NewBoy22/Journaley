@@ -228,13 +228,7 @@
         /// <value>
         /// The local time.
         /// </value>
-        public DateTime LocalTime
-        {
-            get
-            {
-                return this.UTCDateTime.ToLocalTime();
-            }
-        }
+        public DateTime LocalTime => this.UTCDateTime.ToLocalTime();
 
         /// <summary>
         /// Gets the creation date as string.
@@ -242,13 +236,7 @@
         /// <value>
         /// The creation date.
         /// </value>
-        public string CreationDate
-        {
-            get
-            {
-                return this.UTCDateTime.ToString("u").Replace(' ', 'T');
-            }
-        }
+        public string CreationDate => this.UTCDateTime.ToString("u").Replace(' ', 'T');
 
         /// <summary>
         /// Gets the UUID string.
@@ -256,13 +244,7 @@
         /// <value>
         /// The UUID string.
         /// </value>
-        public string UUIDString
-        {
-            get
-            {
-                return this.UUID.ToString("N").ToUpper();
-            }
-        }
+        public string UUIDString => this.UUID.ToString("N").ToUpper();
 
         /// <summary>
         /// Gets the name of the file.
@@ -270,13 +252,7 @@
         /// <value>
         /// The name of the file.
         /// </value>
-        public string FileName
-        {
-            get
-            {
-                return this.UUIDString + ".doentry";
-            }
-        }
+        public string FileName => this.UUIDString + ".doentry";
 
         /// <summary>
         /// Gets the unknown key values.
@@ -284,13 +260,7 @@
         /// <value>
         /// The unknown key values.
         /// </value>
-        public Dictionary<XmlNode, XmlNode> UnknownKeyValues
-        {
-            get
-            {
-                return this.unknownKeyValues;
-            }
-        }
+        public Dictionary<XmlNode, XmlNode> UnknownKeyValues => this.unknownKeyValues;
 
         /// <summary>
         /// Gets the tags.
@@ -298,13 +268,7 @@
         /// <value>
         /// The tags.
         /// </value>
-        public IEnumerable<string> Tags
-        {
-            get
-            {
-                return this.tags.AsReadOnly();
-            }
-        }
+        public IEnumerable<string> Tags => this.tags.AsReadOnly();
 
         /// <summary>
         /// Gets or sets the photo path associated with this entry.

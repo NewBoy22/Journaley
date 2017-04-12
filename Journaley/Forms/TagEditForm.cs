@@ -44,13 +44,7 @@
         /// <value>
         /// The assigned tags.
         /// </value>
-        public List<string> AssignedTags
-        {
-            get
-            {
-                return this.assignedTags;
-            }
-        }
+        public List<string> AssignedTags => this.assignedTags;
 
         /// <summary>
         /// Gets the other tags.
@@ -58,13 +52,7 @@
         /// <value>
         /// The other tags.
         /// </value>
-        public List<string> OtherTags
-        {
-            get
-            {
-                return this.otherTags;
-            }
-        }
+        public List<string> OtherTags => this.otherTags;
 
         /// <summary>
         /// Handles the Load event of the TagEditForm control.

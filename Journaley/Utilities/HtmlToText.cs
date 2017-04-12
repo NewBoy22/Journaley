@@ -201,10 +201,7 @@ namespace BlackBeltCoder
 
         // Returns true if the current position is at the end of
         // the string
-        protected bool EndOfText
-        {
-            get { return (_pos >= _html.Length); }
-        }
+        protected bool EndOfText => (_pos >= _html.Length);
 
         // Safely returns the character at the current position
         protected char Peek()

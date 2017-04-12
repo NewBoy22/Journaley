@@ -63,13 +63,7 @@
         /// <value>
         /// The default Settings object.
         /// </value>
-        public static Settings Default
-        {
-            get
-            {
-                return GetSettingsFile(DefaultSettingsFilePath);
-            }
-        }
+        public static Settings Default => GetSettingsFile(DefaultSettingsFilePath);
 
         /// <summary>
         /// Gets or sets the password hash.
@@ -177,13 +171,7 @@
         /// <value>
         /// <c>true</c> if this instance has password; otherwise, <c>false</c>.
         /// </value>
-        public bool HasPassword
-        {
-            get
-            {
-                return this.PasswordHash != null;
-            }
-        }
+        public bool HasPassword => this.PasswordHash != null;
 
         /// <summary>
         /// Gets or sets a value indicating whether the user checked the auto-update option.
@@ -219,13 +207,7 @@
         /// <value>
         /// The default settings file path.
         /// </value>
-        private static string DefaultSettingsFilePath
-        {
-            get
-            {
-                return GetFilePathUnderApplicationData(SettingsFilename);
-            }
-        }
+        private static string DefaultSettingsFilePath => GetFilePathUnderApplicationData(SettingsFilename);
 
         /// <summary>
         /// Gets the settings file with the given path to the settings file.
