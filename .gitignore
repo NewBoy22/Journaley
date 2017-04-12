@@ -3,6 +3,11 @@
 *.user
 StyleCop.Cache
 
+# vim
+**/.swn
+**/.swo
+**/.swp
+
 # syntax: regexp
 **/.vs/*
 **/bin/*
