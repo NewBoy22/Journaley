@@ -2940,7 +2940,7 @@
             /// <value>
             /// The year.
             /// </value>
-            public int Year { get; }
+            private int Year { get; }
 
             /// <summary>
             /// Gets or sets the count.
@@ -2948,7 +2948,7 @@
             /// <value>
             /// The count.
             /// </value>
-            public int Count { get; }
+            private int Count { get; }
 
             /// <summary>
             /// Returns a <see cref="System.String" /> that represents this instance.
