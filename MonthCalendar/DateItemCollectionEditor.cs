@@ -25,13 +25,8 @@
  */
 
 using System;
-using System.Collections;
-using System.Windows.Forms;
-using System.Windows.Forms.Design;
-using System.Windows.Forms.ComponentModel;
 using System.ComponentModel;
 using System.ComponentModel.Design;
-using System.ComponentModel.Design.Serialization;
 
 namespace Pabo.Calendar
 {

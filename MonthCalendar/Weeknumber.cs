@@ -26,7 +26,6 @@
 
 using System;
 using System.ComponentModel;
-using System.ComponentModel.Design;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;

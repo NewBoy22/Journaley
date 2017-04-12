@@ -1,9 +1,7 @@
 ﻿namespace Journaley.Core.Utilities
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
 
     /// <summary>
     /// A utility class that helps extracting the "first sentence" from an entry text.

@@ -1,6 +1,5 @@
 ﻿namespace Journaley.Test
 {
-    using System;
     using System.IO;
     using Journaley.Core.Models;
     using Microsoft.VisualStudio.TestTools.UnitTesting;

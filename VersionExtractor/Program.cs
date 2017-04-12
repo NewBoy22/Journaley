@@ -1,12 +1,8 @@
 ﻿namespace VersionExtractor
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// This program extracts the version number string from the given assembly.

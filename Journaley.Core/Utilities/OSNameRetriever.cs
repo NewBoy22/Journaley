@@ -1,10 +1,6 @@
 ﻿namespace Journaley.Core.Utilities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Management;
-    using System.Text;
 
     /// <summary>
     /// A class containing a convenient method to retrieve a user-friendly name of the running OS.

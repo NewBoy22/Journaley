@@ -1,13 +1,10 @@
 ﻿namespace Journaley.Utilities
 {
     using System;
-    using System.Collections.Generic;
     using System.Drawing;
     using System.Drawing.Text;
     using System.IO;
-    using System.Linq;
     using System.Runtime.InteropServices;
-    using System.Text;
 
     /// <summary>
     /// Helper class that reads byte array binary font file and return font family.

@@ -1,10 +1,6 @@
-﻿using Journaley;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using Journaley.Core.Models;
-using System.Xml.Serialization;
-using System.Text;
 
 namespace Journaley.Test
 {

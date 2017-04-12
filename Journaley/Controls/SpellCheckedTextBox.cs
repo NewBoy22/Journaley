@@ -2,7 +2,6 @@
 {
     using System;
     using System.ComponentModel;
-    using System.ComponentModel.Design.Serialization;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Forms.Design;
