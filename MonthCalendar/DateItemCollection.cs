@@ -99,14 +99,14 @@ namespace Pabo.Calendar
 
         public void AddRange(DateItem[] dateItems)
         {
-            if (dateItems == null)
+	        if (dateItems == null)
                 throw new ArgumentNullException(nameof(dateItems));
 
-            for (int i=0; i<dateItems.Length; i++)
-            {
-                dateItems[i].Calendar = owner;
-                this.Add(dateItems[i]);
-            }
+	        foreach (DateItem t in dateItems)
+	        {
+		        t.Calendar = owner;
+		        this.Add(t);
+	        }
         }
 
         public void Add(DateItemCollection dateItems)

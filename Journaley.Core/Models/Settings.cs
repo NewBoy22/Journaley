@@ -316,9 +316,9 @@
         {
             byte[] data = MD5Instance.ComputeHash(Encoding.UTF8.GetBytes(input));
             StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < data.Length; ++i)
+            foreach (byte t in data)
             {
-                builder.Append(data[i].ToString("x2"));
+	            builder.Append(t.ToString("x2"));
             }
 
             return builder.ToString();

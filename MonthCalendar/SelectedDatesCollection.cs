@@ -82,13 +82,13 @@ namespace Pabo.Calendar
 
         public void AddRange(DateTime[] dates)
         {
-            if (dates == null)
+	        if (dates == null)
                 throw new ArgumentNullException(nameof(dates));
 
-            for (int i=0; i<dates.Length; i++)
-            {
-                this.Add(dates[i]);
-            }
+	        foreach (DateTime t in dates)
+	        {
+		        this.Add(t);
+	        }
         }
 
         public void Add(SelectedDatesCollection dates)

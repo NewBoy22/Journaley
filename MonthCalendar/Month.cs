@@ -509,13 +509,13 @@ namespace Pabo.Calendar
         {
 	        bool enabled = true;
             var info = m_calendar.GetDateInfo(dt);
-            for (int i = 0;i<info.Length;i++)
+            foreach (DateItem t in info)
             {
-                if (info[i].Enabled == false)
-                {
-                    enabled = false;
-                    break;
-                }
+	            if (t.Enabled == false)
+	            {
+		            enabled = false;
+		            break;
+	            }
             }
             return enabled;
         }
@@ -697,14 +697,14 @@ namespace Pabo.Calendar
             if (m_calendar.SelectionMode==mcSelectionMode.MultiExtended)
                 m_calendar.ExtendedKey = true;
 
-            for (int i = 0;i<days.Count;i++)
+            foreach (object t in days)
             {
-	            var index = (int)days[i];
+	            var index = (int)t;
 	            if (m_days[index].State==mcDayState.Selected)
-                {
-                    Remove(index);
-                    dates = AddDate(m_days[index].Date.ToShortDateString(),dates);
-                }
+	            {
+		            Remove(index);
+		            dates = AddDate(m_days[index].Date.ToShortDateString(),dates);
+	            }
             }
 
             // raise dayselected event
@@ -1060,15 +1060,15 @@ namespace Pabo.Calendar
             a.End = bottomRight;
 
             var days = DaysInArea(topLeft,bottomRight);
-            for (int i = 0;i<days.Count;i++)
+            foreach (object t in days)
             {
-	            var index = (int)days[i];
+	            var index = (int)t;
 	            if ( (m_calendar.SelectTrailingDates) || (SelectedMonth.Month  == m_days[index].Date.Month) &&
-                    (m_days[index].State != mcDayState.Selected) )
-                {
-                    m_days[index].State = mcDayState.Selected;
-                    m_days[index].SelectionArea = area;
-                }
+	                 (m_days[index].State != mcDayState.Selected) )
+	            {
+		            m_days[index].State = mcDayState.Selected;
+		            m_days[index].SelectionArea = area;
+	            }
             }
 
         }
@@ -1250,25 +1250,24 @@ namespace Pabo.Calendar
                     // Check how many selection areas there are
                     if (m_selArea.Count<=1)
                     {
-                        for (int i = 0;i<m_selArea.Count;i++)
-                        {
-                            SelectionArea area = (SelectionArea)m_selArea[i];
-                            if ((area.Begin!=-1) && (area.End !=-1))
-                            {
-                                // Get Coordinates for selection rectangle
+	                    foreach (object t in m_selArea)
+	                    {
+		                    SelectionArea area = (SelectionArea)t;
+		                    if ((area.Begin!=-1) && (area.End !=-1))
+		                    {
+			                    // Get Coordinates for selection rectangle
 
-                                m_selRight = System.Math.Max(m_days[area.End].Rectangle.Right,m_days[area.Begin].Rectangle.Right);
-                                m_selLeft = System.Math.Min(m_days[area.End].Rectangle.Left,m_days[area.Begin].Rectangle.Left);
-                                m_selTop = System.Math.Min(m_days[area.End].Rectangle.Top,m_days[area.Begin].Rectangle.Top);
-                                m_selBottom = System.Math.Max(m_days[area.End].Rectangle.Bottom,m_days[area.Begin].Rectangle.Bottom);
+			                    m_selRight = System.Math.Max(m_days[area.End].Rectangle.Right,m_days[area.Begin].Rectangle.Right);
+			                    m_selLeft = System.Math.Min(m_days[area.End].Rectangle.Left,m_days[area.Begin].Rectangle.Left);
+			                    m_selTop = System.Math.Min(m_days[area.End].Rectangle.Top,m_days[area.Begin].Rectangle.Top);
+			                    m_selBottom = System.Math.Max(m_days[area.End].Rectangle.Bottom,m_days[area.Begin].Rectangle.Bottom);
 
-                                // Draw selection
-                                Rectangle selRect = new Rectangle(m_selLeft,m_selTop,m_selRight-m_selLeft,m_selBottom-m_selTop);
-                                e.FillRectangle(selBrush,selRect);
-                                ControlPaint.DrawBorder(e,selRect,Colors.Selected.Border,BorderStyles.Selected);
-                            }
-
-                        }
+			                    // Draw selection
+			                    Rectangle selRect = new Rectangle(m_selLeft,m_selTop,m_selRight-m_selLeft,m_selBottom-m_selTop);
+			                    e.FillRectangle(selBrush,selRect);
+			                    ControlPaint.DrawBorder(e,selRect,Colors.Selected.Border,BorderStyles.Selected);
+		                    }
+	                    }
                     }
                         // Multiple selection areas, we dont use border so we
                         // draw each day individually to not overlap regions

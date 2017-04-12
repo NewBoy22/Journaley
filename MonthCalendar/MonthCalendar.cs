@@ -673,12 +673,12 @@ namespace Pabo.Calendar
 
         public void AddDateInfo(DateItem[] info)
         {
-            for (int i =0;i < info.Length;i++)
-            {
-                if (info[i]!=null)
-                    Dates.Add(info[i]);
-            }
-            Invalidate();
+	        foreach (DateItem t in info)
+	        {
+		        if (t!=null)
+			        Dates.Add(t);
+	        }
+	        Invalidate();
         }
 
         public void RemoveDateInfo(DateItem info)
@@ -1077,10 +1077,10 @@ namespace Pabo.Calendar
         {
             string[] years = AllowedYears();
             bool ret = false;
-            for(int i = 0;i<years.Length;i++)
+            foreach (string t in years)
             {
-                if (y == years[i])
-                    ret = true;
+	            if (y == t)
+		            ret = true;
             }
             return ret;
         }
@@ -2967,11 +2967,11 @@ namespace Pabo.Calendar
 
                 if (value.GetType() == typeof(string))
                 {
-                    for (int i = 0;i<validNames.Length;i++)
-                    {
-                        if (String.Compare(value.ToString(), validNames[i], StringComparison.Ordinal)==0)
-                            return validNames[i];
-                    }
+	                foreach (string t in validNames)
+	                {
+		                if (String.Compare(value.ToString(), t, StringComparison.Ordinal)==0)
+			                return t;
+	                }
                 }
                 else if (value.GetType() == typeof(int))
                 {
@@ -3036,14 +3036,14 @@ namespace Pabo.Calendar
             {
 	            var validNames = culture.DateTimeFormat.MonthNames;
 	            if (value.GetType() == typeof(string))
-                {
-                    for (int i = 0;i<validNames.Length;i++)
-                    {
-                        if (String.Compare(value.ToString(), validNames[i], StringComparison.Ordinal)==0)
-                        //if ((value.ToString().ToLower() == validNames[i].ToLower()))
-                            return validNames[i];
-                    }
-                }
+	            {
+		            foreach (string t in validNames)
+		            {
+			            if (String.Compare(value.ToString(), t, StringComparison.Ordinal)==0)
+				            //if ((value.ToString().ToLower() == validNames[i].ToLower()))
+				            return t;
+		            }
+	            }
                 else if (value.GetType() == typeof(int))
                 {
                     int m = Convert.ToInt32(value);
