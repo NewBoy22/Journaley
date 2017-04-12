@@ -25,10 +25,8 @@
  */
 
 using System;
-using System.Collections;
 using System.ComponentModel;
 using System.ComponentModel.Design;
-using System.ComponentModel.Design.Serialization;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Drawing.Design;
@@ -36,14 +34,11 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Printing;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
-using System.Runtime.Serialization;
 using System.Globalization;
 using System.Threading;
 using System.Reflection;
-using System.Security;
 using System.Security.Permissions;
 using System.Windows.Forms.VisualStyles;
-using System.Resources;
 using System.Text;
 
 namespace Pabo.Calendar

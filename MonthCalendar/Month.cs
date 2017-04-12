@@ -27,11 +27,8 @@
 using System;
 using System.Windows.Forms;
 using System.ComponentModel;
-using System.ComponentModel.Design;
 using System.Drawing;
-using System.Globalization;
 using System.Collections;
-using System.Drawing.Drawing2D;
 
 
 namespace Pabo.Calendar
