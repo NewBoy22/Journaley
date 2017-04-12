@@ -262,13 +262,9 @@ namespace Pabo.Calendar
             string[] months = m_calendar.AllowedMonths();
             for(int k=0;k<months.Length;k++)
             {
-                monthMenu.MenuItems[k].Text = months[k];
+	            monthMenu.MenuItems[k].Text = months[k];
 
-                if (k == m_calendar.ActiveMonth.Month-1)
-                    monthMenu.MenuItems[k].Checked = true;
-                else
-                    monthMenu.MenuItems[k].Checked = false;
-
+	            monthMenu.MenuItems[k].Checked = k == m_calendar.ActiveMonth.Month-1;
             }
             //show context menu
             monthMenu.Show(m_calendar,new Point(mouseLocation.X,mouseLocation.Y));
@@ -283,10 +279,7 @@ namespace Pabo.Calendar
             Region rightYearBtnRgn = new Region(m_nextYearBtnRect);
             MouseButtons selectButton;
 
-            if (SystemInformation.MouseButtonsSwapped)
-                selectButton = MouseButtons.Right;
-            else
-                selectButton = MouseButtons.Left;
+            selectButton = SystemInformation.MouseButtonsSwapped ? MouseButtons.Right : MouseButtons.Left;
 
             bool btnClick = false;
 
@@ -546,12 +539,9 @@ namespace Pabo.Calendar
             }
 
             var month = m_calendar.m_dateTimeFormat.GetMonthName(m_calendar.Month.SelectedMonth.Month)+" "+m_calendar.Month.SelectedMonth.Year.ToString();
-            if (ShowMonth)
-                e.DrawString(month,Font,textBrush,m_textRect,textFormat);
-            else
-                e.DrawString(m_text,Font,textBrush,m_textRect,textFormat);
+	        e.DrawString(ShowMonth ? month : m_text, Font, textBrush, m_textRect, textFormat);
 
-            textBrush.Dispose();
+	        textBrush.Dispose();
             bgBrush.Dispose();
         }
 

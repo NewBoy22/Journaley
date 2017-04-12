@@ -161,11 +161,9 @@ namespace Pabo.Calendar
 
             if (m_showToday)
             {
-                if (m_format == mcTodayFormat.Short)
-                    e.DrawString(DateTime.Now.ToShortDateString() ,Font,textBrush,txtRect,textFormat);
-                else
-                    e.DrawString(DateTime.Now.ToLongDateString() ,Font,textBrush,txtRect,textFormat);
-
+	            e.DrawString(
+		            m_format == mcTodayFormat.Short ? DateTime.Now.ToShortDateString() : DateTime.Now.ToLongDateString(),
+		            Font, textBrush, txtRect, textFormat);
             }
             else
                 e.DrawString(m_text ,Font,textBrush,txtRect,textFormat);

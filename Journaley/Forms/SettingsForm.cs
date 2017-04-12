@@ -199,14 +199,7 @@
                 var version = value ?? Assembly.GetExecutingAssembly().GetName().Version;
                 var versionString = version.ToString();
 
-                if (value != null)
-                {
-                    this.linkVersionNumber.Text = versionString;
-                }
-                else
-                {
-                    this.linkVersionNumber.Text = $"{versionString} (dev)";
-                }
+                this.linkVersionNumber.Text = value != null ? versionString : $"{versionString} (dev)";
 
                 this.linkVersionNumber.Links[0].LinkData =
                     "https://github.com/yyoon/Journaley/releases/tag/v" + version.ToString(2);

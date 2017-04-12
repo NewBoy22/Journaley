@@ -580,10 +580,7 @@ namespace Pabo.Calendar
             if ((!m_userDrawn) && (m_dayImage!=null) && (Month.EnableImageClick))
             {
                 Region r = new Region(m_imageRect);
-                if (r.IsVisible(p))
-                    status = true;
-                else
-                    status = false;
+                status = r.IsVisible(p);
                 r.Dispose();
             }
 
@@ -597,10 +594,7 @@ namespace Pabo.Calendar
             bool status = false;
             if ((!m_userDrawn) && (m_textRgn!=null))
             {
-                if (m_textRgn[0].IsVisible(p))
-                    status = true;
-                else
-                    status = false;
+	            status = m_textRgn[0].IsVisible(p);
             }
 
             return status;
@@ -613,10 +607,7 @@ namespace Pabo.Calendar
             bool status = false;
             if ((!m_userDrawn) && (m_textRgn != null))
             {
-                if (m_dateRgn[0].IsVisible(p))
-                    status = true;
-                else
-                    status = false;
+	            status = m_dateRgn[0].IsVisible(p);
             }
 
             return status;
@@ -626,15 +617,10 @@ namespace Pabo.Calendar
 
         internal bool HitTest(Point p)
         {
-
-            if ( ImageHitTest(p) )
-                m_calendar.Cursor = Cursors.Hand;
-            else
-                m_calendar.Cursor =Cursors.Arrow;
+	        m_calendar.Cursor = ImageHitTest(p) ? Cursors.Hand : Cursors.Arrow;
 
 
-
-            if (m_region.IsVisible(p))
+	        if (m_region.IsVisible(p))
                 return true;
             else
                 return false;

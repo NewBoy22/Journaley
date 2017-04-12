@@ -1599,14 +1599,7 @@
             this.Entries.Remove(this.SelectedEntry.UUID);
 
             // After deleting, select the next item.
-            if (this.Entries.Any())
-            {
-                this.SelectedEntry = sortedEntries[nextIndex];
-            }
-            else
-            {
-                this.SelectedEntry = null;
-            }
+            this.SelectedEntry = this.Entries.Any() ? sortedEntries[nextIndex] : null;
         }
 
         /// <summary>

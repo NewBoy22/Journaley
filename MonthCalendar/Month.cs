@@ -1122,15 +1122,11 @@ namespace Pabo.Calendar
         internal void Setup()
         {
             int startPos=0;
-	        string lblDay;
-            int i = 0;
+	        int i = 0;
 
             var weekdays = m_calendar.Weekdays.GetWeekDays();
 
-            if (m_calendar.Weekdays.Format == mcDayFormat.Short)
-                lblDay = m_calendar.m_dateTimeFormat.GetAbbreviatedDayName(m_selectedMonth.DayOfWeek);
-            else
-                lblDay = m_calendar.m_dateTimeFormat.GetDayName(m_selectedMonth.DayOfWeek);
+            var lblDay = m_calendar.Weekdays.Format == mcDayFormat.Short ? m_calendar.m_dateTimeFormat.GetAbbreviatedDayName(m_selectedMonth.DayOfWeek) : m_calendar.m_dateTimeFormat.GetDayName(m_selectedMonth.DayOfWeek);
 
             for (i = 0;i<weekdays.Length;i++)
             {

@@ -349,14 +349,7 @@
         /// </summary>
         private void AdjustBorderSize()
         {
-            if (Environment.OSVersion.Version >= new Version(6, 2))
-            {
-                this.panelContent.Padding = new Padding(2, 0, 2, 2);
-            }
-            else
-            {
-                this.panelContent.Padding = new Padding(1, 0, 1, 1);
-            }
+	        this.panelContent.Padding = Environment.OSVersion.Version >= new Version(6, 2) ? new Padding(2, 0, 2, 2) : new Padding(1, 0, 1, 1);
         }
 
         /// <summary>

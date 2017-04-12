@@ -321,25 +321,21 @@ namespace Pabo.Calendar
         internal string[] GetWeekDays()
         {
             int index = 0;
-            string[] sysNames;
-            string[] weekdays = new string[7] ;
-            int FirstDayOfWeek = (int)m_calendar.m_dateTimeFormat.FirstDayOfWeek;
+	        string[] weekdays = new string[7] ;
+            int firstDayOfWeek = (int)m_calendar.m_dateTimeFormat.FirstDayOfWeek;
 
             // Get system names for weekdays
-            if (Format == mcDayFormat.Short)
-                sysNames = m_calendar.m_dateTimeFormat.AbbreviatedDayNames;
-            else
-                sysNames = m_calendar.m_dateTimeFormat.DayNames;
+            var sysNames = Format == mcDayFormat.Short ? m_calendar.m_dateTimeFormat.AbbreviatedDayNames : m_calendar.m_dateTimeFormat.DayNames;
 
             weekdays.Initialize();
 
             // Arrange weekdays starting with first day of week
-            for (int i =FirstDayOfWeek;i<weekdays.Length;i++)
+            for (int i =firstDayOfWeek;i<weekdays.Length;i++)
             {
                 weekdays[index] = sysNames[i];
                 index++;
             }
-            for (int i =0;i<FirstDayOfWeek;i++)
+            for (int i =0;i<firstDayOfWeek;i++)
             {
                 weekdays[index] = sysNames[i];
                 index++;

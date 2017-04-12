@@ -106,17 +106,10 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void TextTagInput_TextChanged(object sender, EventArgs e)
         {
-            this.buttonAdd.Enabled = this.textTagInput.Text != string.Empty;
+	        this.buttonAdd.Enabled = this.textTagInput.Text != string.Empty;
 
             // Update buttonAdd foreColor when enabled or disabled.
-            if (this.buttonAdd.Enabled)
-            {
-                this.buttonAdd.ForeColor = EnabledButtonAddColor;
-            }
-            else
-            {
-                this.buttonAdd.ForeColor = DisabledButtonAddColor;
-            }
+	        this.buttonAdd.ForeColor = this.buttonAdd.Enabled ? EnabledButtonAddColor : DisabledButtonAddColor;
         }
 
         /// <summary>

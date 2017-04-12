@@ -237,16 +237,9 @@
         /// </summary>
         private void ToggleMaximize()
         {
-            if (this.WindowState == FormWindowState.Maximized)
-            {
-                this.WindowState = FormWindowState.Normal;
-            }
-            else
-            {
-                this.WindowState = FormWindowState.Maximized;
-            }
+	        this.WindowState = this.WindowState == FormWindowState.Maximized ? FormWindowState.Normal : FormWindowState.Maximized;
 
-            this.UpdateMaximizeRestoreButtonImage();
+	        this.UpdateMaximizeRestoreButtonImage();
         }
 
         /// <summary>

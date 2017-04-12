@@ -1356,10 +1356,7 @@ namespace Pabo.Calendar
                 if (m_firstDayOfWeek != value)
                 {
                     m_firstDayOfWeek = value;
-                    if (m_firstDayOfWeek!=0)
-                        m_dateTimeFormat.FirstDayOfWeek =  IntToDayOfWeek(m_firstDayOfWeek-1);
-                    else
-                        m_dateTimeFormat.FirstDayOfWeek = m_defaultFirstDayOfWeek;
+                    m_dateTimeFormat.FirstDayOfWeek = m_firstDayOfWeek!=0 ? IntToDayOfWeek(m_firstDayOfWeek-1) : m_defaultFirstDayOfWeek;
 
 	                FirstDayOfWeekChanged?.Invoke(this, new EventArgs());
 
@@ -1434,12 +1431,12 @@ namespace Pabo.Calendar
                 finally
                 {
                     m_culture = value;
-                    m_defaultFirstDayOfWeek = m_dateTimeFormat.FirstDayOfWeek;
+	                if (m_dateTimeFormat != null)
+	                {
+		                m_defaultFirstDayOfWeek = m_dateTimeFormat.FirstDayOfWeek;
 
-                    if (m_firstDayOfWeek!=0)
-                        m_dateTimeFormat.FirstDayOfWeek =  IntToDayOfWeek(m_firstDayOfWeek-1);
-                    else
-                        m_dateTimeFormat.FirstDayOfWeek = m_defaultFirstDayOfWeek;
+		                m_dateTimeFormat.FirstDayOfWeek = m_firstDayOfWeek!=0 ? IntToDayOfWeek(m_firstDayOfWeek-1) : m_defaultFirstDayOfWeek;
+	                }
 
 	                CultureChanged?.Invoke(this,new EventArgs());
                 }
