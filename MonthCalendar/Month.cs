@@ -161,11 +161,11 @@ namespace Pabo.Calendar
             m_days = new Day[42];
             for (int i = 0;i<42;i++)
             {
-	            m_days[i] = new Day
-	            {
-		            Month = this,
-		            Calendar = m_calendar
-	            };
+                m_days[i] = new Day
+                {
+                    Month = this,
+                    Calendar = m_calendar
+                };
             }
 
             m_colors = new MonthColors(this);
@@ -191,7 +191,7 @@ namespace Pabo.Calendar
                     m_dateFont.Dispose();
                     m_textFont.Dispose();
                     m_region.Dispose();
-	                m_backgroundImage?.Dispose();
+                    m_backgroundImage?.Dispose();
                 }
                 // shared cleanup logic
                 disposed = true;
@@ -269,8 +269,8 @@ namespace Pabo.Calendar
                 if (m_formatTrailing!=value)
                 {
                     m_formatTrailing = value;
-	                PropertyChanged?.Invoke(this,new MonthPropertyEventArgs(mcMonthProperty.FormatTrailing));
-	                Calendar.Invalidate();
+                    PropertyChanged?.Invoke(this,new MonthPropertyEventArgs(mcMonthProperty.FormatTrailing));
+                    Calendar.Invalidate();
                 }
             }
         }
@@ -289,8 +289,8 @@ namespace Pabo.Calendar
                 if (m_imageClick!=value)
                 {
                     m_imageClick = value;
-	                PropertyChanged?.Invoke(this,new MonthPropertyEventArgs(mcMonthProperty.ImageClick));
-	                Calendar.Invalidate();
+                    PropertyChanged?.Invoke(this,new MonthPropertyEventArgs(mcMonthProperty.ImageClick));
+                    Calendar.Invalidate();
                 }
             }
         }
@@ -351,8 +351,8 @@ namespace Pabo.Calendar
                 if (m_backgroundImage != value)
                 {
                     m_backgroundImage = value;
-	                PropertyChanged?.Invoke(this, new MonthPropertyEventArgs(mcMonthProperty.BackgroundImage));
-	                m_calendar.Invalidate();
+                    PropertyChanged?.Invoke(this, new MonthPropertyEventArgs(mcMonthProperty.BackgroundImage));
+                    m_calendar.Invalidate();
                 }
             }
 
@@ -372,8 +372,8 @@ namespace Pabo.Calendar
                 if (m_dateAlign!=value)
                 {
                     m_dateAlign = value;
-	                PropertyChanged?.Invoke(this,new MonthPropertyEventArgs(mcMonthProperty.DateAlign));
-	                m_calendar.Invalidate();
+                    PropertyChanged?.Invoke(this,new MonthPropertyEventArgs(mcMonthProperty.DateAlign));
+                    m_calendar.Invalidate();
                 }
             }
 
@@ -392,8 +392,8 @@ namespace Pabo.Calendar
                 if (m_showMonth!=value)
                 {
                     m_showMonth = value;
-	                PropertyChanged?.Invoke(this,new MonthPropertyEventArgs(mcMonthProperty.ShowMonthInDay));
-	                m_calendar.Invalidate();
+                    PropertyChanged?.Invoke(this,new MonthPropertyEventArgs(mcMonthProperty.ShowMonthInDay));
+                    m_calendar.Invalidate();
                 }
             }
         }
@@ -412,8 +412,8 @@ namespace Pabo.Calendar
                 if (m_textAlign!=value)
                 {
                     m_textAlign = value;
-	                PropertyChanged?.Invoke(this,new MonthPropertyEventArgs(mcMonthProperty.TextAlign));
-	                m_calendar.Invalidate();
+                    PropertyChanged?.Invoke(this,new MonthPropertyEventArgs(mcMonthProperty.TextAlign));
+                    m_calendar.Invalidate();
                 }
             }
 
@@ -433,8 +433,8 @@ namespace Pabo.Calendar
                 if (m_imageAlign!=value)
                 {
                     m_imageAlign = value;
-	                PropertyChanged?.Invoke(this,new MonthPropertyEventArgs(mcMonthProperty.ImageAlign));
-	                m_calendar.Invalidate();
+                    PropertyChanged?.Invoke(this,new MonthPropertyEventArgs(mcMonthProperty.ImageAlign));
+                    m_calendar.Invalidate();
                 }
             }
 
@@ -461,8 +461,8 @@ namespace Pabo.Calendar
                 if (m_dateFont!=value)
                 {
                     m_dateFont = value;
-	                PropertyChanged?.Invoke(this,new MonthPropertyEventArgs(mcMonthProperty.DateFont));
-	                m_calendar.Invalidate();
+                    PropertyChanged?.Invoke(this,new MonthPropertyEventArgs(mcMonthProperty.DateFont));
+                    m_calendar.Invalidate();
                 }
             }
         }
@@ -480,8 +480,8 @@ namespace Pabo.Calendar
                 if (m_textFont!=value)
                 {
                     m_textFont = value;
-	                PropertyChanged?.Invoke(this,new MonthPropertyEventArgs(mcMonthProperty.TextFont));
-	                m_calendar.Invalidate();
+                    PropertyChanged?.Invoke(this,new MonthPropertyEventArgs(mcMonthProperty.TextFont));
+                    m_calendar.Invalidate();
                 }
             }
         }
@@ -493,7 +493,7 @@ namespace Pabo.Calendar
 
         private string[] DaysInSelection(int sel)
         {
-	        var days = new string[0];
+            var days = new string[0];
             days.Initialize();
             for (int i = 0;i<42;i++)
             {
@@ -507,15 +507,15 @@ namespace Pabo.Calendar
 
         private bool IsDateEnabled(DateTime dt)
         {
-	        bool enabled = true;
+            bool enabled = true;
             var info = m_calendar.GetDateInfo(dt);
             foreach (DateItem t in info)
             {
-	            if (t.Enabled == false)
-	            {
-		            enabled = false;
-		            break;
-	            }
+                if (t.Enabled == false)
+                {
+                    enabled = false;
+                    break;
+                }
             }
             return enabled;
         }
@@ -533,7 +533,7 @@ namespace Pabo.Calendar
 
         internal void RemoveDay(int day, bool raiseEvent)
         {
-	        // retrieve the days area
+            // retrieve the days area
             int sel = m_days[day].SelectionArea;
             var d = DaysInSelection(sel);
 
@@ -689,9 +689,9 @@ namespace Pabo.Calendar
 
         internal void DeselectArea(int topLeft, int bottomRight)
         {
-	        string[] dates = new string[0];
+            string[] dates = new string[0];
 
-	        var days = DaysInArea(topLeft,bottomRight);
+            var days = DaysInArea(topLeft,bottomRight);
 
             // if MultiExtended , press CTRL to enable extended select
             if (m_calendar.SelectionMode==mcSelectionMode.MultiExtended)
@@ -699,12 +699,12 @@ namespace Pabo.Calendar
 
             foreach (object t in days)
             {
-	            var index = (int)t;
-	            if (m_days[index].State==mcDayState.Selected)
-	            {
-		            Remove(index);
-		            dates = AddDate(m_days[index].Date.ToShortDateString(),dates);
-	            }
+                var index = (int)t;
+                if (m_days[index].State==mcDayState.Selected)
+                {
+                    Remove(index);
+                    dates = AddDate(m_days[index].Date.ToShortDateString(),dates);
+                }
             }
 
             // raise dayselected event
@@ -723,14 +723,14 @@ namespace Pabo.Calendar
             NewSelectedArea(topLeft,bottomRight);
 
             // raise dayselected event
-	        DaySelected?.Invoke(this,new DaySelectedEventArgs(DaysInSelection(NO_AREA)));
+            DaySelected?.Invoke(this,new DaySelectedEventArgs(DaysInSelection(NO_AREA)));
 
-	        m_calendar.ExtendedKey = false;
+            m_calendar.ExtendedKey = false;
         }
 
         internal void SelectRange(int from, int to)
         {
-	        // if MultiExtended , press CTRL to enable extended select
+            // if MultiExtended , press CTRL to enable extended select
             if (m_calendar.SelectionMode==mcSelectionMode.MultiExtended)
                 m_calendar.ExtendedKey = true;
 
@@ -740,8 +740,8 @@ namespace Pabo.Calendar
 
             if (selAfter.Length>selBefore.Length)
             {
-	            // raise dayselected event
-	            DaySelected?.Invoke(this,new DaySelectedEventArgs(selAfter));
+                // raise dayselected event
+                DaySelected?.Invoke(this,new DaySelectedEventArgs(selAfter));
             }
 
             // Release CTRL key
@@ -758,9 +758,9 @@ namespace Pabo.Calendar
                 {
                     if (m_days[i].HitTest(mouseLocation))
                     {
-	                    DayDoubleClick?.Invoke(this,new DayClickEventArgs(m_days[i].Date.ToShortDateString() ,button,
-		                    mouseLocation.X - m_days[i].Rectangle.Left, mouseLocation.Y - m_days[i].Rectangle.Top,
-		                    mouseLocation.X,mouseLocation.Y,m_days[i].Rectangle));
+                        DayDoubleClick?.Invoke(this,new DayClickEventArgs(m_days[i].Date.ToShortDateString() ,button,
+                            mouseLocation.X - m_days[i].Rectangle.Left, mouseLocation.Y - m_days[i].Rectangle.Top,
+                            mouseLocation.X,mouseLocation.Y,m_days[i].Rectangle));
                     }
                 }
             }
@@ -769,12 +769,12 @@ namespace Pabo.Calendar
         internal void MouseUp()
         {
             m_mouseDown = false;
-	        var days = DaysInSelection(NO_AREA);
+            var days = DaysInSelection(NO_AREA);
             if ((days.Length>0) && (m_selected))
             {
                 Array.Sort(days);
-	            DaySelected?.Invoke(this,new DaySelectedEventArgs(days));
-	            m_selected = false;
+                DaySelected?.Invoke(this,new DaySelectedEventArgs(days));
+                m_selected = false;
             }
         }
 
@@ -797,7 +797,7 @@ namespace Pabo.Calendar
 
         internal void DaySelect(int i, MouseButtons button, Point mouseLocation)
         {
-	        if (m_calendar.SelectionMode > mcSelectionMode.None)
+            if (m_calendar.SelectionMode > mcSelectionMode.None)
             {
                 m_dayInFocus = i;
                 // Check if proper button is used
@@ -806,9 +806,9 @@ namespace Pabo.Calendar
 
                     if (!m_days[i].ImageHitTest(mouseLocation))
                     {
-	                    var dayEnabled = IsDateEnabled(m_days[i].Date);
+                        var dayEnabled = IsDateEnabled(m_days[i].Date);
 
-	                    if (((m_calendar.SelectTrailingDates) || (SelectedMonth.Month == m_days[i].Date.Month)) &&
+                        if (((m_calendar.SelectTrailingDates) || (SelectedMonth.Month == m_days[i].Date.Month)) &&
                             ((m_calendar.MinDate <= m_days[i].Date) && (m_calendar.MaxDate >= m_days[i].Date)) && (dayEnabled))
                         {
 
@@ -817,8 +817,8 @@ namespace Pabo.Calendar
                             if (m_days[i].State == mcDayState.Selected)
                             {
                                 DayStateChangedEventArgs args = new DayStateChangedEventArgs(m_days[i].Date.ToShortDateString(), mcDayState.Selected, mcDayState.Normal);
-	                            BeforeDayDeselected?.Invoke(this, args);
-	                            if (!args.Cancel)
+                                BeforeDayDeselected?.Invoke(this, args);
+                                if (!args.Cancel)
                                 {
                                     Remove(i);
                                 }
@@ -827,9 +827,9 @@ namespace Pabo.Calendar
                             else
                             {
                                 DayStateChangedEventArgs args = new DayStateChangedEventArgs(m_days[i].Date.ToShortDateString(), mcDayState.Normal, mcDayState.Selected);
-	                            BeforeDaySelected?.Invoke(this, args);
+                                BeforeDaySelected?.Invoke(this, args);
 
-	                            if (!args.Cancel)
+                                if (!args.Cancel)
                                 {
                                     NewSelectedDay(i);
                                 }
@@ -841,16 +841,16 @@ namespace Pabo.Calendar
                     }
                     else
                     {
-	                    ImageClick?.Invoke(this, new DayClickEventArgs(m_days[i].Date.ToShortDateString(), button,
-		                    mouseLocation.X - m_days[i].Rectangle.Left, mouseLocation.Y - m_days[i].Rectangle.Top,
-		                    mouseLocation.X, mouseLocation.Y, m_days[i].Rectangle));
+                        ImageClick?.Invoke(this, new DayClickEventArgs(m_days[i].Date.ToShortDateString(), button,
+                            mouseLocation.X - m_days[i].Rectangle.Left, mouseLocation.Y - m_days[i].Rectangle.Top,
+                            mouseLocation.X, mouseLocation.Y, m_days[i].Rectangle));
                     }
 
                 }
                 //either way ceate DayClick event
-	            DayClick?.Invoke(this, new DayClickEventArgs(m_days[i].Date.ToShortDateString(), button,
-		            mouseLocation.X - m_days[i].Rectangle.Left, mouseLocation.Y - m_days[i].Rectangle.Top,
-		            mouseLocation.X, mouseLocation.Y, m_days[i].Rectangle));
+                DayClick?.Invoke(this, new DayClickEventArgs(m_days[i].Date.ToShortDateString(), button,
+                    mouseLocation.X - m_days[i].Rectangle.Left, mouseLocation.Y - m_days[i].Rectangle.Top,
+                    mouseLocation.X, mouseLocation.Y, m_days[i].Rectangle));
             }
 
         }
@@ -897,11 +897,11 @@ namespace Pabo.Calendar
                         {
 
                             // Raise DayMouseMove event
-	                        DayMouseMove?.Invoke(this, new DayMouseMoveEventArgs(m_days[i].Date.ToShortDateString(),
-		                        mouseLocation.X - m_days[i].Rectangle.Left, mouseLocation.Y - m_days[i].Rectangle.Top,
-		                        mouseLocation.X, mouseLocation.Y, m_days[i].Rectangle));
+                            DayMouseMove?.Invoke(this, new DayMouseMoveEventArgs(m_days[i].Date.ToShortDateString(),
+                                mouseLocation.X - m_days[i].Rectangle.Left, mouseLocation.Y - m_days[i].Rectangle.Top,
+                                mouseLocation.X, mouseLocation.Y, m_days[i].Rectangle));
 
-	                        // check if its a new day
+                            // check if its a new day
                             if (m_dayInFocus != i)
                             {
                                 FocusMoved(i);
@@ -937,7 +937,7 @@ namespace Pabo.Calendar
                     // raise events
                     if ((DayLostFocus != null) && (m_dayInFocus != -1))
                         DayLostFocus(this, new DayEventArgs(m_days[m_dayInFocus].Date.ToShortDateString()));
-	                DayGotFocus?.Invoke(this, new DayEventArgs(m_days[i].Date.ToShortDateString()));
+                    DayGotFocus?.Invoke(this, new DayEventArgs(m_days[i].Date.ToShortDateString()));
                 }
                 else
                 {
@@ -955,14 +955,14 @@ namespace Pabo.Calendar
                 if (m_days[i].State == mcDayState.Normal)
                 {
                     args = new DayStateChangedEventArgs(m_days[i].Date.ToShortDateString(), mcDayState.Normal, mcDayState.Selected);
-	                BeforeDaySelected?.Invoke(this, args);
+                    BeforeDaySelected?.Invoke(this, args);
                 }
                 else
                 {
                     if (m_dayInFocus == -1)
                         m_dayInFocus = i;
                     args = new DayStateChangedEventArgs(m_days[m_dayInFocus].Date.ToShortDateString(), mcDayState.Selected, mcDayState.Normal);
-	                BeforeDayDeselected?.Invoke(this, args);
+                    BeforeDayDeselected?.Invoke(this, args);
                 }
 
                 m_dayInFocus = i;
@@ -1054,7 +1054,7 @@ namespace Pabo.Calendar
 
         private void MarkAreaAsSelected(int topLeft,int bottomRight, int area)
         {
-	        SelectionArea a = (SelectionArea)m_selArea[area];
+            SelectionArea a = (SelectionArea)m_selArea[area];
 
             a.Begin = topLeft;
             a.End = bottomRight;
@@ -1062,20 +1062,20 @@ namespace Pabo.Calendar
             var days = DaysInArea(topLeft,bottomRight);
             foreach (object t in days)
             {
-	            var index = (int)t;
-	            if ( (m_calendar.SelectTrailingDates) || (SelectedMonth.Month  == m_days[index].Date.Month) &&
-	                 (m_days[index].State != mcDayState.Selected) )
-	            {
-		            m_days[index].State = mcDayState.Selected;
-		            m_days[index].SelectionArea = area;
-	            }
+                var index = (int)t;
+                if ( (m_calendar.SelectTrailingDates) || (SelectedMonth.Month  == m_days[index].Date.Month) &&
+                     (m_days[index].State != mcDayState.Selected) )
+                {
+                    m_days[index].State = mcDayState.Selected;
+                    m_days[index].SelectionArea = area;
+                }
             }
 
         }
 
         internal void RemoveSelection(bool raiseEvent, int sel)
         {
-	        // Get selected days
+            // Get selected days
             var days = DaysInSelection(sel);
 
             for (int i = 0;i<42;i++)
@@ -1104,7 +1104,7 @@ namespace Pabo.Calendar
                 if (days.Length !=0)
                 {
                     Array.Sort(days);
-	                DayDeselected?.Invoke(this,new DaySelectedEventArgs(days));
+                    DayDeselected?.Invoke(this,new DaySelectedEventArgs(days));
                 }
 
                 // reset arrays and index
@@ -1122,7 +1122,7 @@ namespace Pabo.Calendar
         internal void Setup()
         {
             int startPos=0;
-	        int i = 0;
+            int i = 0;
 
             var weekdays = m_calendar.Weekdays.GetWeekDays();
 
@@ -1161,7 +1161,7 @@ namespace Pabo.Calendar
 
             int today = -1;
 
-	        Brush bgBrush = new SolidBrush(Colors.BackColor1);
+            Brush bgBrush = new SolidBrush(Colors.BackColor1);
             Brush selBrush = new SolidBrush(Color.FromArgb(25,Colors.Selected.BackColor));
             Brush focusBrush = new SolidBrush(Color.FromArgb(35,Colors.Focus.BackColor));
             Brush todayBrush = new SolidBrush(Color.FromArgb(50, Calendar.TodayColor));
@@ -1198,13 +1198,13 @@ namespace Pabo.Calendar
                         {
                             // day is not user drawn
                             m_days[i].UserDrawn = false;
-	                        DateItem dayInfo = new DateItem {Calendar = m_calendar};
-	                        DayQueryInfoEventArgs info = new DayQueryInfoEventArgs(dayInfo, m_days[i].Date, m_days[i].State);
+                            DateItem dayInfo = new DateItem {Calendar = m_calendar};
+                            DayQueryInfoEventArgs info = new DayQueryInfoEventArgs(dayInfo, m_days[i].Date, m_days[i].State);
                             DayQueryInfo(this, info);
                             if (!info.OwnerDraw)
                                 dayInfo = null;
                             m_days[i].Draw(e, dayInfo);
-	                        dayInfo?.Dispose();
+                            dayInfo?.Dispose();
                         }
                         else
                         {
@@ -1246,24 +1246,24 @@ namespace Pabo.Calendar
                     // Check how many selection areas there are
                     if (m_selArea.Count<=1)
                     {
-	                    foreach (object t in m_selArea)
-	                    {
-		                    SelectionArea area = (SelectionArea)t;
-		                    if ((area.Begin!=-1) && (area.End !=-1))
-		                    {
-			                    // Get Coordinates for selection rectangle
+                        foreach (object t in m_selArea)
+                        {
+                            SelectionArea area = (SelectionArea)t;
+                            if ((area.Begin!=-1) && (area.End !=-1))
+                            {
+                                // Get Coordinates for selection rectangle
 
-			                    m_selRight = System.Math.Max(m_days[area.End].Rectangle.Right,m_days[area.Begin].Rectangle.Right);
-			                    m_selLeft = System.Math.Min(m_days[area.End].Rectangle.Left,m_days[area.Begin].Rectangle.Left);
-			                    m_selTop = System.Math.Min(m_days[area.End].Rectangle.Top,m_days[area.Begin].Rectangle.Top);
-			                    m_selBottom = System.Math.Max(m_days[area.End].Rectangle.Bottom,m_days[area.Begin].Rectangle.Bottom);
+                                m_selRight = System.Math.Max(m_days[area.End].Rectangle.Right,m_days[area.Begin].Rectangle.Right);
+                                m_selLeft = System.Math.Min(m_days[area.End].Rectangle.Left,m_days[area.Begin].Rectangle.Left);
+                                m_selTop = System.Math.Min(m_days[area.End].Rectangle.Top,m_days[area.Begin].Rectangle.Top);
+                                m_selBottom = System.Math.Max(m_days[area.End].Rectangle.Bottom,m_days[area.Begin].Rectangle.Bottom);
 
-			                    // Draw selection
-			                    Rectangle selRect = new Rectangle(m_selLeft,m_selTop,m_selRight-m_selLeft,m_selBottom-m_selTop);
-			                    e.FillRectangle(selBrush,selRect);
-			                    ControlPaint.DrawBorder(e,selRect,Colors.Selected.Border,BorderStyles.Selected);
-		                    }
-	                    }
+                                // Draw selection
+                                Rectangle selRect = new Rectangle(m_selLeft,m_selTop,m_selRight-m_selLeft,m_selBottom-m_selTop);
+                                e.FillRectangle(selBrush,selRect);
+                                ControlPaint.DrawBorder(e,selRect,Colors.Selected.Border,BorderStyles.Selected);
+                            }
+                        }
                     }
                         // Multiple selection areas, we dont use border so we
                         // draw each day individually to not overlap regions
@@ -1295,7 +1295,7 @@ namespace Pabo.Calendar
         {
             int row = 0;
 
-	        Rectangle dayRect = new Rectangle();
+            Rectangle dayRect = new Rectangle();
 
             m_dayHeight = (float)((m_rect.Height - (m_padding.Vertical*7))  / 6);
             m_dayWidth =  (float)((m_rect.Width - (m_padding.Horizontal*8)) / 7);
@@ -1406,8 +1406,8 @@ namespace Pabo.Calendar
                     if (m_backColor1 != value)
                     {
                         m_backColor1 = value;
-	                    m_month.ColorChanged?.Invoke(this,new MonthColorEventArgs(mcMonthColor.BackColor1));
-	                    m_month.m_calendar.Invalidate();
+                        m_month.ColorChanged?.Invoke(this,new MonthColorEventArgs(mcMonthColor.BackColor1));
+                        m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -1425,8 +1425,8 @@ namespace Pabo.Calendar
                     if (m_backColor2 != value)
                     {
                         m_backColor2 = value;
-	                    m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.BackColor2));
-	                    m_month.m_calendar.Invalidate();
+                        m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.BackColor2));
+                        m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -1444,8 +1444,8 @@ namespace Pabo.Calendar
                     if (m_gradientMode != value)
                     {
                         m_gradientMode = value;
-	                    m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.Gradient));
-	                    m_month.m_calendar.Invalidate();
+                        m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.Gradient));
+                        m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -1493,8 +1493,8 @@ namespace Pabo.Calendar
                     if (m_textColor != value)
                     {
                         m_textColor = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.DisabledText));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.DisabledText));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -1512,8 +1512,8 @@ namespace Pabo.Calendar
                     if (m_dateColor != value)
                     {
                         m_dateColor = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.DisabledDate));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.DisabledDate));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -1531,8 +1531,8 @@ namespace Pabo.Calendar
                     if (m_backColor1 != value)
                     {
                         m_backColor1 = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.DisabledBackColor1));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.DisabledBackColor1));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -1550,8 +1550,8 @@ namespace Pabo.Calendar
                     if (m_backColor2 != value)
                     {
                         m_backColor2 = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.DisabledBackColor2));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.DisabledBackColor2));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -1569,8 +1569,8 @@ namespace Pabo.Calendar
                     if (m_gradientMode != value)
                     {
                         m_gradientMode = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.DisabledGradient));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.DisabledGradient));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -1626,8 +1626,8 @@ namespace Pabo.Calendar
                     if (m_textColor != value)
                     {
                         m_textColor = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.WeekendText));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.WeekendText));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -1645,8 +1645,8 @@ namespace Pabo.Calendar
                     if (m_dateColor != value)
                     {
                         m_dateColor = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.WeekendDate));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.WeekendDate));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -1664,8 +1664,8 @@ namespace Pabo.Calendar
                     if (m_backColor1 != value)
                     {
                         m_backColor1 = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.WeekendBackColor1));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.WeekendBackColor1));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -1683,8 +1683,8 @@ namespace Pabo.Calendar
                     if (m_backColor2 != value)
                     {
                         m_backColor2 = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.WeekendBackColor2 ));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.WeekendBackColor2 ));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -1702,8 +1702,8 @@ namespace Pabo.Calendar
                     if (m_gradientMode != value)
                     {
                         m_gradientMode = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.WeekendGradient));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.WeekendGradient));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -1790,8 +1790,8 @@ namespace Pabo.Calendar
                     if (m_textColor != value)
                     {
                         m_textColor = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.TrailingText));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.TrailingText));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -1809,8 +1809,8 @@ namespace Pabo.Calendar
                     if (m_dateColor != value)
                     {
                         m_dateColor = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.TrailingDate));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.TrailingDate));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -1828,8 +1828,8 @@ namespace Pabo.Calendar
                     if (m_backColor1 != value)
                     {
                         m_backColor1 = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.TrailingBackColor1));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.TrailingBackColor1));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -1847,8 +1847,8 @@ namespace Pabo.Calendar
                     if (m_backColor2 != value)
                     {
                         m_backColor2 = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.TrailingBackColor2));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.TrailingBackColor2));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -1866,8 +1866,8 @@ namespace Pabo.Calendar
                     if (m_gradientMode != value)
                     {
                         m_gradientMode = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.TrailingGradient));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.TrailingGradient));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -1922,8 +1922,8 @@ namespace Pabo.Calendar
                     if (m_textColor != value)
                     {
                         m_textColor = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.SelectedText));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.SelectedText));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -1941,8 +1941,8 @@ namespace Pabo.Calendar
                     if (m_dateColor != value)
                     {
                         m_dateColor = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.SelectedDate));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.SelectedDate));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -1960,8 +1960,8 @@ namespace Pabo.Calendar
                     if (m_borderColor != value)
                     {
                         m_borderColor = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.SelectedBorder));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.SelectedBorder));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -1979,8 +1979,8 @@ namespace Pabo.Calendar
                     if (m_backColor != value)
                     {
                         m_backColor = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.SelectedBackColor));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.SelectedBackColor));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -2032,8 +2032,8 @@ namespace Pabo.Calendar
                     if (m_textColor != value)
                     {
                         m_textColor = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.FocusText));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.FocusText));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -2051,8 +2051,8 @@ namespace Pabo.Calendar
                     if (m_dateColor != value)
                     {
                         m_dateColor = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.FocusDate));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.FocusDate));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -2070,8 +2070,8 @@ namespace Pabo.Calendar
                     if (m_borderColor != value)
                     {
                         m_borderColor = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.FocusBorder));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.FocusBorder));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -2089,8 +2089,8 @@ namespace Pabo.Calendar
                     if (m_backColor != value)
                     {
                         m_backColor = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.FocusBackColor));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.FocusBackColor));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -2144,8 +2144,8 @@ namespace Pabo.Calendar
                     if (m_textColor != value)
                     {
                         m_textColor = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.DayText));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.DayText));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -2163,8 +2163,8 @@ namespace Pabo.Calendar
                     if (m_dateColor != value)
                     {
                         m_dateColor = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.DayDate));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.DayDate));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -2182,8 +2182,8 @@ namespace Pabo.Calendar
                     if (m_borderColor != value)
                     {
                         m_borderColor = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.DayBorder));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.DayBorder));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -2201,8 +2201,8 @@ namespace Pabo.Calendar
                     if (m_backColor1 != value)
                     {
                         m_backColor1 = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.DayBackColor1));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.DayBackColor1));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -2220,8 +2220,8 @@ namespace Pabo.Calendar
                     if (m_backColor2 != value)
                     {
                         m_backColor2 = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.DayBackColor2));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.DayBackColor2));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -2239,8 +2239,8 @@ namespace Pabo.Calendar
                     if (m_gradientMode != value)
                     {
                         m_gradientMode = value;
-	                    m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.DayGradient));
-	                    m_parent.m_month.m_calendar.Invalidate();
+                        m_parent.m_month.ColorChanged?.Invoke(this, new MonthColorEventArgs(mcMonthColor.DayGradient));
+                        m_parent.m_month.m_calendar.Invalidate();
                     }
                 }
             }
@@ -2287,8 +2287,8 @@ namespace Pabo.Calendar
                     if (m_borderStyle!=value)
                     {
                         m_borderStyle = value;
-	                    m_month.BorderStyleChanged?.Invoke(this,new MonthBorderStyleEventArgs(mcMonthBorderStyle.Normal));
-	                    m_month.m_calendar.Invalidate();
+                        m_month.BorderStyleChanged?.Invoke(this,new MonthBorderStyleEventArgs(mcMonthBorderStyle.Normal));
+                        m_month.m_calendar.Invalidate();
                     }
                 }
 
@@ -2307,8 +2307,8 @@ namespace Pabo.Calendar
                     if (m_focusBorderStyle!=value)
                     {
                         m_focusBorderStyle = value;
-	                    m_month.BorderStyleChanged?.Invoke(this,new MonthBorderStyleEventArgs(mcMonthBorderStyle.Focus));
-	                    m_month.m_calendar.Invalidate();
+                        m_month.BorderStyleChanged?.Invoke(this,new MonthBorderStyleEventArgs(mcMonthBorderStyle.Focus));
+                        m_month.m_calendar.Invalidate();
                     }
                 }
 
@@ -2327,8 +2327,8 @@ namespace Pabo.Calendar
                     if (m_selectedBorderStyle!=value)
                     {
                         m_selectedBorderStyle = value;
-	                    m_month.BorderStyleChanged?.Invoke(this,new MonthBorderStyleEventArgs(mcMonthBorderStyle.Selected));
-	                    m_month.m_calendar.Invalidate();
+                        m_month.BorderStyleChanged?.Invoke(this,new MonthBorderStyleEventArgs(mcMonthBorderStyle.Selected));
+                        m_month.m_calendar.Invalidate();
                     }
                 }
 
@@ -2376,7 +2376,7 @@ namespace Pabo.Calendar
                             // padding has changed , force DoLayout
                             m_month.SetupDays();
                             m_month.Calendar.Invalidate();
-	                        m_month.PropertyChanged?.Invoke(this,new MonthPropertyEventArgs(mcMonthProperty.Padding));
+                            m_month.PropertyChanged?.Invoke(this,new MonthPropertyEventArgs(mcMonthProperty.Padding));
                         }
                     }
                 }
@@ -2400,7 +2400,7 @@ namespace Pabo.Calendar
                         {
                             m_month.SetupDays();
                             m_month.Calendar.Invalidate();
-	                        m_month.PropertyChanged?.Invoke(this,new MonthPropertyEventArgs(mcMonthProperty.Padding));
+                            m_month.PropertyChanged?.Invoke(this,new MonthPropertyEventArgs(mcMonthProperty.Padding));
                         }
                     }
                 }
@@ -2448,7 +2448,7 @@ namespace Pabo.Calendar
                             // padding has changed , force DoLayout
                             m_month.SetupDays();
                             m_month.Calendar.Invalidate();
-	                        m_month.PropertyChanged?.Invoke(this, new MonthPropertyEventArgs(mcMonthProperty.Transparency));
+                            m_month.PropertyChanged?.Invoke(this, new MonthPropertyEventArgs(mcMonthProperty.Transparency));
                         }
                     }
                 }
@@ -2472,7 +2472,7 @@ namespace Pabo.Calendar
                         {
                             m_month.SetupDays();
                             m_month.Calendar.Invalidate();
-	                        m_month.PropertyChanged?.Invoke(this, new MonthPropertyEventArgs(mcMonthProperty.Transparency));
+                            m_month.PropertyChanged?.Invoke(this, new MonthPropertyEventArgs(mcMonthProperty.Transparency));
                         }
                     }
                 }
@@ -2511,13 +2511,13 @@ namespace Pabo.Calendar
                     if (ss.Length==2)
                     {
                         // Create new PaddingCollection
-	                    MonthPadding item = new MonthPadding((Month) context.Instance)
-	                    {
-		                    Horizontal = int.Parse(ss[0]),
-		                    Vertical = int.Parse(ss[1])
-	                    };
-	                    // Set properties
-	                    return item;
+                        MonthPadding item = new MonthPadding((Month) context.Instance)
+                        {
+                            Horizontal = int.Parse(ss[0]),
+                            Vertical = int.Parse(ss[1])
+                        };
+                        // Set properties
+                        return item;
                     }
                 }
                 return base.ConvertFrom (context, culture, value);
@@ -2569,15 +2569,15 @@ namespace Pabo.Calendar
                     if (ss.Length == 2)
                     {
                         // Create new PaddingCollection
-	                    TransparencyCollection item =
-		                    new TransparencyCollection((Month) context.Instance)
-		                    {
-			                    Background = int.Parse(ss[0]),
-			                    Text = int.Parse(ss[1])
-		                    };
-	                    // Set properties
+                        TransparencyCollection item =
+                            new TransparencyCollection((Month) context.Instance)
+                            {
+                                Background = int.Parse(ss[0]),
+                                Text = int.Parse(ss[1])
+                            };
+                        // Set properties
 
-	                    if (item.Text > 255)
+                        if (item.Text > 255)
                             item.Text = 255;
                         if (item.Text < 0)
                             item.Text = 0;

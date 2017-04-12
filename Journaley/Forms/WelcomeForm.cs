@@ -91,26 +91,26 @@
         {
             this.InitializeComponent();
 
-	        this.bottomPanels = new List<Panel>
-	        {
-		        this.bottomPanel1Init,
-		        this.bottomPanel2StartNewJournal,
-		        this.bottomPanel3LocationSelected,
-		        this.bottomPanel4PasswordSetting,
-		        this.bottomPanel5ImportJournal,
-		        this.bottomPanel6Complete
-	        };
+            this.bottomPanels = new List<Panel>
+            {
+                this.bottomPanel1Init,
+                this.bottomPanel2StartNewJournal,
+                this.bottomPanel3LocationSelected,
+                this.bottomPanel4PasswordSetting,
+                this.bottomPanel5ImportJournal,
+                this.bottomPanel6Complete
+            };
 
-	        this.panelMessages = new Dictionary<int, string>
-	        {
-		        {2, "Okay."},
-		        {3, "Great!"},
-		        {4, "Make sure not to forget it!"},
-		        {5, "Okay."},
-		        {6, "Welcome."}
-	        };
+            this.panelMessages = new Dictionary<int, string>
+            {
+                {2, "Okay."},
+                {3, "Great!"},
+                {4, "Make sure not to forget it!"},
+                {5, "Okay."},
+                {6, "Welcome."}
+            };
 
-	        this.ShowBottomPanel(1);
+            this.ShowBottomPanel(1);
         }
 
         /// <summary>
@@ -243,11 +243,11 @@
         {
             while (true)
             {
-	            FolderBrowserDialog folderDialog = new FolderBrowserDialog
-	            {
-		            SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-	            };
-	            DialogResult result = folderDialog.ShowDialog(this);
+                FolderBrowserDialog folderDialog = new FolderBrowserDialog
+                {
+                    SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+                };
+                DialogResult result = folderDialog.ShowDialog(this);
 
                 if (result == DialogResult.Cancel)
                 {
@@ -358,13 +358,13 @@
         {
             while (true)
             {
-	            FolderBrowserDialog folderDialog = new FolderBrowserDialog
-	            {
-		            SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-	            };
-	            DialogResult result = folderDialog.ShowDialog(this);
+                FolderBrowserDialog folderDialog = new FolderBrowserDialog
+                {
+                    SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+                };
+                DialogResult result = folderDialog.ShowDialog(this);
 
-	            if (result == DialogResult.Cancel)
+                if (result == DialogResult.Cancel)
                 {
                     break;
                 }
@@ -406,15 +406,15 @@
                 }
                 else
                 {
-	                var createDirectoryResult = MessageBox.Show(
-		                this,
-		                "The selected folder is not empty.\nWould you like to create a subfolder named \"Journaley\" and use it to store your journal?",
-		                "Journaley",
-		                MessageBoxButtons.YesNo,
-		                MessageBoxIcon.Warning,
-		                MessageBoxDefaultButton.Button1);
+                    var createDirectoryResult = MessageBox.Show(
+                        this,
+                        "The selected folder is not empty.\nWould you like to create a subfolder named \"Journaley\" and use it to store your journal?",
+                        "Journaley",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning,
+                        MessageBoxDefaultButton.Button1);
 
-	                if (createDirectoryResult == DialogResult.Yes)
+                    if (createDirectoryResult == DialogResult.Yes)
                     {
                         // Create "Journaley\entries" folder.
                         try
@@ -690,12 +690,12 @@
             if (this.bottomPanel6Complete.Visible)
             {
                 // Launch the last welcome screen on top of this form, and close this form.
-	            WelcomeFormLastScreen lastScreen = new WelcomeFormLastScreen
-	            {
-		            Location = this.Location,
-		            WelcomeForm = this
-	            };
-	            lastScreen.Show();
+                WelcomeFormLastScreen lastScreen = new WelcomeFormLastScreen
+                {
+                    Location = this.Location,
+                    WelcomeForm = this
+                };
+                lastScreen.Show();
             }
         }
 

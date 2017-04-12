@@ -28,8 +28,8 @@
         /// <param name="type">The change type.</param>
         public EntryEventArgs(FileSystemEventArgs e, ChangeType type)
         {
-	        if (e.Name == null)
-		        return;
+            if (e.Name == null)
+                return;
             this.UUID = new Guid(Path.GetFileNameWithoutExtension(e.Name));
             this.FullPath = e.FullPath;
             this.Type = type;

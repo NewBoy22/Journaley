@@ -318,7 +318,7 @@
             StringBuilder builder = new StringBuilder();
             foreach (byte t in data)
             {
-	            builder.Append(t.ToString("x2"));
+                builder.Append(t.ToString("x2"));
             }
 
             return builder.ToString();

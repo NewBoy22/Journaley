@@ -81,7 +81,7 @@ namespace Journaley.Test
                 false                                           // IsDirty
                 );
 
-	        var actual = Entry.LoadFromFile(path);
+            var actual = Entry.LoadFromFile(path);
             Assert.AreEqual(expected, actual);
             Assert.IsFalse(actual.IsDirty);
         }
@@ -108,12 +108,12 @@ namespace Journaley.Test
         [TestMethod()]
         public void SaveTest1()
         {
-	        Entry target = new Entry
-	        {
-		        Starred = true,
-		        EntryText = "This is the body.\n나는 바디다."
-	        };
-	        target.Save(".");
+            Entry target = new Entry
+            {
+                Starred = true,
+                EntryText = "This is the body.\n나는 바디다."
+            };
+            target.Save(".");
 
             Assert.IsFalse(target.IsDirty);
             Assert.IsTrue(File.Exists(target.FileName));

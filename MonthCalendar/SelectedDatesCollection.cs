@@ -73,8 +73,8 @@ namespace Pabo.Calendar
 
         public void Add(DateTime value)
         {
-	        var index = this.IndexOf(value);
-	        if (index == -1)
+            var index = this.IndexOf(value);
+            if (index == -1)
                 this.InnerList.Add(value);
             else
                 this.InnerList[index] = value;
@@ -82,13 +82,13 @@ namespace Pabo.Calendar
 
         public void AddRange(DateTime[] dates)
         {
-	        if (dates == null)
+            if (dates == null)
                 throw new ArgumentNullException(nameof(dates));
 
-	        foreach (DateTime t in dates)
-	        {
-		        this.Add(t);
-	        }
+            foreach (DateTime t in dates)
+            {
+                this.Add(t);
+            }
         }
 
         public void Add(SelectedDatesCollection dates)

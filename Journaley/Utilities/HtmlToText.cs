@@ -32,42 +32,42 @@ namespace Journaley.Utilities
         // Static constructor (one time only)
         static HtmlToText()
         {
-	        _tags = new Dictionary<string, string>
-	        {
-		        {"address", "\n"},
-		        {"blockquote", "\n"},
-		        {"div", "\n"},
-		        {"dl", "\n"},
-		        {"fieldset", "\n"},
-		        {"form", "\n"},
-		        {"h1", "\n"},
-		        {"/h1", "\n"},
-		        {"h2", "\n"},
-		        {"/h2", "\n"},
-		        {"h3", "\n"},
-		        {"/h3", "\n"},
-		        {"h4", "\n"},
-		        {"/h4", "\n"},
-		        {"h5", "\n"},
-		        {"/h5", "\n"},
-		        {"h6", "\n"},
-		        {"/h6", "\n"},
-		        {"p", "\n"},
-		        {"/p", "\n"},
-		        {"table", "\n"},
-		        {"/table", "\n"},
-		        {"ul", "\n"},
-		        {"/ul", "\n"},
-		        {"ol", "\n"},
-		        {"/ol", "\n"},
-		        {"/li", "\n"},
-		        {"br", "\n"},
-		        {"/td", "\t"},
-		        {"/tr", "\n"},
-		        {"/pre", "\n"}
-	        };
+            _tags = new Dictionary<string, string>
+            {
+                {"address", "\n"},
+                {"blockquote", "\n"},
+                {"div", "\n"},
+                {"dl", "\n"},
+                {"fieldset", "\n"},
+                {"form", "\n"},
+                {"h1", "\n"},
+                {"/h1", "\n"},
+                {"h2", "\n"},
+                {"/h2", "\n"},
+                {"h3", "\n"},
+                {"/h3", "\n"},
+                {"h4", "\n"},
+                {"/h4", "\n"},
+                {"h5", "\n"},
+                {"/h5", "\n"},
+                {"h6", "\n"},
+                {"/h6", "\n"},
+                {"p", "\n"},
+                {"/p", "\n"},
+                {"table", "\n"},
+                {"/table", "\n"},
+                {"ul", "\n"},
+                {"/ul", "\n"},
+                {"ol", "\n"},
+                {"/ol", "\n"},
+                {"/li", "\n"},
+                {"br", "\n"},
+                {"/td", "\t"},
+                {"/tr", "\n"},
+                {"/pre", "\n"}
+            };
 
-	        _ignoreTags = new HashSet<string> {"script", "noscript", "style", "object"};
+            _ignoreTags = new HashSet<string> {"script", "noscript", "style", "object"};
         }
 
         /// <summary>

@@ -39,14 +39,14 @@
             int val = 2;
             PInvoke.DwmSetWindowAttribute(this.Handle, 2, ref val, 4);  // Enabling the DWM-based NC painting.
 
-	        PInvoke.MARGINS margins = new PInvoke.MARGINS
-	        {
-		        leftWidth = 1,
-		        topHeight = 1,
-		        rightWidth = 1,
-		        bottomHeight = 1
-	        };
-	        PInvoke.DwmExtendFrameIntoClientArea(this.Handle, ref margins);
+            PInvoke.MARGINS margins = new PInvoke.MARGINS
+            {
+                leftWidth = 1,
+                topHeight = 1,
+                rightWidth = 1,
+                bottomHeight = 1
+            };
+            PInvoke.DwmExtendFrameIntoClientArea(this.Handle, ref margins);
 
             this.CornerSize = DefaultCornerSize;
             this.ResizingBorderWidth = DefaultResizingBorderWidth;
@@ -237,9 +237,9 @@
         /// </summary>
         private void ToggleMaximize()
         {
-	        this.WindowState = this.WindowState == FormWindowState.Maximized ? FormWindowState.Normal : FormWindowState.Maximized;
+            this.WindowState = this.WindowState == FormWindowState.Maximized ? FormWindowState.Normal : FormWindowState.Maximized;
 
-	        this.UpdateMaximizeRestoreButtonImage();
+            this.UpdateMaximizeRestoreButtonImage();
         }
 
         /// <summary>

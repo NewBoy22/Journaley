@@ -79,12 +79,12 @@ namespace Pabo.Calendar
 
         public void ModifiedEvent()
         {
-	        DateItemModified?.Invoke(this,new EventArgs());
+            DateItemModified?.Invoke(this,new EventArgs());
         }
 
         public void Add(DateItem value)
         {
-	        if (value == null)
+            if (value == null)
                 throw new ArgumentNullException(nameof(value));
 
             if ((MonthCalendar)value.Calendar==null)
@@ -99,14 +99,14 @@ namespace Pabo.Calendar
 
         public void AddRange(DateItem[] dateItems)
         {
-	        if (dateItems == null)
+            if (dateItems == null)
                 throw new ArgumentNullException(nameof(dateItems));
 
-	        foreach (DateItem t in dateItems)
-	        {
-		        t.Calendar = owner;
-		        this.Add(t);
-	        }
+            foreach (DateItem t in dateItems)
+            {
+                t.Calendar = owner;
+                this.Add(t);
+            }
         }
 
         public void Add(DateItemCollection dateItems)
@@ -138,8 +138,8 @@ namespace Pabo.Calendar
 
         public int IndexOf(DateTime date)
         {
-	        var d = DateInfo(date);
-	        if (d.Length>0)
+            var d = DateInfo(date);
+            if (d.Length>0)
                 return d[0].Index;
             else
                 return -1;

@@ -80,12 +80,12 @@ namespace Journaley.Test
         public void GetSettingsFileTest1()
         {
             string path = "test1.settings";
-	        Settings expected = new Settings
-	        {
-		        Password = "password",
-		        DayOneFolderPath = "."
-	        };
-	        var actual = Settings.GetSettingsFile(path);
+            Settings expected = new Settings
+            {
+                Password = "password",
+                DayOneFolderPath = "."
+            };
+            var actual = Settings.GetSettingsFile(path);
             Assert.AreEqual(expected, actual);
         }
 
@@ -125,8 +125,8 @@ namespace Journaley.Test
         [TestMethod()]
         public void VerifyPasswordTest()
         {
-	        Settings target = new Settings {Password = "password"};
-	        Assert.IsTrue(target.VerifyPassword("password"));
+            Settings target = new Settings {Password = "password"};
+            Assert.IsTrue(target.VerifyPassword("password"));
             Assert.IsFalse(target.VerifyPassword("wrong-password"));
         }
 

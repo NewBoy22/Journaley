@@ -315,7 +315,7 @@ namespace Pabo.Calendar
             Brush textBrush = new SolidBrush(textColor);
             Brush bgBrush = new SolidBrush(bgColor1);
 
-	        m_imageRect = new Rectangle();
+            m_imageRect = new Rectangle();
             string text = "";
             bool drawDay = false;
             bool enabled = true;
@@ -325,7 +325,7 @@ namespace Pabo.Calendar
 
             bool boldedDate = false;
 
-	        m_dayImage = null;
+            m_dayImage = null;
 
             dateAlign = GetStringAlignment(m_month.DateAlign);
             textAlign = GetStringAlignment(m_month.TextAlign);
@@ -357,8 +357,8 @@ namespace Pabo.Calendar
             if ((m_month.FormatTrailing) || (m_month.SelectedMonth.Month  == m_date.Month))
             {
                 // check of there is formatting for this day
-	            DateItem[] info;
-	            if (queryInfo != null)
+                DateItem[] info;
+                if (queryInfo != null)
                 {
                     info = new DateItem[1];
                     info[0] = queryInfo;
@@ -451,8 +451,8 @@ namespace Pabo.Calendar
                     }
 
                     // Check if we should append month name to date
-	                string dateString;
-	                if ((m_month.ShowMonthInDay) &&
+                    string dateString;
+                    if ((m_month.ShowMonthInDay) &&
                         ((m_date.AddDays(-1).Month != m_date.Month) ||
                         (m_date.AddDays(1).Month != m_date.Month)))
                         dateString = m_date.Day.ToString()+" "+m_calendar.m_dateTimeFormat.GetMonthName(m_date.Month);
@@ -594,7 +594,7 @@ namespace Pabo.Calendar
             bool status = false;
             if ((!m_userDrawn) && (m_textRgn!=null))
             {
-	            status = m_textRgn[0].IsVisible(p);
+                status = m_textRgn[0].IsVisible(p);
             }
 
             return status;
@@ -607,7 +607,7 @@ namespace Pabo.Calendar
             bool status = false;
             if ((!m_userDrawn) && (m_textRgn != null))
             {
-	            status = m_dateRgn[0].IsVisible(p);
+                status = m_dateRgn[0].IsVisible(p);
             }
 
             return status;
@@ -617,10 +617,10 @@ namespace Pabo.Calendar
 
         internal bool HitTest(Point p)
         {
-	        m_calendar.Cursor = ImageHitTest(p) ? Cursors.Hand : Cursors.Arrow;
+            m_calendar.Cursor = ImageHitTest(p) ? Cursors.Hand : Cursors.Arrow;
 
 
-	        if (m_region.IsVisible(p))
+            if (m_region.IsVisible(p))
                 return true;
             else
                 return false;

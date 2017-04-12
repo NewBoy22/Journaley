@@ -115,15 +115,15 @@
             this.IsDirty = isDirty;
 
             // Fill in the creator info here.
-	        this.Creator = new PListDictionary
-	        {
-		        {"Device Agent", "PC"},
-		        {"Generation Date", dateTime},
-		        {"Host Name", Environment.MachineName},
-		        {"OS Agent", OSNameRetriever.GetOSFriendlyName()}
-	        };
+            this.Creator = new PListDictionary
+            {
+                {"Device Agent", "PC"},
+                {"Generation Date", dateTime},
+                {"Host Name", Environment.MachineName},
+                {"OS Agent", OSNameRetriever.GetOSFriendlyName()}
+            };
 
-	        var version = Assembly.GetEntryAssembly().GetName().Version;
+            var version = Assembly.GetEntryAssembly().GetName().Version;
             this.Creator.Add("Software Agent", $"Journaley/{version.ToString(2)}");
         }
 
@@ -389,8 +389,8 @@
                         fileContent = fileContent.Replace(ch.ToString(), string.Empty);
                     }
 
-	                XmlDocument doc = new XmlDocument {XmlResolver = null};
-	                doc.LoadXml(fileContent);
+                    XmlDocument doc = new XmlDocument {XmlResolver = null};
+                    doc.LoadXml(fileContent);
 
                     XmlNode dictNode = doc.SelectSingleNode("//dict");
                     Debug.Assert(dictNode.ChildNodes.Count % 2 == 0, "A dict node must have even number of children (key, value)");
@@ -508,9 +508,9 @@
         /// <param name="folderPath">The folder path.</param>
         public void Save(string folderPath)
         {
-	        XmlDocument doc = new XmlDocument {XmlResolver = null};
+            XmlDocument doc = new XmlDocument {XmlResolver = null};
 
-	        // <?xml ...?>
+            // <?xml ...?>
             var decl = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
             doc.AppendChild(decl);
 
@@ -727,7 +727,7 @@
         /// </summary>
         protected virtual void OnPhotoChanged()
         {
-	        PhotoChanged?.Invoke(this);
+            PhotoChanged?.Invoke(this);
         }
 
         #endregion

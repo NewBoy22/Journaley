@@ -730,9 +730,9 @@
         {
             while (true)
             {
-	            FolderBrowserDialog folderDialog =
-		            new FolderBrowserDialog {SelectedPath = this.Settings.DayOneFolderPath};
-	            DialogResult result = folderDialog.ShowDialog(this);
+                FolderBrowserDialog folderDialog =
+                    new FolderBrowserDialog {SelectedPath = this.Settings.DayOneFolderPath};
+                DialogResult result = folderDialog.ShowDialog(this);
 
                 if (result == DialogResult.Cancel)
                 {

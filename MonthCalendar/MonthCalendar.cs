@@ -539,9 +539,9 @@ namespace Pabo.Calendar
 
             if( disposing )
             {
-	            components?.Dispose();
+                components?.Dispose();
 
-	            // delete internal events
+                // delete internal events
 
                 m_hook.KeyDown-=new KeyEventHandler(m_hook_KeyDown);
                 m_hook.KeyUp-=new KeyEventHandler(m_hook_KeyUp);
@@ -673,12 +673,12 @@ namespace Pabo.Calendar
 
         public void AddDateInfo(DateItem[] info)
         {
-	        foreach (DateItem t in info)
-	        {
-		        if (t!=null)
-			        Dates.Add(t);
-	        }
-	        Invalidate();
+            foreach (DateItem t in info)
+            {
+                if (t!=null)
+                    Dates.Add(t);
+            }
+            Invalidate();
         }
 
         public void RemoveDateInfo(DateItem info)
@@ -978,7 +978,7 @@ namespace Pabo.Calendar
             Color itemColor = new Color();
             bool useSystemColors = false;
 
-	        // Check if visual styles are used
+            // Check if visual styles are used
             if (Application.RenderWithVisualStyles)
             {
 
@@ -1079,8 +1079,8 @@ namespace Pabo.Calendar
             bool ret = false;
             foreach (string t in years)
             {
-	            if (y == t)
-		            ret = true;
+                if (y == t)
+                    ret = true;
             }
             return ret;
         }
@@ -1088,7 +1088,7 @@ namespace Pabo.Calendar
         internal int MonthNumber(string m)
         {
             int ret = -1;
-	        var months = AllowedMonths();
+            var months = AllowedMonths();
 
             for (int i = 0;i<months.Length;i++)
             {
@@ -1105,7 +1105,7 @@ namespace Pabo.Calendar
         internal int DayNumber(string m)
         {
             int ret = 0;
-	        var days = DayNames();
+            var days = DayNames();
 
             for (int i = 0;i<days.Length;i++)
             {
@@ -1121,7 +1121,7 @@ namespace Pabo.Calendar
 
         internal string MonthName(int m)
         {
-	        string name = "";
+            string name = "";
             var validNames = AllowedMonths();
             if ((m >=1) && (m <=12))
             {
@@ -1137,7 +1137,7 @@ namespace Pabo.Calendar
 
             yearList.Initialize();
 
-	        var year = 0;
+            var year = 0;
             for (int i = m_minDate.Year;i<=m_maxDate.Year;i++)
             {
                 yearList[year] = i.ToString();
@@ -1152,7 +1152,7 @@ namespace Pabo.Calendar
             int y = 0;
             int x = 0;
 
-	        SizeF weekSize = new SizeF();
+            SizeF weekSize = new SizeF();
 
             var g = this.CreateGraphics();
             weekSize = g.MeasureString("99",m_weeknumber.Font);
@@ -1271,23 +1271,23 @@ namespace Pabo.Calendar
                         }
                         case mcCalendarRegion.Header:
                         {
-	                        HeaderMouseLeave?.Invoke(this,new EventArgs());
-	                        break;
+                            HeaderMouseLeave?.Invoke(this,new EventArgs());
+                            break;
                         }
                         case mcCalendarRegion.Weekdays:
                         {
-	                        WeekdaysMouseLeave?.Invoke(this,new EventArgs());
-	                        break;
+                            WeekdaysMouseLeave?.Invoke(this,new EventArgs());
+                            break;
                         }
                         case mcCalendarRegion.Weeknumbers:
                         {
-	                        WeeknumbersMouseLeave?.Invoke(this,new EventArgs());
-	                        break;
+                            WeeknumbersMouseLeave?.Invoke(this,new EventArgs());
+                            break;
                         }
                         case mcCalendarRegion.Footer:
                         {
-	                        FooterMouseLeave?.Invoke(this,new EventArgs());
-	                        break;
+                            FooterMouseLeave?.Invoke(this,new EventArgs());
+                            break;
                         }
                     }
                     m_activeRegion = value;
@@ -1302,23 +1302,23 @@ namespace Pabo.Calendar
                         }
                         case mcCalendarRegion.Header:
                         {
-	                        HeaderMouseEnter?.Invoke(this,new EventArgs());
-	                        break;
+                            HeaderMouseEnter?.Invoke(this,new EventArgs());
+                            break;
                         }
                         case mcCalendarRegion.Weekdays:
                         {
-	                        WeekdaysMouseEnter?.Invoke(this,new EventArgs());
-	                        break;
+                            WeekdaysMouseEnter?.Invoke(this,new EventArgs());
+                            break;
                         }
                         case mcCalendarRegion.Weeknumbers:
                         {
-	                        WeeknumbersMouseEnter?.Invoke(this,new EventArgs());
-	                        break;
+                            WeeknumbersMouseEnter?.Invoke(this,new EventArgs());
+                            break;
                         }
                         case mcCalendarRegion.Footer:
                         {
-	                        FooterMouseEnter?.Invoke(this,new EventArgs());
-	                        break;
+                            FooterMouseEnter?.Invoke(this,new EventArgs());
+                            break;
                         }
                     }
                 }
@@ -1330,7 +1330,7 @@ namespace Pabo.Calendar
         {
             get
             {
-	            string ver = "Version=";
+                string ver = "Version=";
                 Assembly myAssembly = System.Reflection.Assembly.GetExecutingAssembly();
                 var startPos = myAssembly.FullName.IndexOf(ver, StringComparison.Ordinal);
                 startPos+=ver.Length;
@@ -1358,9 +1358,9 @@ namespace Pabo.Calendar
                     m_firstDayOfWeek = value;
                     m_dateTimeFormat.FirstDayOfWeek = m_firstDayOfWeek!=0 ? IntToDayOfWeek(m_firstDayOfWeek-1) : m_defaultFirstDayOfWeek;
 
-	                FirstDayOfWeekChanged?.Invoke(this, new EventArgs());
+                    FirstDayOfWeekChanged?.Invoke(this, new EventArgs());
 
-	                Setup();
+                    Setup();
                     Invalidate();
                 }
             }
@@ -1381,7 +1381,7 @@ namespace Pabo.Calendar
                 if (m_keyboardEnabled != value)
                 {
                     m_keyboardEnabled = value;
-	                KeyboardEnabledChanged?.Invoke(this, new EventArgs());
+                    KeyboardEnabledChanged?.Invoke(this, new EventArgs());
                 }
             }
         }
@@ -1403,8 +1403,8 @@ namespace Pabo.Calendar
                     m_showTrailing = value;
                     if (value == false)
                         SelectTrailingDates = false;
-	                ShowTrailingChanged?.Invoke(this,new EventArgs());
-	                Invalidate();
+                    ShowTrailingChanged?.Invoke(this,new EventArgs());
+                    Invalidate();
                 }
             }
         }
@@ -1431,14 +1431,14 @@ namespace Pabo.Calendar
                 finally
                 {
                     m_culture = value;
-	                if (m_dateTimeFormat != null)
-	                {
-		                m_defaultFirstDayOfWeek = m_dateTimeFormat.FirstDayOfWeek;
+                    if (m_dateTimeFormat != null)
+                    {
+                        m_defaultFirstDayOfWeek = m_dateTimeFormat.FirstDayOfWeek;
 
-		                m_dateTimeFormat.FirstDayOfWeek = m_firstDayOfWeek!=0 ? IntToDayOfWeek(m_firstDayOfWeek-1) : m_defaultFirstDayOfWeek;
-	                }
+                        m_dateTimeFormat.FirstDayOfWeek = m_firstDayOfWeek!=0 ? IntToDayOfWeek(m_firstDayOfWeek-1) : m_defaultFirstDayOfWeek;
+                    }
 
-	                CultureChanged?.Invoke(this,new EventArgs());
+                    CultureChanged?.Invoke(this,new EventArgs());
                 }
                 m_month.RemoveSelection(true);
                 Setup();
@@ -1478,8 +1478,8 @@ namespace Pabo.Calendar
                 if (value!=m_todayColor)
                 {
                     m_todayColor = value;
-	                CalendarColorChanged?.Invoke(this,new CalendarColorEventArgs(mcCalendarColor.Today));
-	                Invalidate();
+                    CalendarColorChanged?.Invoke(this,new CalendarColorEventArgs(mcCalendarColor.Today));
+                    Invalidate();
                 }
             }
         }
@@ -1499,8 +1499,8 @@ namespace Pabo.Calendar
                 if (value!=m_showToday)
                 {
                     m_showToday = value;
-	                ShowTodayChanged?.Invoke(this,new EventArgs());
-	                Invalidate();
+                    ShowTodayChanged?.Invoke(this,new EventArgs());
+                    Invalidate();
                 }
             }
         }
@@ -1520,8 +1520,8 @@ namespace Pabo.Calendar
                 if (value!=m_showFocus)
                 {
                     m_showFocus = value;
-	                ShowFocusChanged?.Invoke(this,new EventArgs());
-	                Invalidate();
+                    ShowFocusChanged?.Invoke(this,new EventArgs());
+                    Invalidate();
                 }
             }
         }
@@ -1542,8 +1542,8 @@ namespace Pabo.Calendar
                 if (value!=m_selectTrailing)
                 {
                     m_selectTrailing = value;
-	                SelectTrailingChanged?.Invoke(this,new EventArgs());
-	                Invalidate();
+                    SelectTrailingChanged?.Invoke(this,new EventArgs());
+                    Invalidate();
                 }
             }
         }
@@ -1563,8 +1563,8 @@ namespace Pabo.Calendar
                 if (value!=m_useTheme)
                 {
                     m_useTheme = value;
-	                UseThemeChanged?.Invoke(this,new EventArgs());
-	                if (m_useTheme)
+                    UseThemeChanged?.Invoke(this,new EventArgs());
+                    if (m_useTheme)
                         GetThemeColors();
                     else
                         Invalidate();
@@ -1586,8 +1586,8 @@ namespace Pabo.Calendar
                 if (value!=m_imageList)
                 {
                     m_imageList = value;
-	                ImageListChanged?.Invoke(this,new EventArgs());
-	                Invalidate();
+                    ImageListChanged?.Invoke(this,new EventArgs());
+                    Invalidate();
                 }
             }
         }
@@ -1613,7 +1613,7 @@ namespace Pabo.Calendar
                     //else
                     //  m_hook.RemoveKeyboardHook();
 
-	                ExtendedSelectionKeyChanged?.Invoke(this,new EventArgs());
+                    ExtendedSelectionKeyChanged?.Invoke(this,new EventArgs());
                 }
             }
         }
@@ -1638,7 +1638,7 @@ namespace Pabo.Calendar
                     if (value<m_selectionMode)
                         ClearSelection();
 
-	                SelectionModeChanged?.Invoke(this,new EventArgs());
+                    SelectionModeChanged?.Invoke(this,new EventArgs());
                 }
             }
         }
@@ -1657,8 +1657,8 @@ namespace Pabo.Calendar
             {
                 if (value!=m_selectButton)
                 {
-	                SelectButtonChanged?.Invoke(this,new EventArgs());
-	                m_selectButton = value;
+                    SelectButtonChanged?.Invoke(this,new EventArgs());
+                    m_selectButton = value;
                 }
             }
         }
@@ -1679,8 +1679,8 @@ namespace Pabo.Calendar
                 {
                     if (value <=m_maxDate)
                     {
-	                    MinDateChanged?.Invoke(this,new EventArgs());
-	                    m_minDate = value;
+                        MinDateChanged?.Invoke(this,new EventArgs());
+                        m_minDate = value;
                         Invalidate();
                     }
                 }
@@ -1704,8 +1704,8 @@ namespace Pabo.Calendar
                     if (value >=m_minDate)
                     {
                         m_maxDate = value;
-	                    MaxDateChanged?.Invoke(this,new EventArgs());
-	                    Invalidate();
+                        MaxDateChanged?.Invoke(this,new EventArgs());
+                        Invalidate();
                     }
                 }
             }
@@ -1727,8 +1727,8 @@ namespace Pabo.Calendar
                 {
                     m_showWeeknumber = value;
                     DoLayout();
-	                ShowWeeknumberChanged?.Invoke(this,new EventArgs());
-	                Invalidate();
+                    ShowWeeknumberChanged?.Invoke(this,new EventArgs());
+                    Invalidate();
                 }
             }
         }
@@ -1784,8 +1784,8 @@ namespace Pabo.Calendar
                 if (value!=m_borderStyle)
                 {
                     m_borderStyle = value;
-	                BorderStyleChanged?.Invoke(this,new EventArgs());
-	                Invalidate();
+                    BorderStyleChanged?.Invoke(this,new EventArgs());
+                    Invalidate();
                 }
 
             }
@@ -1806,8 +1806,8 @@ namespace Pabo.Calendar
                 if (value!=m_borderColor)
                 {
                     m_borderColor = value;
-	                CalendarColorChanged?.Invoke(this,new CalendarColorEventArgs(mcCalendarColor.Border));
-	                Invalidate();
+                    CalendarColorChanged?.Invoke(this,new CalendarColorEventArgs(mcCalendarColor.Border));
+                    Invalidate();
                 }
 
             }
@@ -1830,8 +1830,8 @@ namespace Pabo.Calendar
                 {
                     m_showFooter = value;
                     DoLayout();
-	                ShowFooterChanged?.Invoke(this,new EventArgs());
-	                Invalidate();
+                    ShowFooterChanged?.Invoke(this,new EventArgs());
+                    Invalidate();
                 }
 
             }
@@ -1852,8 +1852,8 @@ namespace Pabo.Calendar
                 {
                     m_showHeader = value;
                     DoLayout();
-	                ShowHeaderChanged?.Invoke(this,new EventArgs());
-	                Invalidate();
+                    ShowHeaderChanged?.Invoke(this,new EventArgs());
+                    Invalidate();
                 }
 
             }
@@ -1874,8 +1874,8 @@ namespace Pabo.Calendar
                 {
                     m_showWeekday = value;
                     DoLayout();
-	                ShowWeekdaysChanged?.Invoke(this,new EventArgs());
-	                Invalidate();
+                    ShowWeekdaysChanged?.Invoke(this,new EventArgs());
+                    Invalidate();
                 }
 
             }
@@ -2074,7 +2074,7 @@ namespace Pabo.Calendar
             int day = m_month.GetDay(m_mouseLocation);
             if (day!=-1)
             {
-	            DayDragDrop?.Invoke(this,new DayDragDropEventArgs(drgevent.Data,drgevent.KeyState,m_month.m_days[day].Date.ToShortDateString()));
+                DayDragDrop?.Invoke(this,new DayDragDropEventArgs(drgevent.Data,drgevent.KeyState,m_month.m_days[day].Date.ToShortDateString()));
             }
         }
 
@@ -2397,7 +2397,7 @@ namespace Pabo.Calendar
 
         private void m_printDoc_PrintPage(object sender, PrintPageEventArgs e)
         {
-	        var bmp = Snapshot();
+            var bmp = Snapshot();
             e.Graphics.DrawImage(bmp,1,1,bmp.Width,bmp.Height);
             e.HasMorePages = false;
             bmp.Dispose();
@@ -2411,93 +2411,93 @@ namespace Pabo.Calendar
         private void m_activeMonth_MonthChanged(object sender, MonthChangedEventArgs e)
         {
             m_month.RemoveSelection(true);
-	        MonthChanged?.Invoke(this,e);
+            MonthChanged?.Invoke(this,e);
         }
 
         void m_activeMonth_BeforeMonthChanged(object sender, BeforeMonthChangedEventArgs e)
         {
-	        BeforeMonthChanged?.Invoke(this, e);
+            BeforeMonthChanged?.Invoke(this, e);
         }
 
 
         private void m_month_DayRender(object sender, DayRenderEventArgs e)
         {
-	        DayRender?.Invoke(this,e);
+            DayRender?.Invoke(this,e);
         }
 
         private void m_month_DayQueryInfo(object sender, DayQueryInfoEventArgs e)
         {
-	        DayQueryInfo?.Invoke(this, e);
+            DayQueryInfo?.Invoke(this, e);
         }
 
         private void m_month_DaySelected(object sender, DaySelectedEventArgs e)
         {
-	        DaySelected?.Invoke(this,e);
+            DaySelected?.Invoke(this,e);
         }
 
         private void m_month_DayDeselected(object sender, DaySelectedEventArgs e)
         {
-	        DayDeselected?.Invoke(this,e);
+            DayDeselected?.Invoke(this,e);
         }
 
         void m_month_BeforeDayDeselected(object sender, DayStateChangedEventArgs e)
         {
-	        BeforeDayDeselected?.Invoke(this, e);
+            BeforeDayDeselected?.Invoke(this, e);
         }
 
         void m_month_BeforeDaySelected(object sender, DayStateChangedEventArgs e)
         {
-	        BeforeDaySelected?.Invoke(this, e);
+            BeforeDaySelected?.Invoke(this, e);
         }
 
         private void m_month_DayLostFocus(object sender, DayEventArgs e)
         {
-	        DayLostFocus?.Invoke(this,e);
+            DayLostFocus?.Invoke(this,e);
         }
 
         private void m_month_DayGotFocus(object sender, DayEventArgs e)
         {
-	        DayGotFocus?.Invoke(this,e);
+            DayGotFocus?.Invoke(this,e);
         }
 
         private void m_month_ImageClick(object sender, DayClickEventArgs e)
         {
-	        ImageClick?.Invoke(this, e);
+            ImageClick?.Invoke(this, e);
         }
 
         private void m_month_DayClick(object sender, DayClickEventArgs e)
         {
-	        DayClick?.Invoke(this,e);
+            DayClick?.Invoke(this,e);
         }
 
         private void m_month_DayMouseMove(object sender, DayMouseMoveEventArgs e)
         {
-	        DayMouseMove?.Invoke(this, e);
+            DayMouseMove?.Invoke(this, e);
         }
 
         private void m_month_DayDoubleClick(object sender, DayClickEventArgs e)
         {
-	        DayDoubleClick?.Invoke(this,e);
+            DayDoubleClick?.Invoke(this,e);
         }
 
         private void m_footer_Click(object sender, ClickEventArgs e)
         {
-	        FooterClick?.Invoke(this,e);
+            FooterClick?.Invoke(this,e);
         }
 
         private void m_footer_DoubleClick(object sender, ClickEventArgs e)
         {
-	        FooterDoubleClick?.Invoke(this,e);
+            FooterDoubleClick?.Invoke(this,e);
         }
 
         private void m_header_Click(object sender, ClickEventArgs e)
         {
-	        HeaderClick?.Invoke(this,e);
+            HeaderClick?.Invoke(this,e);
         }
 
         private void m_header_DoubleClick(object sender, ClickEventArgs e)
         {
-	        HeaderDoubleClick?.Invoke(this,e);
+            HeaderDoubleClick?.Invoke(this,e);
         }
 
         private void m_header_PrevMonthButtonClick(object sender, EventArgs e)
@@ -2553,57 +2553,57 @@ namespace Pabo.Calendar
 
         private void m_weekday_Click(object sender, WeekdayClickEventArgs e)
         {
-	        WeekdayClick?.Invoke(this,e);
+            WeekdayClick?.Invoke(this,e);
         }
 
         private void m_weekday_DoubleClick(object sender, WeekdayClickEventArgs e)
         {
-	        WeekdayDoubleClick?.Invoke(this,e);
+            WeekdayDoubleClick?.Invoke(this,e);
         }
 
         private void m_weeknumber_DoubleClick(object sender, WeeknumberClickEventArgs e)
         {
-	        WeeknumberDoubleClick?.Invoke(this,e);
+            WeeknumberDoubleClick?.Invoke(this,e);
         }
 
         private void m_weeknumber_Click(object sender, WeeknumberClickEventArgs e)
         {
-	        WeeknumberClick?.Invoke(this,e);
+            WeeknumberClick?.Invoke(this,e);
         }
 
         private void m_footer_PropertyChanged(object sender, FooterPropertyEventArgs e)
         {
-	        FooterPropertyChanged?.Invoke(this,e);
+            FooterPropertyChanged?.Invoke(this,e);
         }
 
         private void m_weeknumber_PropertyChanged(object sender, WeeknumberPropertyEventArgs e)
         {
-	        WeeknumberPropertyChanged?.Invoke(this,e);
+            WeeknumberPropertyChanged?.Invoke(this,e);
         }
 
         private void m_weekday_PropertyChanged(object sender, WeekdayPropertyEventArgs e)
         {
-	        WeekdayPropertyChanged?.Invoke(this,e);
+            WeekdayPropertyChanged?.Invoke(this,e);
         }
 
         private void m_header_PropertyChanged(object sender, HeaderPropertyEventArgs e)
         {
-	        HeaderPropertyChanged?.Invoke(this,e);
+            HeaderPropertyChanged?.Invoke(this,e);
         }
 
         private void m_month_PropertyChanged(object sender, MonthPropertyEventArgs e)
         {
-	        MonthPropertyChanged?.Invoke(this,e);
+            MonthPropertyChanged?.Invoke(this,e);
         }
 
         private void m_month_ColorChanged(object sender, MonthColorEventArgs e)
         {
-	        MonthColorChanged?.Invoke(this,e);
+            MonthColorChanged?.Invoke(this,e);
         }
 
         private void m_month_BorderStyleChanged(object sender, MonthBorderStyleEventArgs e)
         {
-	        MonthBorderStyleChanged?.Invoke(this,e);
+            MonthBorderStyleChanged?.Invoke(this,e);
         }
 
         private void m_dateItemCollection_DateItemModified(object sender, EventArgs e)
@@ -2682,7 +2682,7 @@ namespace Pabo.Calendar
                     {
                         KeyboardChangedEventArgs args = new KeyboardChangedEventArgs(mcKeyboard.Up, m_up, value);
                         m_up = value;
-	                    m_parent.KeyboardChanged?.Invoke(this, args);
+                        m_parent.KeyboardChanged?.Invoke(this, args);
                     }
                 }
             }
@@ -2701,7 +2701,7 @@ namespace Pabo.Calendar
                     if (m_down != value)
                     {
                         m_down = value;
-	                    m_parent.KeyboardChanged?.Invoke(this, args);
+                        m_parent.KeyboardChanged?.Invoke(this, args);
                     }
                 }
             }
@@ -2720,7 +2720,7 @@ namespace Pabo.Calendar
                     if (m_left != value)
                     {
                         m_left = value;
-	                    m_parent.KeyboardChanged?.Invoke(this, args);
+                        m_parent.KeyboardChanged?.Invoke(this, args);
                     }
                 }
             }
@@ -2739,7 +2739,7 @@ namespace Pabo.Calendar
                     if (m_right != value)
                     {
                         m_right = value;
-	                    m_parent.KeyboardChanged?.Invoke(this, args);
+                        m_parent.KeyboardChanged?.Invoke(this, args);
                     }
                 }
             }
@@ -2758,7 +2758,7 @@ namespace Pabo.Calendar
                     if (m_select != value)
                     {
                         m_select = value;
-	                    m_parent.KeyboardChanged?.Invoke(this, args);
+                        m_parent.KeyboardChanged?.Invoke(this, args);
                     }
                 }
             }
@@ -2777,7 +2777,7 @@ namespace Pabo.Calendar
                     if (m_nextMonth != value)
                     {
                         m_nextMonth = value;
-	                    m_parent.KeyboardChanged?.Invoke(this, args);
+                        m_parent.KeyboardChanged?.Invoke(this, args);
                     }
                 }
             }
@@ -2796,7 +2796,7 @@ namespace Pabo.Calendar
                     if (m_prevMonth != value)
                     {
                         m_prevMonth = value;
-	                    m_parent.KeyboardChanged?.Invoke(this, args);
+                        m_parent.KeyboardChanged?.Invoke(this, args);
                     }
                 }
             }
@@ -2815,7 +2815,7 @@ namespace Pabo.Calendar
                     if (m_nextYear != value)
                     {
                         m_nextYear = value;
-	                    m_parent.KeyboardChanged?.Invoke(this, args);
+                        m_parent.KeyboardChanged?.Invoke(this, args);
                     }
                 }
             }
@@ -2835,7 +2835,7 @@ namespace Pabo.Calendar
                     if (m_prevYear != value)
                     {
                         m_prevYear = value;
-	                    m_parent.KeyboardChanged?.Invoke(this, args);
+                        m_parent.KeyboardChanged?.Invoke(this, args);
                     }
                 }
             }
@@ -2964,11 +2964,11 @@ namespace Pabo.Calendar
 
                 if (value.GetType() == typeof(string))
                 {
-	                foreach (string t in validNames)
-	                {
-		                if (String.Compare(value.ToString(), t, StringComparison.Ordinal)==0)
-			                return t;
-	                }
+                    foreach (string t in validNames)
+                    {
+                        if (String.Compare(value.ToString(), t, StringComparison.Ordinal)==0)
+                            return t;
+                    }
                 }
                 else if (value.GetType() == typeof(int))
                 {
@@ -2987,7 +2987,7 @@ namespace Pabo.Calendar
 
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-	        if (value.GetType() == typeof(string))
+            if (value.GetType() == typeof(string))
             {
                 MonthCalendar m = (MonthCalendar)context.Instance;
                 var ret = m.DayNumber(value.ToString());
@@ -3031,16 +3031,16 @@ namespace Pabo.Calendar
         {
             if (destinationType == typeof(string))
             {
-	            var validNames = culture.DateTimeFormat.MonthNames;
-	            if (value.GetType() == typeof(string))
-	            {
-		            foreach (string t in validNames)
-		            {
-			            if (String.Compare(value.ToString(), t, StringComparison.Ordinal)==0)
-				            //if ((value.ToString().ToLower() == validNames[i].ToLower()))
-				            return t;
-		            }
-	            }
+                var validNames = culture.DateTimeFormat.MonthNames;
+                if (value.GetType() == typeof(string))
+                {
+                    foreach (string t in validNames)
+                    {
+                        if (String.Compare(value.ToString(), t, StringComparison.Ordinal)==0)
+                            //if ((value.ToString().ToLower() == validNames[i].ToLower()))
+                            return t;
+                    }
+                }
                 else if (value.GetType() == typeof(int))
                 {
                     int m = Convert.ToInt32(value);
@@ -3058,7 +3058,7 @@ namespace Pabo.Calendar
 
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-	        if (value.GetType() == typeof(string))
+            if (value.GetType() == typeof(string))
             {
                 ActiveMonth m = (ActiveMonth)context.Instance;
                 var ret = m.Calendar.MonthNumber(value.ToString());
@@ -3175,7 +3175,7 @@ namespace Pabo.Calendar
                 if (ss.Length==2)
                 {
                     // Create new ActiveMonth
-	                MonthCalendar m = (MonthCalendar)context.Instance;
+                    MonthCalendar m = (MonthCalendar)context.Instance;
                     var item = m.ActiveMonth;
                     // Set properties
                     item.Month = item.Calendar.MonthNumber(ss[0]);
@@ -3745,8 +3745,8 @@ namespace Pabo.Calendar
         {
             get
             {
-	            return actionLists ?? (actionLists =
-		                   new DesignerActionListCollection {new CalendarActionList(this.Component)});
+                return actionLists ?? (actionLists =
+                           new DesignerActionListCollection {new CalendarActionList(this.Component)});
             }
         }
 
@@ -3804,8 +3804,8 @@ namespace Pabo.Calendar
         // GetProperties enables undo and menu updates to work properly.
         private PropertyDescriptor GetPropertyByName(String propName)
         {
-	        var prop = TypeDescriptor.GetProperties(calendar)[propName];
-	        if (null == prop)
+            var prop = TypeDescriptor.GetProperties(calendar)[propName];
+            if (null == prop)
                 throw new ArgumentException(
                      "Matching MonthCalendar property not found!",
                       propName);
@@ -3865,30 +3865,30 @@ namespace Pabo.Calendar
 
         public override DesignerActionItemCollection GetSortedActionItems()
         {
-	        DesignerActionItemCollection items = new DesignerActionItemCollection
-	        {
-		        new DesignerActionHeaderItem("Appearance"),
-		        new DesignerActionHeaderItem("Information"),
-		        new DesignerActionPropertyItem("Dates",
-			        "Dates", "Appearance",
-			        "Collection with formatted dates."),
-		        new DesignerActionPropertyItem("ShowHeader",
-			        "ShowHeader", "Appearance",
-			        "Indicates wether the header should be visible."),
-		        new DesignerActionPropertyItem("ShowWeekdays",
-			        "ShowWeekdays", "Appearance",
-			        "Indicates wether weekdays should be visible."),
-		        new DesignerActionPropertyItem("ShowWeeknumbers",
-			        "ShowWeeknumbers", "Appearance",
-			        "Indicates wether the weeknumbers should be visible."),
-		        new DesignerActionPropertyItem("ShowFooter",
-			        "ShowFooter", "Appearance",
-			        "Indicates wether the footer should be visible.")
-	        };
+            DesignerActionItemCollection items = new DesignerActionItemCollection
+            {
+                new DesignerActionHeaderItem("Appearance"),
+                new DesignerActionHeaderItem("Information"),
+                new DesignerActionPropertyItem("Dates",
+                    "Dates", "Appearance",
+                    "Collection with formatted dates."),
+                new DesignerActionPropertyItem("ShowHeader",
+                    "ShowHeader", "Appearance",
+                    "Indicates wether the header should be visible."),
+                new DesignerActionPropertyItem("ShowWeekdays",
+                    "ShowWeekdays", "Appearance",
+                    "Indicates wether weekdays should be visible."),
+                new DesignerActionPropertyItem("ShowWeeknumbers",
+                    "ShowWeeknumbers", "Appearance",
+                    "Indicates wether the weeknumbers should be visible."),
+                new DesignerActionPropertyItem("ShowFooter",
+                    "ShowFooter", "Appearance",
+                    "Indicates wether the footer should be visible.")
+            };
 
-	        //Define static section header entries.
+            //Define static section header entries.
 
-	        //Create entries for static Information section.
+            //Create entries for static Information section.
             StringBuilder version = new StringBuilder("Version: ");
             version.Append(calendar.Version);
             items.Add(new DesignerActionTextItem(version.ToString(),"Information"));

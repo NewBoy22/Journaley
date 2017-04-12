@@ -93,11 +93,11 @@ namespace Pabo.Calendar
             {
                 if (disposing)
                 {
-	                m_image?.Dispose();
-	                m_bgImage?.Dispose();
+                    m_image?.Dispose();
+                    m_bgImage?.Dispose();
 
-	                //There is nothing to clean.
-	                Disposed?.Invoke(this,EventArgs.Empty);
+                    //There is nothing to clean.
+                    Disposed?.Invoke(this,EventArgs.Empty);
                 }
                 // shared cleanup logic
                 disposed = true;
@@ -442,7 +442,7 @@ namespace Pabo.Calendar
 
         internal ImageList GetImageList()
         {
-	        return m_calendar?.ImageList;
+            return m_calendar?.ImageList;
         }
 
         #endregion
@@ -455,8 +455,8 @@ namespace Pabo.Calendar
     {
         public override object ConvertTo(ITypeDescriptorContext context,System.Globalization.CultureInfo culture,object value,Type destinationType)
         {
-	        var d = (DateItem)value;
-	        return d.Date.ToShortDateString();
+            var d = (DateItem)value;
+            return d.Date.ToShortDateString();
         }
 
         public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)

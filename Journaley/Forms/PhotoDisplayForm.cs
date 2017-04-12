@@ -123,8 +123,8 @@
         {
             get
             {
-	            return zoomInCursor ?? (zoomInCursor =
-		                   CursorReader.LoadCursorFromResource(Properties.Resources.ZoomInCursor));
+                return zoomInCursor ?? (zoomInCursor =
+                           CursorReader.LoadCursorFromResource(Properties.Resources.ZoomInCursor));
             }
         }
 
@@ -138,8 +138,8 @@
         {
             get
             {
-	            return zoomOutCursor ?? (zoomOutCursor =
-		                   CursorReader.LoadCursorFromResource(Properties.Resources.ZoomOutCursor));
+                return zoomOutCursor ?? (zoomOutCursor =
+                           CursorReader.LoadCursorFromResource(Properties.Resources.ZoomOutCursor));
             }
         }
 
@@ -349,7 +349,7 @@
         /// </summary>
         private void AdjustBorderSize()
         {
-	        this.panelContent.Padding = Environment.OSVersion.Version >= new Version(6, 2) ? new Padding(2, 0, 2, 2) : new Padding(1, 0, 1, 1);
+            this.panelContent.Padding = Environment.OSVersion.Version >= new Version(6, 2) ? new Padding(2, 0, 2, 2) : new Padding(1, 0, 1, 1);
         }
 
         /// <summary>

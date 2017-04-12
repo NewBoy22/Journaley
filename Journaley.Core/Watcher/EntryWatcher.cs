@@ -35,23 +35,23 @@
         /// <param name="synchronizingObject">The synchronizing object. (can be null).</param>
         public EntryWatcher(string entryFolderPath, string photoFolderPath, ISynchronizeInvoke synchronizingObject)
         {
-	        this.EntryFolderWatcher = new FileSystemWatcher(entryFolderPath)
-	        {
-		        NotifyFilter = NotifyFilters.DirectoryName | NotifyFilters.FileName | NotifyFilters.LastWrite |
-		                       NotifyFilters.Size
-	        };
+            this.EntryFolderWatcher = new FileSystemWatcher(entryFolderPath)
+            {
+                NotifyFilter = NotifyFilters.DirectoryName | NotifyFilters.FileName | NotifyFilters.LastWrite |
+                               NotifyFilters.Size
+            };
 
-	        this.EntryFolderWatcher.Created += new FileSystemEventHandler(this.EntryFolderWatcher_Created);
+            this.EntryFolderWatcher.Created += new FileSystemEventHandler(this.EntryFolderWatcher_Created);
             this.EntryFolderWatcher.Changed += new FileSystemEventHandler(this.EntryFolderWatcher_Changed);
             this.EntryFolderWatcher.Deleted += new FileSystemEventHandler(this.EntryFolderWatcher_Deleted);
 
-	        this.PhotoFolderWatcher = new FileSystemWatcher(photoFolderPath)
-	        {
-		        NotifyFilter = NotifyFilters.DirectoryName | NotifyFilters.FileName | NotifyFilters.LastWrite |
-		                       NotifyFilters.Size
-	        };
+            this.PhotoFolderWatcher = new FileSystemWatcher(photoFolderPath)
+            {
+                NotifyFilter = NotifyFilters.DirectoryName | NotifyFilters.FileName | NotifyFilters.LastWrite |
+                               NotifyFilters.Size
+            };
 
-	        this.PhotoFolderWatcher.Created += new FileSystemEventHandler(this.PhotoFolderWatcher_Created);
+            this.PhotoFolderWatcher.Created += new FileSystemEventHandler(this.PhotoFolderWatcher_Created);
             this.PhotoFolderWatcher.Changed += new FileSystemEventHandler(this.PhotoFolderWatcher_Changed);
             this.PhotoFolderWatcher.Deleted += new FileSystemEventHandler(this.PhotoFolderWatcher_Deleted);
 
@@ -155,11 +155,11 @@
         /// </summary>
         public void Dispose()
         {
-	        EntryFolderWatcher?.Dispose();
+            EntryFolderWatcher?.Dispose();
 
-	        PhotoFolderWatcher?.Dispose();
+            PhotoFolderWatcher?.Dispose();
 
-	        foreach (var timer in this.EntryDeletionTimers.Values)
+            foreach (var timer in this.EntryDeletionTimers.Values)
             {
                 if (timer != null)
                 {
@@ -241,9 +241,9 @@
             Guid uuid;
             try
             {
-	            if (e.Name == null)
-		            return;
-				uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
+                if (e.Name == null)
+                    return;
+                uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
             }
             catch (Exception)
             {
@@ -290,9 +290,9 @@
             Guid uuid;
             try
             {
-	            if (e.Name == null)
-		            return;
-				uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
+                if (e.Name == null)
+                    return;
+                uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
             }
             catch (Exception)
             {
@@ -335,30 +335,30 @@
         /// <param name="e">The <see cref="FileSystemEventArgs"/> instance containing the event data.</param>
         private void EntryFolderWatcher_Deleted(object sender, FileSystemEventArgs e)
         {
-			// IMPORTANT NOTE ---
-			//
-			// Even when a deletion event is caught,
-			// wait for a few more seconds and see if it is in fact a deletion.
-			//
-			// In case of using Dropbox synchronization,
-			// A file is updated by first being deleted and then being replaced with a new file.
-			// In this case, three events, (1) EntryDeleted, (2) EntryAdded, (3) EntryChanged, will occur,
-			// (the second one might be omitted)
-			// and we want to handle only the last EntryChanged event.
-			//
-			// Use a Timer object to achieve this.
-			if (e.Name == null)
-				return;
-			Guid uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
+            // IMPORTANT NOTE ---
+            //
+            // Even when a deletion event is caught,
+            // wait for a few more seconds and see if it is in fact a deletion.
+            //
+            // In case of using Dropbox synchronization,
+            // A file is updated by first being deleted and then being replaced with a new file.
+            // In this case, three events, (1) EntryDeleted, (2) EntryAdded, (3) EntryChanged, will occur,
+            // (the second one might be omitted)
+            // and we want to handle only the last EntryChanged event.
+            //
+            // Use a Timer object to achieve this.
+            if (e.Name == null)
+                return;
+            Guid uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
 
             if (!this.EntryDeletionTimers.ContainsKey(uuid))
             {
-	            System.Timers.Timer timer = new System.Timers.Timer(DeletionDeferTime)
-	            {
-		            AutoReset = false,
-		            SynchronizingObject = this.SynchronizingObject
-	            };
-	            timer.Elapsed += delegate(object s, System.Timers.ElapsedEventArgs e2)
+                System.Timers.Timer timer = new System.Timers.Timer(DeletionDeferTime)
+                {
+                    AutoReset = false,
+                    SynchronizingObject = this.SynchronizingObject
+                };
+                timer.Elapsed += delegate(object s, System.Timers.ElapsedEventArgs e2)
                 {
                     this.FireDeleted(uuid, e.FullPath, this.EntryDeleted, ChangeType.EntryDeleted);
                 };
@@ -380,9 +380,9 @@
             Guid uuid;
             try
             {
-	            if (e.Name == null)
-		            return;
-				uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
+                if (e.Name == null)
+                    return;
+                uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
             }
             catch (Exception)
             {
@@ -433,9 +433,9 @@
             Guid uuid;
             try
             {
-	            if (e.Name == null)
-		            return;
-				uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
+                if (e.Name == null)
+                    return;
+                uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
             }
             catch (Exception)
             {
@@ -474,21 +474,21 @@
         /// <param name="e">The <see cref="FileSystemEventArgs"/> instance containing the event data.</param>
         private void PhotoFolderWatcher_Deleted(object sender, FileSystemEventArgs e)
         {
-			// IMPORTANT NOTE ---
-			//
-			// (refer to the note in EntryFolderWatcher_Deleted method)
-			if (e.Name == null)
-				return;
-			Guid uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
+            // IMPORTANT NOTE ---
+            //
+            // (refer to the note in EntryFolderWatcher_Deleted method)
+            if (e.Name == null)
+                return;
+            Guid uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
 
             if (!this.PhotoDeletionTimers.ContainsKey(uuid))
             {
-	            System.Timers.Timer timer = new System.Timers.Timer(DeletionDeferTime)
-	            {
-		            AutoReset = false,
-		            SynchronizingObject = this.SynchronizingObject
-	            };
-	            timer.Elapsed += delegate(object s, System.Timers.ElapsedEventArgs e2)
+                System.Timers.Timer timer = new System.Timers.Timer(DeletionDeferTime)
+                {
+                    AutoReset = false,
+                    SynchronizingObject = this.SynchronizingObject
+                };
+                timer.Elapsed += delegate(object s, System.Timers.ElapsedEventArgs e2)
                 {
                     this.FireDeleted(uuid, e.FullPath, this.PhotoDeleted, ChangeType.PhotoDeleted);
                 };

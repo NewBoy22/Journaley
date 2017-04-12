@@ -440,11 +440,11 @@
         {
             get
             {
-	            return this.markdown ?? (this.markdown = new Markdown
-	            {
-		            ExtraMode = true,
-		            SafeMode = false
-	            });
+                return this.markdown ?? (this.markdown = new Markdown
+                {
+                    ExtraMode = true,
+                    SafeMode = false
+                });
             }
         }
 
@@ -604,7 +604,7 @@
             string docType = "<!DOCTYPE html>";
 
             string formattedString =
-	            $"{docType}\n<style type=\"text/css\">\n<!-- Font CSS -->\n{this.GetWebBrowserTypefaceCSS()}\n<!-- Size CSS -->\n{this.GetWebBrowserSizeCSS()}\n<!-- Custom CSS -->\n{this.CustomCSS ?? string.Empty}\n</style>\n<html>\n<body>\n<div>\n{PostMarkdownParser.PostMarkdown(Markdown.Transform(initialString))}</div>\n</body>\n</html>";
+                $"{docType}\n<style type=\"text/css\">\n<!-- Font CSS -->\n{this.GetWebBrowserTypefaceCSS()}\n<!-- Size CSS -->\n{this.GetWebBrowserSizeCSS()}\n<!-- Custom CSS -->\n{this.CustomCSS ?? string.Empty}\n</style>\n<html>\n<body>\n<div>\n{PostMarkdownParser.PostMarkdown(Markdown.Transform(initialString))}</div>\n</body>\n</html>";
 
             this.webBrowser.DocumentText = formattedString;
         }
@@ -645,7 +645,7 @@
             return result;
         }
 
-	    /// <summary>
+        /// <summary>
         /// Saves the selected entry.
         /// </summary>
         /// <param name="applyTextFromTextBox">if set to <c>true</c> [apply text from text box].</param>
@@ -731,7 +731,7 @@
             {
                 this.spellCheckedEntryText.Text = string.Empty;
                 this.webBrowser.DocumentText =
-	                $"<style type=\"text/css\">\n{this.GetWebBrowserSizeCSS()}\n</style><html><body></body></html>";
+                    $"<style type=\"text/css\">\n{this.GetWebBrowserSizeCSS()}\n</style><html><body></body></html>";
             }
 
             this.tableLayoutSidebar.Visible = !noEntry;
@@ -915,7 +915,7 @@
             }
         }
 
-	    /// <summary>
+        /// <summary>
         /// Updates the given entry list with the given entries.
         /// Used by other Update methods.
         /// </summary>
@@ -1236,23 +1236,23 @@
         /// </summary>
         private void AskToChooseExistingPhoto()
         {
-	        OpenFileDialog openDialog = new OpenFileDialog
-	        {
-		        InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures),
-		        Filter =
-			        "All Supported Images (*.bmp;*.gif;*.jpeg;*.jpg;*.png;*.tiff;*.tif)|*.bmp;*.gif;*.jpeg;*.jpg;*.png;*.tiff;*.tif|" +
-			        "Bitmap Images (*.bmp)|*.bmp|" +
-			        "GIF Images (*.gif)|*.gif|" +
-			        "JPEG Images (*.jpeg;*.jpg)|*.jpeg;*.jpg|" +
-			        "PNG Images (*.png)|*.png|" +
-			        "TIFF Images (*.tiff;*.tif)|*.tiff;*.tif",
-		        FilterIndex = 1,
-		        RestoreDirectory = true,
-		        CheckFileExists = true,
-		        Multiselect = false
-	        };
+            OpenFileDialog openDialog = new OpenFileDialog
+            {
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures),
+                Filter =
+                    "All Supported Images (*.bmp;*.gif;*.jpeg;*.jpg;*.png;*.tiff;*.tif)|*.bmp;*.gif;*.jpeg;*.jpg;*.png;*.tiff;*.tif|" +
+                    "Bitmap Images (*.bmp)|*.bmp|" +
+                    "GIF Images (*.gif)|*.gif|" +
+                    "JPEG Images (*.jpeg;*.jpg)|*.jpeg;*.jpg|" +
+                    "PNG Images (*.png)|*.png|" +
+                    "TIFF Images (*.tiff;*.tif)|*.tiff;*.tif",
+                FilterIndex = 1,
+                RestoreDirectory = true,
+                CheckFileExists = true,
+                Multiselect = false
+            };
 
-	        if (openDialog.ShowDialog() != DialogResult.OK)
+            if (openDialog.ShowDialog() != DialogResult.OK)
             {
                 return;
             }
@@ -1371,10 +1371,10 @@
                         if (jpgEncoder != null)
                         {
                             Encoder encoder = Encoder.Quality;
-	                        EncoderParameters encoderParameters =
-		                        new EncoderParameters(1) {Param = {[0] = new EncoderParameter(encoder, 100L)}};
+                            EncoderParameters encoderParameters =
+                                new EncoderParameters(1) {Param = {[0] = new EncoderParameter(encoder, 100L)}};
 
-	                        try
+                            try
                             {
                                 this.Watcher.EnableRaisingEvents = false;
                                 b.Save(targetFullPath, jpgEncoder, encoderParameters);
@@ -1588,12 +1588,12 @@
         /// </summary>
         private void SetupAutoSaveTimer()
         {
-	        this.AutoSaveTimer = new System.Timers.Timer(AutoSaveThreshold)
-	        {
-		        AutoReset = false,
-		        SynchronizingObject = this
-	        };
-	        this.AutoSaveTimer.Elapsed += this.AutoSaveTimer_Elapsed;
+            this.AutoSaveTimer = new System.Timers.Timer(AutoSaveThreshold)
+            {
+                AutoReset = false,
+                SynchronizingObject = this
+            };
+            this.AutoSaveTimer.Elapsed += this.AutoSaveTimer_Elapsed;
         }
 
         /// <summary>
@@ -1794,8 +1794,8 @@
         private async void MainForm_Shown(object sender, EventArgs e)
         {
             string updateUrl = @"http://journaley.s3.amazonaws.com/stable";
-	        
-			string updateSrcFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),"UpdateSource");
+            
+            string updateSrcFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),"UpdateSource");
 
             if (File.Exists(updateSrcFile))
             {
@@ -1997,15 +1997,15 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtonSettings_Click(object sender, EventArgs e)
         {
-	        SettingsForm form = new SettingsForm
-	        {
-		        Settings = new Settings(this.Settings),
-		        UpdateAvailable = this.UpdateAvailable,
-		        CurrentVersion = this.CurrentlyInstalledVersion
-	        };
-	        // pass a copied settings object
+            SettingsForm form = new SettingsForm
+            {
+                Settings = new Settings(this.Settings),
+                UpdateAvailable = this.UpdateAvailable,
+                CurrentVersion = this.CurrentlyInstalledVersion
+            };
+            // pass a copied settings object
 
-	        DialogResult result = form.ShowDialog(this);
+            DialogResult result = form.ShowDialog(this);
             if (result == DialogResult.OK)
             {
                 bool dayOneFolderChanged = this.Settings.DayOneFolderPath != form.Settings.DayOneFolderPath;
@@ -2120,8 +2120,8 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtonTag_Click(object sender, EventArgs e)
         {
-	        TagEditForm tagEditForm = new TagEditForm {StartPosition = FormStartPosition.Manual};
-	        tagEditForm.Location = this.buttonTag.PointToScreen(new Point(-tagEditForm.Width, -8));
+            TagEditForm tagEditForm = new TagEditForm {StartPosition = FormStartPosition.Manual};
+            tagEditForm.Location = this.buttonTag.PointToScreen(new Point(-tagEditForm.Width, -8));
 
             tagEditForm.AssignedTags.AddRange(this.SelectedEntry.Tags.OrderBy(x => x));
             tagEditForm.OtherTags.AddRange(this.Entries.Values.SelectMany(x => x.Tags).Distinct().Where(x => !this.SelectedEntry.Tags.Contains(x)).OrderBy(x => x));
@@ -2505,9 +2505,9 @@
             EntryListBox activeEntryList = this.GetActiveEntryList();
             if (activeEntryList != null)
             {
-	            PInvoke.SCROLLINFO scrollInfo = new PInvoke.SCROLLINFO {fMask = (int) PInvoke.ScrollInfoMask.SIF_ALL};
+                PInvoke.SCROLLINFO scrollInfo = new PInvoke.SCROLLINFO {fMask = (int) PInvoke.ScrollInfoMask.SIF_ALL};
 
-	            PInvoke.GetScrollInfo(activeEntryList.Handle, (int)PInvoke.SBFlags.SB_VERT, ref scrollInfo);
+                PInvoke.GetScrollInfo(activeEntryList.Handle, (int)PInvoke.SBFlags.SB_VERT, ref scrollInfo);
 
                 // Divide into 100 scrolls.
                 for (int i = 1; i <= 100; ++i)

@@ -19,14 +19,14 @@
             JumpList list = JumpList.CreateJumpListForIndividualWindow(TaskbarManager.Instance.ApplicationId, handle);
             list.KnownCategoryToDisplay = JumpListKnownCategoryType.Neither;
 
-	        JumpListLink newEntryLink =
-		        new JumpListLink(Assembly.GetExecutingAssembly().Location, "New Entry")
-		        {
-			        Arguments = "NewEntry",
-			        IconReference = new IconReference(Assembly.GetExecutingAssembly().Location, 1)
-		        };
+            JumpListLink newEntryLink =
+                new JumpListLink(Assembly.GetExecutingAssembly().Location, "New Entry")
+                {
+                    Arguments = "NewEntry",
+                    IconReference = new IconReference(Assembly.GetExecutingAssembly().Location, 1)
+                };
 
-	        list.AddUserTasks(newEntryLink);
+            list.AddUserTasks(newEntryLink);
             list.Refresh();
         }
     }
