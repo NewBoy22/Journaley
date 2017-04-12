@@ -645,19 +645,11 @@
             return result;
         }
 
-        /// <summary>
-        /// Saves the selected entry.
-        /// </summary>
-        private void SaveSelectedEntry()
-        {
-            this.SaveSelectedEntry(true);
-        }
-
-        /// <summary>
+	    /// <summary>
         /// Saves the selected entry.
         /// </summary>
         /// <param name="applyTextFromTextBox">if set to <c>true</c> [apply text from text box].</param>
-        private void SaveSelectedEntry(bool applyTextFromTextBox)
+        private void SaveSelectedEntry(bool applyTextFromTextBox = true)
         {
             if (this.SelectedEntry == null)
             {
@@ -923,25 +915,14 @@
             }
         }
 
-        /// <summary>
-        /// Updates the given entry list with the given entries.
-        /// Used by other Update methods.
-        /// </summary>
-        /// <param name="entries">The entries to be filled in the list.</param>
-        /// <param name="list">The EntryListBox list.</param>
-        private void UpdateEntryList(IEnumerable<Entry> entries, EntryListBox list)
-        {
-            this.UpdateEntryList(entries, list, true);
-        }
-
-        /// <summary>
+	    /// <summary>
         /// Updates the given entry list with the given entries.
         /// Used by other Update methods.
         /// </summary>
         /// <param name="entries">The entries to be filled in the list.</param>
         /// <param name="list">The EntryListBox list.</param>
         /// <param name="dateSeparator">if set to <c>true</c> display the date separators.</param>
-        private void UpdateEntryList(IEnumerable<Entry> entries, EntryListBox list, bool dateSeparator)
+        private void UpdateEntryList(IEnumerable<Entry> entries, EntryListBox list, bool dateSeparator = true)
         {
             // Clear everything.
             list.Items.Clear();
