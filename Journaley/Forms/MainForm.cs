@@ -72,27 +72,27 @@
         /// <summary>
         /// Indicates whether to add new entry on form load
         /// </summary>
-        private bool addNewEntryOnLoad = false;
+        private readonly bool addNewEntryOnLoad = false;
 
         /// <summary>
         /// The Noto Sans font family
         /// </summary>
-        private FontFamily fontFamilyNotoSansRegular;
+        private readonly FontFamily fontFamilyNotoSansRegular;
 
         /// <summary>
         /// The Noto Sans font family
         /// </summary>
-        private FontFamily fontFamilyNotoSerifRegular;
+        private readonly FontFamily fontFamilyNotoSerifRegular;
 
         /// <summary>
         /// The Noto Sans font family for WPF
         /// </summary>
-        private System.Windows.Media.FontFamily fontFamilyNotoSansWPF;
+        private readonly System.Windows.Media.FontFamily fontFamilyNotoSansWPF;
 
         /// <summary>
         /// The Noto Serif font family for WPF
         /// </summary>
-        private System.Windows.Media.FontFamily fontFamilyNotoSerifWPF;
+        private readonly System.Windows.Media.FontFamily fontFamilyNotoSerifWPF;
 
         /// <summary>
         /// Backing field for UpdateAvailable property.

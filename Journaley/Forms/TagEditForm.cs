@@ -23,12 +23,12 @@
         /// <summary>
         /// The list of assigned tags
         /// </summary>
-        private List<string> assignedTags = new List<string>();
+        private readonly List<string> assignedTags = new List<string>();
 
         /// <summary>
         /// The list of other tags (not assigned to this entry but used in other entries)
         /// </summary>
-        private List<string> otherTags = new List<string>();
+        private readonly List<string> otherTags = new List<string>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TagEditForm"/> class.

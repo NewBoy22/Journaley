@@ -72,12 +72,12 @@
         /// <summary>
         /// List of all the bottom panels
         /// </summary>
-        private List<Panel> bottomPanels;
+        private readonly List<Panel> bottomPanels;
 
         /// <summary>
         /// The sub-messages to be shown for each bottom panel.
         /// </summary>
-        private Dictionary<int, string> panelMessages;
+        private readonly Dictionary<int, string> panelMessages;
 
         /// <summary>
         /// The backing field for Settings property.
