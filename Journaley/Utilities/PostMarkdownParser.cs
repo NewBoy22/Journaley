@@ -32,10 +32,10 @@
             // 1 - stumbles upon the end of </p> tag.
             var parseState = -1;
 
-            string line;
-            using (StringReader reader = new StringReader(formattedString))
+	        using (StringReader reader = new StringReader(formattedString))
             {
-                while ((line = reader.ReadLine()) != null)
+	            string line;
+	            while ((line = reader.ReadLine()) != null)
                 {
                     if (!line.Contains("<a href=\"") && !line.Contains("<img src=\""))
                     {

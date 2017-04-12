@@ -315,8 +315,7 @@ namespace Pabo.Calendar
             Brush textBrush = new SolidBrush(textColor);
             Brush bgBrush = new SolidBrush(bgColor1);
 
-            string dateString;
-            m_imageRect = new Rectangle();
+	        m_imageRect = new Rectangle();
             string text = "";
             bool drawDay = false;
             bool enabled = true;
@@ -326,8 +325,7 @@ namespace Pabo.Calendar
 
             bool boldedDate = false;
 
-            DateItem[] info;
-            m_dayImage = null;
+	        m_dayImage = null;
 
             dateAlign = GetStringAlignment(m_month.DateAlign);
             textAlign = GetStringAlignment(m_month.TextAlign);
@@ -359,7 +357,8 @@ namespace Pabo.Calendar
             if ((m_month.FormatTrailing) || (m_month.SelectedMonth.Month  == m_date.Month))
             {
                 // check of there is formatting for this day
-                if (queryInfo != null)
+	            DateItem[] info;
+	            if (queryInfo != null)
                 {
                     info = new DateItem[1];
                     info[0] = queryInfo;
@@ -452,7 +451,8 @@ namespace Pabo.Calendar
                     }
 
                     // Check if we should append month name to date
-                    if ((m_month.ShowMonthInDay) &&
+	                string dateString;
+	                if ((m_month.ShowMonthInDay) &&
                         ((m_date.AddDays(-1).Month != m_date.Month) ||
                         (m_date.AddDays(1).Month != m_date.Month)))
                         dateString = m_date.Day.ToString()+" "+m_calendar.m_dateTimeFormat.GetMonthName(m_date.Month);

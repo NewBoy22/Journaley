@@ -698,9 +698,8 @@ namespace Pabo.Calendar
         internal void DeselectArea(int topLeft, int bottomRight)
         {
 	        string[] dates = new string[0];
-            int index;
 
-            var days = DaysInArea(topLeft,bottomRight);
+	        var days = DaysInArea(topLeft,bottomRight);
 
             // if MultiExtended , press CTRL to enable extended select
             if (m_calendar.SelectionMode==mcSelectionMode.MultiExtended)
@@ -708,8 +707,8 @@ namespace Pabo.Calendar
 
             for (int i = 0;i<days.Count;i++)
             {
-                index = (int)days[i];
-                if (m_days[index].State==mcDayState.Selected)
+	            var index = (int)days[i];
+	            if (m_days[index].State==mcDayState.Selected)
                 {
                     Remove(index);
                     dates = AddDate(m_days[index].Date.ToShortDateString(),dates);
@@ -810,9 +809,7 @@ namespace Pabo.Calendar
 
         internal void DaySelect(int i, MouseButtons button, Point mouseLocation)
         {
-            bool dayEnabled = true;
-
-            if (m_calendar.SelectionMode > mcSelectionMode.None)
+	        if (m_calendar.SelectionMode > mcSelectionMode.None)
             {
                 m_dayInFocus = i;
                 // Check if proper button is used
@@ -821,10 +818,9 @@ namespace Pabo.Calendar
 
                     if (!m_days[i].ImageHitTest(mouseLocation))
                     {
+	                    var dayEnabled = IsDateEnabled(m_days[i].Date);
 
-                        dayEnabled = IsDateEnabled(m_days[i].Date);
-
-                        if (((m_calendar.SelectTrailingDates) || (SelectedMonth.Month == m_days[i].Date.Month)) &&
+	                    if (((m_calendar.SelectTrailingDates) || (SelectedMonth.Month == m_days[i].Date.Month)) &&
                             ((m_calendar.MinDate <= m_days[i].Date) && (m_calendar.MaxDate >= m_days[i].Date)) && (dayEnabled))
                         {
 
@@ -1079,9 +1075,7 @@ namespace Pabo.Calendar
 
         private void MarkAreaAsSelected(int topLeft,int bottomRight, int area)
         {
-	        int index = 0;
-
-            SelectionArea a = (SelectionArea)m_selArea[area];
+	        SelectionArea a = (SelectionArea)m_selArea[area];
 
             a.Begin = topLeft;
             a.End = bottomRight;
@@ -1089,8 +1083,8 @@ namespace Pabo.Calendar
             var days = DaysInArea(topLeft,bottomRight);
             for (int i = 0;i<days.Count;i++)
             {
-                index = (int)days[i];
-                if ( (m_calendar.SelectTrailingDates) || (SelectedMonth.Month  == m_days[index].Date.Month) &&
+	            var index = (int)days[i];
+	            if ( (m_calendar.SelectTrailingDates) || (SelectedMonth.Month  == m_days[index].Date.Month) &&
                     (m_days[index].State != mcDayState.Selected) )
                 {
                     m_days[index].State = mcDayState.Selected;
@@ -1192,9 +1186,8 @@ namespace Pabo.Calendar
         {
 
             int today = -1;
-            string[] selectedDays;
 
-            Brush bgBrush = new SolidBrush(Colors.BackColor1);
+	        Brush bgBrush = new SolidBrush(Colors.BackColor1);
             Brush selBrush = new SolidBrush(Color.FromArgb(25,Colors.Selected.BackColor));
             Brush focusBrush = new SolidBrush(Color.FromArgb(35,Colors.Focus.BackColor));
             Brush todayBrush = new SolidBrush(Color.FromArgb(50, Calendar.TodayColor));
@@ -1275,7 +1268,7 @@ namespace Pabo.Calendar
 
                 // Check if a selection exist
 
-                selectedDays = DaysInSelection(NO_AREA);
+                var selectedDays = DaysInSelection(NO_AREA);
                 if (selectedDays.Length>0)
                 {
                     // Check how many selection areas there are
@@ -1330,7 +1323,6 @@ namespace Pabo.Calendar
         internal void SetupDays()
         {
             int row = 0;
-            int col = 0;
 
 	        Rectangle dayRect = new Rectangle();
 
@@ -1343,7 +1335,7 @@ namespace Pabo.Calendar
 
             for (int i = 0;i<6;i++)  // rows
             {
-                col = 0;
+                var col = 0;
                 for (int j = 0;j<7;j++)  // colums
                 {
                     dayRect.X = (int)(m_dayWidth * col)+(col+1)*m_padding.Horizontal+ m_rect.Left;

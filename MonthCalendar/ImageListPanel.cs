@@ -68,8 +68,7 @@ namespace Pabo.Calendar
         #region Public Methods
         public bool Init(ImageList imageList, int horizontal, int vertical, int columns, int defaultImage)
         {
-            int nRows;
-            if (imageList!=null)
+	        if (imageList!=null)
             {
                 Brush bgBrush = new SolidBrush(BackgroundColor);
                 Pen vPen = new Pen(VLinesColor);
@@ -85,7 +84,7 @@ namespace Pabo.Calendar
                 if (_defaultImage < 0) _defaultImage = -1;
 
 
-                nRows = imageList.Images.Count / _nColumns;
+                var nRows = imageList.Images.Count / _nColumns;
                 if (imageList.Images.Count % _nColumns > 0) nRows++;
 
                 _nRows = nRows;

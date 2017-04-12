@@ -979,14 +979,12 @@ namespace Pabo.Calendar
             Color itemColor = new Color();
             bool useSystemColors = false;
 
-            VisualStyleElement element;
-
-            // Check if visual styles are used
+	        // Check if visual styles are used
             if (Application.RenderWithVisualStyles)
             {
 
                 // Get Theme colors..
-                element = VisualStyleElement.ExplorerBar.HeaderBackground.Normal;
+                var element = VisualStyleElement.ExplorerBar.HeaderBackground.Normal;
                 VisualStyleRenderer renderer = new VisualStyleRenderer(element);
                 selectColor = renderer.GetColor(ColorProperty.GradientColor2);
 
@@ -3074,11 +3072,10 @@ namespace Pabo.Calendar
 
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-            int ret;
-            if (value.GetType() == typeof(string))
+	        if (value.GetType() == typeof(string))
             {
                 MonthCalendar m = (MonthCalendar)context.Instance;
-                ret = m.DayNumber(value.ToString());
+                var ret = m.DayNumber(value.ToString());
                 if ((ret >=0) && (ret<=7))
                     return ret;
             }
@@ -3146,11 +3143,10 @@ namespace Pabo.Calendar
 
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-            int ret = 0;
-            if (value.GetType() == typeof(string))
+	        if (value.GetType() == typeof(string))
             {
                 ActiveMonth m = (ActiveMonth)context.Instance;
-                ret = m.Calendar.MonthNumber(value.ToString());
+                var ret = m.Calendar.MonthNumber(value.ToString());
                 if ((ret >=1) && (ret<=12))
                     return ret;
             }

@@ -363,9 +363,8 @@
                 FolderBrowserDialog folderDialog = new FolderBrowserDialog();
                 folderDialog.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 DialogResult result = folderDialog.ShowDialog(this);
-                DialogResult createDirectoryResult;
 
-                if (result == DialogResult.Cancel)
+	            if (result == DialogResult.Cancel)
                 {
                     break;
                 }
@@ -407,15 +406,15 @@
                 }
                 else
                 {
-                    createDirectoryResult = MessageBox.Show(
-                        this,
-                        "The selected folder is not empty.\nWould you like to create a subfolder named \"Journaley\" and use it to store your journal?",
-                        "Journaley",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Warning,
-                        MessageBoxDefaultButton.Button1);
+	                var createDirectoryResult = MessageBox.Show(
+		                this,
+		                "The selected folder is not empty.\nWould you like to create a subfolder named \"Journaley\" and use it to store your journal?",
+		                "Journaley",
+		                MessageBoxButtons.YesNo,
+		                MessageBoxIcon.Warning,
+		                MessageBoxDefaultButton.Button1);
 
-                    if (createDirectoryResult == DialogResult.Yes)
+	                if (createDirectoryResult == DialogResult.Yes)
                     {
                         // Create "Journaley\entries" folder.
                         try

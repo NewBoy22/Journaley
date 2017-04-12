@@ -464,9 +464,7 @@ namespace Pabo.Calendar
             Brush textBrush = new SolidBrush(TextColor);
             Brush bgBrush = new SolidBrush(BackColor1);
 
-            string minMonth;
-            string maxMonth;
-            string currentMonth;
+	        string currentMonth;
 
 
 	        textFormat.LineAlignment = StringAlignment.Center;
@@ -499,8 +497,8 @@ namespace Pabo.Calendar
             {
                 currentMonth = m_calendar.Month.SelectedMonth.Year.ToString()+"-"+m_calendar.Month.SelectedMonth.Month.ToString();
 
-                minMonth = m_calendar.MinDate.Year.ToString()+"-"+m_calendar.MinDate.Month.ToString();
-                maxMonth = m_calendar.MaxDate.Year.ToString()+"-"+m_calendar.MaxDate.Month.ToString();
+                var minMonth = m_calendar.MinDate.Year.ToString()+"-"+m_calendar.MinDate.Month.ToString();
+                var maxMonth = m_calendar.MaxDate.Year.ToString()+"-"+m_calendar.MaxDate.Month.ToString();
 
                 if ((minMonth == currentMonth) && (m_prevBtnState != mcButtonState.Pushed))
                     m_prevBtnState = mcButtonState.Inactive;

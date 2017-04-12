@@ -324,8 +324,7 @@ namespace Pabo.Calendar
             Pen linePen = new Pen(m_borderColor,1);
             Rectangle weekRect = new Rectangle();
 
-            int weeknr=0;
-            Brush weekBrush = new SolidBrush(this.BackColor1);
+	        Brush weekBrush = new SolidBrush(this.BackColor1);
             Brush weekTextBrush = new SolidBrush(this.TextColor);
 
 	        // Draw header
@@ -372,7 +371,7 @@ namespace Pabo.Calendar
                 else
                     weekRect.Height = dayHeight;
 
-                weeknr = GetWeek(m_calendar.Month.m_days[i*7].Date);
+                var weeknr=GetWeek(m_calendar.Month.m_days[i*7].Date);
 
                 e.DrawString(weeknr.ToString(),this.Font,weekTextBrush,weekRect,textFormat);
 
