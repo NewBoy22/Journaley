@@ -2,25 +2,25 @@
  * Copyright © 2005, Patrik Bohman
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without modification, 
+ * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
  *
- *    - Redistributions of source code must retain the above copyright notice, 
+ *    - Redistributions of source code must retain the above copyright notice,
  *      this list of conditions and the following disclaimer.
- * 
- *    - Redistributions in binary form must reproduce the above copyright notice, 
- *      this list of conditions and the following disclaimer in the documentation 
+ *
+ *    - Redistributions in binary form must reproduce the above copyright notice,
+ *      this list of conditions and the following disclaimer in the documentation
  *      and/or other materials provided with the distribution.
  *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
- * IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
- * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
- * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
- * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ * IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+ * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
  * OF SUCH DAMAGE.
  */
 
@@ -30,9 +30,9 @@ namespace Pabo.Calendar
 {
     public class SelectionArea
     {
-        
+
         #region Private members
-        
+
         int m_selBegin;
         int m_selEnd;
         DateTime m_selBeginDate;
@@ -42,7 +42,7 @@ namespace Pabo.Calendar
         #endregion
 
         #region Constructor
-        
+
         public SelectionArea()
         {
             m_selBegin = -1;
@@ -68,11 +68,11 @@ namespace Pabo.Calendar
             m_selEnd = -1;
             m_month = month;
         }
-        
+
         #endregion
 
         #region properties
-        
+
         public DateTime BeginDate
         {
             get
@@ -97,9 +97,9 @@ namespace Pabo.Calendar
             }
             set
             {
-                m_selBegin = value;     
+                m_selBegin = value;
                 if (m_selBegin!=-1)
-                    m_selBeginDate = m_month.m_days[m_selBegin].Date; 
+                    m_selBeginDate = m_month.m_days[m_selBegin].Date;
             }
         }
 
@@ -107,12 +107,12 @@ namespace Pabo.Calendar
         {
             get
             {
-                
+
                 return m_selEnd;
             }
             set
             {
-                m_selEnd = value;       
+                m_selEnd = value;
                 if (m_selEnd!=-1)
                     m_selEndDate = m_month.m_days[m_selEnd].Date;
             }
@@ -124,16 +124,16 @@ namespace Pabo.Calendar
             {
                 return m_month;
             }
-            set 
+            set
             {
                 m_month = value;
             }
         }
-    
+
         #endregion
 
         #region Methods
-        
+
         public new string ToString()
         {
             if ((m_selBegin==-1) || (m_selEnd==-1))
@@ -145,8 +145,8 @@ namespace Pabo.Calendar
         public string[] DaysInSelection()
         {
             string[] days = new string[0];
-            
-            
+
+
 
             return days;
         }

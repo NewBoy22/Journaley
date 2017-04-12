@@ -12,11 +12,11 @@ using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.ComponentModel;
-using System.Diagnostics;  
+using System.Diagnostics;
 
 namespace Pabo.Calendar
 {
-    
+
     #region Delegates
 
     public delegate void ImageListPanelEventHandler(object sender, ImageListPanelEventArgs e);
@@ -26,7 +26,7 @@ namespace Pabo.Calendar
     [ToolboxItem(false)]
     public class ImageListPanel : System.Windows.Forms.Control
     {
-        
+
         #region Protected Member Variables
         private Bitmap  _Bitmap;
         private ImageList   _imageList;
@@ -34,18 +34,18 @@ namespace Pabo.Calendar
         private int     _nBitmapHeight;
         private int     _nItemWidth;
         private int     _nItemHeight;
-        private int     _nRows; 
+        private int     _nRows;
         private int     _nColumns;
         private int     _nHSpace;
         private int     _nVSpace;
         private int     _nCoordX;
         private int     _nCoordY;
         private bool    _bIsMouseDown;
-        
+
         private int _defaultImage;
-        
+
         #endregion
-        
+
         #region Public Properties
         internal Color      BackgroundColor = Color.FromArgb(255,255,255);
         internal Color      BackgroundOverColor = Color.FromArgb(241,238,231);
@@ -78,7 +78,7 @@ namespace Pabo.Calendar
                 Pen vPen = new Pen(VLinesColor);
                 Pen hPen = new Pen(HLinesColor);
                 Pen borderPen = new Pen(BorderColor);
-                        
+
                 _imageList = imageList;
                 _nColumns = columns;
 
@@ -86,8 +86,8 @@ namespace Pabo.Calendar
                 if (_defaultImage > _imageList.Images.Count)
                     _defaultImage = _imageList.Images.Count;
                 if (_defaultImage < 0) _defaultImage = -1;
-            
-            
+
+
                 nRows = imageList.Images.Count / _nColumns;
                 if (imageList.Images.Count % _nColumns > 0) nRows++;
 
@@ -109,7 +109,7 @@ namespace Pabo.Calendar
                     grfx.DrawLine(vPen, i*_nItemWidth, 0, i*_nItemWidth, _nBitmapHeight-1);
                 for (int i=0;i<_nRows;i++)
                     grfx.DrawLine(hPen, 0, i*_nItemHeight, _nBitmapWidth-1, i*_nItemHeight);
-            
+
                 grfx.DrawRectangle(borderPen, 0 ,0 , _nBitmapWidth-1, _nBitmapHeight-1);
 
                 for (int i=0;i<_nColumns;i++)
@@ -122,7 +122,7 @@ namespace Pabo.Calendar
                                 imageList.ImageSize.Width,
                                 imageList.ImageSize.Height,
                                 j*_nColumns+i);
-    
+
                     }
 
                 /*  int a = (_defaultImage / _nColumns);  // rad
@@ -130,21 +130,21 @@ namespace Pabo.Calendar
 
                     _nCoordX = b*(_nItemWidth+_nHSpace/2)-1;
                     _nCoordY = a*(_nItemHeight+nVSpace/2)-1;
-                */  
-            
+                */
+
                 // Clean up
                 bgBrush.Dispose();
                 vPen.Dispose();
                 hPen.Dispose();
                 borderPen.Dispose();
-                                
+
                 Invalidate();
                 return true;
             }
-            else throw new System.ArgumentNullException("imageList"); 
-                
+            else throw new System.ArgumentNullException("imageList");
+
         }
-    
+
         public void Show(int posX, int posY)
         {
             this.Left = posX;
@@ -153,9 +153,9 @@ namespace Pabo.Calendar
         }
         #endregion
 
-    
+
         #region Overrides
-    
+
         protected override void OnMouseLeave(EventArgs e)
         {
             // We repaint the popup if the mouse is no more over it
@@ -284,7 +284,7 @@ namespace Pabo.Calendar
         {
             base.OnMouseDown(e);
             _bIsMouseDown = false;
-            
+
             // We fire the event only when the mouse is released
             int nImageId = _nCoordY*_nColumns + _nCoordX;
             // check that imageID is a valid image
@@ -294,13 +294,13 @@ namespace Pabo.Calendar
                 Hide();
             }
         }
-    
+
 
         protected override void OnPaintBackground(PaintEventArgs pevent)
         {
             Graphics grfx = pevent.Graphics;
             grfx.PageUnit = GraphicsUnit.Pixel;
-            
+
             // Basic double buffering technique
             Bitmap offscreenBitmap = new Bitmap(_nBitmapWidth, _nBitmapHeight);
             Graphics offscreenGrfx = Graphics.FromImage(offscreenBitmap);
@@ -337,7 +337,7 @@ namespace Pabo.Calendar
 
             // We blit the offscreen image on the screen
             grfx.DrawImage(offscreenBitmap, 0, 0);
-            
+
             // Clean up
             offscreenGrfx.Dispose ();
         }
@@ -347,9 +347,9 @@ namespace Pabo.Calendar
     #region ImageListPanelEventArgs
 
     public class ImageListPanelEventArgs : EventArgs
-    {      
+    {
         internal int SelectedItem;
-        
+
         public ImageListPanelEventArgs(int selectedItem)
         {
             SelectedItem = selectedItem;

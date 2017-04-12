@@ -387,7 +387,7 @@
             Form form = this.FindForm();
             if (form != null)
             {
-                form.DialogResult = this.DialogResult;  
+                form.DialogResult = this.DialogResult;
             }
 
             base.OnClick(e);

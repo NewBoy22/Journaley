@@ -2,25 +2,25 @@
  * Copyright © 2005, Patrik Bohman
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without modification, 
+ * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
  *
- *    - Redistributions of source code must retain the above copyright notice, 
+ *    - Redistributions of source code must retain the above copyright notice,
  *      this list of conditions and the following disclaimer.
- * 
- *    - Redistributions in binary form must reproduce the above copyright notice, 
- *      this list of conditions and the following disclaimer in the documentation 
+ *
+ *    - Redistributions in binary form must reproduce the above copyright notice,
+ *      this list of conditions and the following disclaimer in the documentation
  *      and/or other materials provided with the distribution.
  *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
- * IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
- * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
- * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
- * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ * IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+ * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
  * OF SUCH DAMAGE.
  */
 
@@ -28,18 +28,18 @@ using System;
 using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Drawing;
-using System.Windows.Forms;  
+using System.Windows.Forms;
 
 namespace Pabo.Calendar
 {
-    
+
     public enum mcTodayFormat {Short = 0, Long}
-    
+
     public enum mcFooterProperty {Align = 0, Text, ShowToday, Format, BackColor1, BackColor2, GradientMode,
-                                Font, TextColor}                                                        
-    
+                                Font, TextColor}
+
     #region Delegates
-    
+
     public delegate void FooterPropertyEventHandler(object sender, FooterPropertyEventArgs e);
 
     #endregion
@@ -52,7 +52,7 @@ namespace Pabo.Calendar
     public class Footer : IDisposable
     {
         #region private class members
-        
+
         private bool disposed;
         private readonly MonthCalendar m_calendar;
         private Color m_backColor1;
@@ -67,9 +67,9 @@ namespace Pabo.Calendar
         private Region m_region;
         private mcTextAlign m_align;
         #endregion
-    
+
         #region EventHandlers
-        
+
         internal event ClickEventHandler Click;
         internal event ClickEventHandler DoubleClick;
         internal event FooterPropertyEventHandler PropertyChanged;
@@ -86,7 +86,7 @@ namespace Pabo.Calendar
             m_gradientMode = mcGradientMode.None;
             m_textColor = Color.Black;
             m_font = new Font("Microsoft Sans Serif",(float)8.25,FontStyle.Bold);
-            m_format = mcTodayFormat.Short; 
+            m_format = mcTodayFormat.Short;
             m_text = "";
             m_showToday = true;
             m_align = mcTextAlign.Left;
@@ -95,12 +95,12 @@ namespace Pabo.Calendar
         #endregion
 
         #region Methods
-        
+
         internal void MouseMove(Point mouseLocation)
         {
             if (m_region.IsVisible(mouseLocation))
             {
-                m_calendar.ActiveRegion = mcCalendarRegion.Footer;  
+                m_calendar.ActiveRegion = mcCalendarRegion.Footer;
             }
         }
 
@@ -120,25 +120,25 @@ namespace Pabo.Calendar
                 }
             }
         }
-        
+
         internal bool IsVisible(Rectangle clip)
         {
-            return m_region.IsVisible(clip);    
+            return m_region.IsVisible(clip);
         }
 
         internal void Draw(Graphics e)
         {
             StringFormat textFormat = new StringFormat();
-            Brush textBrush = new SolidBrush(TextColor); 
-            Brush bgBrush = new SolidBrush(BackColor1); 
-            textFormat.Alignment = StringAlignment.Near;   
+            Brush textBrush = new SolidBrush(TextColor);
+            Brush bgBrush = new SolidBrush(BackColor1);
+            textFormat.Alignment = StringAlignment.Near;
             textFormat.LineAlignment = StringAlignment.Center;
             Rectangle txtRect;
 
             if (m_gradientMode == mcGradientMode.None)
                 e.FillRectangle(bgBrush, m_rect);
             else
-                m_calendar.DrawGradient(e, m_rect, m_backColor1, m_backColor2, m_gradientMode);  
+                m_calendar.DrawGradient(e, m_rect, m_backColor1, m_backColor2, m_gradientMode);
 
             textFormat.LineAlignment = StringAlignment.Center;
             // Draw header
@@ -162,14 +162,14 @@ namespace Pabo.Calendar
             }
 
             txtRect = new Rectangle(m_rect.Left + 2,m_rect.Top,m_rect.Width - (2*2),m_rect.Height);
-                        
+
             if (m_showToday)
             {
                 if (m_format == mcTodayFormat.Short)
                     e.DrawString(DateTime.Now.ToShortDateString() ,Font,textBrush,txtRect,textFormat);
                 else
                     e.DrawString(DateTime.Now.ToLongDateString() ,Font,textBrush,txtRect,textFormat);
-                                
+
             }
             else
                 e.DrawString(m_text ,Font,textBrush,txtRect,textFormat);
@@ -178,9 +178,9 @@ namespace Pabo.Calendar
             textBrush.Dispose();
             bgBrush.Dispose();
         }
-        
+
         #endregion
-        
+
         #region Dispose
 
         protected virtual void Dispose(bool disposing)
@@ -191,14 +191,14 @@ namespace Pabo.Calendar
                 {
                     m_font.Dispose();
                     m_region.Dispose();
-                
+
                 }
                 // shared cleanup logic
                 disposed = true;
             }
         }
 
-        
+
         public void Dispose()
         {
             Dispose(true);
@@ -208,7 +208,7 @@ namespace Pabo.Calendar
         #endregion
 
         #region Properties
-        
+
         internal Rectangle Rect
         {
             get
@@ -222,7 +222,7 @@ namespace Pabo.Calendar
             }
 
         }
-        
+
         [Description("Determines the position for the text.")]
         [DefaultValue(typeof(mcTextAlign),"Left")]
         public mcTextAlign Align
@@ -237,7 +237,7 @@ namespace Pabo.Calendar
                 {
                     m_align = value;
                     if (PropertyChanged!=null)
-                        PropertyChanged(this,new FooterPropertyEventArgs(mcFooterProperty.Align));   
+                        PropertyChanged(this,new FooterPropertyEventArgs(mcFooterProperty.Align));
                     m_calendar.Invalidate();
                 }
             }
@@ -257,8 +257,8 @@ namespace Pabo.Calendar
                 {
                     m_text = value;
                     if (PropertyChanged!=null)
-                        PropertyChanged(this,new FooterPropertyEventArgs(mcFooterProperty.Text));   
-                    m_calendar.Invalidate(); 
+                        PropertyChanged(this,new FooterPropertyEventArgs(mcFooterProperty.Text));
+                    m_calendar.Invalidate();
                 }
             }
 
@@ -278,8 +278,8 @@ namespace Pabo.Calendar
                 {
                     m_showToday = value;
                     if (PropertyChanged!=null)
-                        PropertyChanged(this,new FooterPropertyEventArgs(mcFooterProperty.ShowToday));   
-                    m_calendar.Invalidate(); 
+                        PropertyChanged(this,new FooterPropertyEventArgs(mcFooterProperty.ShowToday));
+                    m_calendar.Invalidate();
                 }
             }
 
@@ -299,8 +299,8 @@ namespace Pabo.Calendar
                 {
                     m_format = value;
                     if (PropertyChanged!=null)
-                        PropertyChanged(this,new FooterPropertyEventArgs(mcFooterProperty.Format));   
-                    m_calendar.Invalidate(); 
+                        PropertyChanged(this,new FooterPropertyEventArgs(mcFooterProperty.Format));
+                    m_calendar.Invalidate();
                 }
             }
 
@@ -320,7 +320,7 @@ namespace Pabo.Calendar
                 {
                     m_backColor1 = value;
                     if (PropertyChanged!=null)
-                        PropertyChanged(this,new FooterPropertyEventArgs(mcFooterProperty.BackColor1));   
+                        PropertyChanged(this,new FooterPropertyEventArgs(mcFooterProperty.BackColor1));
                     m_calendar.Invalidate();
                 }
             }
@@ -381,12 +381,12 @@ namespace Pabo.Calendar
                     m_font = value;
                     m_calendar.DoLayout();
                     if (PropertyChanged!=null)
-                        PropertyChanged(this,new FooterPropertyEventArgs(mcFooterProperty.Font));   
+                        PropertyChanged(this,new FooterPropertyEventArgs(mcFooterProperty.Font));
                     m_calendar.Invalidate();
                 }
             }
         }
-        
+
         [Description("Color used for text.")]
         [DefaultValue(typeof(Color),"Black")]
         public Color TextColor
@@ -401,7 +401,7 @@ namespace Pabo.Calendar
                 {
                     m_textColor = value;
                     if (PropertyChanged!=null)
-                        PropertyChanged(this,new FooterPropertyEventArgs(mcFooterProperty.Text));   
+                        PropertyChanged(this,new FooterPropertyEventArgs(mcFooterProperty.Text));
                     m_calendar.Invalidate();
                 }
             }
@@ -412,7 +412,7 @@ namespace Pabo.Calendar
     }
 
     #region FooterPropertyEventArgs
-    
+
     public class FooterPropertyEventArgs : EventArgs
     {
         #region Class Data

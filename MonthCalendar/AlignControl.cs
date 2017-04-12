@@ -2,25 +2,25 @@
  * Copyright © 2005, Patrik Bohman
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without modification, 
+ * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
  *
- *    - Redistributions of source code must retain the above copyright notice, 
+ *    - Redistributions of source code must retain the above copyright notice,
  *      this list of conditions and the following disclaimer.
- * 
- *    - Redistributions in binary form must reproduce the above copyright notice, 
- *      this list of conditions and the following disclaimer in the documentation 
+ *
+ *    - Redistributions in binary form must reproduce the above copyright notice,
+ *      this list of conditions and the following disclaimer in the documentation
  *      and/or other materials provided with the distribution.
  *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
- * IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
- * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
- * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
- * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ * IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+ * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
  * OF SUCH DAMAGE.
  */
 
@@ -33,17 +33,17 @@ using System.Windows.Forms;
 
 namespace Pabo.Calendar
 {
-    
+
     public enum mcItemAlign {TopLeft = 0, TopRight, Center, BottomLeft, BottomRight,
                              LeftCenter, RightCenter, TopCenter, BottomCenter}
-        
+
     #region Delegates
-    
+
     public delegate void AlignEventHandler(object sender, AlignEventArgs e);
-    
+
     #endregion
 
-    
+
     /// <summary>
     /// Summary description for AlignControl.
     /// </summary>
@@ -51,12 +51,12 @@ namespace Pabo.Calendar
     internal class AlignControl : System.Windows.Forms.Control
     {
         #region private class members
-        
-        /// <summary> 
+
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.Container components = null;
-        
+
         Rectangle m_topLeft = new Rectangle();
         Rectangle m_topRight = new Rectangle();
         Rectangle m_center = new Rectangle();
@@ -78,16 +78,16 @@ namespace Pabo.Calendar
         Region m_bottomCenterRgn;
 
         private mcItemAlign m_default;
-        
+
         #endregion
 
         #region EventHandler
-        
+
         public event AlignEventHandler AlignChanged;
-    
+
 
         #endregion
-        
+
         #region constructor
 
         public AlignControl()
@@ -96,14 +96,14 @@ namespace Pabo.Calendar
             InitializeComponent();
 
             // TODO: Add any initialization after the InitializeComponent call
-            
+
             this.SetStyle(ControlStyles.DoubleBuffer, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             this.SetStyle(ControlStyles.UserPaint, true);
 
             // set min width and height
             this.Width = 75;
-            this.Height = 75;       
+            this.Height = 75;
         }
 
         #endregion
@@ -117,7 +117,7 @@ namespace Pabo.Calendar
                 if(components != null)
                 {
                     components.Dispose();
-                    
+
                     m_topLeftRgn.Dispose();
                     m_topRightRgn.Dispose();
                     m_centerRgn.Dispose();
@@ -148,29 +148,29 @@ namespace Pabo.Calendar
                 m_default = value;
             }
         }
-        
+
         #endregion
 
         #region overrides
-        
+
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint (e);
         }
-        
-        
+
+
         protected override void OnPaintBackground(PaintEventArgs e)
         {
             base.OnPaintBackground (e);
-            
+
             SetupButtons();
-            
+
             ControlPaint.DrawButton(e.Graphics,m_topLeft, (m_default != mcItemAlign.TopLeft) ? ButtonState.Normal : ButtonState.Checked);
             ControlPaint.DrawButton(e.Graphics,m_center,(m_default != mcItemAlign.Center) ? ButtonState.Normal : ButtonState.Checked);
             ControlPaint.DrawButton(e.Graphics,m_topRight,(m_default != mcItemAlign.TopRight) ? ButtonState.Normal : ButtonState.Checked);
             ControlPaint.DrawButton(e.Graphics,m_bottomLeft,(m_default != mcItemAlign.BottomLeft) ? ButtonState.Normal : ButtonState.Checked);
             ControlPaint.DrawButton(e.Graphics,m_bottomRight,(m_default != mcItemAlign.BottomRight) ? ButtonState.Normal : ButtonState.Checked);
-            
+
             ControlPaint.DrawButton(e.Graphics,m_leftCenter,(m_default != mcItemAlign.LeftCenter) ? ButtonState.Normal : ButtonState.Checked);
             ControlPaint.DrawButton(e.Graphics,m_rightCenter,(m_default != mcItemAlign.RightCenter) ? ButtonState.Normal : ButtonState.Checked);
             ControlPaint.DrawButton(e.Graphics,m_topCenter,(m_default != mcItemAlign.TopCenter) ? ButtonState.Normal : ButtonState.Checked);
@@ -180,14 +180,14 @@ namespace Pabo.Calendar
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown (e);
-            
-            Point p = new Point(e.X,e.Y); 
+
+            Point p = new Point(e.X,e.Y);
             mcItemAlign select = mcItemAlign.Center;
             bool hit = false;
 
             if (m_topLeftRgn.IsVisible(p))
             {
-                select = mcItemAlign.TopLeft; 
+                select = mcItemAlign.TopLeft;
                 hit = true;
             }
             if (m_topRightRgn.IsVisible(p))
@@ -211,26 +211,26 @@ namespace Pabo.Calendar
                 hit = true;
             }
             if (m_leftCenterRgn.IsVisible(p))
-            {   
+            {
                 select = mcItemAlign.LeftCenter;
-                hit = true; 
+                hit = true;
             }
             if (m_rightCenterRgn.IsVisible(p))
-            {   
+            {
                 select = mcItemAlign.RightCenter;
-                hit = true; 
+                hit = true;
             }
             if (m_topCenterRgn.IsVisible(p))
-            {   
+            {
                 select = mcItemAlign.TopCenter;
-                hit = true; 
+                hit = true;
             }
             if (m_bottomCenterRgn.IsVisible(p))
-            {   
+            {
                 select = mcItemAlign.BottomCenter;
-                hit = true; 
+                hit = true;
             }
-            
+
             if ((this.AlignChanged!=null) && (hit))
                 this.AlignChanged(this,new AlignEventArgs(select));
         }
@@ -240,8 +240,8 @@ namespace Pabo.Calendar
         #endregion
 
         #region Component Designer generated code
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -256,7 +256,7 @@ namespace Pabo.Calendar
         {
             int w;
             int h;;
-            
+
             w = this.Width/3;
             h = this.Height/3;
 
@@ -265,7 +265,7 @@ namespace Pabo.Calendar
             m_topRight = new Rectangle(this.Width-w,0,w,h);
             m_bottomLeft = new Rectangle(0,2*h,w,h);
             m_bottomRight = new Rectangle(this.Width-w,2*h,w,h);
-            
+
             m_leftCenter = new Rectangle(0,h,w,h);
             m_rightCenter = new Rectangle(this.Width-w,h,w,h);
             m_topCenter = new Rectangle(w,0,System.Math.Max(this.Width-2*w,w),h);
@@ -281,18 +281,18 @@ namespace Pabo.Calendar
             m_topCenterRgn = new Region(m_topCenter);
             m_bottomCenterRgn = new Region(m_bottomCenter);
 
-            
+
         }
 
         #endregion
     }
-                
+
     #region AlignEventArgs
-    
+
     public class AlignEventArgs : EventArgs
     {
         #region Class Data
-            
+
         private readonly mcItemAlign m_align;
 
         #endregion
@@ -321,7 +321,7 @@ namespace Pabo.Calendar
         {
             get
             {
-                return this.m_align; 
+                return this.m_align;
             }
         }
 

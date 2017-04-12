@@ -2,25 +2,25 @@
  * Copyright © 2005, Patrik Bohman
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without modification, 
+ * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
  *
- *    - Redistributions of source code must retain the above copyright notice, 
+ *    - Redistributions of source code must retain the above copyright notice,
  *      this list of conditions and the following disclaimer.
- * 
- *    - Redistributions in binary form must reproduce the above copyright notice, 
- *      this list of conditions and the following disclaimer in the documentation 
+ *
+ *    - Redistributions in binary form must reproduce the above copyright notice,
+ *      this list of conditions and the following disclaimer in the documentation
  *      and/or other materials provided with the distribution.
  *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
- * IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
- * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
- * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
- * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ * IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+ * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
  * OF SUCH DAMAGE.
  */
 
@@ -28,34 +28,34 @@ using System;
 using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Drawing;
-using System.Drawing.Drawing2D; 
-using System.Windows.Forms; 
+using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 using System.Reflection;
 using System.IO;
-using System.Windows.Forms.VisualStyles;   
+using System.Windows.Forms.VisualStyles;
 
 namespace Pabo.Calendar
 {
-    
-    public enum mcHeaderProperty 
+
+    public enum mcHeaderProperty
     {
         Align = 0, MonthSelectors,YearSelectors, ShowMonth, Text , BackColor1, Font,
         TextColor, MonthContextMenu, BackColor2, GradientMode }
 
     internal enum mcButtonState
     {
-        Normal = 0, Hot, Pushed, Inactive 
+        Normal = 0, Hot, Pushed, Inactive
     }
 
     internal enum mcHeaderButtons
     {
-        PreviousMonth=0 , PreviousYear, NextMonth, NextYear 
+        PreviousMonth=0 , PreviousYear, NextMonth, NextYear
     }
-    
+
 
     #region Delegates
 
-    public delegate void HeaderPropertyEventHandler(object sender, HeaderPropertyEventArgs e);  
+    public delegate void HeaderPropertyEventHandler(object sender, HeaderPropertyEventArgs e);
 
     #endregion
 
@@ -66,18 +66,18 @@ namespace Pabo.Calendar
     public class Header : IDisposable
     {
         #region private class members
-        
+
         private bool disposed;
         private readonly MonthCalendar m_calendar;
         private Color m_backColor1;
         private Color m_backColor2;
-        private mcGradientMode m_gradientMode; 
+        private mcGradientMode m_gradientMode;
         private Color m_textColor;
         private Font m_font;
         private bool m_monthSelector;
         private bool m_yearSelector;
         private bool m_contextMenu;
-        
+
         private readonly ContextMenu monthMenu = new ContextMenu();
         private Rectangle m_rect;
         private Region m_region;
@@ -96,7 +96,7 @@ namespace Pabo.Calendar
         private mcTextAlign m_align;
 
         private bool m_showMonth;
-                
+
         private readonly Bitmap m_prevYear;
         private readonly Bitmap m_nextYear;
         private readonly Bitmap m_prevYearDisabled;
@@ -110,7 +110,7 @@ namespace Pabo.Calendar
         #endregion
 
         #region Eventhandlers
-        
+
         internal event ClickEventHandler Click;
         internal event ClickEventHandler DoubleClick;
         internal event EventHandler PrevMonthButtonClick;
@@ -128,27 +128,27 @@ namespace Pabo.Calendar
             m_calendar = calendar;
             m_backColor1 = Color.FromArgb(0,84,227);
             m_backColor2 = Color.White;
-            m_gradientMode = mcGradientMode.None;  
+            m_gradientMode = mcGradientMode.None;
             m_textColor = Color.White;
             m_font = new Font("Microsoft Sans Serif",(float)8.25,FontStyle.Bold);
             m_showMonth = true;
             m_monthSelector = true;
             m_text = "";
             m_contextMenu = true;
-            m_align = mcTextAlign.Center; 
+            m_align = mcTextAlign.Center;
             m_prevBtnState = mcButtonState.Normal;
             m_nextBtnState = mcButtonState.Normal;
             m_prevYearBtnState = mcButtonState.Normal;
             m_nextYearBtnState = mcButtonState.Normal;
-            
+
             // load images
             m_prevYear = GetEmbeddedImage("prev_year.bmp");
-            m_prevYear.MakeTransparent(); 
+            m_prevYear.MakeTransparent();
             m_prevYearDisabled = GetEmbeddedImage("prev_year_disabled.bmp");
-            m_prevYearDisabled.MakeTransparent(); 
+            m_prevYearDisabled.MakeTransparent();
             m_nextYear = GetEmbeddedImage("prev_year.bmp");
             m_nextYear.RotateFlip(RotateFlipType.RotateNoneFlipX);
-            m_nextYear.MakeTransparent(); 
+            m_nextYear.MakeTransparent();
             m_nextYearDisabled = GetEmbeddedImage("prev_year_disabled.bmp");
             m_nextYearDisabled.RotateFlip(RotateFlipType.RotateNoneFlipX);
             m_nextYearDisabled.MakeTransparent();
@@ -157,30 +157,30 @@ namespace Pabo.Calendar
             m_prevYearVs = GetEmbeddedImage("prev_year_vs.bmp");
             m_prevYearVs.MakeTransparent();
             m_nextMonthVs = GetEmbeddedImage("prev_month_vs.bmp");
-            m_nextMonthVs.MakeTransparent(); 
+            m_nextMonthVs.MakeTransparent();
             m_nextMonthVs.RotateFlip(RotateFlipType.RotateNoneFlipX);
             m_nextYearVs = GetEmbeddedImage("prev_year_vs.bmp");
-            m_nextYearVs.MakeTransparent(); 
+            m_nextYearVs.MakeTransparent();
             m_nextYearVs.RotateFlip(RotateFlipType.RotateNoneFlipX);
-          
+
             // create monthContext menu and setup event handlers
             for(int k=0;k<12;k++)
             {
-                monthMenu.MenuItems.Add(monthMenu.MenuItems.Count, 
-                    new MenuItem("")); 
-                monthMenu.MenuItems[monthMenu.MenuItems.Count-1].Click+=new EventHandler(MonthContextMenu_Click); 
-            
+                monthMenu.MenuItems.Add(monthMenu.MenuItems.Count,
+                    new MenuItem(""));
+                monthMenu.MenuItems[monthMenu.MenuItems.Count-1].Click+=new EventHandler(MonthContextMenu_Click);
+
             }
 
 
             Setup();
-    
+
         }
 
         #endregion
-        
+
         #region Dispose
-        
+
         protected virtual void Dispose(bool disposing)
         {
             if (!disposed)
@@ -190,12 +190,12 @@ namespace Pabo.Calendar
                     // Remove event handlers
                     for(int k=0;k<monthMenu.MenuItems.Count;k++)
                     {
-                        monthMenu.MenuItems[k].Click-=new EventHandler(MonthContextMenu_Click); 
+                        monthMenu.MenuItems[k].Click-=new EventHandler(MonthContextMenu_Click);
                     }
-            
+
                     m_font.Dispose();
-                    m_region.Dispose(); 
-            
+                    m_region.Dispose();
+
                     m_prevYear.Dispose();
                     m_prevYearDisabled.Dispose();
                     m_nextYear.Dispose();
@@ -223,15 +223,15 @@ namespace Pabo.Calendar
         #endregion
 
         #region Methods
-        
+
         private void Setup()
         {
-            
+
             int x = 10;
-            
+
             if (m_yearSelector)
             {
-                
+
                 m_prevYearBtnRect = new Rectangle(x,5,20,20);
                 m_nextYearBtnRect = new Rectangle(m_rect.Width-x-20,5,20,20);
                 x+=20;
@@ -243,7 +243,7 @@ namespace Pabo.Calendar
             }
             if (m_monthSelector)
             {
-                
+
                 m_prevBtnRect = new Rectangle(x,5,20,20);
                 m_nextBtnRect = new Rectangle(m_rect.Width-x-20,5,20,20);
                 x+=20;
@@ -253,28 +253,28 @@ namespace Pabo.Calendar
                 m_prevBtnRect = new Rectangle(0,0,0,0);
                 m_nextBtnRect = new Rectangle(0,0,0,0);
             }
-            m_textRect = new Rectangle(x + 2,0,m_rect.Width - (2*x)-8,m_rect.Height); 
-            
+            m_textRect = new Rectangle(x + 2,0,m_rect.Width - (2*x)-8,m_rect.Height);
+
         }
 
         private void DisplayMonthContextMenu(Point mouseLocation)
         {
-    
+
             // Setup context menu
-            string[] months = m_calendar.AllowedMonths(); 
+            string[] months = m_calendar.AllowedMonths();
             for(int k=0;k<months.Length;k++)
             {
-                monthMenu.MenuItems[k].Text = months[k]; 
+                monthMenu.MenuItems[k].Text = months[k];
 
-                if (k == m_calendar.ActiveMonth.Month-1)  
+                if (k == m_calendar.ActiveMonth.Month-1)
                     monthMenu.MenuItems[k].Checked = true;
                 else
                     monthMenu.MenuItems[k].Checked = false;
-            
+
             }
             //show context menu
             monthMenu.Show(m_calendar,new Point(mouseLocation.X,mouseLocation.Y));
-    
+
         }
 
         internal void MouseClick(Point mouseLocation, MouseButtons button, mcClickMode mode)
@@ -284,14 +284,14 @@ namespace Pabo.Calendar
             Region leftYearBtnRgn = new Region(m_prevYearBtnRect);
             Region rightYearBtnRgn = new Region(m_nextYearBtnRect);
             MouseButtons selectButton;
-            
+
             if (SystemInformation.MouseButtonsSwapped)
                 selectButton = MouseButtons.Right;
             else
                 selectButton = MouseButtons.Left;
 
             bool btnClick = false;
-            
+
             if (m_region.IsVisible(mouseLocation))
             {
                 if (button == selectButton)
@@ -303,7 +303,7 @@ namespace Pabo.Calendar
                         {
                             m_prevBtnState = mcButtonState.Pushed;
                             if (this.PrevMonthButtonClick!=null)
-                                this.PrevMonthButtonClick(this,new EventArgs());            
+                                this.PrevMonthButtonClick(this,new EventArgs());
                             btnClick = true;
                         }
                         if ( (rightBtnRgn.IsVisible(mouseLocation)) && (m_nextBtnState!=mcButtonState.Inactive) &&
@@ -322,7 +322,7 @@ namespace Pabo.Calendar
                         {
                             m_prevYearBtnState = mcButtonState.Pushed;
                             if (this.PrevYearButtonClick!=null)
-                                this.PrevYearButtonClick(this,new EventArgs());         
+                                this.PrevYearButtonClick(this,new EventArgs());
                             btnClick = true;
                         }
                         if ( (rightYearBtnRgn.IsVisible(mouseLocation)) && (m_nextYearBtnState!=mcButtonState.Inactive) &&
@@ -342,7 +342,7 @@ namespace Pabo.Calendar
                         DisplayMonthContextMenu(mouseLocation);
                     }
                 }
-                
+
                 if (mode == mcClickMode.Single)
                 {
                     if ((this.Click!=null) && (!btnClick))
@@ -351,17 +351,17 @@ namespace Pabo.Calendar
                 else
                 {
                     if ((this.DoubleClick!=null) && (!btnClick))
-                        this.DoubleClick(this,new ClickEventArgs(button));  
+                        this.DoubleClick(this,new ClickEventArgs(button));
                 }
             }
-            
+
             leftBtnRgn.Dispose();
             rightBtnRgn.Dispose();
             leftYearBtnRgn.Dispose();
             rightYearBtnRgn.Dispose();
         }
 
-        
+
 
         internal void MouseUp()
         {
@@ -370,8 +370,8 @@ namespace Pabo.Calendar
             if (m_nextBtnState!=mcButtonState.Inactive) m_nextBtnState = mcButtonState.Normal;
             if (m_prevYearBtnState!=mcButtonState.Inactive) m_prevYearBtnState = mcButtonState.Normal;
             if (m_nextYearBtnState!=mcButtonState.Inactive) m_nextYearBtnState = mcButtonState.Normal;
-            
-            m_calendar.Invalidate();    
+
+            m_calendar.Invalidate();
         }
 
         internal void MouseMove(Point mouseLocation)
@@ -397,17 +397,17 @@ namespace Pabo.Calendar
                     m_prevBtnState = mcButtonState.Hot;
 
                 if (oldPrevMonthState != m_prevBtnState)
-                    DrawButton(m_calendar.CreateGraphics(),m_prevBtnState,mcHeaderButtons.PreviousMonth,m_prevBtnRect); 
+                    DrawButton(m_calendar.CreateGraphics(),m_prevBtnState,mcHeaderButtons.PreviousMonth,m_prevBtnRect);
                 // If not within right scroll button, make sure its not pushed
                 if (!nextBtnRgn.IsVisible(mouseLocation))
                 {
                     if (m_nextBtnState != mcButtonState.Inactive) m_nextBtnState = mcButtonState.Normal;
                 }
-                else if (m_nextBtnState != mcButtonState.Inactive) 
-                    m_nextBtnState = mcButtonState.Hot; 
-            
+                else if (m_nextBtnState != mcButtonState.Inactive)
+                    m_nextBtnState = mcButtonState.Hot;
+
                 if (oldNextMonthState != m_nextBtnState)
-                    DrawButton(m_calendar.CreateGraphics(), m_nextBtnState, mcHeaderButtons.NextMonth, m_nextBtnRect); 
+                    DrawButton(m_calendar.CreateGraphics(), m_nextBtnState, mcHeaderButtons.NextMonth, m_nextBtnRect);
             }
             if (m_yearSelector)
             {
@@ -416,30 +416,30 @@ namespace Pabo.Calendar
                 {
                     if (m_prevYearBtnState != mcButtonState.Inactive) m_prevYearBtnState = mcButtonState.Normal;
                 }
-                else if (m_prevYearBtnState != mcButtonState.Inactive) 
+                else if (m_prevYearBtnState != mcButtonState.Inactive)
                     m_prevYearBtnState = mcButtonState.Hot;
 
                 if (oldPrevYearState != m_prevYearBtnState)
-                    DrawButton(m_calendar.CreateGraphics(), m_prevYearBtnState, mcHeaderButtons.PreviousYear, m_prevYearBtnRect); 
-          
-                        
+                    DrawButton(m_calendar.CreateGraphics(), m_prevYearBtnState, mcHeaderButtons.PreviousYear, m_prevYearBtnRect);
+
+
                 // If not within right scroll button, make sure its not pushed
                 if (!nextYearBtnRgn.IsVisible(mouseLocation))
                 {
                     if (m_nextYearBtnState != mcButtonState.Inactive) m_nextYearBtnState = mcButtonState.Normal;
                 }
-                else if (m_nextYearBtnState != mcButtonState.Inactive) 
+                else if (m_nextYearBtnState != mcButtonState.Inactive)
                     m_nextYearBtnState = mcButtonState.Hot;
 
                 if (oldNextYearState != m_nextYearBtnState)
-                    DrawButton(m_calendar.CreateGraphics(), m_nextYearBtnState, mcHeaderButtons.NextYear, m_nextYearBtnRect); 
-          
+                    DrawButton(m_calendar.CreateGraphics(), m_nextYearBtnState, mcHeaderButtons.NextYear, m_nextYearBtnRect);
+
             }
 
             if (m_region.IsVisible(mouseLocation))
-                m_calendar.ActiveRegion = mcCalendarRegion.Header;  
-            
-            
+                m_calendar.ActiveRegion = mcCalendarRegion.Header;
+
+
             prevBtnRgn.Dispose();
             nextBtnRgn.Dispose();
             prevYearBtnRgn.Dispose();
@@ -449,7 +449,7 @@ namespace Pabo.Calendar
 
         internal bool IsVisible(Rectangle clip)
         {
-            return m_region.IsVisible(clip);    
+            return m_region.IsVisible(clip);
         }
 
         private Bitmap GetEmbeddedImage(string name)
@@ -459,17 +459,17 @@ namespace Pabo.Calendar
             Bitmap image = new Bitmap(myStream);
             return image;
         }
-        
+
         internal void Draw(Graphics e)
         {
             StringFormat textFormat = new StringFormat();
             Brush textBrush = new SolidBrush(TextColor);
             Brush bgBrush = new SolidBrush(BackColor1);
-             
+
             string minMonth;
             string maxMonth;
             string currentMonth;
-                
+
 
             string month;
             textFormat.LineAlignment = StringAlignment.Center;
@@ -495,16 +495,16 @@ namespace Pabo.Calendar
             if (m_gradientMode != mcGradientMode.None)
                 m_calendar.DrawGradient(e,m_rect, BackColor1,BackColor2, m_gradientMode);
             else
-                e.FillRectangle(bgBrush,m_rect);            
-            
+                e.FillRectangle(bgBrush,m_rect);
+
 
             if (m_monthSelector)
             {
                 currentMonth = m_calendar.Month.SelectedMonth.Year.ToString()+"-"+m_calendar.Month.SelectedMonth.Month.ToString();
-                                
+
                 minMonth = m_calendar.MinDate.Year.ToString()+"-"+m_calendar.MinDate.Month.ToString();
                 maxMonth = m_calendar.MaxDate.Year.ToString()+"-"+m_calendar.MaxDate.Month.ToString();
-                
+
                 if ((minMonth == currentMonth) && (m_prevBtnState != mcButtonState.Pushed))
                     m_prevBtnState = mcButtonState.Inactive;
                 else if (m_prevBtnState != mcButtonState.Pushed)
@@ -514,50 +514,50 @@ namespace Pabo.Calendar
                     m_nextBtnState = mcButtonState.Inactive;
                 else if (m_nextBtnState != mcButtonState.Pushed)
                     m_nextBtnState = mcButtonState.Normal;
-                            
+
             }
             if (m_yearSelector)
             {
                 currentMonth = m_calendar.Month.SelectedMonth.Year.ToString()+"-"+m_calendar.Month.SelectedMonth.Month.ToString()+"-01";
-                
+
                 DateTime currentDate = DateTime.Parse(currentMonth);
-                int days = DateTime.DaysInMonth(m_calendar.MinDate.Year,m_calendar.MinDate.Month); 
+                int days = DateTime.DaysInMonth(m_calendar.MinDate.Year,m_calendar.MinDate.Month);
                 DateTime minDate = DateTime.Parse(m_calendar.MinDate.Year.ToString()+"-"+m_calendar.MinDate.Month.ToString()+"-"+days.ToString());
-                days = DateTime.DaysInMonth(m_calendar.MaxDate.Year,m_calendar.MaxDate.Month); 
+                days = DateTime.DaysInMonth(m_calendar.MaxDate.Year,m_calendar.MaxDate.Month);
                 DateTime maxDate = DateTime.Parse(m_calendar.MaxDate.Year.ToString()+"-"+m_calendar.MaxDate.Month.ToString()+"-"+days.ToString());
-                
-                if ( (DateTime.Compare(currentDate.AddYears(-1),minDate)<0) && (m_prevYearBtnState != mcButtonState.Pushed))  
+
+                if ( (DateTime.Compare(currentDate.AddYears(-1),minDate)<0) && (m_prevYearBtnState != mcButtonState.Pushed))
                     m_prevYearBtnState = mcButtonState.Inactive;
                 else if (m_prevYearBtnState != mcButtonState.Pushed)
                     m_prevYearBtnState = mcButtonState.Normal;
 
-                if ( (DateTime.Compare(currentDate.AddYears(1),maxDate)>0) && (m_nextYearBtnState != mcButtonState.Pushed))  
+                if ( (DateTime.Compare(currentDate.AddYears(1),maxDate)>0) && (m_nextYearBtnState != mcButtonState.Pushed))
                     m_nextYearBtnState = mcButtonState.Inactive;
                 else if (m_nextYearBtnState != mcButtonState.Pushed)
                     m_nextYearBtnState = mcButtonState.Normal;
             }
 
-            
+
             if (m_monthSelector)
             {
 
                 DrawButton(e, m_prevBtnState, mcHeaderButtons.PreviousMonth, m_prevBtnRect);
-                DrawButton(e, m_nextBtnState, mcHeaderButtons.NextMonth, m_nextBtnRect);   
+                DrawButton(e, m_nextBtnState, mcHeaderButtons.NextMonth, m_nextBtnRect);
             }
             if (m_yearSelector)
             {
 
                 DrawButton(e, m_prevYearBtnState, mcHeaderButtons.PreviousYear, m_prevYearBtnRect);
                 DrawButton(e, m_nextYearBtnState, mcHeaderButtons.NextYear, m_nextYearBtnRect);
-     
+
             }
-                
-            month = m_calendar.m_dateTimeFormat.GetMonthName(m_calendar.Month.SelectedMonth.Month)+" "+m_calendar.Month.SelectedMonth.Year.ToString();  
+
+            month = m_calendar.m_dateTimeFormat.GetMonthName(m_calendar.Month.SelectedMonth.Month)+" "+m_calendar.Month.SelectedMonth.Year.ToString();
             if (ShowMonth)
-                e.DrawString(month,Font,textBrush,m_textRect,textFormat); 
+                e.DrawString(month,Font,textBrush,m_textRect,textFormat);
             else
                 e.DrawString(m_text,Font,textBrush,m_textRect,textFormat);
-                        
+
             textBrush.Dispose();
             bgBrush.Dispose();
         }
@@ -615,18 +615,18 @@ namespace Pabo.Calendar
                     case mcHeaderButtons.NextYear:
                     {
                         image = m_nextYearVs;
-                        x = rect.Right - 16; 
+                        x = rect.Right - 16;
                         y = rect.Top + 5;
                         break;
                     }
-                
+
                 }
-                
-                if ((m_calendar.Enabled) && (state!=mcButtonState.Inactive))  
+
+                if ((m_calendar.Enabled) && (state!=mcButtonState.Inactive))
                     e.DrawImageUnscaled(image, new Point(x,y));
                 else
                     ControlPaint.DrawImageDisabled(e, image, x, y, Color.Transparent);
-                
+
             }
             else
             {
@@ -664,7 +664,7 @@ namespace Pabo.Calendar
                             e.DrawImage(m_nextYear, new Point(rect.Left + 3, rect.Top + 2 + corr));
                         else
                             e.DrawImage(m_nextYearDisabled, new Point(rect.Left + 3, rect.Top + 2 + corr));
-                
+
                         break;
                     }
                     case mcHeaderButtons.PreviousYear:
@@ -676,17 +676,17 @@ namespace Pabo.Calendar
                         if ((m_calendar.Enabled) && (m_prevYearBtnState != mcButtonState.Inactive))
                             e.DrawImage(m_prevYear, new Point(rect.Left, rect.Top + 2 + corr));
                         else
-                            e.DrawImage(m_prevYearDisabled, new Point(rect.Left, rect.Top + 2 + corr));  
-                
+                            e.DrawImage(m_prevYearDisabled, new Point(rect.Left, rect.Top + 2 + corr));
+
                         break;
                     }
                 }
-                
+
             }
         }
-        
+
         #region Properties
-    
+
         internal Rectangle Rect
         {
             get
@@ -700,7 +700,7 @@ namespace Pabo.Calendar
                 Setup();
             }
         }
-        
+
         [Description("Determines if the month selection menu should be displayed when right clicking the header.")]
         [DefaultValue(true)]
         public bool MonthContextMenu
@@ -715,7 +715,7 @@ namespace Pabo.Calendar
                 {
                     m_contextMenu = value;
                     if (PropertyChanged!=null)
-                        PropertyChanged(this,new HeaderPropertyEventArgs(mcHeaderProperty.MonthContextMenu)); 
+                        PropertyChanged(this,new HeaderPropertyEventArgs(mcHeaderProperty.MonthContextMenu));
                     m_calendar.Invalidate();
                 }
             }
@@ -735,12 +735,12 @@ namespace Pabo.Calendar
                 {
                     m_align = value;
                     if (PropertyChanged!=null)
-                        PropertyChanged(this,new HeaderPropertyEventArgs(mcHeaderProperty.Align)); 
+                        PropertyChanged(this,new HeaderPropertyEventArgs(mcHeaderProperty.Align));
                     m_calendar.Invalidate();
                 }
             }
         }
-        
+
         [Description("Determines wether the month selector buttons should be displayed.")]
         [DefaultValue(true)]
         public bool MonthSelectors
@@ -754,11 +754,11 @@ namespace Pabo.Calendar
                 if (m_monthSelector!=value)
                 {
                     m_monthSelector = value;
-                    
+
                     Setup();
-                    
+
                     if (PropertyChanged!=null)
-                        PropertyChanged(this,new HeaderPropertyEventArgs(mcHeaderProperty.MonthSelectors)); 
+                        PropertyChanged(this,new HeaderPropertyEventArgs(mcHeaderProperty.MonthSelectors));
                     m_calendar.Invalidate();
                 }
             }
@@ -777,11 +777,11 @@ namespace Pabo.Calendar
                 if (m_yearSelector!=value)
                 {
                     m_yearSelector = value;
-                    
+
                     Setup();
-                    
+
                     if (PropertyChanged!=null)
-                        PropertyChanged(this,new HeaderPropertyEventArgs(mcHeaderProperty.YearSelectors)); 
+                        PropertyChanged(this,new HeaderPropertyEventArgs(mcHeaderProperty.YearSelectors));
                     m_calendar.Invalidate();
                 }
             }
@@ -801,7 +801,7 @@ namespace Pabo.Calendar
                 {
                     m_showMonth = value;
                     if (PropertyChanged!=null)
-                        PropertyChanged(this,new HeaderPropertyEventArgs(mcHeaderProperty.ShowMonth)); 
+                        PropertyChanged(this,new HeaderPropertyEventArgs(mcHeaderProperty.ShowMonth));
                     m_calendar.Invalidate();
                 }
             }
@@ -821,7 +821,7 @@ namespace Pabo.Calendar
                 {
                     m_text = value;
                     if (PropertyChanged!=null)
-                        PropertyChanged(this,new HeaderPropertyEventArgs(mcHeaderProperty.Text)); 
+                        PropertyChanged(this,new HeaderPropertyEventArgs(mcHeaderProperty.Text));
                     m_calendar.Invalidate();
                 }
             }
@@ -841,7 +841,7 @@ namespace Pabo.Calendar
                 {
                     m_backColor1 = value;
                     if (PropertyChanged!=null)
-                        PropertyChanged(this,new HeaderPropertyEventArgs(mcHeaderProperty.BackColor1)); 
+                        PropertyChanged(this,new HeaderPropertyEventArgs(mcHeaderProperty.BackColor1));
                     m_calendar.Invalidate();
                 }
             }
@@ -902,12 +902,12 @@ namespace Pabo.Calendar
                     m_font = value;
                     m_calendar.DoLayout();
                     if (PropertyChanged!=null)
-                        PropertyChanged(this,new HeaderPropertyEventArgs(mcHeaderProperty.Font)); 
+                        PropertyChanged(this,new HeaderPropertyEventArgs(mcHeaderProperty.Font));
                     m_calendar.Invalidate();
                 }
             }
         }
-        
+
         [Description("Color used for text.")]
         [DefaultValue(typeof(Color),"Black")]
         public Color TextColor
@@ -922,7 +922,7 @@ namespace Pabo.Calendar
                 {
                     m_textColor = value;
                     if (PropertyChanged!=null)
-                        PropertyChanged(this,new HeaderPropertyEventArgs(mcHeaderProperty.TextColor)); 
+                        PropertyChanged(this,new HeaderPropertyEventArgs(mcHeaderProperty.TextColor));
                     m_calendar.Invalidate();
                 }
             }
@@ -931,11 +931,11 @@ namespace Pabo.Calendar
         #endregion
 
         #region Events
-        
+
         private void MonthContextMenu_Click(object sender, EventArgs e)
         {
             MenuItem item = (MenuItem)sender;
-            m_calendar.ActiveMonth.Month = item.Index+1;  
+            m_calendar.ActiveMonth.Month = item.Index+1;
         }
 
 
@@ -943,9 +943,9 @@ namespace Pabo.Calendar
 
     }
 
-    
+
     #region HeaderPropertyEventArgs
-    
+
     public class HeaderPropertyEventArgs : EventArgs
     {
         #region Class Data

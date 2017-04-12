@@ -2,25 +2,25 @@
  * Copyright © 2005, Patrik Bohman
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without modification, 
+ * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
  *
- *    - Redistributions of source code must retain the above copyright notice, 
+ *    - Redistributions of source code must retain the above copyright notice,
  *      this list of conditions and the following disclaimer.
- * 
- *    - Redistributions in binary form must reproduce the above copyright notice, 
- *      this list of conditions and the following disclaimer in the documentation 
+ *
+ *    - Redistributions in binary form must reproduce the above copyright notice,
+ *      this list of conditions and the following disclaimer in the documentation
  *      and/or other materials provided with the distribution.
  *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
- * IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
- * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
- * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
- * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ * IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+ * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
  * OF SUCH DAMAGE.
  */
 
@@ -29,29 +29,29 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
-using System.Drawing;      
+using System.Drawing;
 
 namespace Pabo.Calendar
-{   
+{
 
     public enum mcDayInfoRecurrence {None = 0, Daily, Weekly, Monthly, Yearly}
-    
+
     [TypeConverter(typeof(DateItemTypeConverter))]
     [DesignTimeVisible(false)]
     [ToolboxItem(false)]
-    public class DateItem : IComponent  
+    public class DateItem : IComponent
     {
-        
+
         #region Private class members
         public event EventHandler Disposed;
-        
+
         private DateTime m_date;
         private DateTime m_rangeDate;
-    
+
         private bool disposed;
         private Color m_backColor1;
         private Color m_backColor2;
-        private mcGradientMode m_gradientMode; 
+        private mcGradientMode m_gradientMode;
         private Color m_dateColor;
         private Color m_textColor;
         private string m_text;
@@ -68,7 +68,7 @@ namespace Pabo.Calendar
         private object m_tag;
 
         #endregion
-        
+
         #region Constructor
 
         public DateItem()
@@ -78,29 +78,29 @@ namespace Pabo.Calendar
             m_backColor2 = Color.White;
             m_dateColor = Color.Empty;
             m_textColor = Color.Empty;
-            m_gradientMode = mcGradientMode.None; 
+            m_gradientMode = mcGradientMode.None;
             m_text = "";
             m_enabled = true;
             m_bgImage = null;
-            m_pattern = mcDayInfoRecurrence.None; 
+            m_pattern = mcDayInfoRecurrence.None;
         }
 
         #endregion
-    
+
         #region Dispose
-        
+
         protected virtual void Dispose(bool disposing)
         {
             if (!disposed)
             {
                 if (disposing)
                 {
-                    
+
                     if (m_image!=null)
                         m_image.Dispose();
                     if (m_bgImage != null)
                         m_bgImage.Dispose();
- 
+
                     //There is nothing to clean.
                     if(Disposed != null)
                         Disposed(this,EventArgs.Empty);
@@ -111,11 +111,11 @@ namespace Pabo.Calendar
         }
 
         public void Dispose()
-        {    
+        {
             Dispose(true);
-            GC.SuppressFinalize(this);          
+            GC.SuppressFinalize(this);
         }
-        
+
         #endregion
 
         #region properties
@@ -172,8 +172,8 @@ namespace Pabo.Calendar
                 m_site = value;
             }
         }
-    
-        [Description("indicates the range of the recurrence.")] 
+
+        [Description("indicates the range of the recurrence.")]
         [Category("Recurrence")]
         public DateTime Range
         {
@@ -190,7 +190,7 @@ namespace Pabo.Calendar
             }
         }
 
-        [Description("indicates the recurrence of the info.")]  
+        [Description("indicates the recurrence of the info.")]
         [Category("Recurrence")]
         public mcDayInfoRecurrence Pattern
         {
@@ -207,7 +207,7 @@ namespace Pabo.Calendar
             }
         }
 
-        [Description("The day for which the formatting applies.")]  
+        [Description("The day for which the formatting applies.")]
         [Category("Ocurrence")]
         public DateTime Date
         {
@@ -226,7 +226,7 @@ namespace Pabo.Calendar
         }
 
         [Category("Color")]
-        [Description("Background color assigned to this day.")] 
+        [Description("Background color assigned to this day.")]
         public Color BackColor1
         {
             get
@@ -275,9 +275,9 @@ namespace Pabo.Calendar
                 }
             }
         }
-        
+
         [Category("Behavior")]
-        [Description("Indicates wether the date should be treated as a weekend.")]  
+        [Description("Indicates wether the date should be treated as a weekend.")]
         public bool Weekend
         {
             get
@@ -294,7 +294,7 @@ namespace Pabo.Calendar
         }
 
         [Category("Behavior")]
-        [Description("Indicates wether the date is enabled i.e. selectable.")]  
+        [Description("Indicates wether the date is enabled i.e. selectable.")]
         public bool Enabled
         {
             get
@@ -311,7 +311,7 @@ namespace Pabo.Calendar
         }
 
         [Category("Appearance")]
-        [Description("Indicates wether bold font should be used for the date.")]    
+        [Description("Indicates wether bold font should be used for the date.")]
         public bool BoldedDate
         {
             get
@@ -329,7 +329,7 @@ namespace Pabo.Calendar
 
 
         [Category("Color")]
-        [Description("Color used for date.")]   
+        [Description("Color used for date.")]
         public Color DateColor
         {
             get
@@ -346,7 +346,7 @@ namespace Pabo.Calendar
         }
 
         [Category("Color")]
-        [Description("Color used for text.")]   
+        [Description("Color used for text.")]
         public Color TextColor
         {
             get
@@ -363,7 +363,7 @@ namespace Pabo.Calendar
         }
 
         [Category("Appearance")]
-        [Description("Text to be displayed for day.")]  
+        [Description("Text to be displayed for day.")]
         public string Text
         {
             get
@@ -382,7 +382,7 @@ namespace Pabo.Calendar
         [TypeConverter(typeof(ImageTypeConverter))]
         [Editor(typeof(Pabo.Calendar.ImageMapEditor),typeof(System.Drawing.Design.UITypeEditor))]
         [Category("Appearance")]
-        [Description("Index for the image assigned to this date.")] 
+        [Description("Index for the image assigned to this date.")]
         public int ImageListIndex
         {
             get
@@ -417,8 +417,8 @@ namespace Pabo.Calendar
         }
 
         [Category("Appearance")]
-        [Description("Image assigned to this date.")]   
-        [Browsable(true)]   
+        [Description("Image assigned to this date.")]
+        [Browsable(true)]
         public Image Image
         {
             get
@@ -455,9 +455,9 @@ namespace Pabo.Calendar
         }
 
         #endregion
-        
+
     }
-    
+
     #region DateItemTypeConverter
 
     public class DateItemTypeConverter : TypeConverter
@@ -466,10 +466,10 @@ namespace Pabo.Calendar
         {
             DateItem d;
             d = (DateItem)value;
-            return d.Date.ToShortDateString();  
-            
+            return d.Date.ToShortDateString();
+
         }
-            
+
         public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
         {
 

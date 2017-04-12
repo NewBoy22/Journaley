@@ -2,56 +2,56 @@
  * Copyright © 2005, Patrik Bohman
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without modification, 
+ * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
  *
- *    - Redistributions of source code must retain the above copyright notice, 
+ *    - Redistributions of source code must retain the above copyright notice,
  *      this list of conditions and the following disclaimer.
- * 
- *    - Redistributions in binary form must reproduce the above copyright notice, 
- *      this list of conditions and the following disclaimer in the documentation 
+ *
+ *    - Redistributions in binary form must reproduce the above copyright notice,
+ *      this list of conditions and the following disclaimer in the documentation
  *      and/or other materials provided with the distribution.
  *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
- * IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
- * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
- * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
- * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ * IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+ * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
  * OF SUCH DAMAGE.
  */
 
 using System;
-using System.Runtime.InteropServices;  
+using System.Runtime.InteropServices;
 using System.Reflection;
-using System.Windows.Forms;  
+using System.Windows.Forms;
 
 namespace Pabo.Calendar
 {
-    
+
     #region Delegates
 
     internal delegate int HookProc(int nCode, Int32 wParam, IntPtr lParam);
 
     #endregion
-    
+
     /// <summary>
     /// Summary description for GlobalHook.
     /// </summary>
     internal class GlobalHook : IDisposable
     {
-                
+
 
         #region class members
 
         private bool disposed;
         private int m_keyboardHook;
- 
+
         private HookProc m_keyboardHookProcedure;
-        
+
         #endregion
 
         #region Events
@@ -61,7 +61,7 @@ namespace Pabo.Calendar
         public event KeyPressEventHandler KeyPress;
 
         #endregion
-        
+
         #region Constructor
 
         public GlobalHook()
@@ -72,14 +72,14 @@ namespace Pabo.Calendar
         #endregion
 
         #region IDisposable Members
-        
+
         protected virtual void Dispose(bool disposing)
         {
             if (!disposed)
             {
                 if (disposing)
                 {
-                    RemoveKeyboardHook();       
+                    RemoveKeyboardHook();
                 }
                 // shared cleanup logic
                 disposed = true;
@@ -93,20 +93,20 @@ namespace Pabo.Calendar
         }
 
         #endregion
-    
+
 
         #region public methods
-        
+
         public void InstallKeyboardHook()
         {
             try
             {
-                // install Keyboard hook 
+                // install Keyboard hook
                 if(m_keyboardHook == 0)
                 {
                     m_keyboardHookProcedure = new HookProc(KeyboardHookProc);
                     m_keyboardHook = NativeMethods.SetWindowsHookEx( NativeMethods.WH_KEYBOARD_LL,
-                        m_keyboardHookProcedure, 
+                        m_keyboardHookProcedure,
                         Marshal.GetHINSTANCE(
                         Assembly.GetExecutingAssembly().GetModules()[0]),
                         0);
@@ -121,7 +121,7 @@ namespace Pabo.Calendar
         public void RemoveKeyboardHook()
         {
             bool retKeyboard = true;
-            
+
             try
             {
 
@@ -139,7 +139,7 @@ namespace Pabo.Calendar
 
 
         #endregion
-        
+
         #region private methods
 
         private int KeyboardHookProc(int nCode, Int32 wParam, IntPtr lParam)
@@ -155,7 +155,7 @@ namespace Pabo.Calendar
                     KeyEventArgs e = new KeyEventArgs(keyData);
                     this.KeyDown(this, e);
                 }
-                
+
                 // KeyPress
                 if ( (KeyPress!=null) && (wParam ==NativeMethods.WM_KEYDOWN) )
                 {
@@ -167,13 +167,13 @@ namespace Pabo.Calendar
                         MyKeyboardHookStruct.scanCode,
                         keyState,
                         inBuffer,
-                        MyKeyboardHookStruct.flags)==1) 
+                        MyKeyboardHookStruct.flags)==1)
                     {
                         KeyPressEventArgs e = new KeyPressEventArgs((char)inBuffer[0]);
                         KeyPress(this, e);
                     }
                 }
-                
+
                 // KeyUp
                 if ( (KeyUp!=null) && ( wParam ==NativeMethods.WM_KEYUP || wParam==NativeMethods.WM_SYSKEYUP ))
                 {
@@ -183,8 +183,8 @@ namespace Pabo.Calendar
                 }
 
             }
-            return NativeMethods.CallNextHookEx(m_keyboardHook, nCode, wParam, lParam); 
-        }   
+            return NativeMethods.CallNextHookEx(m_keyboardHook, nCode, wParam, lParam);
+        }
 
 
         #endregion

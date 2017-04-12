@@ -33,7 +33,7 @@
         /// The list of other tags (not assigned to this entry but used in other entries)
         /// </summary>
         private List<string> otherTags = new List<string>();
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TagEditForm"/> class.
         /// </summary>

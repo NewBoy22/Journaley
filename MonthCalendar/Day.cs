@@ -2,34 +2,34 @@
  * Copyright © 2005, Patrik Bohman
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without modification, 
+ * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
  *
- *    - Redistributions of source code must retain the above copyright notice, 
+ *    - Redistributions of source code must retain the above copyright notice,
  *      this list of conditions and the following disclaimer.
- * 
- *    - Redistributions in binary form must reproduce the above copyright notice, 
- *      this list of conditions and the following disclaimer in the documentation 
+ *
+ *    - Redistributions in binary form must reproduce the above copyright notice,
+ *      this list of conditions and the following disclaimer in the documentation
  *      and/or other materials provided with the distribution.
  *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
- * IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
- * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
- * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
- * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ * IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+ * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
  * OF SUCH DAMAGE.
  */
 
 using System;
-using System.Drawing; 
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Pabo.Calendar
-{   
+{
     public enum mcDayState {Normal = 0, Focus, Selected}
 
     #region Delegates
@@ -46,10 +46,10 @@ namespace Pabo.Calendar
     /// <summary>
     /// Summary description for Day.
     /// </summary>
-    internal class Day : IDisposable    
+    internal class Day : IDisposable
     {
         #region Private class members
-        
+
         private bool disposed;
         private Rectangle m_rect;
         private Region m_region;
@@ -62,24 +62,24 @@ namespace Pabo.Calendar
         private Rectangle m_imageRect;
         private Region[] m_dateRgn;
         private Region[] m_textRgn;
-    
+
         private mcDayState m_state;
-        
+
         #endregion
-          
+
         #region constructor
 
         public Day()
         {
-            m_state = mcDayState.Normal; 
+            m_state = mcDayState.Normal;
             m_selection = -1;
             m_userDrawn = false;
-        }   
+        }
 
         #endregion
-    
+
         #region Dispose
-        
+
         protected virtual void Dispose(bool disposing)
         {
             if (!disposed)
@@ -88,7 +88,7 @@ namespace Pabo.Calendar
                 {
                     m_region.Dispose();
                     m_dayImage.Dispose();
-                
+
                 }
                 // shared cleanup logic
                 disposed = true;
@@ -112,7 +112,7 @@ namespace Pabo.Calendar
                 return m_calendar;
             }
             set
-            {   
+            {
                 m_calendar = value;
             }
         }
@@ -124,11 +124,11 @@ namespace Pabo.Calendar
                 return m_month;
             }
             set
-            {   
+            {
                 m_month = value;
             }
         }
-        
+
         public int SelectionArea
         {
             get
@@ -136,7 +136,7 @@ namespace Pabo.Calendar
                 return m_selection;
             }
             set
-            {   
+            {
                 if (value!=m_selection)
                 {
                     m_selection = value;
@@ -151,7 +151,7 @@ namespace Pabo.Calendar
                 return m_userDrawn;
             }
             set
-            {   
+            {
                 if (value!=m_userDrawn)
                 {
                     m_userDrawn = value;
@@ -189,7 +189,7 @@ namespace Pabo.Calendar
             get
             {
                 return m_date.DayOfWeek;
-            }   
+            }
         }
 
         public mcDayState State
@@ -199,14 +199,14 @@ namespace Pabo.Calendar
                 return m_state;
             }
             set
-            {   
+            {
                 if (value!=m_state)
                 {
                     m_state = value;
                 }
             }
         }
-        
+
         public Rectangle Rectangle
         {
             get
@@ -218,7 +218,7 @@ namespace Pabo.Calendar
                 if (value!=m_rect)
                 {
                     m_rect = value;
-                    m_region = new Region(m_rect); 
+                    m_region = new Region(m_rect);
                 }
             }
         }
@@ -237,11 +237,11 @@ namespace Pabo.Calendar
                 }
             }
         }
-        
+
         #endregion
-        
+
         #region Methods
-        
+
         private Image GetImage(int index)
         {
             // Check that an ImageList exists and that index is valid
@@ -249,82 +249,82 @@ namespace Pabo.Calendar
             {
                 if ((index>=0) && (index <m_month.Calendar.ImageList.Images.Count))
                 {
-                    return m_month.Calendar.ImageList.Images[index]; 
+                    return m_month.Calendar.ImageList.Images[index];
                 }
                 else return null;
             }
             else return null;
-                    
+
         }
 
         private StringFormat GetStringAlignment(mcItemAlign align)
         {
             StringFormat sf = new StringFormat();
- 
+
             switch (align)
             {
                 case mcItemAlign.LeftCenter:
                 {
-                    sf.Alignment = StringAlignment.Near;   
+                    sf.Alignment = StringAlignment.Near;
                     sf.LineAlignment = StringAlignment.Center;
                     break;
                 }
                 case mcItemAlign.RightCenter:
                 {
-                    sf.Alignment = StringAlignment.Far;   
+                    sf.Alignment = StringAlignment.Far;
                     sf.LineAlignment = StringAlignment.Center;
                     break;
                 }
                 case mcItemAlign.TopCenter:
                 {
-                    sf.Alignment = StringAlignment.Center;   
+                    sf.Alignment = StringAlignment.Center;
                     sf.LineAlignment = StringAlignment.Near;
                     break;
                 }
                 case mcItemAlign.BottomCenter:
                 {
-                    sf.Alignment = StringAlignment.Center;   
+                    sf.Alignment = StringAlignment.Center;
                     sf.LineAlignment = StringAlignment.Far;
                     break;
                 }
                 case mcItemAlign.TopLeft:
                 {
-                    sf.Alignment = StringAlignment.Near;   
+                    sf.Alignment = StringAlignment.Near;
                     sf.LineAlignment = StringAlignment.Near;
                     break;
                 }
                 case mcItemAlign.TopRight:
                 {
-                    sf.Alignment = StringAlignment.Far;   
+                    sf.Alignment = StringAlignment.Far;
                     sf.LineAlignment = StringAlignment.Near;
                     break;
                 }
                 case mcItemAlign.Center:
                 {
-                    sf.Alignment = StringAlignment.Center;   
+                    sf.Alignment = StringAlignment.Center;
                     sf.LineAlignment = StringAlignment.Center;
                     break;
                 }
                 case mcItemAlign.BottomLeft:
                 {
-                    sf.Alignment = StringAlignment.Near;   
+                    sf.Alignment = StringAlignment.Near;
                     sf.LineAlignment = StringAlignment.Far;
                     break;
                 }
                 case mcItemAlign.BottomRight:
                 {
-                    sf.Alignment = StringAlignment.Far;   
+                    sf.Alignment = StringAlignment.Far;
                     sf.LineAlignment = StringAlignment.Far;
                     break;
                 }
             }
-            
+
             return sf;
         }
 
         internal void Draw(Graphics e, DateItem queryInfo)
         {
-                                            
+
             StringFormat dateAlign = new StringFormat();
             StringFormat textAlign = new StringFormat();
             Font boldFont = new Font(m_month.DateFont.Name,m_month.DateFont.Size,m_month.DateFont.Style | FontStyle.Bold);
@@ -332,33 +332,33 @@ namespace Pabo.Calendar
             Color bgColor2 = m_month.Colors.Days.BackColor2;
             mcGradientMode gradientMode = m_month.Colors.Days.GradientMode;
             Color textColor = m_month.Colors.Days.Text;
-            Color boldDateColor = Color.FromArgb(0, 127, 223); 
+            Color boldDateColor = Color.FromArgb(0, 127, 223);
             Color dateColor = m_month.Colors.Days.Date;
             Brush dateBrush = new SolidBrush(dateColor);
             Brush boldDateBrush = new SolidBrush(boldDateColor);
             Brush textBrush = new SolidBrush(textColor);
             Brush bgBrush = new SolidBrush(bgColor1);
-           
+
             string dateString;
-            m_imageRect = new Rectangle(); 
+            m_imageRect = new Rectangle();
             string text = "";
             bool drawDay = false;
             bool enabled = true;
             Image bgImage = null;
-            
+
             int i = -1;
 
             bool boldedDate = false;
- 
+
             DateItem[] info;
             m_dayImage = null;
-    
-            dateAlign = GetStringAlignment(m_month.DateAlign); 
-            textAlign = GetStringAlignment(m_month.TextAlign);                          
-            
+
+            dateAlign = GetStringAlignment(m_month.DateAlign);
+            textAlign = GetStringAlignment(m_month.TextAlign);
+
             if ((m_month.SelectedMonth.Month == m_date.Month) || (m_month.Calendar.ShowTrailingDates))
                 drawDay = true;
-            
+
             if ( ((m_date.DayOfWeek == DayOfWeek.Saturday) && (m_month.Colors.Weekend.Saturday)) ||
                  ((m_date.DayOfWeek == DayOfWeek.Sunday) && (m_month.Colors.Weekend.Sunday)) )
             {
@@ -366,9 +366,9 @@ namespace Pabo.Calendar
                 bgColor2 = m_month.Colors.Weekend.BackColor2;
                 dateColor= m_month.Colors.Weekend.Date;
                 textColor= m_month.Colors.Weekend.Text;
-                gradientMode = m_month.Colors.Weekend.GradientMode;  
-            }           
-            
+                gradientMode = m_month.Colors.Weekend.GradientMode;
+            }
+
             if (m_month.SelectedMonth.Month  != m_date.Month)
             {
                 bgColor1 =  m_month.Colors.Trailing.BackColor1;
@@ -376,11 +376,11 @@ namespace Pabo.Calendar
                 gradientMode = m_month.Colors.Trailing.GradientMode;
                 dateColor = m_month.Colors.Trailing.Date;
                 boldDateColor = m_month.Colors.Trailing.Date;
-                textColor = m_month.Colors.Trailing.Text; 
+                textColor = m_month.Colors.Trailing.Text;
             }
-                
+
             // Check if formatting should be applied
-            if ((m_month.FormatTrailing) || (m_month.SelectedMonth.Month  == m_date.Month)) 
+            if ((m_month.FormatTrailing) || (m_month.SelectedMonth.Month  == m_date.Month))
             {
                 // check of there is formatting for this day
                 if (queryInfo != null)
@@ -398,56 +398,56 @@ namespace Pabo.Calendar
                     if (info.Length>0)
                     {
                         DateItem dateInfo = info[i];
-                
-                        if (dateInfo.BackColor1!=Color.Empty)  
+
+                        if (dateInfo.BackColor1!=Color.Empty)
                             bgColor1 = dateInfo.BackColor1;
                         if (dateInfo.BackColor2 != Color.Empty)
                             bgColor2 = dateInfo.BackColor2;
-                        gradientMode = dateInfo.GradientMode; 
-                        if (dateInfo.DateColor!=Color.Empty)  
+                        gradientMode = dateInfo.GradientMode;
+                        if (dateInfo.DateColor!=Color.Empty)
                             dateColor = dateInfo.DateColor;
-                        if (dateInfo.TextColor!=Color.Empty)  
+                        if (dateInfo.TextColor!=Color.Empty)
                             textColor = dateInfo.TextColor;
-                        text = dateInfo.Text; 
-                
+                        text = dateInfo.Text;
+
                         if (dateInfo.Weekend)
                         {
                             bgColor1 = m_month.Colors.Weekend.BackColor1;
                             bgColor2 = m_month.Colors.Weekend.BackColor2;
-                            gradientMode = m_month.Colors.Weekend.GradientMode;  
+                            gradientMode = m_month.Colors.Weekend.GradientMode;
                             dateColor = m_month.Colors.Weekend.Date;
                             textColor = m_month.Colors.Weekend.Text;
                         }
-                        boldedDate = dateInfo.BoldedDate; 
+                        boldedDate = dateInfo.BoldedDate;
                         enabled = dateInfo.Enabled;
                         if (!dateInfo.Enabled)
                         {
                             bgColor1 = m_month.Colors.Disabled.BackColor1;
                             bgColor2 = m_month.Colors.Disabled.BackColor2;
-                            gradientMode = m_month.Colors.Disabled.GradientMode;     
+                            gradientMode = m_month.Colors.Disabled.GradientMode;
                             dateColor = m_month.Colors.Disabled.Date;
                             textColor = m_month.Colors.Disabled.Text;
                         }
-                        
-                        m_dayImage = dateInfo.Image;    
-                                    
+
+                        m_dayImage = dateInfo.Image;
+
                         if (m_dayImage!=null)
                             m_imageRect = ImageRect(m_month.ImageAlign);
-                        
-                        bgImage = dateInfo.BackgroundImage; 
+
+                        bgImage = dateInfo.BackgroundImage;
                     }
 
                     if (m_state == mcDayState.Selected)
                     {
-                        dateColor = m_month.Colors.Selected.Date; 
+                        dateColor = m_month.Colors.Selected.Date;
                         textColor = m_month.Colors.Selected.Text;
                     }
-                    if ((m_state == mcDayState.Focus) && (m_month.Calendar.ShowFocus))  
+                    if ((m_state == mcDayState.Focus) && (m_month.Calendar.ShowFocus))
                     {
-                        dateColor = m_month.Colors.Focus.Date; 
+                        dateColor = m_month.Colors.Focus.Date;
                         textColor = m_month.Colors.Focus.Text;
                     }
-                    
+
 
                     if (bgImage != null)
                         e.DrawImage(bgImage, m_rect);
@@ -465,21 +465,21 @@ namespace Pabo.Calendar
                             m_calendar.DrawGradient(e, Rectangle, bgColor1, bgColor2, gradientMode);
                     }
 
-                    
+
                     ControlPaint.DrawBorder(e,m_rect, m_month.Colors.Days.Border,m_month.BorderStyles.Normal);
                     if (m_dayImage!=null)
                     {
                         if (enabled)
                             e.DrawImageUnscaled(m_dayImage,m_imageRect);
                         else
-                            ControlPaint.DrawImageDisabled(e,m_dayImage,m_imageRect.X,m_imageRect.Y,m_month.Colors.Disabled.BackColor1);   
+                            ControlPaint.DrawImageDisabled(e,m_dayImage,m_imageRect.X,m_imageRect.Y,m_month.Colors.Disabled.BackColor1);
                     }
-                                    
+
                     // Check if we should append month name to date
                     if ((m_month.ShowMonthInDay) &&
                         ((m_date.AddDays(-1).Month != m_date.Month) ||
-                        (m_date.AddDays(1).Month != m_date.Month)))                         
-                        dateString = m_date.Day.ToString()+" "+m_calendar.m_dateTimeFormat.GetMonthName(m_date.Month);  
+                        (m_date.AddDays(1).Month != m_date.Month)))
+                        dateString = m_date.Day.ToString()+" "+m_calendar.m_dateTimeFormat.GetMonthName(m_date.Month);
                     else
                         dateString = m_date.Day.ToString();
 
@@ -491,30 +491,30 @@ namespace Pabo.Calendar
 
                         CharacterRange[] characterRanges = { new CharacterRange(0, dateString.Length) };
                         dateAlign.SetMeasurableCharacterRanges(characterRanges);
-                        m_dateRgn = new Region[1]; 
+                        m_dateRgn = new Region[1];
                         // Should date be bolded ?
                         if (!boldedDate)
                         {
                             e.DrawString(dateString, m_month.DateFont, dateBrush, m_rect, dateAlign);
-                            m_dateRgn = e.MeasureCharacterRanges(dateString, m_month.DateFont, m_rect, dateAlign); 
+                            m_dateRgn = e.MeasureCharacterRanges(dateString, m_month.DateFont, m_rect, dateAlign);
                         }
                         else
                         {
                             e.DrawString(dateString, boldFont, boldDateBrush, m_rect, dateAlign);
-                            m_dateRgn = e.MeasureCharacterRanges(dateString, boldFont, m_rect, dateAlign);                        
+                            m_dateRgn = e.MeasureCharacterRanges(dateString, boldFont, m_rect, dateAlign);
                         }
-                          
+
                     }
                     if ((text.Length > 0) && (textColor != Color.Transparent))
                     {
                         textBrush = new SolidBrush(Color.FromArgb(m_month.Transparency.Text, textColor));
                         CharacterRange[] characterRanges = { new CharacterRange(0, text.Length) };
                         textAlign.SetMeasurableCharacterRanges(characterRanges);
-                        m_textRgn = new Region[1]; 
+                        m_textRgn = new Region[1];
                         e.DrawString(text, m_month.TextFont, textBrush, m_rect, textAlign);
-                        m_textRgn = e.MeasureCharacterRanges(text, m_month.TextFont, m_rect, textAlign); 
+                        m_textRgn = e.MeasureCharacterRanges(text, m_month.TextFont, m_rect, textAlign);
                     }
-                    i++;    
+                    i++;
                 }
             }
 
@@ -525,16 +525,16 @@ namespace Pabo.Calendar
             boldFont.Dispose();
             dateAlign.Dispose();
             textAlign.Dispose();
-            
+
         }
 
         private Rectangle ImageRect(mcItemAlign align)
         {
             Rectangle imageRect = new Rectangle(0,0,m_rect.Width,m_rect.Height);
- 
+
             switch (align)
             {
-                
+
                 case mcItemAlign.LeftCenter:
                 {
                     imageRect.X = m_rect.X + 2;
@@ -559,7 +559,7 @@ namespace Pabo.Calendar
                     imageRect.Y = m_rect.Bottom -2 - m_dayImage.Height;
                     break;
                 }
-                
+
                 case mcItemAlign.TopLeft:
                 {
                     imageRect.X = m_rect.X + 2;
@@ -587,22 +587,22 @@ namespace Pabo.Calendar
                 case mcItemAlign.BottomRight:
                 {
                     imageRect.X = m_rect.Right - 2 - m_dayImage.Width;
-                    imageRect.Y = m_rect.Bottom -2 - m_dayImage.Height; 
+                    imageRect.Y = m_rect.Bottom -2 - m_dayImage.Height;
                     break;
                 }
             }
-            
+
             imageRect.Height = m_dayImage.Height;
             imageRect.Width = m_dayImage.Width;
             return imageRect;
         }
-        
+
         internal bool ImageHitTest(Point p)
         {
-            
+
             bool status = false;
             if ((!m_userDrawn) && (m_dayImage!=null) && (Month.EnableImageClick))
-            {                 
+            {
                 Region r = new Region(m_imageRect);
                 if (r.IsVisible(p))
                     status = true;
@@ -650,13 +650,13 @@ namespace Pabo.Calendar
 
         internal bool HitTest(Point p)
         {
-                        
+
             if ( ImageHitTest(p) )
                 m_calendar.Cursor = Cursors.Hand;
             else
-                m_calendar.Cursor =Cursors.Arrow; 
-            
-           
+                m_calendar.Cursor =Cursors.Arrow;
+
+
 
             if (m_region.IsVisible(p))
                 return true;
@@ -665,17 +665,17 @@ namespace Pabo.Calendar
         }
 
         #endregion
-        
+
     }
 
     #region DayEventArgs
-    
+
     public class DayEventArgs : EventArgs
     {
         #region Class Data
 
         readonly string m_date;
-        
+
         #endregion
 
         #region Constructor
@@ -702,7 +702,7 @@ namespace Pabo.Calendar
         {
             get
             {
-                return this.m_date; 
+                return this.m_date;
             }
         }
 
@@ -713,11 +713,11 @@ namespace Pabo.Calendar
     #endregion
 
     #region DayClickEventArgs
-    
+
     public class DayClickEventArgs : EventArgs
     {
         #region Class Data
-            
+
         private readonly string m_date;
         private readonly MouseButtons m_button;
         private readonly int m_dayX;
@@ -775,7 +775,7 @@ namespace Pabo.Calendar
         {
             get
             {
-                return this.m_button; 
+                return this.m_button;
             }
         }
 
@@ -820,17 +820,17 @@ namespace Pabo.Calendar
     #endregion
 
     #region DaySelectedEventArgs
-    
+
     public class DaySelectedEventArgs : EventArgs
     {
         #region Class Data
-        
+
         private readonly string[] m_days;
-        
+
         #endregion
 
         #region Constructor
-    
+
 
         public DaySelectedEventArgs(string[] days)
         {
@@ -846,7 +846,7 @@ namespace Pabo.Calendar
         {
             get
             {
-                return this.m_days; 
+                return this.m_days;
             }
         }
 
@@ -857,12 +857,12 @@ namespace Pabo.Calendar
     #endregion
 
     #region DayDragDropEventArgs
-    
+
     public class DayDragDropEventArgs : EventArgs
     {
 
         #region Class Data
-            
+
         private readonly string m_date;
         private readonly int m_keyState;
         private readonly IDataObject m_data;
@@ -878,9 +878,9 @@ namespace Pabo.Calendar
         {
             m_date = date;
             m_data = data;
-            m_keyState = keystate;  
+            m_keyState = keystate;
         }
-        
+
         #endregion
 
 
@@ -983,11 +983,11 @@ namespace Pabo.Calendar
             }
             set
             {
-                m_cancel = value;        
+                m_cancel = value;
             }
         }
 
-    
+
 
 
         #endregion

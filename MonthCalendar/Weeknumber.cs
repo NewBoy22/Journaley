@@ -2,25 +2,25 @@
  * Copyright © 2005, Patrik Bohman
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without modification, 
+ * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
  *
- *    - Redistributions of source code must retain the above copyright notice, 
+ *    - Redistributions of source code must retain the above copyright notice,
  *      this list of conditions and the following disclaimer.
- * 
- *    - Redistributions in binary form must reproduce the above copyright notice, 
- *      this list of conditions and the following disclaimer in the documentation 
+ *
+ *    - Redistributions in binary form must reproduce the above copyright notice,
+ *      this list of conditions and the following disclaimer in the documentation
  *      and/or other materials provided with the distribution.
  *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
- * IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
- * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
- * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
- * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ * IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+ * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
  * OF SUCH DAMAGE.
  */
 
@@ -29,29 +29,29 @@ using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Drawing;
 using System.Globalization;
-using System.Windows.Forms;   
+using System.Windows.Forms;
 
 namespace Pabo.Calendar
 {
-    
-    public enum mcWeeknumberProperty 
+
+    public enum mcWeeknumberProperty
     {
         BorderColor = 0, BackColor1, BackColor2, GradientMode, Font, TextColor, Align
     }
-    
+
     public enum mcWeeknumberAlign
     {
         Top = 0, Center, Bottom
     }
-    
+
     #region Delegates
-    
+
     public delegate void WeeknumberPropertyEventHandler(object sender, WeeknumberPropertyEventArgs e);
     public delegate void WeeknumberClickEventHandler(object sender, WeeknumberClickEventArgs e);
 
     #endregion
 
-    
+
     /// <summary>
     /// Summary description for WeekNumber.
     /// </summary>
@@ -59,7 +59,7 @@ namespace Pabo.Calendar
     public class Weeknumber : IDisposable
     {
         #region private class members
-        
+
         private bool disposed;
         private readonly MonthCalendar m_calendar;
         private Color m_backColor1;
@@ -70,7 +70,7 @@ namespace Pabo.Calendar
         private Font m_font;
         private Rectangle m_rect;
         private Region m_region;
-        private mcWeeknumberAlign m_align; 
+        private mcWeeknumberAlign m_align;
 
         #endregion
 
@@ -90,16 +90,16 @@ namespace Pabo.Calendar
             m_backColor1 = Color.White;
             m_backColor2 = Color.White;
             m_gradientMode = mcGradientMode.None;
-            m_textColor = Color.FromArgb(0,84,227); 
+            m_textColor = Color.FromArgb(0,84,227);
             m_borderColor = Color.Black;
             m_font = new Font("Microsoft Sans Serif",(float)8.25);
-            m_align = mcWeeknumberAlign.Top;    
+            m_align = mcWeeknumberAlign.Top;
         }
 
         #endregion
-        
+
         #region Dispose
-        
+
         protected virtual void Dispose(bool disposing)
         {
             if (!disposed)
@@ -117,13 +117,13 @@ namespace Pabo.Calendar
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);  
+            GC.SuppressFinalize(this);
         }
 
         #endregion
 
         #region Properties
-        
+
         [Description("Color used border.")]
         [DefaultValue(typeof(Color),"Black")]
         public Color BorderColor
@@ -138,7 +138,7 @@ namespace Pabo.Calendar
                 {
                     m_borderColor = value;
                     if (PropertyChanged!=null)
-                        PropertyChanged(this,new WeeknumberPropertyEventArgs(mcWeeknumberProperty.BorderColor)); 
+                        PropertyChanged(this,new WeeknumberPropertyEventArgs(mcWeeknumberProperty.BorderColor));
                     m_calendar.Invalidate();
                 }
             }
@@ -191,12 +191,12 @@ namespace Pabo.Calendar
                 {
                     m_backColor1 = value;
                     if (PropertyChanged!=null)
-                        PropertyChanged(this,new WeeknumberPropertyEventArgs(mcWeeknumberProperty.BackColor1)); 
+                        PropertyChanged(this,new WeeknumberPropertyEventArgs(mcWeeknumberProperty.BackColor1));
                     m_calendar.Invalidate();
                 }
             }
         }
-        
+
         [Description("Second background color when using gradient.")]
         [DefaultValue(typeof(Color), "White")]
         public Color BackColor2
@@ -236,7 +236,7 @@ namespace Pabo.Calendar
                 }
             }
         }
-        
+
         [Description("Font used for week numbers.")]
         [DefaultValue(typeof(Font),"Microsoft Sans Serif; 8,25pt")]
         public Font Font
@@ -252,12 +252,12 @@ namespace Pabo.Calendar
                     m_font = value;
                     m_calendar.DoLayout();
                     if (PropertyChanged!=null)
-                        PropertyChanged(this,new WeeknumberPropertyEventArgs(mcWeeknumberProperty.Font)); 
+                        PropertyChanged(this,new WeeknumberPropertyEventArgs(mcWeeknumberProperty.Font));
                     m_calendar.Invalidate();
                 }
             }
         }
-        
+
         [Description("Color used for text.")]
         [DefaultValue(typeof(Color),"0,84,227")]
         public Color TextColor
@@ -272,7 +272,7 @@ namespace Pabo.Calendar
                 {
                     m_textColor = value;
                     if (PropertyChanged!=null)
-                        PropertyChanged(this,new WeeknumberPropertyEventArgs(mcWeeknumberProperty.TextColor)); 
+                        PropertyChanged(this,new WeeknumberPropertyEventArgs(mcWeeknumberProperty.TextColor));
                     m_calendar.Invalidate();
                 }
             }
@@ -281,24 +281,24 @@ namespace Pabo.Calendar
         #endregion
 
         #region Methods
-        
+
         internal void MouseMove(Point mouseLocation)
         {
             if (m_region.IsVisible(mouseLocation))
             {
-                m_calendar.ActiveRegion = mcCalendarRegion.Weeknumbers;  
+                m_calendar.ActiveRegion = mcCalendarRegion.Weeknumbers;
             }
         }
 
         internal void MouseClick(Point mouseLocation,MouseButtons button, mcClickMode mode)
         {
             GregorianCalendar gCalendar = new GregorianCalendar();
-    
+
             if (m_region.IsVisible(mouseLocation))
             {
                 int week = 0;
-                
-                int i = ((mouseLocation.Y-m_rect.Top) / (int)m_calendar.Month.DayHeight);               
+
+                int i = ((mouseLocation.Y-m_rect.Top) / (int)m_calendar.Month.DayHeight);
                 week = gCalendar.GetWeekOfYear(m_calendar.Month.m_days[i*7].Date,m_calendar.m_dateTimeFormat.CalendarWeekRule,m_calendar.m_dateTimeFormat.FirstDayOfWeek);
                 if (mode == mcClickMode.Single)
                 {
@@ -310,13 +310,13 @@ namespace Pabo.Calendar
                     if (this.DoubleClick!=null)
                         this.DoubleClick(this,new WeeknumberClickEventArgs(week,button));
                 }
-        
+
             }
         }
 
         internal bool IsVisible(Rectangle clip)
         {
-            return m_region.IsVisible(clip);    
+            return m_region.IsVisible(clip);
         }
 
         internal void Draw(Graphics e)
@@ -324,12 +324,12 @@ namespace Pabo.Calendar
             StringFormat textFormat = new StringFormat();
             Pen linePen = new Pen(m_borderColor,1);
             Rectangle weekRect = new Rectangle();
-             
-            int weeknr=0;   
+
+            int weeknr=0;
             Brush weekBrush = new SolidBrush(this.BackColor1);
-            Brush weekTextBrush = new SolidBrush(this.TextColor); 
+            Brush weekTextBrush = new SolidBrush(this.TextColor);
             int dayHeight;
-            
+
             // Draw header
             textFormat.Alignment = StringAlignment.Center;
             switch (m_align)
@@ -360,46 +360,46 @@ namespace Pabo.Calendar
             if (m_gradientMode == mcGradientMode.None)
                 e.FillRectangle(weekBrush, m_rect);
             else
-                m_calendar.DrawGradient(e, m_rect, m_backColor1, m_backColor2, m_gradientMode);  
-            
-            dayHeight = (int)m_calendar.Month.DayHeight;            
+                m_calendar.DrawGradient(e, m_rect, m_backColor1, m_backColor2, m_gradientMode);
+
+            dayHeight = (int)m_calendar.Month.DayHeight;
             for (int i = 0;i<6;i++)
             {
                 weekRect.Y = m_rect.Y + dayHeight*i;
-                weekRect.Y += (i+1)* m_calendar.Month.Padding.Vertical;    
-                weekRect.Width = m_rect.Width; 
+                weekRect.Y += (i+1)* m_calendar.Month.Padding.Vertical;
+                weekRect.Width = m_rect.Width;
                 weekRect.X =0;
                 if (i == 5)
                     weekRect.Height = m_rect.Height - (m_calendar.Month.Padding.Vertical*7) - (int)(dayHeight*5)-1;
                 else
                     weekRect.Height = dayHeight;
-                
+
                 weeknr = GetWeek(m_calendar.Month.m_days[i*7].Date);
-                
+
                 e.DrawString(weeknr.ToString(),this.Font,weekTextBrush,weekRect,textFormat);
-                      
+
             }
-            e.DrawLine(linePen,m_rect.Right-1,m_rect.Top,m_rect.Right-1,m_rect.Bottom); 
+            e.DrawLine(linePen,m_rect.Right-1,m_rect.Top,m_rect.Right-1,m_rect.Bottom);
             // tidy up
-            weekBrush.Dispose(); 
+            weekBrush.Dispose();
             weekTextBrush.Dispose();
-            linePen.Dispose(); 
-            
+            linePen.Dispose();
+
         }
 
         internal int GetWeek(DateTime dt)
         {
             int weeknr;
-                    
+
             try
             {
                 // retrieve week by calling weeknumber callback
-                weeknr = m_calendar.WeeknumberCallBack(dt); 
+                weeknr = m_calendar.WeeknumberCallBack(dt);
             }
             catch(Exception)
             {
-                //if callback fails , call CalcWeek 
-                weeknr = CalcWeek(dt);      
+                //if callback fails , call CalcWeek
+                weeknr = CalcWeek(dt);
             }
             return weeknr;
         }
@@ -412,11 +412,11 @@ namespace Pabo.Calendar
             if ((m_calendar.m_dateTimeFormat.CalendarWeekRule == CalendarWeekRule.FirstFourDayWeek) &&
                 (m_calendar.m_dateTimeFormat.FirstDayOfWeek == DayOfWeek.Monday))
                 // Get ISO week
-                weeknr = GetISO8601Weeknumber(dt);  
+                weeknr = GetISO8601Weeknumber(dt);
             else
                 // else get Microsoft week
                 weeknr = gCalendar.GetWeekOfYear(dt,m_calendar.m_dateTimeFormat.CalendarWeekRule, m_calendar.m_dateTimeFormat.FirstDayOfWeek);
-            
+
             return weeknr;
         }
 
@@ -466,19 +466,19 @@ namespace Pabo.Calendar
             // to this date
             return dt.AddDays(1 - dayNumber);
         }
-            
+
 
         #endregion
 
     }
 
-    
+
     #region WeeknumberClickEventArgs
-    
+
     public class WeeknumberClickEventArgs : EventArgs
     {
         #region Class Data
-            
+
         private readonly int m_week;
         private readonly MouseButtons m_button;
 
@@ -517,7 +517,7 @@ namespace Pabo.Calendar
         {
             get
             {
-                return this.m_button; 
+                return this.m_button;
             }
         }
 
@@ -528,7 +528,7 @@ namespace Pabo.Calendar
     #endregion
 
     #region WeeknumberPropertyEventArgs
-    
+
     public class WeeknumberPropertyEventArgs : EventArgs
     {
         #region Class Data

@@ -40,9 +40,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // panelContent
-            // 
+            //
             this.panelContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(221)))), ((int)(((byte)(220)))));
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContent.IgnoreSetCursor = false;
@@ -53,9 +53,9 @@
             this.panelContent.TabIndex = 21;
             this.panelContent.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelContent_MouseDown);
             this.panelContent.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelContent_MouseMove);
-            // 
+            //
             // panelTitlebar
-            // 
+            //
             this.panelTitlebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
             this.panelTitlebar.BorderWidth = new System.Windows.Forms.Padding(1, 1, 1, 0);
             this.panelTitlebar.Controls.Add(this.pictureBoxFormIcon);
@@ -74,9 +74,9 @@
             this.panelTitlebar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelTitlebar_MouseDown);
             this.panelTitlebar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelTitlebar_MouseMove);
             this.panelTitlebar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PanelTitlebar_MouseUp);
-            // 
+            //
             // pictureBoxFormIcon
-            // 
+            //
             this.pictureBoxFormIcon.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxFormIcon.Image = global::Journaley.Properties.Resources.Journaley_16x16;
             this.pictureBoxFormIcon.Location = new System.Drawing.Point(8, 0);
@@ -86,9 +86,9 @@
             this.pictureBoxFormIcon.TabIndex = 4;
             this.pictureBoxFormIcon.TabStop = false;
             this.pictureBoxFormIcon.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBoxFormIcon_MouseDown);
-            // 
+            //
             // imageButtonFormMinimize
-            // 
+            //
             this.imageButtonFormMinimize.DialogResult = System.Windows.Forms.DialogResult.None;
             this.imageButtonFormMinimize.Dock = System.Windows.Forms.DockStyle.Right;
             this.imageButtonFormMinimize.DownImage = global::Journaley.Properties.Resources.frame_btn_minimize_down;
@@ -108,9 +108,9 @@
             this.imageButtonFormMinimize.Click += new System.EventHandler(this.ImageButtonFormMinimize_Click);
             this.imageButtonFormMinimize.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ControlButton_MouseDown);
             this.imageButtonFormMinimize.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ControlButton_MouseMove);
-            // 
+            //
             // imageButtonFormMaximize
-            // 
+            //
             this.imageButtonFormMaximize.DialogResult = System.Windows.Forms.DialogResult.None;
             this.imageButtonFormMaximize.Dock = System.Windows.Forms.DockStyle.Right;
             this.imageButtonFormMaximize.DownImage = global::Journaley.Properties.Resources.frame_btn_maximize_down;
@@ -130,9 +130,9 @@
             this.imageButtonFormMaximize.Click += new System.EventHandler(this.ImageButtonFormMaximize_Click);
             this.imageButtonFormMaximize.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ControlButton_MouseDown);
             this.imageButtonFormMaximize.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ControlButton_MouseMove);
-            // 
+            //
             // imageButtonFormClose
-            // 
+            //
             this.imageButtonFormClose.DialogResult = System.Windows.Forms.DialogResult.None;
             this.imageButtonFormClose.Dock = System.Windows.Forms.DockStyle.Right;
             this.imageButtonFormClose.DownImage = global::Journaley.Properties.Resources.frame_btn_close_down;
@@ -152,9 +152,9 @@
             this.imageButtonFormClose.Click += new System.EventHandler(this.ImageButtonFormClose_Click);
             this.imageButtonFormClose.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ControlButton_MouseDown);
             this.imageButtonFormClose.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ControlButton_MouseMove);
-            // 
+            //
             // BaseJournaleyForm
-            // 
+            //
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.panelContent);
