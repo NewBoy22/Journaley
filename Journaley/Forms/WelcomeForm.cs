@@ -91,22 +91,26 @@
         {
             this.InitializeComponent();
 
-            this.bottomPanels = new List<Panel>();
-            this.bottomPanels.Add(this.bottomPanel1Init);
-            this.bottomPanels.Add(this.bottomPanel2StartNewJournal);
-            this.bottomPanels.Add(this.bottomPanel3LocationSelected);
-            this.bottomPanels.Add(this.bottomPanel4PasswordSetting);
-            this.bottomPanels.Add(this.bottomPanel5ImportJournal);
-            this.bottomPanels.Add(this.bottomPanel6Complete);
+	        this.bottomPanels = new List<Panel>
+	        {
+		        this.bottomPanel1Init,
+		        this.bottomPanel2StartNewJournal,
+		        this.bottomPanel3LocationSelected,
+		        this.bottomPanel4PasswordSetting,
+		        this.bottomPanel5ImportJournal,
+		        this.bottomPanel6Complete
+	        };
 
-            this.panelMessages = new Dictionary<int, string>();
-            this.panelMessages.Add(2, "Okay.");
-            this.panelMessages.Add(3, "Great!");
-            this.panelMessages.Add(4, "Make sure not to forget it!");
-            this.panelMessages.Add(5, "Okay.");
-            this.panelMessages.Add(6, "Welcome.");
+	        this.panelMessages = new Dictionary<int, string>
+	        {
+		        {2, "Okay."},
+		        {3, "Great!"},
+		        {4, "Make sure not to forget it!"},
+		        {5, "Okay."},
+		        {6, "Welcome."}
+	        };
 
-            this.ShowBottomPanel(1);
+	        this.ShowBottomPanel(1);
         }
 
         /// <summary>

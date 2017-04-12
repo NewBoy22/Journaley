@@ -3832,9 +3832,7 @@ namespace Pabo.Calendar
             {
                 if (null == actionLists)
                 {
-                    actionLists = new DesignerActionListCollection();
-                    actionLists.Add(
-                        new CalendarActionList(this.Component));
+	                actionLists = new DesignerActionListCollection {new CalendarActionList(this.Component)};
                 }
                 return actionLists;
             }
@@ -3955,34 +3953,30 @@ namespace Pabo.Calendar
 
         public override DesignerActionItemCollection GetSortedActionItems()
         {
-            DesignerActionItemCollection items = new DesignerActionItemCollection();
+	        DesignerActionItemCollection items = new DesignerActionItemCollection
+	        {
+		        new DesignerActionHeaderItem("Appearance"),
+		        new DesignerActionHeaderItem("Information"),
+		        new DesignerActionPropertyItem("Dates",
+			        "Dates", "Appearance",
+			        "Collection with formatted dates."),
+		        new DesignerActionPropertyItem("ShowHeader",
+			        "ShowHeader", "Appearance",
+			        "Indicates wether the header should be visible."),
+		        new DesignerActionPropertyItem("ShowWeekdays",
+			        "ShowWeekdays", "Appearance",
+			        "Indicates wether weekdays should be visible."),
+		        new DesignerActionPropertyItem("ShowWeeknumbers",
+			        "ShowWeeknumbers", "Appearance",
+			        "Indicates wether the weeknumbers should be visible."),
+		        new DesignerActionPropertyItem("ShowFooter",
+			        "ShowFooter", "Appearance",
+			        "Indicates wether the footer should be visible.")
+	        };
 
-            //Define static section header entries.
-            items.Add(new DesignerActionHeaderItem("Appearance"));
-            items.Add(new DesignerActionHeaderItem("Information"));
+	        //Define static section header entries.
 
-            items.Add(new DesignerActionPropertyItem("Dates",
-                             "Dates", "Appearance",
-                             "Collection with formatted dates."));
-
-            items.Add(new DesignerActionPropertyItem("ShowHeader",
-                             "ShowHeader", "Appearance",
-                             "Indicates wether the header should be visible."));
-
-            items.Add(new DesignerActionPropertyItem("ShowWeekdays",
-                             "ShowWeekdays", "Appearance",
-                             "Indicates wether weekdays should be visible."));
-
-            items.Add(new DesignerActionPropertyItem("ShowWeeknumbers",
-                            "ShowWeeknumbers", "Appearance",
-                             "Indicates wether the weeknumbers should be visible."));
-
-            items.Add(new DesignerActionPropertyItem("ShowFooter",
-                             "ShowFooter", "Appearance",
-                             "Indicates wether the footer should be visible."));
-
-
-            //Create entries for static Information section.
+	        //Create entries for static Information section.
             StringBuilder version = new StringBuilder("Version: ");
             version.Append(calendar.Version);
             items.Add(new DesignerActionTextItem(version.ToString(),"Information"));

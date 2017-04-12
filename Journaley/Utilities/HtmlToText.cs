@@ -32,44 +32,42 @@ namespace Journaley.Utilities
         // Static constructor (one time only)
         static HtmlToText()
         {
-            _tags = new Dictionary<string, string>();
-            _tags.Add("address", "\n");
-            _tags.Add("blockquote", "\n");
-            _tags.Add("div", "\n");
-            _tags.Add("dl", "\n");
-            _tags.Add("fieldset", "\n");
-            _tags.Add("form", "\n");
-            _tags.Add("h1", "\n");
-            _tags.Add("/h1", "\n");
-            _tags.Add("h2", "\n");
-            _tags.Add("/h2", "\n");
-            _tags.Add("h3", "\n");
-            _tags.Add("/h3", "\n");
-            _tags.Add("h4", "\n");
-            _tags.Add("/h4", "\n");
-            _tags.Add("h5", "\n");
-            _tags.Add("/h5", "\n");
-            _tags.Add("h6", "\n");
-            _tags.Add("/h6", "\n");
-            _tags.Add("p", "\n");
-            _tags.Add("/p", "\n");
-            _tags.Add("table", "\n");
-            _tags.Add("/table", "\n");
-            _tags.Add("ul", "\n");
-            _tags.Add("/ul", "\n");
-            _tags.Add("ol", "\n");
-            _tags.Add("/ol", "\n");
-            _tags.Add("/li", "\n");
-            _tags.Add("br", "\n");
-            _tags.Add("/td", "\t");
-            _tags.Add("/tr", "\n");
-            _tags.Add("/pre", "\n");
+	        _tags = new Dictionary<string, string>
+	        {
+		        {"address", "\n"},
+		        {"blockquote", "\n"},
+		        {"div", "\n"},
+		        {"dl", "\n"},
+		        {"fieldset", "\n"},
+		        {"form", "\n"},
+		        {"h1", "\n"},
+		        {"/h1", "\n"},
+		        {"h2", "\n"},
+		        {"/h2", "\n"},
+		        {"h3", "\n"},
+		        {"/h3", "\n"},
+		        {"h4", "\n"},
+		        {"/h4", "\n"},
+		        {"h5", "\n"},
+		        {"/h5", "\n"},
+		        {"h6", "\n"},
+		        {"/h6", "\n"},
+		        {"p", "\n"},
+		        {"/p", "\n"},
+		        {"table", "\n"},
+		        {"/table", "\n"},
+		        {"ul", "\n"},
+		        {"/ul", "\n"},
+		        {"ol", "\n"},
+		        {"/ol", "\n"},
+		        {"/li", "\n"},
+		        {"br", "\n"},
+		        {"/td", "\t"},
+		        {"/tr", "\n"},
+		        {"/pre", "\n"}
+	        };
 
-            _ignoreTags = new HashSet<string>();
-            _ignoreTags.Add("script");
-            _ignoreTags.Add("noscript");
-            _ignoreTags.Add("style");
-            _ignoreTags.Add("object");
+	        _ignoreTags = new HashSet<string> {"script", "noscript", "style", "object"};
         }
 
         /// <summary>
