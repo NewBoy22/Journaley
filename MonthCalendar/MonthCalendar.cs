@@ -1093,7 +1093,7 @@ namespace Pabo.Calendar
 
             for (int i = 0;i<months.Length;i++)
             {
-                if (m.CompareTo(months[i]) == 0)
+                if (String.Compare(m, months[i], StringComparison.Ordinal) == 0)
                     return i+1;
             }
             if ((Convert.ToInt32(m)>=1) && (Convert.ToInt32(m)<=12))
@@ -1110,7 +1110,7 @@ namespace Pabo.Calendar
 
             for (int i = 0;i<days.Length;i++)
             {
-                if (m.CompareTo(days[i]) == 0)
+                if (String.Compare(m, days[i], StringComparison.Ordinal) == 0)
                     return i;
             }
             if ((Convert.ToInt32(m)>=0) && (Convert.ToInt32(m)<8))
@@ -1341,9 +1341,9 @@ namespace Pabo.Calendar
             {
 	            string ver = "Version=";
                 Assembly myAssembly = System.Reflection.Assembly.GetExecutingAssembly();
-                var startPos = myAssembly.FullName.IndexOf(ver);
+                var startPos = myAssembly.FullName.IndexOf(ver, StringComparison.Ordinal);
                 startPos+=ver.Length;
-                var endPos = myAssembly.FullName.IndexOf(",",startPos+1);
+                var endPos = myAssembly.FullName.IndexOf(",",startPos+1, StringComparison.Ordinal);
                 return myAssembly.FullName.Substring(startPos,endPos-startPos);
             }
 
@@ -3051,7 +3051,7 @@ namespace Pabo.Calendar
                 {
                     for (int i = 0;i<validNames.Length;i++)
                     {
-                        if (value.ToString().CompareTo(validNames[i])==0)
+                        if (String.Compare(value.ToString(), validNames[i], StringComparison.Ordinal)==0)
                             return validNames[i];
                     }
                 }
@@ -3121,7 +3121,7 @@ namespace Pabo.Calendar
                 {
                     for (int i = 0;i<validNames.Length;i++)
                     {
-                        if (value.ToString().CompareTo(validNames[i])==0)
+                        if (String.Compare(value.ToString(), validNames[i], StringComparison.Ordinal)==0)
                         //if ((value.ToString().ToLower() == validNames[i].ToLower()))
                             return validNames[i];
                     }

@@ -231,7 +231,7 @@ namespace Pabo.Calendar
             if(value.GetType() == typeof(string))
             {
                 // none = -1 = no image
-                if (( value.ToString().ToUpper().IndexOf("NONE") >=0) || (value.ToString().Length==0))
+                if (( value.ToString().ToUpper().IndexOf("NONE", StringComparison.Ordinal) >=0) || (value.ToString().Length==0))
                     return -1;
                 return
                     Convert.ToInt16(value.ToString());
