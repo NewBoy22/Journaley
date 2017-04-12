@@ -32,106 +32,106 @@ using System.Windows.Forms.Design;
 using System.Drawing;      
 
 namespace Pabo.Calendar
-{	
+{   
 
-	public enum mcDayInfoRecurrence {None = 0, Daily, Weekly, Monthly, Yearly}
-	
-	[TypeConverter(typeof(DateItemTypeConverter))]
-	[DesignTimeVisible(false)]
-	[ToolboxItem(false)]
-	public class DateItem : IComponent	
-	{
-		
-		#region Private class members
-		public event EventHandler Disposed;
-		
-		private DateTime m_date;
-		private DateTime m_rangeDate;
-	
-		private bool disposed;
-		private Color m_backColor1;
+    public enum mcDayInfoRecurrence {None = 0, Daily, Weekly, Monthly, Yearly}
+    
+    [TypeConverter(typeof(DateItemTypeConverter))]
+    [DesignTimeVisible(false)]
+    [ToolboxItem(false)]
+    public class DateItem : IComponent  
+    {
+        
+        #region Private class members
+        public event EventHandler Disposed;
+        
+        private DateTime m_date;
+        private DateTime m_rangeDate;
+    
+        private bool disposed;
+        private Color m_backColor1;
         private Color m_backColor2;
         private mcGradientMode m_gradientMode; 
-		private Color m_dateColor;
-		private Color m_textColor;
-		private string m_text;
-		private int m_imageIndex;
-		private Image m_image;
-		private bool m_weekend;
-		private bool m_enabled;
-		private bool m_bolded;
-		private ISite m_site;
-		private MonthCalendar m_calendar;
-		private mcDayInfoRecurrence m_pattern;
-		private int m_index;
+        private Color m_dateColor;
+        private Color m_textColor;
+        private string m_text;
+        private int m_imageIndex;
+        private Image m_image;
+        private bool m_weekend;
+        private bool m_enabled;
+        private bool m_bolded;
+        private ISite m_site;
+        private MonthCalendar m_calendar;
+        private mcDayInfoRecurrence m_pattern;
+        private int m_index;
         private Image m_bgImage;
         private object m_tag;
 
-		#endregion
-		
-		#region Constructor
+        #endregion
+        
+        #region Constructor
 
-		public DateItem()
-		{
-			m_imageIndex = -1;
-			m_backColor1 = Color.Empty;
+        public DateItem()
+        {
+            m_imageIndex = -1;
+            m_backColor1 = Color.Empty;
             m_backColor2 = Color.White;
             m_dateColor = Color.Empty;
-			m_textColor = Color.Empty;
+            m_textColor = Color.Empty;
             m_gradientMode = mcGradientMode.None; 
             m_text = "";
-			m_enabled = true;
+            m_enabled = true;
             m_bgImage = null;
-			m_pattern = mcDayInfoRecurrence.None; 
-		}
+            m_pattern = mcDayInfoRecurrence.None; 
+        }
 
-		#endregion
-	
-		#region Dispose
-		
-		protected virtual void Dispose(bool disposing)
-		{
-			if (!disposed)
-			{
-				if (disposing)
-				{
-					
-					if (m_image!=null)
-						m_image.Dispose();
+        #endregion
+    
+        #region Dispose
+        
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    
+                    if (m_image!=null)
+                        m_image.Dispose();
                     if (m_bgImage != null)
                         m_bgImage.Dispose();
  
                     //There is nothing to clean.
-					if(Disposed != null)
-						Disposed(this,EventArgs.Empty);
-				}
-				// shared cleanup logic
-				disposed = true;
-			}
-		}
+                    if(Disposed != null)
+                        Disposed(this,EventArgs.Empty);
+                }
+                // shared cleanup logic
+                disposed = true;
+            }
+        }
 
-		public void Dispose()
-		{    
-			Dispose(true);
-			GC.SuppressFinalize(this);			
-		}
-		
-		#endregion
+        public void Dispose()
+        {    
+            Dispose(true);
+            GC.SuppressFinalize(this);          
+        }
+        
+        #endregion
 
-		#region properties
+        #region properties
 
-		[Browsable(false)]
-		internal MonthCalendar Calendar
-		{
-			set
-			{
-				m_calendar = value;
-			}
-			get
-			{
-				return m_calendar;
-			}
-		}
+        [Browsable(false)]
+        internal MonthCalendar Calendar
+        {
+            set
+            {
+                m_calendar = value;
+            }
+            get
+            {
+                return m_calendar;
+            }
+        }
 
         [Browsable(false)]
         public object Tag
@@ -147,100 +147,100 @@ namespace Pabo.Calendar
             }
         }
 
-		[Browsable(false)]
-		internal int Index
-		{
-			set
-			{
-				m_index = value;
-			}
-			get
-			{
-				return m_index;
-			}
-		}
+        [Browsable(false)]
+        internal int Index
+        {
+            set
+            {
+                m_index = value;
+            }
+            get
+            {
+                return m_index;
+            }
+        }
 
-		[Browsable(false)]
-		public virtual ISite Site
-		{
-			get
-			{
-				return m_site;
-			}
-			set
-			{
-				m_site = value;
-			}
-		}
-	
-		[Description("indicates the range of the recurrence.")]	
-		[Category("Recurrence")]
-		public DateTime Range
-		{
-			get
-			{
-				return m_rangeDate;
-			}
-			set
-			{
-				if (m_rangeDate!=value)
-				{
-					m_rangeDate = value;
-				}
-			}
-		}
+        [Browsable(false)]
+        public virtual ISite Site
+        {
+            get
+            {
+                return m_site;
+            }
+            set
+            {
+                m_site = value;
+            }
+        }
+    
+        [Description("indicates the range of the recurrence.")] 
+        [Category("Recurrence")]
+        public DateTime Range
+        {
+            get
+            {
+                return m_rangeDate;
+            }
+            set
+            {
+                if (m_rangeDate!=value)
+                {
+                    m_rangeDate = value;
+                }
+            }
+        }
 
-		[Description("indicates the recurrence of the info.")]	
-		[Category("Recurrence")]
-		public mcDayInfoRecurrence Pattern
-		{
-			get
-			{
-				return m_pattern;
-			}
-			set
-			{
-				if (m_pattern!=value)
-				{
-					m_pattern = value;
-				}
-			}
-		}
+        [Description("indicates the recurrence of the info.")]  
+        [Category("Recurrence")]
+        public mcDayInfoRecurrence Pattern
+        {
+            get
+            {
+                return m_pattern;
+            }
+            set
+            {
+                if (m_pattern!=value)
+                {
+                    m_pattern = value;
+                }
+            }
+        }
 
-		[Description("The day for which the formatting applies.")]	
-		[Category("Ocurrence")]
-		public DateTime Date
-		{
-			get
-			{
-				return m_date;
-			}
-			set
-			{
-				if (m_date!=value)
-				{
-					m_date = value;
-					m_rangeDate = m_date;
-				}
-			}
-		}
+        [Description("The day for which the formatting applies.")]  
+        [Category("Ocurrence")]
+        public DateTime Date
+        {
+            get
+            {
+                return m_date;
+            }
+            set
+            {
+                if (m_date!=value)
+                {
+                    m_date = value;
+                    m_rangeDate = m_date;
+                }
+            }
+        }
 
-		[Category("Color")]
-		[Description("Background color assigned to this day.")]	
-		public Color BackColor1
-		{
-			get
-			{
-				return m_backColor1;
-			}
-			set
-			{
-				if (m_backColor1!=value)
-				{
-					m_backColor1 = value;
-				}
-			}
-		}
+        [Category("Color")]
+        [Description("Background color assigned to this day.")] 
+        public Color BackColor1
+        {
+            get
+            {
+                return m_backColor1;
+            }
+            set
+            {
+                if (m_backColor1!=value)
+                {
+                    m_backColor1 = value;
+                }
+            }
+        }
 
         [Category("Color")]
         [Description("Second background color when using a gradient.")]
@@ -275,129 +275,129 @@ namespace Pabo.Calendar
                 }
             }
         }
-		
-		[Category("Behavior")]
-		[Description("Indicates wether the date should be treated as a weekend.")]	
-		public bool Weekend
-		{
-			get
-			{
-				return m_weekend;
-			}
-			set
-			{
-				if (m_weekend!=value)
-				{
-					m_weekend = value;
-				}
-			}
-		}
+        
+        [Category("Behavior")]
+        [Description("Indicates wether the date should be treated as a weekend.")]  
+        public bool Weekend
+        {
+            get
+            {
+                return m_weekend;
+            }
+            set
+            {
+                if (m_weekend!=value)
+                {
+                    m_weekend = value;
+                }
+            }
+        }
 
-		[Category("Behavior")]
-		[Description("Indicates wether the date is enabled i.e. selectable.")]	
-		public bool Enabled
-		{
-			get
-			{
-				return m_enabled;
-			}
-			set
-			{
-				if (m_enabled!=value)
-				{
-					m_enabled = value;
-				}
-			}
-		}
+        [Category("Behavior")]
+        [Description("Indicates wether the date is enabled i.e. selectable.")]  
+        public bool Enabled
+        {
+            get
+            {
+                return m_enabled;
+            }
+            set
+            {
+                if (m_enabled!=value)
+                {
+                    m_enabled = value;
+                }
+            }
+        }
 
-		[Category("Appearance")]
-		[Description("Indicates wether bold font should be used for the date.")]	
-		public bool BoldedDate
-		{
-			get
-			{
-				return m_bolded;
-			}
-			set
-			{
-				if (m_bolded!=value)
-				{
-					m_bolded = value;
-				}
-			}
-		}
+        [Category("Appearance")]
+        [Description("Indicates wether bold font should be used for the date.")]    
+        public bool BoldedDate
+        {
+            get
+            {
+                return m_bolded;
+            }
+            set
+            {
+                if (m_bolded!=value)
+                {
+                    m_bolded = value;
+                }
+            }
+        }
 
 
-		[Category("Color")]
-		[Description("Color used for date.")]	
-		public Color DateColor
-		{
-			get
-			{
-				return m_dateColor;
-			}
-			set
-			{
-				if (m_dateColor!=value)
-				{
-					m_dateColor = value;
-				}
-			}
-		}
+        [Category("Color")]
+        [Description("Color used for date.")]   
+        public Color DateColor
+        {
+            get
+            {
+                return m_dateColor;
+            }
+            set
+            {
+                if (m_dateColor!=value)
+                {
+                    m_dateColor = value;
+                }
+            }
+        }
 
-		[Category("Color")]
-		[Description("Color used for text.")]	
-		public Color TextColor
-		{
-			get
-			{
-				return m_textColor;
-			}
-			set
-			{
-				if (m_textColor!=value)
-				{
-					m_textColor = value;
-				}
-			}
-		}
+        [Category("Color")]
+        [Description("Color used for text.")]   
+        public Color TextColor
+        {
+            get
+            {
+                return m_textColor;
+            }
+            set
+            {
+                if (m_textColor!=value)
+                {
+                    m_textColor = value;
+                }
+            }
+        }
 
-		[Category("Appearance")]
-		[Description("Text to be displayed for day.")]	
-		public string Text
-		{
-			get
-			{
-				return m_text;
-			}
-			set
-			{
-				if (m_text!=value)
-				{
-					m_text = value;
-				}
-			}
-		}
+        [Category("Appearance")]
+        [Description("Text to be displayed for day.")]  
+        public string Text
+        {
+            get
+            {
+                return m_text;
+            }
+            set
+            {
+                if (m_text!=value)
+                {
+                    m_text = value;
+                }
+            }
+        }
 
-		[TypeConverter(typeof(ImageTypeConverter))]
-		[Editor(typeof(Pabo.Calendar.ImageMapEditor),typeof(System.Drawing.Design.UITypeEditor))]
-		[Category("Appearance")]
-		[Description("Index for the image assigned to this date.")]	
-		public int ImageListIndex
-		{
-			get
-			{
-				return m_imageIndex;
-			}
-			set
-			{
-				if (m_imageIndex!=value)
-				{
-					m_image = null;
-					m_imageIndex = value;
-				}
-			}
-		}
+        [TypeConverter(typeof(ImageTypeConverter))]
+        [Editor(typeof(Pabo.Calendar.ImageMapEditor),typeof(System.Drawing.Design.UITypeEditor))]
+        [Category("Appearance")]
+        [Description("Index for the image assigned to this date.")] 
+        public int ImageListIndex
+        {
+            get
+            {
+                return m_imageIndex;
+            }
+            set
+            {
+                if (m_imageIndex!=value)
+                {
+                    m_image = null;
+                    m_imageIndex = value;
+                }
+            }
+        }
 
         [Category("Appearance")]
         [Description("Image used as background.")]
@@ -416,71 +416,71 @@ namespace Pabo.Calendar
             }
         }
 
-		[Category("Appearance")]
-		[Description("Image assigned to this date.")]	
-		[Browsable(true)]	
-		public Image Image
-		{
-			get
-			{
-				if (m_image!=null) return m_image;
+        [Category("Appearance")]
+        [Description("Image assigned to this date.")]   
+        [Browsable(true)]   
+        public Image Image
+        {
+            get
+            {
+                if (m_image!=null) return m_image;
 
-				if ((GetImageList()!=null) && (m_imageIndex!=-1))
-				{
-					try
-					{
-						return GetImageList().Images[m_imageIndex];
-					}
-					catch (Exception)
-					{
-						return null;
-					}
-				}
-				else return null;
-			}
-			set
-			{
-				m_image = value;
-			}
+                if ((GetImageList()!=null) && (m_imageIndex!=-1))
+                {
+                    try
+                    {
+                        return GetImageList().Images[m_imageIndex];
+                    }
+                    catch (Exception)
+                    {
+                        return null;
+                    }
+                }
+                else return null;
+            }
+            set
+            {
+                m_image = value;
+            }
 
-		}
+        }
 
 
-		internal ImageList GetImageList()
-		{
-			if (m_calendar!=null)
-				return m_calendar.ImageList;
-			else
-				return null;
-		}
+        internal ImageList GetImageList()
+        {
+            if (m_calendar!=null)
+                return m_calendar.ImageList;
+            else
+                return null;
+        }
 
-		#endregion
-		
-	}
-	
-	#region DateItemTypeConverter
+        #endregion
+        
+    }
+    
+    #region DateItemTypeConverter
 
-	public class DateItemTypeConverter : TypeConverter
-	{
-		public override object ConvertTo(ITypeDescriptorContext context,System.Globalization.CultureInfo culture,object value,Type destinationType)
-		{
-			DateItem d;
-			d = (DateItem)value;
-			return d.Date.ToShortDateString();  
-			
-		}
-        	
-		public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
-		{
+    public class DateItemTypeConverter : TypeConverter
+    {
+        public override object ConvertTo(ITypeDescriptorContext context,System.Globalization.CultureInfo culture,object value,Type destinationType)
+        {
+            DateItem d;
+            d = (DateItem)value;
+            return d.Date.ToShortDateString();  
+            
+        }
+            
+        public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+        {
 
-			if(destinationType == typeof(string))
-				return true;
-			return base.CanConvertTo (context, destinationType);
+            if(destinationType == typeof(string))
+                return true;
+            return base.CanConvertTo (context, destinationType);
 
-		}
+        }
 
-	}
+    }
 
-	#endregion
+    #endregion
 
 }

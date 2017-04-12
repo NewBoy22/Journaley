@@ -29,135 +29,135 @@ using System.Drawing;
 using System.Windows.Forms;
 
 namespace Pabo.Calendar
-{	
-	public enum mcDayState {Normal = 0, Focus, Selected}
+{   
+    public enum mcDayState {Normal = 0, Focus, Selected}
 
-	#region Delegates
+    #region Delegates
 
-	public delegate void DayClickEventHandler(object sender, DayClickEventArgs e);
+    public delegate void DayClickEventHandler(object sender, DayClickEventArgs e);
     public delegate void DayMouseMoveEventHandler(object sender, DayMouseMoveEventArgs e);
-	public delegate void DayEventHandler(object sender, DayEventArgs e);
-	public delegate void DaySelectedEventHandler(object sender, DaySelectedEventArgs e);
-	public delegate void DayDragDropEventHandler(object sender, DayDragDropEventArgs e);
+    public delegate void DayEventHandler(object sender, DayEventArgs e);
+    public delegate void DaySelectedEventHandler(object sender, DaySelectedEventArgs e);
+    public delegate void DayDragDropEventHandler(object sender, DayDragDropEventArgs e);
     public delegate void DayStateChangedEventHandler(object sender , DayStateChangedEventArgs e);
 
-	#endregion
+    #endregion
 
-	/// <summary>
-	/// Summary description for Day.
-	/// </summary>
-	internal class Day : IDisposable	
-	{
-		#region Private class members
-		
-		private bool disposed;
-		private Rectangle m_rect;
-		private Region m_region;
-		private DateTime m_date;
-		private MonthCalendar m_calendar;
-		private Month m_month;
-		private Image m_dayImage;
-		private int m_selection;
-		private bool m_userDrawn;
-		private Rectangle m_imageRect;
+    /// <summary>
+    /// Summary description for Day.
+    /// </summary>
+    internal class Day : IDisposable    
+    {
+        #region Private class members
+        
+        private bool disposed;
+        private Rectangle m_rect;
+        private Region m_region;
+        private DateTime m_date;
+        private MonthCalendar m_calendar;
+        private Month m_month;
+        private Image m_dayImage;
+        private int m_selection;
+        private bool m_userDrawn;
+        private Rectangle m_imageRect;
         private Region[] m_dateRgn;
         private Region[] m_textRgn;
     
-		private mcDayState m_state;
-		
-		#endregion
+        private mcDayState m_state;
+        
+        #endregion
           
         #region constructor
 
         public Day()
-		{
-			m_state = mcDayState.Normal; 
-			m_selection = -1;
-			m_userDrawn = false;
-    	}	
+        {
+            m_state = mcDayState.Normal; 
+            m_selection = -1;
+            m_userDrawn = false;
+        }   
 
-		#endregion
-	
-		#region Dispose
-		
-		protected virtual void Dispose(bool disposing)
-		{
-			if (!disposed)
-			{
-				if (disposing)
-				{
-					m_region.Dispose();
-					m_dayImage.Dispose();
-				
-				}
-				// shared cleanup logic
-				disposed = true;
-			}
-		}
+        #endregion
+    
+        #region Dispose
+        
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    m_region.Dispose();
+                    m_dayImage.Dispose();
+                
+                }
+                // shared cleanup logic
+                disposed = true;
+            }
+        }
 
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-		#endregion
+        #endregion
 
-		#region properties
+        #region properties
 
-    	internal MonthCalendar Calendar
-		{
-			get
-			{
-				return m_calendar;
-			}
-			set
-			{	
-				m_calendar = value;
-			}
-		}
+        internal MonthCalendar Calendar
+        {
+            get
+            {
+                return m_calendar;
+            }
+            set
+            {   
+                m_calendar = value;
+            }
+        }
 
-		internal Month Month
-		{
-			get
-			{
-				return m_month;
-			}
-			set
-			{	
-				m_month = value;
-			}
-		}
-		
-		public int SelectionArea
-		{
-			get
-			{
-				return m_selection;
-			}
-			set
-			{	
-				if (value!=m_selection)
-				{
-					m_selection = value;
-				}
-			}
-		}
+        internal Month Month
+        {
+            get
+            {
+                return m_month;
+            }
+            set
+            {   
+                m_month = value;
+            }
+        }
+        
+        public int SelectionArea
+        {
+            get
+            {
+                return m_selection;
+            }
+            set
+            {   
+                if (value!=m_selection)
+                {
+                    m_selection = value;
+                }
+            }
+        }
 
-		public bool UserDrawn
-		{
-			get
-			{
-				return m_userDrawn;
-			}
-			set
-			{	
-				if (value!=m_userDrawn)
-				{
-					m_userDrawn = value;
-				}
-			}
-		}
+        public bool UserDrawn
+        {
+            get
+            {
+                return m_userDrawn;
+            }
+            set
+            {   
+                if (value!=m_userDrawn)
+                {
+                    m_userDrawn = value;
+                }
+            }
+        }
 
         internal Region[] DateRegion
         {
@@ -176,158 +176,158 @@ namespace Pabo.Calendar
         }
 
 
-		public int Week
-		{
-			get
-			{
-				return m_calendar.WeeknumberCallBack(m_date);
-			}
-		}
+        public int Week
+        {
+            get
+            {
+                return m_calendar.WeeknumberCallBack(m_date);
+            }
+        }
 
-		public DayOfWeek Weekday
-		{
-			get
-			{
-				return m_date.DayOfWeek;
-			}	
-		}
+        public DayOfWeek Weekday
+        {
+            get
+            {
+                return m_date.DayOfWeek;
+            }   
+        }
 
-		public mcDayState State
-		{
-			get
-			{
-				return m_state;
-			}
-			set
-			{	
-				if (value!=m_state)
-				{
+        public mcDayState State
+        {
+            get
+            {
+                return m_state;
+            }
+            set
+            {   
+                if (value!=m_state)
+                {
                     m_state = value;
-    			}
-			}
-		}
-		
-		public Rectangle Rectangle
-		{
-			get
-			{
-				return m_rect;
-			}
-			set
-			{
-				if (value!=m_rect)
-				{
-					m_rect = value;
-					m_region = new Region(m_rect); 
-				}
-			}
-		}
+                }
+            }
+        }
+        
+        public Rectangle Rectangle
+        {
+            get
+            {
+                return m_rect;
+            }
+            set
+            {
+                if (value!=m_rect)
+                {
+                    m_rect = value;
+                    m_region = new Region(m_rect); 
+                }
+            }
+        }
 
-		public DateTime Date
-		{
-			get
-			{
-				return m_date;
-			}
-			set
-			{
-				if (m_date!=value)
-				{
-					m_date = value;
-				}
-			}
-		}
-		
-		#endregion
-		
-		#region Methods
-		
-		private Image GetImage(int index)
-		{
-			// Check that an ImageList exists and that index is valid
-			if (m_month.Calendar.ImageList!=null)
-			{
-				if ((index>=0) && (index <m_month.Calendar.ImageList.Images.Count))
-				{
-					return m_month.Calendar.ImageList.Images[index]; 
-				}
-				else return null;
-			}
-			else return null;
-					
-		}
+        public DateTime Date
+        {
+            get
+            {
+                return m_date;
+            }
+            set
+            {
+                if (m_date!=value)
+                {
+                    m_date = value;
+                }
+            }
+        }
+        
+        #endregion
+        
+        #region Methods
+        
+        private Image GetImage(int index)
+        {
+            // Check that an ImageList exists and that index is valid
+            if (m_month.Calendar.ImageList!=null)
+            {
+                if ((index>=0) && (index <m_month.Calendar.ImageList.Images.Count))
+                {
+                    return m_month.Calendar.ImageList.Images[index]; 
+                }
+                else return null;
+            }
+            else return null;
+                    
+        }
 
-		private StringFormat GetStringAlignment(mcItemAlign align)
-		{
-			StringFormat sf = new StringFormat();
+        private StringFormat GetStringAlignment(mcItemAlign align)
+        {
+            StringFormat sf = new StringFormat();
  
-			switch (align)
-			{
-				case mcItemAlign.LeftCenter:
-				{
-					sf.Alignment = StringAlignment.Near;   
-					sf.LineAlignment = StringAlignment.Center;
-					break;
-				}
-				case mcItemAlign.RightCenter:
-				{
-					sf.Alignment = StringAlignment.Far;   
-					sf.LineAlignment = StringAlignment.Center;
-					break;
-				}
-				case mcItemAlign.TopCenter:
-				{
-					sf.Alignment = StringAlignment.Center;   
-					sf.LineAlignment = StringAlignment.Near;
-					break;
-				}
-				case mcItemAlign.BottomCenter:
-				{
-					sf.Alignment = StringAlignment.Center;   
-					sf.LineAlignment = StringAlignment.Far;
-					break;
-				}
-				case mcItemAlign.TopLeft:
-				{
-					sf.Alignment = StringAlignment.Near;   
-					sf.LineAlignment = StringAlignment.Near;
-					break;
-				}
-				case mcItemAlign.TopRight:
-				{
-					sf.Alignment = StringAlignment.Far;   
-					sf.LineAlignment = StringAlignment.Near;
-					break;
-				}
-				case mcItemAlign.Center:
-				{
-					sf.Alignment = StringAlignment.Center;   
-					sf.LineAlignment = StringAlignment.Center;
-					break;
-				}
-				case mcItemAlign.BottomLeft:
-				{
-					sf.Alignment = StringAlignment.Near;   
-					sf.LineAlignment = StringAlignment.Far;
-					break;
-				}
-				case mcItemAlign.BottomRight:
-				{
-					sf.Alignment = StringAlignment.Far;   
-					sf.LineAlignment = StringAlignment.Far;
-					break;
-				}
-			}
-			
-			return sf;
-		}
+            switch (align)
+            {
+                case mcItemAlign.LeftCenter:
+                {
+                    sf.Alignment = StringAlignment.Near;   
+                    sf.LineAlignment = StringAlignment.Center;
+                    break;
+                }
+                case mcItemAlign.RightCenter:
+                {
+                    sf.Alignment = StringAlignment.Far;   
+                    sf.LineAlignment = StringAlignment.Center;
+                    break;
+                }
+                case mcItemAlign.TopCenter:
+                {
+                    sf.Alignment = StringAlignment.Center;   
+                    sf.LineAlignment = StringAlignment.Near;
+                    break;
+                }
+                case mcItemAlign.BottomCenter:
+                {
+                    sf.Alignment = StringAlignment.Center;   
+                    sf.LineAlignment = StringAlignment.Far;
+                    break;
+                }
+                case mcItemAlign.TopLeft:
+                {
+                    sf.Alignment = StringAlignment.Near;   
+                    sf.LineAlignment = StringAlignment.Near;
+                    break;
+                }
+                case mcItemAlign.TopRight:
+                {
+                    sf.Alignment = StringAlignment.Far;   
+                    sf.LineAlignment = StringAlignment.Near;
+                    break;
+                }
+                case mcItemAlign.Center:
+                {
+                    sf.Alignment = StringAlignment.Center;   
+                    sf.LineAlignment = StringAlignment.Center;
+                    break;
+                }
+                case mcItemAlign.BottomLeft:
+                {
+                    sf.Alignment = StringAlignment.Near;   
+                    sf.LineAlignment = StringAlignment.Far;
+                    break;
+                }
+                case mcItemAlign.BottomRight:
+                {
+                    sf.Alignment = StringAlignment.Far;   
+                    sf.LineAlignment = StringAlignment.Far;
+                    break;
+                }
+            }
+            
+            return sf;
+        }
 
-		internal void Draw(Graphics e, DateItem queryInfo)
-		{
-											
-			StringFormat dateAlign = new StringFormat();
-			StringFormat textAlign = new StringFormat();
-           	Font boldFont = new Font(m_month.DateFont.Name,m_month.DateFont.Size,m_month.DateFont.Style | FontStyle.Bold);
+        internal void Draw(Graphics e, DateItem queryInfo)
+        {
+                                            
+            StringFormat dateAlign = new StringFormat();
+            StringFormat textAlign = new StringFormat();
+            Font boldFont = new Font(m_month.DateFont.Name,m_month.DateFont.Size,m_month.DateFont.Style | FontStyle.Bold);
             Color bgColor1 = m_month.Colors.Days.BackColor1;
             Color bgColor2 = m_month.Colors.Days.BackColor2;
             mcGradientMode gradientMode = m_month.Colors.Days.GradientMode;
@@ -340,49 +340,49 @@ namespace Pabo.Calendar
             Brush bgBrush = new SolidBrush(bgColor1);
            
             string dateString;
-			m_imageRect = new Rectangle(); 
-			string text = "";
-			bool drawDay = false;
-			bool enabled = true;
+            m_imageRect = new Rectangle(); 
+            string text = "";
+            bool drawDay = false;
+            bool enabled = true;
             Image bgImage = null;
-			
-			int i = -1;
+            
+            int i = -1;
 
-			bool boldedDate = false;
+            bool boldedDate = false;
  
-			DateItem[] info;
-			m_dayImage = null;
-	
-			dateAlign = GetStringAlignment(m_month.DateAlign); 
-			textAlign = GetStringAlignment(m_month.TextAlign);							
-			
-			if ((m_month.SelectedMonth.Month == m_date.Month) || (m_month.Calendar.ShowTrailingDates))
-				drawDay = true;
-			
-			if ( ((m_date.DayOfWeek == DayOfWeek.Saturday) && (m_month.Colors.Weekend.Saturday)) ||
+            DateItem[] info;
+            m_dayImage = null;
+    
+            dateAlign = GetStringAlignment(m_month.DateAlign); 
+            textAlign = GetStringAlignment(m_month.TextAlign);                          
+            
+            if ((m_month.SelectedMonth.Month == m_date.Month) || (m_month.Calendar.ShowTrailingDates))
+                drawDay = true;
+            
+            if ( ((m_date.DayOfWeek == DayOfWeek.Saturday) && (m_month.Colors.Weekend.Saturday)) ||
                  ((m_date.DayOfWeek == DayOfWeek.Sunday) && (m_month.Colors.Weekend.Sunday)) )
-			{
-			    bgColor1 = m_month.Colors.Weekend.BackColor1;
+            {
+                bgColor1 = m_month.Colors.Weekend.BackColor1;
                 bgColor2 = m_month.Colors.Weekend.BackColor2;
                 dateColor= m_month.Colors.Weekend.Date;
-				textColor= m_month.Colors.Weekend.Text;
+                textColor= m_month.Colors.Weekend.Text;
                 gradientMode = m_month.Colors.Weekend.GradientMode;  
-			}			
-			
-			if (m_month.SelectedMonth.Month  != m_date.Month)
-			{
-				bgColor1 =  m_month.Colors.Trailing.BackColor1;
+            }           
+            
+            if (m_month.SelectedMonth.Month  != m_date.Month)
+            {
+                bgColor1 =  m_month.Colors.Trailing.BackColor1;
                 bgColor2 = m_month.Colors.Trailing.BackColor2;
                 gradientMode = m_month.Colors.Trailing.GradientMode;
                 dateColor = m_month.Colors.Trailing.Date;
                 boldDateColor = m_month.Colors.Trailing.Date;
-				textColor = m_month.Colors.Trailing.Text; 
-			}
-				
-			// Check if formatting should be applied
-			if ((m_month.FormatTrailing) || (m_month.SelectedMonth.Month  == m_date.Month)) 
-			{
-				// check of there is formatting for this day
+                textColor = m_month.Colors.Trailing.Text; 
+            }
+                
+            // Check if formatting should be applied
+            if ((m_month.FormatTrailing) || (m_month.SelectedMonth.Month  == m_date.Month)) 
+            {
+                // check of there is formatting for this day
                 if (queryInfo != null)
                 {
                     info = new DateItem[1];
@@ -390,63 +390,63 @@ namespace Pabo.Calendar
                 }
                 else
                     info = m_calendar.GetDateInfo(this.Date);
-				if (info.Length > 0)
-					i = 0;
-				// go through the available dateitems
-				while ((i<info.Length) && (drawDay))
-				{
-					if (info.Length>0)
-					{
-						DateItem dateInfo = info[i];
-				
-						if (dateInfo.BackColor1!=Color.Empty)  
-							bgColor1 = dateInfo.BackColor1;
+                if (info.Length > 0)
+                    i = 0;
+                // go through the available dateitems
+                while ((i<info.Length) && (drawDay))
+                {
+                    if (info.Length>0)
+                    {
+                        DateItem dateInfo = info[i];
+                
+                        if (dateInfo.BackColor1!=Color.Empty)  
+                            bgColor1 = dateInfo.BackColor1;
                         if (dateInfo.BackColor2 != Color.Empty)
                             bgColor2 = dateInfo.BackColor2;
-						gradientMode = dateInfo.GradientMode; 
+                        gradientMode = dateInfo.GradientMode; 
                         if (dateInfo.DateColor!=Color.Empty)  
-							dateColor = dateInfo.DateColor;
-						if (dateInfo.TextColor!=Color.Empty)  
-							textColor = dateInfo.TextColor;
-						text = dateInfo.Text; 
-				
-						if (dateInfo.Weekend)
-						{
-							bgColor1 = m_month.Colors.Weekend.BackColor1;
+                            dateColor = dateInfo.DateColor;
+                        if (dateInfo.TextColor!=Color.Empty)  
+                            textColor = dateInfo.TextColor;
+                        text = dateInfo.Text; 
+                
+                        if (dateInfo.Weekend)
+                        {
+                            bgColor1 = m_month.Colors.Weekend.BackColor1;
                             bgColor2 = m_month.Colors.Weekend.BackColor2;
                             gradientMode = m_month.Colors.Weekend.GradientMode;  
                             dateColor = m_month.Colors.Weekend.Date;
-							textColor = m_month.Colors.Weekend.Text;
-						}
-						boldedDate = dateInfo.BoldedDate; 
-						enabled = dateInfo.Enabled;
-						if (!dateInfo.Enabled)
-						{
-							bgColor1 = m_month.Colors.Disabled.BackColor1;
+                            textColor = m_month.Colors.Weekend.Text;
+                        }
+                        boldedDate = dateInfo.BoldedDate; 
+                        enabled = dateInfo.Enabled;
+                        if (!dateInfo.Enabled)
+                        {
+                            bgColor1 = m_month.Colors.Disabled.BackColor1;
                             bgColor2 = m_month.Colors.Disabled.BackColor2;
                             gradientMode = m_month.Colors.Disabled.GradientMode;     
-							dateColor = m_month.Colors.Disabled.Date;
-							textColor = m_month.Colors.Disabled.Text;
-						}
- 						
-						m_dayImage = dateInfo.Image;  	
-									
-						if (m_dayImage!=null)
-							m_imageRect = ImageRect(m_month.ImageAlign);
+                            dateColor = m_month.Colors.Disabled.Date;
+                            textColor = m_month.Colors.Disabled.Text;
+                        }
+                        
+                        m_dayImage = dateInfo.Image;    
+                                    
+                        if (m_dayImage!=null)
+                            m_imageRect = ImageRect(m_month.ImageAlign);
                         
                         bgImage = dateInfo.BackgroundImage; 
                     }
 
-					if (m_state == mcDayState.Selected)
-					{
-						dateColor = m_month.Colors.Selected.Date; 
-						textColor = m_month.Colors.Selected.Text;
-					}
-					if ((m_state == mcDayState.Focus) && (m_month.Calendar.ShowFocus))  
-					{
-						dateColor = m_month.Colors.Focus.Date; 
-						textColor = m_month.Colors.Focus.Text;
-					}
+                    if (m_state == mcDayState.Selected)
+                    {
+                        dateColor = m_month.Colors.Selected.Date; 
+                        textColor = m_month.Colors.Selected.Text;
+                    }
+                    if ((m_state == mcDayState.Focus) && (m_month.Calendar.ShowFocus))  
+                    {
+                        dateColor = m_month.Colors.Focus.Date; 
+                        textColor = m_month.Colors.Focus.Text;
+                    }
                     
 
                     if (bgImage != null)
@@ -465,23 +465,23 @@ namespace Pabo.Calendar
                             m_calendar.DrawGradient(e, Rectangle, bgColor1, bgColor2, gradientMode);
                     }
 
-					
+                    
                     ControlPaint.DrawBorder(e,m_rect, m_month.Colors.Days.Border,m_month.BorderStyles.Normal);
-					if (m_dayImage!=null)
-					{
-						if (enabled)
-							e.DrawImageUnscaled(m_dayImage,m_imageRect);
-						else
-							ControlPaint.DrawImageDisabled(e,m_dayImage,m_imageRect.X,m_imageRect.Y,m_month.Colors.Disabled.BackColor1);   
-					}
-            						
-					// Check if we should append month name to date
-					if ((m_month.ShowMonthInDay) &&
-						((m_date.AddDays(-1).Month != m_date.Month) ||
-						(m_date.AddDays(1).Month != m_date.Month)))							
-						dateString = m_date.Day.ToString()+" "+m_calendar.m_dateTimeFormat.GetMonthName(m_date.Month);  
-					else
-						dateString = m_date.Day.ToString();
+                    if (m_dayImage!=null)
+                    {
+                        if (enabled)
+                            e.DrawImageUnscaled(m_dayImage,m_imageRect);
+                        else
+                            ControlPaint.DrawImageDisabled(e,m_dayImage,m_imageRect.X,m_imageRect.Y,m_month.Colors.Disabled.BackColor1);   
+                    }
+                                    
+                    // Check if we should append month name to date
+                    if ((m_month.ShowMonthInDay) &&
+                        ((m_date.AddDays(-1).Month != m_date.Month) ||
+                        (m_date.AddDays(1).Month != m_date.Month)))                         
+                        dateString = m_date.Day.ToString()+" "+m_calendar.m_dateTimeFormat.GetMonthName(m_date.Month);  
+                    else
+                        dateString = m_date.Day.ToString();
 
                     if (dateColor != Color.Transparent)
                     {
@@ -503,7 +503,7 @@ namespace Pabo.Calendar
                             e.DrawString(dateString, boldFont, boldDateBrush, m_rect, dateAlign);
                             m_dateRgn = e.MeasureCharacterRanges(dateString, boldFont, m_rect, dateAlign);                        
                         }
-					      
+                          
                     }
                     if ((text.Length > 0) && (textColor != Color.Transparent))
                     {
@@ -514,106 +514,106 @@ namespace Pabo.Calendar
                         e.DrawString(text, m_month.TextFont, textBrush, m_rect, textAlign);
                         m_textRgn = e.MeasureCharacterRanges(text, m_month.TextFont, m_rect, textAlign); 
                     }
-					i++;	
-				}
-			}
+                    i++;    
+                }
+            }
 
             boldDateBrush.Dispose();
-			dateBrush.Dispose();
-			bgBrush.Dispose();
-			textBrush.Dispose();
-			boldFont.Dispose();
-			dateAlign.Dispose();
-			textAlign.Dispose();
-			
-		}
+            dateBrush.Dispose();
+            bgBrush.Dispose();
+            textBrush.Dispose();
+            boldFont.Dispose();
+            dateAlign.Dispose();
+            textAlign.Dispose();
+            
+        }
 
-		private Rectangle ImageRect(mcItemAlign align)
-		{
-			Rectangle imageRect = new Rectangle(0,0,m_rect.Width,m_rect.Height);
+        private Rectangle ImageRect(mcItemAlign align)
+        {
+            Rectangle imageRect = new Rectangle(0,0,m_rect.Width,m_rect.Height);
  
-			switch (align)
-			{
-				
-				case mcItemAlign.LeftCenter:
-				{
-					imageRect.X = m_rect.X + 2;
-					imageRect.Y = m_rect.Top +((m_rect.Height/2) - (m_dayImage.Height/2));
-					break;
-				}
-				case mcItemAlign.RightCenter:
-				{
-					imageRect.X = m_rect.Right - 2 - m_dayImage.Width;
-					imageRect.Y = m_rect.Top +((m_rect.Height/2) - (m_dayImage.Height/2));
-					break;
-				}
-				case mcItemAlign.TopCenter:
-				{
-					imageRect.X = m_rect.X +((m_rect.Width/2) - (m_dayImage.Width/2));
-					imageRect.Y = m_rect.Y + 2;
-					break;
-				}
-				case mcItemAlign.BottomCenter:
-				{
-					imageRect.X = m_rect.X +((m_rect.Width/2) - (m_dayImage.Width/2));
-					imageRect.Y = m_rect.Bottom -2 - m_dayImage.Height;
-					break;
-				}
-				
-				case mcItemAlign.TopLeft:
-				{
-					imageRect.X = m_rect.X + 2;
-					imageRect.Y = m_rect.Y + 2;
-					break;
-				}
-				case mcItemAlign.TopRight:
-				{
-					imageRect.X = m_rect.Right - 2 - m_dayImage.Width;
-					imageRect.Y = m_rect.Y + 2;
-					break;
-				}
-				case mcItemAlign.Center:
-				{
-					imageRect.X = m_rect.X +((m_rect.Width/2) - (m_dayImage.Width/2));
-					imageRect.Y = m_rect.Top +((m_rect.Height/2) - (m_dayImage.Height/2));
-					break;
-				}
-				case mcItemAlign.BottomLeft:
-				{
-					imageRect.X = m_rect.X + 2;
-					imageRect.Y = m_rect.Bottom -2 - m_dayImage.Height;
-					break;
-				}
-				case mcItemAlign.BottomRight:
-				{
-					imageRect.X = m_rect.Right - 2 - m_dayImage.Width;
-					imageRect.Y = m_rect.Bottom -2 - m_dayImage.Height;	
-					break;
-				}
-			}
-			
-			imageRect.Height = m_dayImage.Height;
-			imageRect.Width = m_dayImage.Width;
-			return imageRect;
-		}
-		
-		internal bool ImageHitTest(Point p)
-		{
-			
-			bool status = false;
-			if ((!m_userDrawn) && (m_dayImage!=null) && (Month.EnableImageClick))
-			{				  
-				Region r = new Region(m_imageRect);
-				if (r.IsVisible(p))
-					status = true;
-				else
-					status = false;
-				r.Dispose();
-			}
+            switch (align)
+            {
+                
+                case mcItemAlign.LeftCenter:
+                {
+                    imageRect.X = m_rect.X + 2;
+                    imageRect.Y = m_rect.Top +((m_rect.Height/2) - (m_dayImage.Height/2));
+                    break;
+                }
+                case mcItemAlign.RightCenter:
+                {
+                    imageRect.X = m_rect.Right - 2 - m_dayImage.Width;
+                    imageRect.Y = m_rect.Top +((m_rect.Height/2) - (m_dayImage.Height/2));
+                    break;
+                }
+                case mcItemAlign.TopCenter:
+                {
+                    imageRect.X = m_rect.X +((m_rect.Width/2) - (m_dayImage.Width/2));
+                    imageRect.Y = m_rect.Y + 2;
+                    break;
+                }
+                case mcItemAlign.BottomCenter:
+                {
+                    imageRect.X = m_rect.X +((m_rect.Width/2) - (m_dayImage.Width/2));
+                    imageRect.Y = m_rect.Bottom -2 - m_dayImage.Height;
+                    break;
+                }
+                
+                case mcItemAlign.TopLeft:
+                {
+                    imageRect.X = m_rect.X + 2;
+                    imageRect.Y = m_rect.Y + 2;
+                    break;
+                }
+                case mcItemAlign.TopRight:
+                {
+                    imageRect.X = m_rect.Right - 2 - m_dayImage.Width;
+                    imageRect.Y = m_rect.Y + 2;
+                    break;
+                }
+                case mcItemAlign.Center:
+                {
+                    imageRect.X = m_rect.X +((m_rect.Width/2) - (m_dayImage.Width/2));
+                    imageRect.Y = m_rect.Top +((m_rect.Height/2) - (m_dayImage.Height/2));
+                    break;
+                }
+                case mcItemAlign.BottomLeft:
+                {
+                    imageRect.X = m_rect.X + 2;
+                    imageRect.Y = m_rect.Bottom -2 - m_dayImage.Height;
+                    break;
+                }
+                case mcItemAlign.BottomRight:
+                {
+                    imageRect.X = m_rect.Right - 2 - m_dayImage.Width;
+                    imageRect.Y = m_rect.Bottom -2 - m_dayImage.Height; 
+                    break;
+                }
+            }
+            
+            imageRect.Height = m_dayImage.Height;
+            imageRect.Width = m_dayImage.Width;
+            return imageRect;
+        }
+        
+        internal bool ImageHitTest(Point p)
+        {
+            
+            bool status = false;
+            if ((!m_userDrawn) && (m_dayImage!=null) && (Month.EnableImageClick))
+            {                 
+                Region r = new Region(m_imageRect);
+                if (r.IsVisible(p))
+                    status = true;
+                else
+                    status = false;
+                r.Dispose();
+            }
 
-			return status;
+            return status;
 
-		}
+        }
 
         internal bool TextHitTest(Point p)
         {
@@ -648,120 +648,120 @@ namespace Pabo.Calendar
         }
 
 
-		internal bool HitTest(Point p)
-		{
-						
-			if ( ImageHitTest(p) )
-				m_calendar.Cursor = Cursors.Hand;
-			else
-				m_calendar.Cursor =Cursors.Arrow; 
-			
+        internal bool HitTest(Point p)
+        {
+                        
+            if ( ImageHitTest(p) )
+                m_calendar.Cursor = Cursors.Hand;
+            else
+                m_calendar.Cursor =Cursors.Arrow; 
+            
            
 
-			if (m_region.IsVisible(p))
-				return true;
-			else
-				return false;
-		}
+            if (m_region.IsVisible(p))
+                return true;
+            else
+                return false;
+        }
 
-		#endregion
-		
-	}
+        #endregion
+        
+    }
 
-	#region DayEventArgs
-	
-	public class DayEventArgs : EventArgs
-	{
+    #region DayEventArgs
+    
+    public class DayEventArgs : EventArgs
+    {
         #region Class Data
 
         readonly string m_date;
-		
-		#endregion
+        
+        #endregion
 
-		#region Constructor
+        #region Constructor
 
-		/// <summary>
-		/// Initializes a new instance of the DayClickEventArgs class with default settings
-		/// </summary>
-		public DayEventArgs()
-		{
-			m_date = DateTime.Today.ToShortDateString();
-		}
+        /// <summary>
+        /// Initializes a new instance of the DayClickEventArgs class with default settings
+        /// </summary>
+        public DayEventArgs()
+        {
+            m_date = DateTime.Today.ToShortDateString();
+        }
 
-		public DayEventArgs(string date)
-		{
-			this.m_date = date;
-		}
+        public DayEventArgs(string date)
+        {
+            this.m_date = date;
+        }
 
-		#endregion
-
-
-		#region Properties
-
-		public string Date
-		{
-			get
-			{
-				return this.m_date; 
-			}
-		}
-
-		#endregion
-	}
+        #endregion
 
 
-	#endregion
+        #region Properties
 
-	#region DayClickEventArgs
-	
-	public class DayClickEventArgs : EventArgs
-	{
-		#region Class Data
-			
-		private readonly string m_date;
-		private readonly MouseButtons m_button;
+        public string Date
+        {
+            get
+            {
+                return this.m_date; 
+            }
+        }
+
+        #endregion
+    }
+
+
+    #endregion
+
+    #region DayClickEventArgs
+    
+    public class DayClickEventArgs : EventArgs
+    {
+        #region Class Data
+            
+        private readonly string m_date;
+        private readonly MouseButtons m_button;
         private readonly int m_dayX;
         private readonly int m_dayY;
         private readonly int m_x;
         private readonly int m_y;
         private readonly Rectangle m_dayRect;
 
-		#endregion
+        #endregion
 
-		#region Constructor
+        #region Constructor
 
-		/// <summary>
-		/// Initializes a new instance of the DayClickEventArgs class with default settings
-		/// </summary>
-		public DayClickEventArgs()
-		{
-			m_date = DateTime.Today.ToShortDateString();
-			m_button = MouseButtons.Left;
-		}
+        /// <summary>
+        /// Initializes a new instance of the DayClickEventArgs class with default settings
+        /// </summary>
+        public DayClickEventArgs()
+        {
+            m_date = DateTime.Today.ToShortDateString();
+            m_button = MouseButtons.Left;
+        }
 
-		public DayClickEventArgs(string date, MouseButtons button,int dayX,int dayY,int x,int y,Rectangle rect)
-		{
-			m_date =date;
-			m_button = button;
+        public DayClickEventArgs(string date, MouseButtons button,int dayX,int dayY,int x,int y,Rectangle rect)
+        {
+            m_date =date;
+            m_button = button;
             m_dayX = dayX;
             m_dayY = dayY;
             m_x = x;
             m_y = y;
             m_dayRect = rect;
-		}
+        }
 
-		#endregion
+        #endregion
 
 
-		#region Properties
+        #region Properties
 
-		public string Date
-		{
-			get
-			{
-				return this.m_date;
-			}
-		}
+        public string Date
+        {
+            get
+            {
+                return this.m_date;
+            }
+        }
 
         public Rectangle DayRectangle
         {
@@ -771,13 +771,13 @@ namespace Pabo.Calendar
             }
         }
 
-		public MouseButtons Button
-		{
-			get
-			{
-				return this.m_button; 
-			}
-		}
+        public MouseButtons Button
+        {
+            get
+            {
+                return this.m_button; 
+            }
+        }
 
         public int DayX
         {
@@ -813,111 +813,111 @@ namespace Pabo.Calendar
 
 
 
-		#endregion
-	}
+        #endregion
+    }
 
 
-	#endregion
+    #endregion
 
-	#region DaySelectedEventArgs
-	
-	public class DaySelectedEventArgs : EventArgs
-	{
-		#region Class Data
-		
-		private readonly string[] m_days;
-		
-		#endregion
+    #region DaySelectedEventArgs
+    
+    public class DaySelectedEventArgs : EventArgs
+    {
+        #region Class Data
+        
+        private readonly string[] m_days;
+        
+        #endregion
 
-		#region Constructor
-	
+        #region Constructor
+    
 
-		public DaySelectedEventArgs(string[] days)
-		{
-			this.m_days = days;
-		}
+        public DaySelectedEventArgs(string[] days)
+        {
+            this.m_days = days;
+        }
 
-		#endregion
-
-
-		#region Properties
-
-		public string[] Days
-		{
-			get
-			{
-				return this.m_days; 
-			}
-		}
-
-		#endregion
-	}
+        #endregion
 
 
-	#endregion
+        #region Properties
 
-	#region DayDragDropEventArgs
-	
-	public class DayDragDropEventArgs : EventArgs
-	{
+        public string[] Days
+        {
+            get
+            {
+                return this.m_days; 
+            }
+        }
 
-		#region Class Data
-			
-		private readonly string m_date;
-		private readonly int m_keyState;
-		private readonly IDataObject m_data;
-
-		#endregion
-
-		#region Constructor
-
-		/// <summary>
-		/// Initializes a new instance of the DayClickEventArgs class with default settings
-		/// </summary>
-		public DayDragDropEventArgs(IDataObject data, int keystate , string date)
-		{
-			m_date = date;
-			m_data = data;
-			m_keyState = keystate;	
-		}
-		
-		#endregion
+        #endregion
+    }
 
 
-		#region Properties
+    #endregion
 
-		public string Date
-		{
-			get
-			{
-				return this.m_date;
-			}
-		}
+    #region DayDragDropEventArgs
+    
+    public class DayDragDropEventArgs : EventArgs
+    {
 
-		public int KeyState
-		{
-			get
-			{
-				return this.m_keyState;
-			}
-		}
+        #region Class Data
+            
+        private readonly string m_date;
+        private readonly int m_keyState;
+        private readonly IDataObject m_data;
 
-		public IDataObject Data
-		{
-			get
-			{
-				return this.m_data;
-			}
-		}
+        #endregion
 
+        #region Constructor
 
-		#endregion
-
-
-	}
+        /// <summary>
+        /// Initializes a new instance of the DayClickEventArgs class with default settings
+        /// </summary>
+        public DayDragDropEventArgs(IDataObject data, int keystate , string date)
+        {
+            m_date = date;
+            m_data = data;
+            m_keyState = keystate;  
+        }
+        
+        #endregion
 
 
-	#endregion
+        #region Properties
+
+        public string Date
+        {
+            get
+            {
+                return this.m_date;
+            }
+        }
+
+        public int KeyState
+        {
+            get
+            {
+                return this.m_keyState;
+            }
+        }
+
+        public IDataObject Data
+        {
+            get
+            {
+                return this.m_data;
+            }
+        }
+
+
+        #endregion
+
+
+    }
+
+
+    #endregion
 
     #region DayStateChangedEventArgs
 

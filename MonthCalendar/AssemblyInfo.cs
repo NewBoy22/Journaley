@@ -17,7 +17,7 @@ using System;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
-[assembly: CLSCompliant(true)]		
+[assembly: CLSCompliant(true)]      
 
 //
 // Version information for an assembly consists of the following four values:
