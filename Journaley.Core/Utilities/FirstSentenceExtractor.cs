@@ -84,7 +84,7 @@
         {
             if (line == null)
             {
-                throw new ArgumentNullException("line");
+                throw new ArgumentNullException(nameof(line));
             }
 
             if (startIndex >= line.Length)

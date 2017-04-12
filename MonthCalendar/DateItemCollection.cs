@@ -63,7 +63,7 @@ namespace Pabo.Calendar
         public DateItemCollection(MonthCalendar owner) : base()
         {
             if (owner == null)
-                throw new ArgumentNullException("owner");
+                throw new ArgumentNullException(nameof(owner));
 
             this.owner = owner;
         }
@@ -86,7 +86,7 @@ namespace Pabo.Calendar
         public void Add(DateItem value)
         {
 	        if (value == null)
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
 
             if ((MonthCalendar)value.Calendar==null)
                 value.Calendar = this.owner;
@@ -101,7 +101,7 @@ namespace Pabo.Calendar
         public void AddRange(DateItem[] dateItems)
         {
             if (dateItems == null)
-                throw new ArgumentNullException("dateItems");
+                throw new ArgumentNullException(nameof(dateItems));
 
             for (int i=0; i<dateItems.Length; i++)
             {
@@ -113,7 +113,7 @@ namespace Pabo.Calendar
         public void Add(DateItemCollection dateItems)
         {
             if (dateItems == null)
-                throw new ArgumentNullException("dateItems");
+                throw new ArgumentNullException(nameof(dateItems));
 
             for (int i=0; i<dateItems.Count; i++)
             {
@@ -132,7 +132,7 @@ namespace Pabo.Calendar
         public bool Contains(DateItem dateItem)
         {
             if (dateItem == null)
-                throw new ArgumentNullException("dateItem");
+                throw new ArgumentNullException(nameof(dateItem));
 
             return (this.IndexOf(dateItem) != -1);
         }
@@ -224,7 +224,7 @@ namespace Pabo.Calendar
         public int IndexOf(DateItem dateItem)
         {
             if (dateItem == null)
-                throw new ArgumentNullException("dateItem");
+                throw new ArgumentNullException(nameof(dateItem));
 
             for (int i=0; i<this.Count; i++)
             {
@@ -240,7 +240,7 @@ namespace Pabo.Calendar
         public void Remove(DateItem value)
         {
             if (value == null)
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
 
             this.List.Remove(value);
 
@@ -254,7 +254,7 @@ namespace Pabo.Calendar
         public void Move(DateItem value, int index)
         {
             if (value == null)
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
 
             if (index < 0)
             {

@@ -443,7 +443,7 @@
         {
             if (tag == null)
             {
-                throw new ArgumentNullException("tag");
+                throw new ArgumentNullException(nameof(tag));
             }
 
             if (!this.tags.Contains(tag))
@@ -466,7 +466,7 @@
         {
             if (tag == null)
             {
-                throw new ArgumentNullException("tag");
+                throw new ArgumentNullException(nameof(tag));
             }
 
             if (this.tags.Contains(tag))

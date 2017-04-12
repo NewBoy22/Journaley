@@ -137,7 +137,7 @@ namespace Pabo.Calendar
                 Invalidate();
                 return true;
             }
-            else throw new System.ArgumentNullException("imageList");
+            else throw new System.ArgumentNullException(nameof(imageList));
 
         }
 

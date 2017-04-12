@@ -50,7 +50,7 @@ namespace Pabo.Calendar
         public SelectedDatesCollection(MonthCalendar owner) : base()
         {
             if (owner == null)
-                throw new ArgumentNullException("owner");
+                throw new ArgumentNullException(nameof(owner));
 
             this.owner = owner;
         }
@@ -59,7 +59,7 @@ namespace Pabo.Calendar
         {
 
             if (owner == null)
-                throw new ArgumentNullException("owner");
+                throw new ArgumentNullException(nameof(owner));
 
             this.owner = owner;
 
@@ -83,7 +83,7 @@ namespace Pabo.Calendar
         public void AddRange(DateTime[] dates)
         {
             if (dates == null)
-                throw new ArgumentNullException("dates");
+                throw new ArgumentNullException(nameof(dates));
 
             for (int i=0; i<dates.Length; i++)
             {
@@ -94,7 +94,7 @@ namespace Pabo.Calendar
         public void Add(SelectedDatesCollection dates)
         {
             if (dates == null)
-                throw new ArgumentNullException("dates");
+                throw new ArgumentNullException(nameof(dates));
 
             for (int i=0; i<dates.Count; i++)
             {
