@@ -4,6 +4,7 @@
 StyleCop.Cache
 
 # syntax: regexp
+.vs/*
 **/bin/*
 **/obj/*
 **/TestResults/*
