@@ -41,9 +41,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.panelPhoto.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // panelTitlebar
-            // 
+            //
             this.panelTitlebar.Controls.Add(this.labelFormCaption);
             this.panelTitlebar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelTitlebar_MouseMove);
             this.panelTitlebar.Controls.SetChildIndex(this.pictureBoxFormIcon, 0);
@@ -51,19 +51,19 @@
             this.panelTitlebar.Controls.SetChildIndex(this.imageButtonFormClose, 0);
             this.panelTitlebar.Controls.SetChildIndex(this.imageButtonFormMaximize, 0);
             this.panelTitlebar.Controls.SetChildIndex(this.imageButtonFormMinimize, 0);
-            // 
+            //
             // imageButtonFormMinimize
-            // 
+            //
             this.imageButtonFormMinimize.Visible = false;
-            // 
+            //
             // panelContent
-            // 
+            //
             this.panelContent.Controls.Add(this.panelPhoto);
             this.panelContent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
             this.panelContent.Padding = new System.Windows.Forms.Padding(1);
-            // 
+            //
             // pictureBox
-            // 
+            //
             this.pictureBox.BackgroundImage = global::Journaley.Properties.Resources.picture_pane_background_tile;
             this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
@@ -77,10 +77,10 @@
             this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseDown);
             this.pictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseMove);
             this.pictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseUp);
-            // 
+            //
             // labelFormCaption
-            // 
-            this.labelFormCaption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.labelFormCaption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelFormCaption.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.labelFormCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
@@ -90,9 +90,9 @@
             this.labelFormCaption.TabIndex = 5;
             this.labelFormCaption.Text = "Image Viewer";
             this.labelFormCaption.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // panelPhoto
-            // 
+            //
             this.panelPhoto.AutoScroll = true;
             this.panelPhoto.Controls.Add(this.pictureBox);
             this.panelPhoto.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -100,9 +100,9 @@
             this.panelPhoto.Name = "panelPhoto";
             this.panelPhoto.Size = new System.Drawing.Size(282, 239);
             this.panelPhoto.TabIndex = 1;
-            // 
+            //
             // PhotoDisplayForm
-            // 
+            //
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

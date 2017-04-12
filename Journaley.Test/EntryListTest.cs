@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 namespace Journaley.Test
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for EntryListTest and is intended
     ///to contain all EntryListTest Unit Tests
@@ -35,7 +35,7 @@ namespace Journaley.Test
         }
 
         #region Additional test attributes
-        // 
+        //
         //You can use the following additional attributes as you write your tests:
         //
         //Use ClassInitialize to run code before running the first test in the class

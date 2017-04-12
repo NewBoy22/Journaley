@@ -36,9 +36,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlDark;
@@ -47,10 +47,10 @@
             this.label1.Size = new System.Drawing.Size(119, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "(Click to Add/Remove)";
-            // 
+            //
             // listBoxAssignedTags
-            // 
-            this.listBoxAssignedTags.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.listBoxAssignedTags.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxAssignedTags.BackColor = System.Drawing.Color.WhiteSmoke;
             this.listBoxAssignedTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -63,10 +63,10 @@
             this.listBoxAssignedTags.Size = new System.Drawing.Size(219, 68);
             this.listBoxAssignedTags.TabIndex = 1;
             this.listBoxAssignedTags.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListBoxAssignedTags_MouseClick);
-            // 
+            //
             // listBoxOtherTags
-            // 
-            this.listBoxOtherTags.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.listBoxOtherTags.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxOtherTags.BackColor = System.Drawing.Color.WhiteSmoke;
             this.listBoxOtherTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -79,10 +79,10 @@
             this.listBoxOtherTags.Size = new System.Drawing.Size(219, 119);
             this.listBoxOtherTags.TabIndex = 5;
             this.listBoxOtherTags.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListBoxOtherTags_MouseClick);
-            // 
+            //
             // textTagInput
-            // 
-            this.textTagInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.textTagInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textTagInput.BackColor = System.Drawing.Color.White;
             this.textTagInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -94,9 +94,9 @@
             this.textTagInput.TabIndex = 2;
             this.textTagInput.TextChanged += new System.EventHandler(this.TextTagInput_TextChanged);
             this.textTagInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextTagInput_KeyPress);
-            // 
+            //
             // buttonAdd
-            // 
+            //
             this.buttonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAdd.BackColor = System.Drawing.Color.Transparent;
             this.buttonAdd.Enabled = false;
@@ -109,9 +109,9 @@
             this.buttonAdd.Text = "New Tag";
             this.buttonAdd.UseVisualStyleBackColor = false;
             this.buttonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
-            // 
+            //
             // label3
-            // 
+            //
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLight;
@@ -120,9 +120,9 @@
             this.label3.Size = new System.Drawing.Size(86, 20);
             this.label3.TabIndex = 6;
             this.label3.Text = "Entry\'s Tags";
-            // 
+            //
             // label4
-            // 
+            //
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLight;
@@ -131,9 +131,9 @@
             this.label4.Size = new System.Drawing.Size(106, 20);
             this.label4.TabIndex = 8;
             this.label4.Text = "Available Tags";
-            // 
+            //
             // TagEditForm
-            // 
+            //
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(46)))), ((int)(((byte)(60)))));
             this.ClientSize = new System.Drawing.Size(223, 319);

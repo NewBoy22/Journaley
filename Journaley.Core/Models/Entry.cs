@@ -134,7 +134,7 @@
         /// <summary>
         /// Occurs when the attached photo is changed.
         /// </summary>
-        public event PhotoChangedHandler PhotoChanged; 
+        public event PhotoChangedHandler PhotoChanged;
 
         /// <summary>
         /// Gets or sets the UTC date time.
@@ -704,7 +704,7 @@
         /// Returns a hash code for this instance.
         /// </summary>
         /// <returns>
-        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
         /// </returns>
         public override int GetHashCode()
         {
