@@ -26,7 +26,7 @@
         /// <value>
         /// The password verifier.
         /// </value>
-        private IPasswordVerifier PasswordVerifier { get; set; }
+        private IPasswordVerifier PasswordVerifier { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether [wrong password].

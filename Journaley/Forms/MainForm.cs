@@ -325,7 +325,7 @@
         /// <value>
         /// The entry list.
         /// </value>
-        private EntryList EntryList { get; set; }
+        private EntryList EntryList { get; }
 
         /// <summary>
         /// Gets the entries.
@@ -2940,7 +2940,7 @@
             /// <value>
             /// The year.
             /// </value>
-            public int Year { get; set; }
+            public int Year { get; }
 
             /// <summary>
             /// Gets or sets the count.
@@ -2948,7 +2948,7 @@
             /// <value>
             /// The count.
             /// </value>
-            public int Count { get; set; }
+            public int Count { get; }
 
             /// <summary>
             /// Returns a <see cref="System.String" /> that represents this instance.
@@ -2984,7 +2984,7 @@
             /// <value>
             /// The tag.
             /// </value>
-            public string Tag { get; set; }
+            public string Tag { get; }
 
             /// <summary>
             /// Gets or sets the count.
@@ -2992,7 +2992,7 @@
             /// <value>
             /// The count.
             /// </value>
-            public int Count { get; set; }
+            public int Count { get; }
 
             /// <summary>
             /// Returns a <see cref="System.String" /> that represents this instance.
