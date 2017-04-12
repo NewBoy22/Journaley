@@ -66,12 +66,12 @@
         /// <summary>
         /// Internal field to indicate whether to suppress the entry update process.
         /// </summary>
-        private bool suppressEntryUpdate = false;
+        private bool suppressEntryUpdate;
 
         /// <summary>
         /// Indicates whether to add new entry on form load
         /// </summary>
-        private readonly bool addNewEntryOnLoad = false;
+        private readonly bool addNewEntryOnLoad;
 
         /// <summary>
         /// The Noto Sans font family
@@ -96,7 +96,7 @@
         /// <summary>
         /// Backing field for UpdateAvailable property.
         /// </summary>
-        private bool updateAvailable = false;
+        private bool updateAvailable;
 
         /// <summary>
         /// The update process count

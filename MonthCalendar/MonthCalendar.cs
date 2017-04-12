@@ -78,7 +78,7 @@ namespace Pabo.Calendar
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.Container components = null;
+        private System.ComponentModel.Container components;
 
         private Color m_borderColor;
         private bool m_ctrlKey;
@@ -113,11 +113,11 @@ namespace Pabo.Calendar
 
         internal DateTimeFormatInfo m_dateTimeFormat = new  DateTimeFormatInfo();
 
-        private Rectangle m_weekdaysRect = new Rectangle();
-        private Rectangle m_monthRect = new Rectangle();
-        private Rectangle m_footerRect = new Rectangle();
-        private Rectangle m_headerRect = new Rectangle();
-        private Rectangle m_weeknumbersRect = new Rectangle();
+        private Rectangle m_weekdaysRect;
+        private Rectangle m_monthRect;
+        private Rectangle m_footerRect;
+        private Rectangle m_headerRect;
+        private Rectangle m_weeknumbersRect;
         private readonly DateItemCollection m_dateItemCollection;
         private readonly SelectedDatesCollection m_selectedDates;
 
@@ -3776,7 +3776,7 @@ namespace Pabo.Calendar
     {
         private readonly MonthCalendar calendar;
 
-        private readonly DesignerActionUIService designerActionUISvc = null;
+        private readonly DesignerActionUIService designerActionUISvc;
 
         //The constructor associates the control
         //with the smart tag list.
