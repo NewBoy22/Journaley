@@ -64,7 +64,7 @@ namespace Pabo.Calendar
 
         #region Constructor
 
-	    #endregion
+        #endregion
 
         #region IDisposable Members
 
@@ -115,7 +115,7 @@ namespace Pabo.Calendar
 
         public void RemoveKeyboardHook()
         {
-	        try
+            try
             {
 
                 if(m_keyboardHook != 0)

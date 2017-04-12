@@ -251,7 +251,7 @@
             }
 
             // Second, see if the entry is parsable.
-	        try
+            try
             {
                 Entry.LoadFromFile(e.FullPath, null, true);
             }
@@ -299,7 +299,7 @@
             }
 
             // Second, see if the entry is parsable.
-	        try
+            try
             {
                 Entry.LoadFromFile(e.FullPath, null, true);
             }

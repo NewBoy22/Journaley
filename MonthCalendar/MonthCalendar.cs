@@ -1456,7 +1456,7 @@ namespace Pabo.Calendar
         [Browsable(false)]
         public SelectedDatesCollection SelectedDates => UpdateSelectedCollection();
 
-	    [Browsable(true)]
+        [Browsable(true)]
         [Category("Appearance")]
         [Description("The color used to mark todays date.")]
         [DefaultValue(typeof(Color),"Red")]
@@ -1985,7 +1985,7 @@ namespace Pabo.Calendar
             // Check if message is KEY_DOWN
             if (msg.Msg == NativeMethods.WM_KEYDOWN)
             {
-	            Keys keyCode = ((Keys)(int)msg.WParam);
+                Keys keyCode = ((Keys)(int)msg.WParam);
                 // Make sure we handle certain keys
                 switch (keyCode)
                 {
@@ -2029,7 +2029,7 @@ namespace Pabo.Calendar
             base.OnLostFocus(e);
         }
 
-	    protected override void OnEnter(EventArgs e)
+        protected override void OnEnter(EventArgs e)
         {
             this.Focus();
             if ((m_month.DayInFocus==-1) && (m_activeRegion!=mcCalendarRegion.Month))
@@ -2065,7 +2065,7 @@ namespace Pabo.Calendar
             }
         }
 
-	    protected override void OnDragOver(DragEventArgs drgevent)
+        protected override void OnDragOver(DragEventArgs drgevent)
         {
             base.OnDragOver (drgevent);
             if ((drgevent.AllowedEffect & DragDropEffects.Move) == DragDropEffects.Move)
@@ -2076,7 +2076,7 @@ namespace Pabo.Calendar
         }
 
 
-	    protected override void OnSystemColorsChanged(EventArgs e)
+        protected override void OnSystemColorsChanged(EventArgs e)
         {
             base.OnSystemColorsChanged (e);
             if (Theme)
@@ -3705,7 +3705,7 @@ namespace Pabo.Calendar
 
         private DesignerActionListCollection actionLists;
 
-	    [System.Obsolete]
+        [System.Obsolete]
         public override void OnSetComponentDefaults()
         {
             base.OnSetComponentDefaults();

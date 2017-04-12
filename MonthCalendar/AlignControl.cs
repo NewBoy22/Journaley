@@ -151,7 +151,7 @@ namespace Pabo.Calendar
 
         #region overrides
 
-	    protected override void OnPaintBackground(PaintEventArgs e)
+        protected override void OnPaintBackground(PaintEventArgs e)
         {
             base.OnPaintBackground (e);
 

@@ -56,7 +56,7 @@ namespace Pabo.Calendar
 
         #region overrides
 
-	    public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
+        public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
         {
             m_context = context;
             //MonthCalendar originalControl = (MonthCalendar) context.Instance;

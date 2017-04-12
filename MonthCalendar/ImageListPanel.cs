@@ -60,7 +60,7 @@ namespace Pabo.Calendar
 
         #region Constructor
 
-	    #endregion
+        #endregion
 
         #region Public Methods
         public bool Init(ImageList imageList, int horizontal, int vertical, int columns, int defaultImage)
@@ -240,7 +240,7 @@ namespace Pabo.Calendar
                         data.SetData(DataFormats.Bitmap,_imageList.Images[nImage]);
                         try
                         {
-	                        DoDragDrop(data, DragDropEffects.Copy | DragDropEffects.Move);
+                            DoDragDrop(data, DragDropEffects.Copy | DragDropEffects.Move);
                         }
                         catch
                         {

@@ -218,7 +218,7 @@ namespace Pabo.Calendar
 
         #region Methods
 
-	    private StringFormat GetStringAlignment(mcItemAlign align)
+        private StringFormat GetStringAlignment(mcItemAlign align)
         {
             StringFormat sf = new StringFormat();
 
