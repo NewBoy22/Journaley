@@ -93,7 +93,7 @@
 
             DateTime basis = now.AddDays(-diff).Date;
 
-            return this.Entries.Values.Where(x => basis <= x.LocalTime.Date && x.LocalTime <= now).Count();
+            return this.Entries.Values.Count(x => basis <= x.LocalTime.Date && x.LocalTime <= now);
         }
 
         /// <summary>
@@ -105,7 +105,7 @@
         {
             Debug.Assert(now.Kind == DateTimeKind.Local, "\"now\" parameter must be of DateTimeKind.Local");
 
-            return this.Entries.Values.Where(x => x.LocalTime.Date == now.Date).Count();
+            return this.Entries.Values.Count(x => x.LocalTime.Date == now.Date);
         }
     }
 }
