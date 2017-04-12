@@ -60,7 +60,7 @@
         /// <returns>The number of all entries</returns>
         public int GetAllEntriesCount()
         {
-            return this.Entries.Count();
+            return this.Entries.Count;
         }
 
         /// <summary>
