@@ -151,7 +151,6 @@
         /// Initializes a new instance of the <see cref="EntryListBox"/> class.
         /// </summary>
         public EntryListBox()
-            : base()
         {
             this.ScrollAlwaysVisible = true;
 
@@ -252,8 +251,6 @@
         /// <param name="e">A <see cref="T:System.Windows.Forms.DrawItemEventArgs" /> that contains the event data.</param>
         protected override void OnDrawItem(DrawItemEventArgs e)
         {
-            Rectangle bounds = new Rectangle(0, 0, e.Bounds.Width, e.Bounds.Height);
-
             DrawItemEventArgs args = new DrawItemEventArgs(
                 e.Graphics, e.Font, e.Bounds, e.Index, e.State, e.ForeColor, e.BackColor);
 

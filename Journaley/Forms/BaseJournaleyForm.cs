@@ -24,7 +24,7 @@
         /// <summary>
         /// Indicates whether the title bar is being dragged.
         /// </summary>
-        private bool draggingTitleBar = false;
+        private bool draggingTitleBar;
 
         /// <summary>
         /// The dragging offset

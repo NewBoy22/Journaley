@@ -75,7 +75,7 @@
         /// <summary>
         /// Enumeration for indicating whether the photo is resized to fit or not.
         /// </summary>
-        private enum PhotoState : int
+        private enum PhotoState
         {
             /// <summary>
             /// The image fits on the screen without resizing.

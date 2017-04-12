@@ -218,22 +218,7 @@ namespace Pabo.Calendar
 
         #region Methods
 
-        private Image GetImage(int index)
-        {
-            // Check that an ImageList exists and that index is valid
-            if (m_month.Calendar.ImageList!=null)
-            {
-                if ((index>=0) && (index <m_month.Calendar.ImageList.Images.Count))
-                {
-                    return m_month.Calendar.ImageList.Images[index];
-                }
-                else return null;
-            }
-            else return null;
-
-        }
-
-        private StringFormat GetStringAlignment(mcItemAlign align)
+	    private StringFormat GetStringAlignment(mcItemAlign align)
         {
             StringFormat sf = new StringFormat();
 

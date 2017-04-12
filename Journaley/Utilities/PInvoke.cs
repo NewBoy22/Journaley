@@ -83,7 +83,7 @@
             CAPTUREBLT = 0x40000000
         }
 
-        public enum WindowsMessages : int
+        public enum WindowsMessages
         {
             WM_GETMINMAXINFO = 0x0024,
             WM_NCCALCSIZE = 0x0083,
@@ -97,7 +97,7 @@
             WM_SYSCOMMAND = 0x0112,
         }
 
-        public enum HitTestValues : int
+        public enum HitTestValues
         {
             HTERROR = -2,
             HTTRANSPARENT = -1,
@@ -125,7 +125,7 @@
             HTHELP = 21
         }
 
-        public enum ScrollBarCommands : int
+        public enum ScrollBarCommands
         {
             SB_LINEUP = 0,
             SB_LINELEFT = 0,

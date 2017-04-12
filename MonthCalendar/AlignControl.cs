@@ -53,17 +53,17 @@ namespace Pabo.Calendar
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.Container components = null;
+        private System.ComponentModel.Container components;
 
-        Rectangle m_topLeft = new Rectangle();
-        Rectangle m_topRight = new Rectangle();
-        Rectangle m_center = new Rectangle();
-        Rectangle m_bottomLeft = new Rectangle();
-        Rectangle m_bottomRight = new Rectangle();
-        Rectangle m_leftCenter = new Rectangle();
-        Rectangle m_rightCenter = new Rectangle();
-        Rectangle m_topCenter = new Rectangle();
-        Rectangle m_bottomCenter = new Rectangle();
+        Rectangle m_topLeft;
+        Rectangle m_topRight;
+        Rectangle m_center;
+        Rectangle m_bottomLeft;
+        Rectangle m_bottomRight;
+        Rectangle m_leftCenter;
+        Rectangle m_rightCenter;
+        Rectangle m_topCenter;
+        Rectangle m_bottomCenter;
 
         Region m_topLeftRgn;
         Region m_topRightRgn;
@@ -151,13 +151,7 @@ namespace Pabo.Calendar
 
         #region overrides
 
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint (e);
-        }
-
-
-        protected override void OnPaintBackground(PaintEventArgs e)
+	    protected override void OnPaintBackground(PaintEventArgs e)
         {
             base.OnPaintBackground (e);
 

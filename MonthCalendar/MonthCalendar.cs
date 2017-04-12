@@ -78,7 +78,7 @@ namespace Pabo.Calendar
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.Container components = null;
+        private System.ComponentModel.Container components;
 
         private Color m_borderColor;
         private bool m_ctrlKey;
@@ -113,11 +113,11 @@ namespace Pabo.Calendar
 
         internal DateTimeFormatInfo m_dateTimeFormat = new  DateTimeFormatInfo();
 
-        private Rectangle m_weekdaysRect = new Rectangle();
-        private Rectangle m_monthRect = new Rectangle();
-        private Rectangle m_footerRect = new Rectangle();
-        private Rectangle m_headerRect = new Rectangle();
-        private Rectangle m_weeknumbersRect = new Rectangle();
+        private Rectangle m_weekdaysRect;
+        private Rectangle m_monthRect;
+        private Rectangle m_footerRect;
+        private Rectangle m_headerRect;
+        private Rectangle m_weeknumbersRect;
         private readonly DateItemCollection m_dateItemCollection;
         private readonly SelectedDatesCollection m_selectedDates;
 
@@ -1454,16 +1454,9 @@ namespace Pabo.Calendar
         public DateItemCollection Dates => this.m_dateItemCollection;
 
         [Browsable(false)]
-        public SelectedDatesCollection SelectedDates
-        {
-            get
-            {
-                SelectedDatesCollection dc = new SelectedDatesCollection(this);
-                return UpdateSelectedCollection();
-            }
-        }
+        public SelectedDatesCollection SelectedDates => UpdateSelectedCollection();
 
-        [Browsable(true)]
+	    [Browsable(true)]
         [Category("Appearance")]
         [Description("The color used to mark todays date.")]
         [DefaultValue(typeof(Color),"Red")]
@@ -1992,8 +1985,7 @@ namespace Pabo.Calendar
             // Check if message is KEY_DOWN
             if (msg.Msg == NativeMethods.WM_KEYDOWN)
             {
-                Keys keyData = ((Keys)(int)msg.WParam) | ModifierKeys;
-                Keys keyCode = ((Keys)(int)msg.WParam);
+	            Keys keyCode = ((Keys)(int)msg.WParam);
                 // Make sure we handle certain keys
                 switch (keyCode)
                 {
@@ -2037,12 +2029,7 @@ namespace Pabo.Calendar
             base.OnLostFocus(e);
         }
 
-        protected override void OnGotFocus(EventArgs e)
-        {
-            base.OnGotFocus(e);
-        }
-
-        protected override void OnEnter(EventArgs e)
+	    protected override void OnEnter(EventArgs e)
         {
             this.Focus();
             if ((m_month.DayInFocus==-1) && (m_activeRegion!=mcCalendarRegion.Month))
@@ -2078,12 +2065,7 @@ namespace Pabo.Calendar
             }
         }
 
-        protected override void OnDragEnter(DragEventArgs drgevent)
-        {
-            base.OnDragEnter (drgevent);
-        }
-
-        protected override void OnDragOver(DragEventArgs drgevent)
+	    protected override void OnDragOver(DragEventArgs drgevent)
         {
             base.OnDragOver (drgevent);
             if ((drgevent.AllowedEffect & DragDropEffects.Move) == DragDropEffects.Move)
@@ -2093,13 +2075,8 @@ namespace Pabo.Calendar
             }
         }
 
-        protected override void OnDragLeave(EventArgs e)
-        {
-            base.OnDragLeave (e);
-        }
 
-
-        protected override void OnSystemColorsChanged(EventArgs e)
+	    protected override void OnSystemColorsChanged(EventArgs e)
         {
             base.OnSystemColorsChanged (e);
             if (Theme)
@@ -3728,12 +3705,7 @@ namespace Pabo.Calendar
 
         private DesignerActionListCollection actionLists;
 
-        public MonthCalendarDesigner()
-        {
-
-        }
-
-        [System.Obsolete]
+	    [System.Obsolete]
         public override void OnSetComponentDefaults()
         {
             base.OnSetComponentDefaults();
@@ -3784,7 +3756,7 @@ namespace Pabo.Calendar
     {
         private readonly MonthCalendar calendar;
 
-        private readonly DesignerActionUIService designerActionUISvc = null;
+        private readonly DesignerActionUIService designerActionUISvc;
 
         //The constructor associates the control
         //with the smart tag list.

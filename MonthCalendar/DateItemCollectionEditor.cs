@@ -56,13 +56,7 @@ namespace Pabo.Calendar
 
         #region overrides
 
-        protected override void DestroyInstance(object instance)
-        {
-            base.DestroyInstance (instance);
-
-        }
-
-        public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
+	    public override object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)
         {
             m_context = context;
             //MonthCalendar originalControl = (MonthCalendar) context.Instance;

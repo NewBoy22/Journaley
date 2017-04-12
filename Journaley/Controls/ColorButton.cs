@@ -24,27 +24,27 @@
         /// <summary>
         /// Indicates whether this button is the default button or not.
         /// </summary>
-        private bool isDefault = false;
+        private bool isDefault;
 
         /// <summary>
         /// Indicates whether the mouse is currently over this button.
         /// </summary>
-        private bool hover = false;
+        private bool hover;
 
         /// <summary>
         /// Indicates whether this button is currently down.
         /// </summary>
-        private bool down = false;
+        private bool down;
 
         /// <summary>
         /// Indicates whether this button is currently selected.
         /// </summary>
-        private bool selected = false;
+        private bool selected;
 
         /// <summary>
         /// Indicates whether the space bar is held by the user.
         /// </summary>
-        private bool holdingSpace = false;
+        private bool holdingSpace;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ColorButton"/> class.

@@ -83,12 +83,12 @@
         /// <summary>
         /// Indicates whether the password section is currently in the password setting mode.
         /// </summary>
-        private bool settingPassword = false;
+        private bool settingPassword;
 
         /// <summary>
         /// Backing field for UpdateAvailable property.
         /// </summary>
-        private bool updateAvailable = false;
+        private bool updateAvailable;
 
         /// <summary>
         /// The current version
