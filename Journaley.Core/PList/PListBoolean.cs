@@ -26,7 +26,7 @@
         /// <value>
         ///   <c>true</c> if value; otherwise, <c>false</c>.
         /// </value>
-        public bool Value { get; private set; }
+        public bool Value { get; }
 
         /// <summary>
         /// Saves this PList data to XML.
