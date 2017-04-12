@@ -328,9 +328,8 @@ namespace Pabo.Calendar
             int weeknr=0;
             Brush weekBrush = new SolidBrush(this.BackColor1);
             Brush weekTextBrush = new SolidBrush(this.TextColor);
-            int dayHeight;
 
-            // Draw header
+	        // Draw header
             textFormat.Alignment = StringAlignment.Center;
             switch (m_align)
             {
@@ -362,7 +361,7 @@ namespace Pabo.Calendar
             else
                 m_calendar.DrawGradient(e, m_rect, m_backColor1, m_backColor2, m_gradientMode);
 
-            dayHeight = (int)m_calendar.Month.DayHeight;
+            var dayHeight = (int)m_calendar.Month.DayHeight;
             for (int i = 0;i<6;i++)
             {
                 weekRect.Y = m_rect.Y + dayHeight*i;
@@ -424,8 +423,7 @@ namespace Pabo.Calendar
         {
             DateTime week1;
             int IsoYear = dt.Year;
-            int IsoWeek;
-            if (dt >= new DateTime(IsoYear, 12, 29))
+	        if (dt >= new DateTime(IsoYear, 12, 29))
             {
                 week1 = GetIsoWeekOne(IsoYear + 1);
                 if (dt < week1)
@@ -446,7 +444,7 @@ namespace Pabo.Calendar
                 }
             }
 
-            IsoWeek = (IsoYear * 100) + ((dt - week1).Days / 7 + 1);
+            var IsoWeek = (IsoYear * 100) + ((dt - week1).Days / 7 + 1);
             return IsoWeek % 100;
         }
 

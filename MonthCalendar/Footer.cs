@@ -133,9 +133,8 @@ namespace Pabo.Calendar
             Brush bgBrush = new SolidBrush(BackColor1);
             textFormat.Alignment = StringAlignment.Near;
             textFormat.LineAlignment = StringAlignment.Center;
-            Rectangle txtRect;
 
-            if (m_gradientMode == mcGradientMode.None)
+	        if (m_gradientMode == mcGradientMode.None)
                 e.FillRectangle(bgBrush, m_rect);
             else
                 m_calendar.DrawGradient(e, m_rect, m_backColor1, m_backColor2, m_gradientMode);
@@ -161,7 +160,7 @@ namespace Pabo.Calendar
                 }
             }
 
-            txtRect = new Rectangle(m_rect.Left + 2,m_rect.Top,m_rect.Width - (2*2),m_rect.Height);
+            var txtRect = new Rectangle(m_rect.Left + 2,m_rect.Top,m_rect.Width - (2*2),m_rect.Height);
 
             if (m_showToday)
             {

@@ -314,9 +314,8 @@ namespace Pabo.Calendar
         {
             if (m_region.IsVisible(mouseLocation))
             {
-                int day;
-                day = (mouseLocation.X / (int)m_calendar.Month.DayWidth);
-                if (mode == mcClickMode.Single)
+	            var day = (mouseLocation.X / (int)m_calendar.Month.DayWidth);
+	            if (mode == mcClickMode.Single)
                 {
                     if (this.Click!=null)
                         this.Click(this,new WeekdayClickEventArgs(day,button));
@@ -326,7 +325,6 @@ namespace Pabo.Calendar
                     if (this.DoubleClick!=null)
                         this.DoubleClick(this,new WeekdayClickEventArgs(day,button));
                 }
-
             }
 
         }
@@ -371,10 +369,8 @@ namespace Pabo.Calendar
             Pen linePen = new Pen(m_borderColor,1);
             StringFormat textFormat = new StringFormat();
             Rectangle dayRect = new Rectangle();
-            int dayWidth;
-            string[] weekdays;
 
-            weekdays = GetWeekDays();
+	        var weekdays = GetWeekDays();
 
             Brush headerBrush = new SolidBrush(this.BackColor1);
             Brush headerTextBrush = new SolidBrush(this.TextColor);
@@ -408,7 +404,7 @@ namespace Pabo.Calendar
             else
                 m_calendar.DrawGradient(e, m_rect, m_backColor1, m_backColor2, m_gradientMode);
 
-            dayWidth = (int)m_calendar.Month.DayWidth;
+            var dayWidth = (int)m_calendar.Month.DayWidth;
 
             for (int i = 0;i<7;i++)
             {

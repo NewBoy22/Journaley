@@ -77,10 +77,8 @@ namespace Pabo.Calendar
 
         public void Add(DateTime value)
         {
-            int index;
-
-            index = this.IndexOf(value);
-            if (index == -1)
+	        var index = this.IndexOf(value);
+	        if (index == -1)
                 this.InnerList.Add(value);
             else
                 this.InnerList[index] = value;

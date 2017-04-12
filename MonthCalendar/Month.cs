@@ -540,8 +540,7 @@ namespace Pabo.Calendar
 
         private string[] DaysInSelection(int sel)
         {
-            string[] days;
-            days = new string[0];
+	        var days = new string[0];
             days.Initialize();
             for (int i = 0;i<42;i++)
             {
@@ -555,9 +554,8 @@ namespace Pabo.Calendar
 
         private bool IsDateEnabled(DateTime dt)
         {
-            DateItem[] info;
-            bool enabled = true;
-            info = m_calendar.GetDateInfo(dt);
+	        bool enabled = true;
+            var info = m_calendar.GetDateInfo(dt);
             for (int i = 0;i<info.Length;i++)
             {
                 if (info[i].Enabled == false)
@@ -582,11 +580,9 @@ namespace Pabo.Calendar
 
         internal void RemoveDay(int day, bool raiseEvent)
         {
-            string[] d;
-
-            // retrieve the days area
+	        // retrieve the days area
             int sel = m_days[day].SelectionArea;
-            d = DaysInSelection(sel);
+            var d = DaysInSelection(sel);
 
             SelectionArea area = (SelectionArea)m_selArea[sel];
 
@@ -740,11 +736,10 @@ namespace Pabo.Calendar
 
         internal void DeselectArea(int topLeft, int bottomRight)
         {
-            ArrayList days;
-            string[] dates = new string[0];
+	        string[] dates = new string[0];
             int index;
 
-            days = DaysInArea(topLeft,bottomRight);
+            var days = DaysInArea(topLeft,bottomRight);
 
             // if MultiExtended , press CTRL to enable extended select
             if (m_calendar.SelectionMode==mcSelectionMode.MultiExtended)
@@ -784,16 +779,13 @@ namespace Pabo.Calendar
 
         internal void SelectRange(int from, int to)
         {
-            string[] selBefore;
-            string[] selAfter;
-
-            // if MultiExtended , press CTRL to enable extended select
+	        // if MultiExtended , press CTRL to enable extended select
             if (m_calendar.SelectionMode==mcSelectionMode.MultiExtended)
                 m_calendar.ExtendedKey = true;
 
-            selBefore = DaysInSelection(NO_AREA);
+            var selBefore = DaysInSelection(NO_AREA);
             NewSelectedRange(from,to);
-            selAfter = DaysInSelection(NO_AREA);
+            var selAfter = DaysInSelection(NO_AREA);
 
             if (selAfter.Length>selBefore.Length)
             {
@@ -828,8 +820,7 @@ namespace Pabo.Calendar
         internal void MouseUp()
         {
             m_mouseDown = false;
-            string[] days;
-            days = DaysInSelection(NO_AREA);
+	        var days = DaysInSelection(NO_AREA);
             if ((days.Length>0) && (m_selected))
             {
                 Array.Sort(days);
@@ -1127,16 +1118,14 @@ namespace Pabo.Calendar
 
         private void MarkAreaAsSelected(int topLeft,int bottomRight, int area)
         {
-
-            ArrayList days;
-            int index = 0;
+	        int index = 0;
 
             SelectionArea a = (SelectionArea)m_selArea[area];
 
             a.Begin = topLeft;
             a.End = bottomRight;
 
-            days = DaysInArea(topLeft,bottomRight);
+            var days = DaysInArea(topLeft,bottomRight);
             for (int i = 0;i<days.Count;i++)
             {
                 index = (int)days[i];
@@ -1152,10 +1141,8 @@ namespace Pabo.Calendar
 
         internal void RemoveSelection(bool raiseEvent, int sel)
         {
-            string[] days;
-
-            // Get selected days
-            days = DaysInSelection(sel);
+	        // Get selected days
+            var days = DaysInSelection(sel);
 
             for (int i = 0;i<42;i++)
             {
@@ -1202,12 +1189,10 @@ namespace Pabo.Calendar
         internal void Setup()
         {
             int startPos=0;
-            DateTime currentDate;
-            string[] weekdays;
-            string lblDay;
+	        string lblDay;
             int i = 0;
 
-            weekdays = m_calendar.Weekdays.GetWeekDays();
+            var weekdays = m_calendar.Weekdays.GetWeekDays();
 
             if (m_calendar.Weekdays.Format == mcDayFormat.Short)
                 lblDay = m_calendar.m_dateTimeFormat.GetAbbreviatedDayName(m_selectedMonth.DayOfWeek);
@@ -1223,7 +1208,7 @@ namespace Pabo.Calendar
             startPos = i;
             if (startPos == 0) startPos = 7;
 
-            currentDate = m_selectedMonth;
+            var currentDate = m_selectedMonth;
             for (i = startPos;i<42;i++)
             {
                 m_days[i].Date = currentDate;
@@ -1385,16 +1370,15 @@ namespace Pabo.Calendar
         {
             int row = 0;
             int col = 0;
-            int index;
 
-            Rectangle dayRect = new Rectangle();
+	        Rectangle dayRect = new Rectangle();
 
             m_dayHeight = (float)((m_rect.Height - (m_padding.Vertical*7))  / 6);
             m_dayWidth =  (float)((m_rect.Width - (m_padding.Horizontal*8)) / 7);
 
             // setup rectangles for days
             row = 0;
-            index = 0;
+            var index = 0;
 
             for (int i = 0;i<6;i++)  // rows
             {

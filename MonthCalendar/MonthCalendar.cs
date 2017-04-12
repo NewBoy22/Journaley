@@ -1096,8 +1096,7 @@ namespace Pabo.Calendar
         internal int MonthNumber(string m)
         {
             int ret = -1;
-            string[] months;
-            months = AllowedMonths();
+	        var months = AllowedMonths();
 
             for (int i = 0;i<months.Length;i++)
             {
@@ -1114,8 +1113,7 @@ namespace Pabo.Calendar
         internal int DayNumber(string m)
         {
             int ret = 0;
-            string[] days;
-            days = DayNames();
+	        var days = DayNames();
 
             for (int i = 0;i<days.Length;i++)
             {
@@ -1131,9 +1129,8 @@ namespace Pabo.Calendar
 
         internal string MonthName(int m)
         {
-            string[] validNames;
-            string name = "";
-            validNames = AllowedMonths();
+	        string name = "";
+            var validNames = AllowedMonths();
             if ((m >=1) && (m <=12))
             {
                 name = validNames[m-1];
@@ -1148,9 +1145,7 @@ namespace Pabo.Calendar
 
             yearList.Initialize();
 
-            int year;
-
-            year = 0;
+	        var year = 0;
             for (int i = m_minDate.Year;i<=m_maxDate.Year;i++)
             {
                 yearList[year] = i.ToString();
@@ -1165,10 +1160,9 @@ namespace Pabo.Calendar
             int y = 0;
             int x = 0;
 
-            Graphics g;
-            SizeF weekSize = new SizeF();
+	        SizeF weekSize = new SizeF();
 
-            g = this.CreateGraphics();
+            var g = this.CreateGraphics();
             weekSize = g.MeasureString("99",m_weeknumber.Font);
 
             if (ShowHeader)
@@ -1352,13 +1346,11 @@ namespace Pabo.Calendar
         {
             get
             {
-                int startPos;
-                int endPos;
-                string ver = "Version=";
+	            string ver = "Version=";
                 Assembly myAssembly = System.Reflection.Assembly.GetExecutingAssembly();
-                startPos = myAssembly.FullName.IndexOf(ver);
+                var startPos = myAssembly.FullName.IndexOf(ver);
                 startPos+=ver.Length;
-                endPos = myAssembly.FullName.IndexOf(",",startPos+1);
+                var endPos = myAssembly.FullName.IndexOf(",",startPos+1);
                 return myAssembly.FullName.Substring(startPos,endPos-startPos);
             }
 
@@ -2498,8 +2490,7 @@ namespace Pabo.Calendar
 
         private void m_printDoc_PrintPage(object sender, PrintPageEventArgs e)
         {
-            Bitmap bmp;
-            bmp = Snapshot();
+	        var bmp = Snapshot();
             e.Graphics.DrawImage(bmp,1,1,bmp.Width,bmp.Height);
             e.HasMorePages = false;
             bmp.Dispose();
@@ -3187,10 +3178,8 @@ namespace Pabo.Calendar
         {
             if (destinationType == typeof(string))
             {
-
-                string[] validNames;
-                validNames = culture.DateTimeFormat.MonthNames;
-                if (value.GetType() == typeof(string))
+	            var validNames = culture.DateTimeFormat.MonthNames;
+	            if (value.GetType() == typeof(string))
                 {
                     for (int i = 0;i<validNames.Length;i++)
                     {
@@ -3334,9 +3323,8 @@ namespace Pabo.Calendar
                 if (ss.Length==2)
                 {
                     // Create new ActiveMonth
-                    ActiveMonth item;
-                    MonthCalendar m = (MonthCalendar)context.Instance;
-                    item = m.ActiveMonth;
+	                MonthCalendar m = (MonthCalendar)context.Instance;
+                    var item = m.ActiveMonth;
                     // Set properties
                     item.Month = item.Calendar.MonthNumber(ss[0]);
                     if (item.Calendar.IsYearValid(ss[1].Trim()))
@@ -4072,9 +4060,8 @@ namespace Pabo.Calendar
         // GetProperties enables undo and menu updates to work properly.
         private PropertyDescriptor GetPropertyByName(String propName)
         {
-            PropertyDescriptor prop;
-            prop = TypeDescriptor.GetProperties(calendar)[propName];
-            if (null == prop)
+	        var prop = TypeDescriptor.GetProperties(calendar)[propName];
+	        if (null == prop)
                 throw new ArgumentException(
                      "Matching MonthCalendar property not found!",
                       propName);

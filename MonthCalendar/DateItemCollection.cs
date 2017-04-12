@@ -89,14 +89,13 @@ namespace Pabo.Calendar
 
         public void Add(DateItem value)
         {
-            int index;
-            if (value == null)
+	        if (value == null)
                 throw new ArgumentNullException("value");
 
             if ((MonthCalendar)value.Calendar==null)
                 value.Calendar = this.owner;
 
-            index = this.IndexOf(value);
+            var index = this.IndexOf(value);
             if (index == -1)
                 this.List.Add(value);
             else
@@ -144,10 +143,8 @@ namespace Pabo.Calendar
 
         public int IndexOf(DateTime date)
         {
-            DateItem[] d;
-
-            d = DateInfo(date);
-            if (d.Length>0)
+	        var d = DateInfo(date);
+	        if (d.Length>0)
                 return d[0].Index;
             else
                 return -1;

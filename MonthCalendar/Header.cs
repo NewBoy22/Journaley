@@ -471,8 +471,7 @@ namespace Pabo.Calendar
             string currentMonth;
 
 
-            string month;
-            textFormat.LineAlignment = StringAlignment.Center;
+	        textFormat.LineAlignment = StringAlignment.Center;
             switch (m_align)
             {
                 case mcTextAlign.Center:
@@ -552,7 +551,7 @@ namespace Pabo.Calendar
 
             }
 
-            month = m_calendar.m_dateTimeFormat.GetMonthName(m_calendar.Month.SelectedMonth.Month)+" "+m_calendar.Month.SelectedMonth.Year.ToString();
+            var month = m_calendar.m_dateTimeFormat.GetMonthName(m_calendar.Month.SelectedMonth.Month)+" "+m_calendar.Month.SelectedMonth.Year.ToString();
             if (ShowMonth)
                 e.DrawString(month,Font,textBrush,m_textRect,textFormat);
             else

@@ -87,8 +87,7 @@ namespace Journaley.Test
             Settings expected = new Settings();
             expected.Password = "password";
             expected.DayOneFolderPath = ".";
-            Settings actual;
-            actual = Settings.GetSettingsFile(path);
+	        var actual = Settings.GetSettingsFile(path);
             Assert.AreEqual(expected, actual);
         }
 

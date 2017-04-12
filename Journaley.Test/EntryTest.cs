@@ -83,8 +83,7 @@ namespace Journaley.Test
                 false                                           // IsDirty
                 );
 
-            Entry actual;
-            actual = Entry.LoadFromFile(path);
+	        var actual = Entry.LoadFromFile(path);
             Assert.AreEqual(expected, actual);
             Assert.IsFalse(actual.IsDirty);
         }

@@ -464,10 +464,8 @@ namespace Pabo.Calendar
     {
         public override object ConvertTo(ITypeDescriptorContext context,System.Globalization.CultureInfo culture,object value,Type destinationType)
         {
-            DateItem d;
-            d = (DateItem)value;
-            return d.Date.ToShortDateString();
-
+	        var d = (DateItem)value;
+	        return d.Date.ToShortDateString();
         }
 
         public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
