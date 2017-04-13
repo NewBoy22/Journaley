@@ -26,7 +26,7 @@
                 break;
             }
 
-            if (result != null && result.Contains("Windows "))
+            if (result.Contains("Windows "))
             {
                 result = result.Replace("Windows ", "Windows/");
             }

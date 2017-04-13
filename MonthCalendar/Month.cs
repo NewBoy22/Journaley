@@ -968,7 +968,7 @@ namespace Pabo.Calendar
                 m_dayInFocus = i;
 
                 if (((m_calendar.SelectTrailingDates) || (SelectedMonth.Month == m_days[i].Date.Month)) &&
-                    ((m_calendar.MinDate <= m_days[i].Date) && (m_calendar.MaxDate >= m_days[i].Date)) && (dayEnabled) && (!args.Cancel))
+                    ((m_calendar.MinDate <= m_days[i].Date) && (m_calendar.MaxDate >= m_days[i].Date)) && (!args.Cancel))
                 {
 
                     if (m_newSelection)
