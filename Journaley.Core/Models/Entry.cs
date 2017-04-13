@@ -707,12 +707,12 @@
                 return false;
             }
 
-            if (this.Starred != right.Starred)
+            if (right != null && this.Starred != right.Starred)
             {
                 return false;
             }
 
-            if (this.UUID != right.UUID)
+            if (right != null && this.UUID != right.UUID)
             {
                 return false;
             }
