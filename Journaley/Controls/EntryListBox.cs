@@ -15,7 +15,7 @@
     /// <summary>
     /// Customized ListBox control for displaying the list of journal entries prettier.
     /// </summary>
-    internal class EntryListBox : ListBox
+    internal sealed class EntryListBox : ListBox
     {
         /// <summary>
         /// The month height

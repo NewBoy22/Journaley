@@ -9,7 +9,7 @@
     /// <summary>
     /// A custom button control which changes the background color depending on its state.
     /// </summary>
-    public class ColorButton : Control, ISelectable, IButtonControl, INotifyPropertyChanged
+    public sealed class ColorButton : Control, ISelectable, IButtonControl, INotifyPropertyChanged
     {
         /// <summary>
         /// WM_KEYDOWN code
