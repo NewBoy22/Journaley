@@ -229,7 +229,7 @@
                     }
 
                     // If the folder ends with "entries", remove that one from the path.
-                    if (settings.DayOneFolderPath.EndsWith("entries"))
+                    if (settings != null && settings.DayOneFolderPath.EndsWith("entries"))
                     {
                         settings.DayOneFolderPath = Directory.GetParent(settings.DayOneFolderPath).FullName;
                         dirty = true;
@@ -405,7 +405,7 @@
                 return false;
             }
 
-            if (this.DayOneFolderPath != right.DayOneFolderPath)
+            if (right != null && this.DayOneFolderPath != right.DayOneFolderPath)
             {
                 return false;
             }

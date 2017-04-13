@@ -702,7 +702,7 @@
                 return false;
             }
 
-            if (this.EntryText != right.EntryText)
+            if (right != null && this.EntryText != right.EntryText)
             {
                 return false;
             }
@@ -814,12 +814,13 @@
 		        key.InnerText = keyString;
 	        }
 
+	        if (doc == null) return;
 	        var value = doc.CreateElement(valueType);
-            dict.AppendChild(value);
-            if (valueString != null)
-            {
-                value.InnerText = valueString;
-            }
+	        dict.AppendChild(value);
+	        if (valueString != null)
+	        {
+		        value.InnerText = valueString;
+	        }
         }
 
         /// <summary>
@@ -857,14 +858,15 @@
 		        key.InnerText = keyString;
 	        }
 
+	        if (doc == null) return;
 	        var value = doc.CreateElement("array");
-            dict.AppendChild(value);
-            foreach (var s in values)
-            {
-                var stringElem = doc.CreateElement("string");
-                value.AppendChild(stringElem);
-                stringElem.InnerText = s;
-            }
+	        dict.AppendChild(value);
+	        foreach (var s in values)
+	        {
+		        var stringElem = doc.CreateElement("string");
+		        value.AppendChild(stringElem);
+		        stringElem.InnerText = s;
+	        }
         }
 
         /// <summary>
