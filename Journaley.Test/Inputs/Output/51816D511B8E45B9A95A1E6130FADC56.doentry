@@ -3,24 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>Activity</key>
-	<string>Flying</string>
+	<string>Stationary</string>
 	<key>Creation Date</key>
-	<date>2015-07-29T05:17:38Z</date>
+	<date>2015-07-28T12:07:20Z</date>
 	<key>Entry Text</key>
-	<string>This is a test entry testing the activity metadata.
-Added sentence.
-Added sentence.
-Added sentence.</string>
+	<string>This is a test entry created from Day One.</string>
 	<key>Starred</key>
 	<false />
 	<key>UUID</key>
-	<string>B84B750975EE4B3BBC519580804B5A19</string>
+	<string>51816D511B8E45B9A95A1E6130FADC56</string>
 	<key>Creator</key>
 	<dict>
 		<key>Device Agent</key>
 		<string>iPhone/iPhone7,2</string>
 		<key>Generation Date</key>
-		<date>2015-07-29T05:17:38Z</date>
+		<date>2015-07-28T12:07:20Z</date>
 		<key>Host Name</key>
 		<string>nullstein-iPhone</string>
 		<key>OS Agent</key>
@@ -35,54 +32,54 @@ Added sentence.</string>
 		<key>Country</key>
 		<string>South Korea</string>
 		<key>Latitude</key>
-		<real>3749533462873638</real>
+		<real>37,496763073273272</real>
 		<key>Locality</key>
 		<string>Gangnamgu</string>
 		<key>Longitude</key>
-		<real>1270329354759161</real>
+		<real>127,03590421008128</real>
 		<key>Place Name</key>
-		<string>829-1 Yeoksamdong</string>
+		<string>744-4 Yeoksamdong</string>
 		<key>Region</key>
 		<dict>
 			<key>Center</key>
 			<dict>
 				<key>Latitude</key>
-				<real>37495563698641121</real>
+				<real>37,496837798641067</real>
 				<key>Longitude</key>
-				<real>12703292280000002</real>
+				<real>127,03593650000002</real>
 			</dict>
 			<key>Radius</key>
-			<real>70862908222012393</real>
+			<real>70,86290319732386</real>
 		</dict>
 	</dict>
 	<key>Weather</key>
 	<dict>
 		<key>Celsius</key>
-		<string>29</string>
+		<string>27</string>
 		<key>Description</key>
-		<string>Cloudy</string>
+		<string>Mostly Cloudy</string>
 		<key>Fahrenheit</key>
-		<string>84</string>
+		<string>81</string>
 		<key>IconName</key>
-		<string>cloudy.png</string>
+		<string>mcloudyn.png</string>
 		<key>Pressure MB</key>
-		<integer>1005</integer>
+		<integer>1007</integer>
 		<key>Relative Humidity</key>
-		<integer>74</integer>
+		<integer>79</integer>
 		<key>Service</key>
 		<string>HAMweather</string>
 		<key>Sunrise Date</key>
-		<date>2015-07-28T20:34:01Z</date>
+		<date>2015-07-27T20:33:12Z</date>
 		<key>Sunset Date</key>
-		<date>2015-07-29T10:44:43Z</date>
+		<date>2015-07-28T10:45:34Z</date>
 		<key>Visibility KM</key>
-		<integer>8</integer>
+		<integer>6</integer>
 		<key>Wind Bearing</key>
-		<integer>200</integer>
+		<integer>280</integer>
 		<key>Wind Chill Celsius</key>
-		<integer>29</integer>
+		<integer>27</integer>
 		<key>Wind Speed KPH</key>
-		<integer>17</integer>
+		<integer>11</integer>
 	</dict>
 	<key>Time Zone</key>
 	<string>Asia/Seoul</string>

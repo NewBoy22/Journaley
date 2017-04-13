@@ -1,4 +1,6 @@
-﻿namespace Journaley.Core.PList
+﻿using System.Globalization;
+
+namespace Journaley.Core.PList
 {
     using System;
     using System.Xml;
@@ -21,10 +23,10 @@
                     return new PListString(node.InnerText);
 
                 case "real":
-                    return new PListReal(decimal.Parse(node.InnerText));
+                    return new PListReal(decimal.Parse(node.InnerText, CultureInfo.InvariantCulture));
 
                 case "integer":
-                    return new PListInteger(int.Parse(node.InnerText));
+                    return new PListInteger(int.Parse(node.InnerText, CultureInfo.InvariantCulture));
 
                 case "true":
                     return new PListBoolean(true);

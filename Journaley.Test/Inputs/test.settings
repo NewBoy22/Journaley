@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DayOneFolderPath>.</DayOneFolderPath>
+  <TextSize>0</TextSize>
+  <SpellCheckEnabled>true</SpellCheckEnabled>
+  <SpellCheckLanguage>en</SpellCheckLanguage>
+  <AutoUpdate>false</AutoUpdate>
+</Settings>

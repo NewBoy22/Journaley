@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Diagnostics;
 using System.IO;
 using Journaley.Core.Models;
 
@@ -159,7 +160,9 @@ namespace Journaley.Test
         [TestMethod]
         public void EntryActivityLoadTest()
         {
-            string path = "B84B750975EE4B3BBC519580804B5A19.doentry";
+            Directory.SetCurrentDirectory("../../Inputs");
+
+            string path = Directory.GetCurrentDirectory() + "\\B84B750975EE4B3BBC519580804B5A19.doentry";
 
             Entry entry = Entry.LoadFromFile(path);
 
