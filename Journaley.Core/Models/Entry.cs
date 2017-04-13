@@ -123,7 +123,7 @@
                 {"OS Agent", OSNameRetriever.GetOSFriendlyName()}
             };
 
-            var version = Assembly.GetEntryAssembly().GetName().Version;
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
             this.Creator.Add("Software Agent", $"Journaley/{version.ToString(2)}");
         }
 
