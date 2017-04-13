@@ -33,9 +33,10 @@
         public void SaveToXml(XmlNode parent)
         {
             var doc = parent.OwnerDocument;
-            var node = doc.CreateElement("date");
-            node.InnerText = this.Value.ToString("u").Replace(' ', 'T');
-            parent.AppendChild(node);
+	        if (doc == null) return;
+	        var node = doc.CreateElement("date");
+	        node.InnerText = this.Value.ToString("u").Replace(' ', 'T');
+	        parent.AppendChild(node);
         }
 
         /// <summary>

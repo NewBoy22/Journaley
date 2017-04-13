@@ -134,22 +134,23 @@
         public void SaveToXml(XmlNode parent)
         {
             var doc = parent.OwnerDocument;
-            var node = doc.CreateElement("dict");
+	        if (doc == null) return;
+	        var node = doc.CreateElement("dict");
 
-            var keysInOrder = from k in this.Keys
-                              orderby k
-                              select k;
+	        var keysInOrder = from k in this.Keys
+		        orderby k
+		        select k;
 
-            foreach (var key in keysInOrder)
-            {
-                var keyNode = doc.CreateElement("key");
-                keyNode.InnerText = key;
-                node.AppendChild(keyNode);
+	        foreach (var key in keysInOrder)
+	        {
+		        var keyNode = doc.CreateElement("key");
+		        keyNode.InnerText = key;
+		        node.AppendChild(keyNode);
 
-                this[key].SaveToXml(node);
-            }
+		        this[key].SaveToXml(node);
+	        }
 
-            parent.AppendChild(node);
+	        parent.AppendChild(node);
         }
 
         /// <summary>

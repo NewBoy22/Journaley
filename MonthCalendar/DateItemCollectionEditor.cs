@@ -78,9 +78,11 @@ namespace Pabo.Calendar
             MonthCalendar originalControl = (MonthCalendar) m_context.Instance;
             m_calendar = originalControl;
 
-            ((DateItem) dateItem).Date = DateTime.Today;
-            ((DateItem) dateItem).Calendar = m_calendar;
-            return dateItem;
+	        var item = (DateItem) dateItem;
+	        if (item != null) item.Date = DateTime.Today;
+	        var o = (DateItem) dateItem;
+	        if (o != null) o.Calendar = m_calendar;
+	        return dateItem;
         }
 
         #endregion

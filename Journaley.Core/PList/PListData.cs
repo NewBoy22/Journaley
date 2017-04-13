@@ -43,9 +43,12 @@
         public void SaveToXml(XmlNode parent)
         {
             var doc = parent.OwnerDocument;
-            var node = doc.CreateElement("data");
-            node.InnerText = this.Base64String;
-            parent.AppendChild(node);
+	        if (doc != null)
+	        {
+		        var node = doc.CreateElement("data");
+		        node.InnerText = this.Base64String;
+		        parent.AppendChild(node);
+	        }
         }
 
         /// <summary>

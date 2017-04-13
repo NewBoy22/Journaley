@@ -123,14 +123,17 @@
         public void SaveToXml(XmlNode parent)
         {
             var doc = parent.OwnerDocument;
-            var node = doc.CreateElement("array");
+	        if (doc != null)
+	        {
+		        var node = doc.CreateElement("array");
 
-            foreach (var child in this.array)
-            {
-                child.SaveToXml(node);
-            }
+		        foreach (var child in this.array)
+		        {
+			        child.SaveToXml(node);
+		        }
 
-            parent.AppendChild(node);
+		        parent.AppendChild(node);
+	        }
         }
 
         /// <summary>

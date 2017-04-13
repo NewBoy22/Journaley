@@ -393,7 +393,7 @@
                     doc.LoadXml(fileContent);
 
                     XmlNode dictNode = doc.SelectSingleNode("//dict");
-                    Debug.Assert(dictNode.ChildNodes.Count % 2 == 0, "A dict node must have even number of children (key, value)");
+                    Debug.Assert(dictNode != null && dictNode.ChildNodes.Count % 2 == 0, "A dict node must have even number of children (key, value)");
                     for (int i = 0; i < dictNode.ChildNodes.Count; i += 2)
                     {
                         XmlNode keyNode = dictNode.ChildNodes[i];
@@ -697,7 +697,7 @@
         /// </returns>
         public bool Equals(Entry right)
         {
-            if (this.UTCDateTime != right.UTCDateTime)
+            if (right != null && this.UTCDateTime != right.UTCDateTime)
             {
                 return false;
             }
@@ -807,11 +807,14 @@
         private void AppendKeyValue(XmlElement dict, string keyString, string valueType, string valueString)
         {
             var doc = dict.OwnerDocument;
-            var key = doc.CreateElement("key");
-            dict.AppendChild(key);
-            key.InnerText = keyString;
+	        if (doc != null)
+	        {
+		        var key = doc.CreateElement("key");
+		        dict.AppendChild(key);
+		        key.InnerText = keyString;
+	        }
 
-            var value = doc.CreateElement(valueType);
+	        var value = doc.CreateElement(valueType);
             dict.AppendChild(value);
             if (valueString != null)
             {
@@ -828,11 +831,14 @@
         private void AppendKeyValue(XmlElement dict, string keyString, IPListElement data)
         {
             var doc = dict.OwnerDocument;
-            var key = doc.CreateElement("key");
-            key.InnerText = keyString;
-            dict.AppendChild(key);
+	        if (doc != null)
+	        {
+		        var key = doc.CreateElement("key");
+		        key.InnerText = keyString;
+		        dict.AppendChild(key);
+	        }
 
-            data.SaveToXml(dict);
+	        data.SaveToXml(dict);
         }
 
         /// <summary>
@@ -844,11 +850,14 @@
         private void AppendArrayKeyValue(XmlElement dict, string keyString, IEnumerable<string> values)
         {
             var doc = dict.OwnerDocument;
-            var key = doc.CreateElement("key");
-            dict.AppendChild(key);
-            key.InnerText = keyString;
+	        if (doc != null)
+	        {
+		        var key = doc.CreateElement("key");
+		        dict.AppendChild(key);
+		        key.InnerText = keyString;
+	        }
 
-            var value = doc.CreateElement("array");
+	        var value = doc.CreateElement("array");
             dict.AppendChild(value);
             foreach (var s in values)
             {
@@ -867,11 +876,14 @@
         private void AppendKeyValue(XmlElement dict, XmlNode keyNodeFromOtherDoc, XmlNode valueNodeFromOtherDoc)
         {
             var doc = dict.OwnerDocument;
-            var key = doc.ImportNode(keyNodeFromOtherDoc, true);
-            var value = doc.ImportNode(valueNodeFromOtherDoc, true);
+	        if (doc != null)
+	        {
+		        var key = doc.ImportNode(keyNodeFromOtherDoc, true);
+		        var value = doc.ImportNode(valueNodeFromOtherDoc, true);
 
-            dict.AppendChild(key);
-            dict.AppendChild(value);
+		        dict.AppendChild(key);
+		        dict.AppendChild(value);
+	        }
         }
     }
 }

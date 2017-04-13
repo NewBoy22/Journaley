@@ -881,7 +881,7 @@
                 for (int i = 0; i < this.listBoxTags.Items.Count; ++i)
                 {
                     TagCountEntry tagAndCount = this.listBoxTags.Items[i] as TagCountEntry;
-                    if (tagAndCount.Tag == selectedTagName)
+                    if (tagAndCount != null && tagAndCount.Tag == selectedTagName)
                     {
                         this.listBoxTags.SelectedIndex = i;
                         break;
@@ -1284,26 +1284,30 @@
             string targetFileName = Path.ChangeExtension(this.SelectedEntry.UUIDString, "jpg");
             string targetFullPath = Path.Combine(this.Settings.PhotoFolderPath, targetFileName);
 
-            string ext = Path.GetExtension(openDialog.FileName).ToLower();
-            if (ext == ".jpg" || ext == ".jpeg")
-            {
-                FileInfo srcInfo = new FileInfo(openDialog.FileName);
-                srcInfo.CopyTo(targetFullPath);
-            }
-            else
-            {
-                bool success = this.SavePhotoForSelectedEntry(
-                    Image.FromFile(openDialog.FileName),
-                    targetFullPath,
-                    "Error reading the selected photo.");
+	        var extension = Path.GetExtension(openDialog.FileName);
+	        if (extension != null)
+	        {
+		        string ext = extension.ToLower();
+		        if (ext == ".jpg" || ext == ".jpeg")
+		        {
+			        FileInfo srcInfo = new FileInfo(openDialog.FileName);
+			        srcInfo.CopyTo(targetFullPath);
+		        }
+		        else
+		        {
+			        bool success = this.SavePhotoForSelectedEntry(
+				        Image.FromFile(openDialog.FileName),
+				        targetFullPath,
+				        "Error reading the selected photo.");
 
-                if (!success)
-                {
-                    return;
-                }
-            }
+			        if (!success)
+			        {
+				        return;
+			        }
+		        }
+	        }
 
-            // Assign the photo path to the selected entry.
+	        // Assign the photo path to the selected entry.
             this.SelectedEntry.PhotoPath = targetFullPath;
 
             // Update the UIs related to photo.
@@ -2787,13 +2791,15 @@
         /// <param name="e">The <see cref="WebBrowserDocumentCompletedEventArgs"/> instance containing the event data.</param>
         private void WebBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            this.webBrowser.Document.MouseMove += delegate(object s, HtmlElementEventArgs a)
-            {
-                if (!this.IsEditing && Form.ActiveForm == this)
-                {
-                    this.webBrowser.Document.Focus();
-                }
-            };
+	        var webBrowserDocument = this.webBrowser.Document;
+	        if (webBrowserDocument != null)
+		        webBrowserDocument.MouseMove += delegate(object s, HtmlElementEventArgs a)
+		        {
+			        if (!this.IsEditing && Form.ActiveForm == this)
+			        {
+				        webBrowserDocument.Focus();
+			        }
+		        };
         }
 
         /// <summary>

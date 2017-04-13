@@ -31,9 +31,10 @@
         public void SaveToXml(XmlNode parent)
         {
             var doc = parent.OwnerDocument;
-            var node = doc.CreateElement("string");
-            node.InnerText = this.Value;
-            parent.AppendChild(node);
+	        if (doc == null) return;
+	        var node = doc.CreateElement("string");
+	        node.InnerText = this.Value;
+	        parent.AppendChild(node);
         }
 
         /// <summary>

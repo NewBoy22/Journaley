@@ -223,7 +223,7 @@
                     XmlSerializer serializer = new XmlSerializer(typeof(Settings));
                     settings = serializer.Deserialize(sr) as Settings;
 
-                    if (!Directory.Exists(settings.DayOneFolderPath))
+                    if (settings != null && !Directory.Exists(settings.DayOneFolderPath))
                     {
                         return null;
                     }
@@ -400,7 +400,7 @@
         /// </returns>
         public bool Equals(Settings right)
         {
-            if (this.PasswordHash != right.PasswordHash)
+            if (right != null && this.PasswordHash != right.PasswordHash)
             {
                 return false;
             }

@@ -2964,7 +2964,7 @@ namespace Pabo.Calendar
 
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-            if (value.GetType() == typeof(string))
+            if (value is string)
             {
                 MonthCalendar m = (MonthCalendar)context.Instance;
                 var ret = m.DayNumber(value.ToString());
@@ -3035,7 +3035,7 @@ namespace Pabo.Calendar
 
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-            if (value.GetType() == typeof(string))
+            if (value is string)
             {
                 ActiveMonth m = (ActiveMonth)context.Instance;
                 var ret = m.Calendar.MonthNumber(value.ToString());
@@ -3086,7 +3086,7 @@ namespace Pabo.Calendar
 
         public override object ConvertFrom(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
         {
-            if(value.GetType() == typeof(string))
+            if(value is string)
             {
                 ActiveMonth m = (ActiveMonth)context.Instance;
                 if (m.Calendar.IsYearValid(value.ToString()))
@@ -3145,7 +3145,7 @@ namespace Pabo.Calendar
         public override object ConvertFrom(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
         {
 
-            if(value.GetType() == typeof(string))
+            if(value is string)
             {
                 // Parse property string
                 string[] ss = value.ToString().Split(new char[] {';'}, 2);
@@ -3286,12 +3286,8 @@ namespace Pabo.Calendar
 
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-            if (value.GetType() == typeof(string))
-            {
-                return DateTime.Parse((string)value);
-            }
-
-            return base.ConvertFrom (context, culture, value);
+	        var s = value as string;
+	        return s != null ? DateTime.Parse(s) : base.ConvertFrom (context, culture, value);
         }
 
         public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)

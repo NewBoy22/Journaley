@@ -1193,15 +1193,16 @@ namespace Pabo.Calendar
                         // link graphics object to bitmap
                         d = Graphics.FromImage(bmp);
                         DayRenderEventArgs args = new DayRenderEventArgs(d, m_days[i].Rectangle, m_days[i].Date, m_days[i].State);
-                        DayRender(this, args);
-                        if (!args.OwnerDraw)
+
+	                    DayRender?.Invoke(this, args);
+	                    if (!args.OwnerDraw)
                         {
                             // day is not user drawn
                             m_days[i].UserDrawn = false;
                             DateItem dayInfo = new DateItem {Calendar = m_calendar};
                             DayQueryInfoEventArgs info = new DayQueryInfoEventArgs(dayInfo, m_days[i].Date, m_days[i].State);
-                            DayQueryInfo(this, info);
-                            if (!info.OwnerDraw)
+	                        DayQueryInfo?.Invoke(this, info);
+	                        if (!info.OwnerDraw)
                                 dayInfo = null;
                             m_days[i].Draw(e, dayInfo);
                             dayInfo?.Dispose();
@@ -2504,7 +2505,7 @@ namespace Pabo.Calendar
             public override object ConvertFrom(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
             {
 
-                if(value.GetType() == typeof(string))
+                if(value is string)
                 {
                     // Parse property string
                     string[] ss = value.ToString().Split(new char[] {';'}, 2);
@@ -2562,7 +2563,7 @@ namespace Pabo.Calendar
             public override object ConvertFrom(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
             {
 
-                if (value.GetType() == typeof(string))
+                if (value is string)
                 {
                     // Parse property string
                     string[] ss = value.ToString().Split(new char[] { ';' }, 2);
