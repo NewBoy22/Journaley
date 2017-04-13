@@ -2016,7 +2016,7 @@
                 bool spellCheckEnabledChanged = this.Settings.SpellCheckEnabled != form.Settings.SpellCheckEnabled;
                 bool languageChanged = this.Settings.SpellCheckLanguage != form.Settings.SpellCheckLanguage;
                 bool typefaceChanged = this.Settings.Typeface != form.Settings.Typeface;
-                bool textSizeChanged = this.Settings.TextSize != form.Settings.TextSize;
+                bool textSizeChanged = Math.Abs(this.Settings.TextSize - form.Settings.TextSize) > float.Epsilon;
 
                 this.Settings = form.Settings;
                 this.Settings.Save();

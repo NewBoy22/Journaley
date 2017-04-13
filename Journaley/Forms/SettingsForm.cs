@@ -269,7 +269,7 @@
         /// </summary>
         private void UpdateTextSizeInterface()
         {
-            if (this.Settings.TextSize == 0.0)
+            if (Math.Abs(this.Settings.TextSize) < float.Epsilon)
             {
                 this.Settings.TextSize = TextSizeMedium;
             }
@@ -430,7 +430,7 @@
                     this.CopyFontProperties(notoSerif, this.radioButtonNotoSerif.Font);
             }
 
-            if (this.Settings.TextSize == 0.0)
+            if (Math.Abs(this.Settings.TextSize) < float.Epsilon)
             {
                 this.Settings.TextSize = TextSizeMedium;
             }
