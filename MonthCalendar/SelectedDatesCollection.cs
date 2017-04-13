@@ -51,7 +51,7 @@ namespace Pabo.Calendar
         {
             if (owner == null)
                 throw new ArgumentNullException(nameof(owner));
-            
+
             this.owner = owner;
         }
 
@@ -59,7 +59,7 @@ namespace Pabo.Calendar
         {
             if (owner == null)
                 throw new ArgumentNullException(nameof(owner));
-            
+
             this.owner = owner;
 
             this.Add(dates);
