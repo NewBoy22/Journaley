@@ -3286,8 +3286,8 @@ namespace Pabo.Calendar
 
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-	        var s = value as string;
-	        return s != null ? DateTime.Parse(s) : base.ConvertFrom (context, culture, value);
+            var s = value as string;
+            return s != null ? DateTime.Parse(s) : base.ConvertFrom (context, culture, value);
         }
 
         public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)

@@ -21,8 +21,8 @@
 
             foreach (var o in searcher.Get())
             {
-	            var os = (ManagementObject) o;
-	            result = os["Caption"].ToString();
+                var os = (ManagementObject) o;
+                result = os["Caption"].ToString();
                 break;
             }
 

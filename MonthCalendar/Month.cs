@@ -1192,15 +1192,15 @@ namespace Pabo.Calendar
                         d = Graphics.FromImage(bmp);
                         DayRenderEventArgs args = new DayRenderEventArgs(d, m_days[i].Rectangle, m_days[i].Date, m_days[i].State);
 
-	                    DayRender?.Invoke(this, args);
-	                    if (!args.OwnerDraw)
+                        DayRender?.Invoke(this, args);
+                        if (!args.OwnerDraw)
                         {
                             // day is not user drawn
                             m_days[i].UserDrawn = false;
                             DateItem dayInfo = new DateItem {Calendar = m_calendar};
                             DayQueryInfoEventArgs info = new DayQueryInfoEventArgs(dayInfo, m_days[i].Date, m_days[i].State);
-	                        DayQueryInfo?.Invoke(this, info);
-	                        if (!info.OwnerDraw)
+                            DayQueryInfo?.Invoke(this, info);
+                            if (!info.OwnerDraw)
                                 dayInfo = null;
                             m_days[i].Draw(e, dayInfo);
                             dayInfo?.Dispose();

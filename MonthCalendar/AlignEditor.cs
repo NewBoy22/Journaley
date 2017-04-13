@@ -68,21 +68,21 @@ namespace Pabo.Calendar
 
         public override object EditValue(System.ComponentModel.ITypeDescriptorContext context, IServiceProvider provider, object value)
         {
-	        if (provider != null)
-		        wfes = (IWindowsFormsEditorService) provider.GetService(typeof(IWindowsFormsEditorService));
-	        if((wfes == null) || (context == null))
+            if (provider != null)
+                wfes = (IWindowsFormsEditorService) provider.GetService(typeof(IWindowsFormsEditorService));
+            if((wfes == null) || (context == null))
                 return null ;
 
-	        if (value != null)
-	        {
-		        m_alignCtrl.Default = (mcItemAlign)value;
-		        // add listner for event
-		        m_alignCtrl.AlignChanged+=new AlignEventHandler(m_alignCtrl_AlignChanged);
+            if (value != null)
+            {
+                m_alignCtrl.Default = (mcItemAlign)value;
+                // add listner for event
+                m_alignCtrl.AlignChanged+=new AlignEventHandler(m_alignCtrl_AlignChanged);
 
-		        m_selectedAlign = (mcItemAlign)value;
-	        }
+                m_selectedAlign = (mcItemAlign)value;
+            }
 
-	        // show the popup as a drop-down
+            // show the popup as a drop-down
             wfes.DropDownControl(m_alignCtrl) ;
 
             // return the selection (or the original value if none selected)
