@@ -1,4 +1,6 @@
-﻿namespace Journaley.Core.Models
+﻿using System.CodeDom;
+
+namespace Journaley.Core.Models
 {
     using System;
     using System.Collections.Generic;

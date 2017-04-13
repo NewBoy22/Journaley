@@ -11,7 +11,7 @@
         [TestMethod]
         public void EntryCreatorLoadTest()
         {
-            string path = "51816D511B8E45B9A95A1E6130FADC56.doentry";
+            string path = "../../Inputs/51816D511B8E45B9A95A1E6130FADC56.doentry";
 
             Entry entry = Entry.LoadFromFile(path);
 
@@ -31,7 +31,7 @@
         {
             string path = "51816D511B8E45B9A95A1E6130FADC56.doentry";
 
-            Entry entry = Entry.LoadFromFile(path);
+            Entry entry = Entry.LoadFromFile("../../Inputs/" + path);
 
             var outputDirectory = @".\Output";
             var outputPath = Path.Combine(outputDirectory, path);

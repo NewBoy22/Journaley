@@ -6,15 +6,6 @@
 	<string>Flying</string>
 	<key>Creation Date</key>
 	<date>2015-07-29T05:17:38Z</date>
-	<key>Entry Text</key>
-	<string>This is a test entry testing the activity metadata.
-Added sentence.
-Added sentence.
-Added sentence.</string>
-	<key>Starred</key>
-	<false />
-	<key>UUID</key>
-	<string>B84B750975EE4B3BBC519580804B5A19</string>
 	<key>Creator</key>
 	<dict>
 		<key>Device Agent</key>
@@ -28,6 +19,8 @@ Added sentence.</string>
 		<key>Software Agent</key>
 		<string>Day One iOS/1.17.1</string>
 	</dict>
+	<key>Entry Text</key>
+	<string>This is a test entry testing the activity metadata.</string>
 	<key>Location</key>
 	<dict>
 		<key>Administrative Area</key>
@@ -35,11 +28,11 @@ Added sentence.</string>
 		<key>Country</key>
 		<string>South Korea</string>
 		<key>Latitude</key>
-		<real>3749533462873638</real>
+		<real>37.49533462873638</real>
 		<key>Locality</key>
 		<string>Gangnamgu</string>
 		<key>Longitude</key>
-		<real>1270329354759161</real>
+		<real>127.0329354759161</real>
 		<key>Place Name</key>
 		<string>829-1 Yeoksamdong</string>
 		<key>Region</key>
@@ -47,14 +40,20 @@ Added sentence.</string>
 			<key>Center</key>
 			<dict>
 				<key>Latitude</key>
-				<real>37495563698641121</real>
+				<real>37.495563698641121</real>
 				<key>Longitude</key>
-				<real>12703292280000002</real>
+				<real>127.03292280000002</real>
 			</dict>
 			<key>Radius</key>
-			<real>70862908222012393</real>
+			<real>70.862908222012393</real>
 		</dict>
 	</dict>
+	<key>Starred</key>
+	<false/>
+	<key>Time Zone</key>
+	<string>Asia/Seoul</string>
+	<key>UUID</key>
+	<string>B84B750975EE4B3BBC519580804B5A19</string>
 	<key>Weather</key>
 	<dict>
 		<key>Celsius</key>
@@ -84,7 +83,5 @@ Added sentence.</string>
 		<key>Wind Speed KPH</key>
 		<integer>17</integer>
 	</dict>
-	<key>Time Zone</key>
-	<string>Asia/Seoul</string>
 </dict>
 </plist>

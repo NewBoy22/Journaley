@@ -23,10 +23,10 @@ namespace Journaley.Core.PList
                     return new PListString(node.InnerText);
 
                 case "real":
-                    return new PListReal(decimal.Parse(node.InnerText, CultureInfo.InvariantCulture));
+                    return new PListReal(decimal.Parse(node.InnerText, new CultureInfo("en-US")));
 
                 case "integer":
-                    return new PListInteger(int.Parse(node.InnerText, CultureInfo.InvariantCulture));
+                    return new PListInteger(int.Parse(node.InnerText));
 
                 case "true":
                     return new PListBoolean(true);

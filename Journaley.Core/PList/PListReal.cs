@@ -1,4 +1,6 @@
-﻿namespace Journaley.Core.PList
+﻿using System.Globalization;
+
+namespace Journaley.Core.PList
 {
     using System.Xml;
 
@@ -33,7 +35,7 @@
             var doc = parent.OwnerDocument;
 	        if (doc == null) return;
 	        var node = doc.CreateElement("real");
-	        node.InnerText = this.Value.ToString();
+	        node.InnerText = this.Value.ToString(new CultureInfo("en-US"));
 	        parent.AppendChild(node);
         }
 
