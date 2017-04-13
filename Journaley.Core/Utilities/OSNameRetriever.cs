@@ -19,9 +19,10 @@
             ManagementObjectSearcher searcher = new ManagementObjectSearcher(
                 "SELECT Caption FROM Win32_OperatingSystem");
 
-            foreach (ManagementObject os in searcher.Get())
+            foreach (var o in searcher.Get())
             {
-                result = os["Caption"].ToString();
+	            var os = (ManagementObject) o;
+	            result = os["Caption"].ToString();
                 break;
             }
 
