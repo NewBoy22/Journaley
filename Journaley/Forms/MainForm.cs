@@ -633,11 +633,11 @@
         {
             string result = Journaley.Properties.Resources.JournaleyCSSMedium;
 
-            if (this.Settings.TextSize == SettingsForm.TextSizeSmall)
+            if (Math.Abs(this.Settings.TextSize - SettingsForm.TextSizeSmall) < float.Epsilon)
             {
                 result = Journaley.Properties.Resources.JournaleyCSSSmall;
             }
-            else if (this.Settings.TextSize == SettingsForm.TextSizeLarge)
+            else if (Math.Abs(this.Settings.TextSize - SettingsForm.TextSizeLarge) < float.Epsilon)
             {
                 result = Journaley.Properties.Resources.JournaleyCSSLarge;
             }
@@ -1657,7 +1657,7 @@
         /// </summary>
         private void UpdateSpellCheckedEntryTextSize()
         {
-            if (this.Settings.TextSize == 0.0f)
+            if (Math.Abs(this.Settings.TextSize) < float.Epsilon)
             {
                 this.Settings.TextSize = SettingsForm.TextSizeMedium;
                 this.Settings.Save();
