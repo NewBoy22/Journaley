@@ -2939,7 +2939,7 @@ namespace Pabo.Calendar
                 for (int i = 1;i<=7;i++)
                     validNames[i] = dayNames[i-1];
 
-                if (value.GetType() == typeof(string))
+                if (value is string)
                 {
                     foreach (string t in validNames)
                     {
@@ -2947,7 +2947,7 @@ namespace Pabo.Calendar
                             return t;
                     }
                 }
-                else if (value.GetType() == typeof(int))
+                else if (value is int)
                 {
                     int m = Convert.ToInt32(value);
 
@@ -3009,7 +3009,7 @@ namespace Pabo.Calendar
             if (destinationType == typeof(string))
             {
                 var validNames = culture.DateTimeFormat.MonthNames;
-                if (value.GetType() == typeof(string))
+                if (value is string)
                 {
                     foreach (string t in validNames)
                     {
@@ -3018,7 +3018,7 @@ namespace Pabo.Calendar
                             return t;
                     }
                 }
-                else if (value.GetType() == typeof(int))
+                else if (value is int)
                 {
                     int m = Convert.ToInt32(value);
 
