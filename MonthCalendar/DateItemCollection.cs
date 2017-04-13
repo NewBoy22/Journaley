@@ -62,8 +62,12 @@ namespace Pabo.Calendar
 
         public DateItemCollection(MonthCalendar owner)
         {
-            this.owner = owner ?? throw new ArgumentNullException(nameof(owner));
-        }
+
+			if (owner == null)
+		        throw new ArgumentNullException(nameof(owner));
+	        
+		    this.owner = owner;
+		}
 
         public DateItemCollection(MonthCalendar owner, DateItemCollection dateItems) : this(owner)
         {

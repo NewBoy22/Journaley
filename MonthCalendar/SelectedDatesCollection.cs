@@ -49,14 +49,20 @@ namespace Pabo.Calendar
 
         public SelectedDatesCollection(MonthCalendar owner)
         {
-            this.owner = owner ?? throw new ArgumentNullException(nameof(owner));
-        }
+	        if (owner == null)
+		        throw new ArgumentNullException(nameof(owner));
+	        
+		    this.owner = owner;
+		}
 
         public SelectedDatesCollection(MonthCalendar owner, SelectedDatesCollection dates) : this(owner)
         {
-            this.owner = owner ?? throw new ArgumentNullException(nameof(owner));
+	        if (owner == null)
+		        throw new ArgumentNullException(nameof(owner));
+	        
+		    this.owner = owner;
 
-            this.Add(dates);
+			this.Add(dates);
         }
 
         #endregion
