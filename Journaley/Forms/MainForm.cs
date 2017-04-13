@@ -319,14 +319,11 @@
         /// </value>
         private Entry SelectedEntry
         {
-            get
-            {
-                return this.selectedEntry;
-            }
+            get => this.selectedEntry;
 
-            set
+	        set
             {
-                if (this.selectedEntry == value)
+                if (Equals(this.selectedEntry, value))
                 {
                     return;
                 }
@@ -338,7 +335,7 @@
                     // The second if condition is necessary,
                     // because when the selected entry is set due to an external change (c.f. Watcher_EntryChanged method)
                     // the entry should NOT be saved.
-                    if (this.Entries.ContainsKey(this.selectedEntry.UUID) && this.Entries[this.selectedEntry.UUID] == this.selectedEntry)
+                    if (this.Entries.ContainsKey(this.selectedEntry.UUID) && Equals(this.Entries[this.selectedEntry.UUID], this.selectedEntry))
                     {
                         this.SaveSelectedEntry();
                     }
@@ -515,7 +512,7 @@
                 return new Tuple<string, string>(null, string.Empty);
             }
 
-            string sourceText = (this.SelectedEntry == entry && this.IsEditing)
+            string sourceText = (Equals(this.SelectedEntry, entry) && this.IsEditing)
                 ? this.spellCheckedEntryText.Text.Replace(Environment.NewLine, "\n")
                 : entry.EntryText;
 
@@ -1204,7 +1201,7 @@
 
             // Check if there are any "empty" entries on the same day.
             var entriesToDelete = this.Entries.Values
-                .Where(x => x != newEntry)
+                .Where(x => !Equals(x, newEntry))
                 .Where(x => x.LocalTime.Date == newEntry.LocalTime.Date)
                 .Where(x => x.IsEmptyEntry())
                 .ToList();  // Make it a list to avoid concurrent modification exception.
@@ -2698,7 +2695,7 @@
             entry.PhotoPath = e.FullPath;
 
             // Update the UIs related to photo.
-            if (this.SelectedEntry == entry)
+            if (Equals(this.SelectedEntry, entry))
             {
                 this.UpdatePhotoUIs();
 
@@ -2733,7 +2730,7 @@
             entry.PhotoPath = null;
 
             // Update the UIs related to photo.
-            if (this.SelectedEntry == entry)
+            if (Equals(this.SelectedEntry, entry))
             {
                 this.UpdatePhotoUIs();
 

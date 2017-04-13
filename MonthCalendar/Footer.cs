@@ -363,7 +363,7 @@ namespace Pabo.Calendar
             }
             set
             {
-                if (m_font!=value)
+                if (m_font != null && !Equals(m_font, value))
                 {
                     m_font = value;
                     m_calendar.DoLayout();
