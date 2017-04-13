@@ -458,7 +458,7 @@ namespace Pabo.Calendar
             }
             set
             {
-                if (m_dateFont != null && !Equals(m_dateFont, value))
+                if (m_dateFont!=value)
                 {
                     m_dateFont = value;
                     PropertyChanged?.Invoke(this,new MonthPropertyEventArgs(mcMonthProperty.DateFont));
@@ -477,7 +477,7 @@ namespace Pabo.Calendar
             }
             set
             {
-                if (m_textFont != null && !Equals(m_textFont, value))
+                if (m_textFont!=value)
                 {
                     m_textFont = value;
                     PropertyChanged?.Invoke(this,new MonthPropertyEventArgs(mcMonthProperty.TextFont));
