@@ -920,12 +920,10 @@ namespace Pabo.Calendar
 
         internal void FocusMoved(int i)
         {
-            bool dayEnabled = true;
-
             if ( (!m_mouseDown) && (!m_calendar.SelectKeyDown) )
             {
 
-                dayEnabled = IsDateEnabled(m_days[i].Date);
+                var dayEnabled = IsDateEnabled(m_days[i].Date);
 
                 if (((m_calendar.SelectTrailingDates) || (SelectedMonth.Month == m_days[i].Date.Month)) && (dayEnabled))
                 {
