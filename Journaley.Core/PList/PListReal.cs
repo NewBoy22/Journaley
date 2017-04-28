@@ -33,10 +33,10 @@ namespace Journaley.Core.PList
         public void SaveToXml(XmlNode parent)
         {
             var doc = parent.OwnerDocument;
-	        if (doc == null) return;
-	        var node = doc.CreateElement("real");
-	        node.InnerText = this.Value.ToString(new CultureInfo("en-US"));
-	        parent.AppendChild(node);
+            if (doc == null) return;
+            var node = doc.CreateElement("real");
+            node.InnerText = this.Value.ToString(new CultureInfo("en-US"));
+            parent.AppendChild(node);
         }
 
         /// <summary>

@@ -809,20 +809,20 @@ namespace Journaley.Core.Models
         private void AppendKeyValue(XmlElement dict, string keyString, string valueType, string valueString)
         {
             var doc = dict.OwnerDocument;
-	        if (doc != null)
-	        {
-		        var key = doc.CreateElement("key");
-		        dict.AppendChild(key);
-		        key.InnerText = keyString;
-	        }
+            if (doc != null)
+            {
+                var key = doc.CreateElement("key");
+                dict.AppendChild(key);
+                key.InnerText = keyString;
+            }
 
-	        if (doc == null) return;
-	        var value = doc.CreateElement(valueType);
-	        dict.AppendChild(value);
-	        if (valueString != null)
-	        {
-		        value.InnerText = valueString;
-	        }
+            if (doc == null) return;
+            var value = doc.CreateElement(valueType);
+            dict.AppendChild(value);
+            if (valueString != null)
+            {
+                value.InnerText = valueString;
+            }
         }
 
         /// <summary>
@@ -834,14 +834,14 @@ namespace Journaley.Core.Models
         private void AppendKeyValue(XmlElement dict, string keyString, IPListElement data)
         {
             var doc = dict.OwnerDocument;
-	        if (doc != null)
-	        {
-		        var key = doc.CreateElement("key");
-		        key.InnerText = keyString;
-		        dict.AppendChild(key);
-	        }
+            if (doc != null)
+            {
+                var key = doc.CreateElement("key");
+                key.InnerText = keyString;
+                dict.AppendChild(key);
+            }
 
-	        data.SaveToXml(dict);
+            data.SaveToXml(dict);
         }
 
         /// <summary>
@@ -853,22 +853,22 @@ namespace Journaley.Core.Models
         private void AppendArrayKeyValue(XmlElement dict, string keyString, IEnumerable<string> values)
         {
             var doc = dict.OwnerDocument;
-	        if (doc != null)
-	        {
-		        var key = doc.CreateElement("key");
-		        dict.AppendChild(key);
-		        key.InnerText = keyString;
-	        }
+            if (doc != null)
+            {
+                var key = doc.CreateElement("key");
+                dict.AppendChild(key);
+                key.InnerText = keyString;
+            }
 
-	        if (doc == null) return;
-	        var value = doc.CreateElement("array");
-	        dict.AppendChild(value);
-	        foreach (var s in values)
-	        {
-		        var stringElem = doc.CreateElement("string");
-		        value.AppendChild(stringElem);
-		        stringElem.InnerText = s;
-	        }
+            if (doc == null) return;
+            var value = doc.CreateElement("array");
+            dict.AppendChild(value);
+            foreach (var s in values)
+            {
+                var stringElem = doc.CreateElement("string");
+                value.AppendChild(stringElem);
+                stringElem.InnerText = s;
+            }
         }
 
         /// <summary>
@@ -880,14 +880,14 @@ namespace Journaley.Core.Models
         private void AppendKeyValue(XmlElement dict, XmlNode keyNodeFromOtherDoc, XmlNode valueNodeFromOtherDoc)
         {
             var doc = dict.OwnerDocument;
-	        if (doc != null)
-	        {
-		        var key = doc.ImportNode(keyNodeFromOtherDoc, true);
-		        var value = doc.ImportNode(valueNodeFromOtherDoc, true);
+            if (doc != null)
+            {
+                var key = doc.ImportNode(keyNodeFromOtherDoc, true);
+                var value = doc.ImportNode(valueNodeFromOtherDoc, true);
 
-		        dict.AppendChild(key);
-		        dict.AppendChild(value);
-	        }
+                dict.AppendChild(key);
+                dict.AppendChild(value);
+            }
         }
     }
 }

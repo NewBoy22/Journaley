@@ -31,10 +31,10 @@
         public void SaveToXml(XmlNode parent)
         {
             var doc = parent.OwnerDocument;
-	        if (doc == null) return;
-	        var node = doc.CreateElement("integer");
-	        node.InnerText = this.Value.ToString();
-	        parent.AppendChild(node);
+            if (doc == null) return;
+            var node = doc.CreateElement("integer");
+            node.InnerText = this.Value.ToString();
+            parent.AppendChild(node);
         }
 
         /// <summary>
