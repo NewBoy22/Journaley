@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using Journaley.Core.Models;
 
 namespace Journaley.Test
@@ -176,6 +177,68 @@ namespace Journaley.Test
 
             Entry loadedEntry = Entry.LoadFromFile(entry.FileName);
             Assert.AreEqual("Flying", loadedEntry.Activity);
+        }
+
+        [TestMethod]
+        public void StarAndUnstarEntryTest()
+        {
+            Entry entry = new Entry();
+
+            entry.Starred = true;
+
+            Assert.IsTrue(entry.Starred, "Entry has not been starred");
+
+            entry.Starred = false;
+
+            Assert.IsFalse(entry.Starred, "Entry has not been unstarred");
+        }
+
+        [TestMethod]
+        public void AssignAndUnassignPhotoEntryTest()
+        {
+            string photoPath = "../../Inputs/journaley.png";
+
+            Entry entry = new Entry();
+            
+            entry.PhotoPath = photoPath;
+
+            Assert.AreEqual(photoPath, entry.PhotoPath, "Photo has not been assigned");
+
+            entry.PhotoPath = null;
+
+            Assert.IsNull(entry.PhotoPath, "Photo has not been cleared");
+        }
+
+        [TestMethod]
+        public void AddTagEntryTest()
+        {
+            Entry entry = new Entry();
+
+            entry.AddTag("testTag1");
+            entry.AddTag("testTag2");
+            entry.AddTag("testTag3");
+
+            Assert.AreEqual(entry.Tags.Count(), 3, "Tag count doesn't match");
+
+            Assert.IsTrue(entry.Tags.Contains("testTag1") && entry.Tags.Contains("testTag2") && entry.Tags.Contains("testTag3"), "Entry does not contain a desired tag");
+        }
+
+        [TestMethod]
+        public void RemoveAndClearTagEntryTest()
+        {
+            Entry entry = new Entry();
+
+            entry.AddTag("testTag1");
+            entry.AddTag("testTag2");
+            entry.AddTag("testTag3");
+
+            entry.RemoveTag("testTag1");
+
+            Assert.IsTrue(!entry.Tags.Contains("testTag1"), "Tag has not been removed");
+
+            entry.ClearTags();
+
+            Assert.IsTrue(!entry.Tags.Any(), "Tags have not been cleared");
         }
     }
 }
