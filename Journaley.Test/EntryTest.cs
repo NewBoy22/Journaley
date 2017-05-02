@@ -280,22 +280,5 @@ namespace Journaley.Test
 		    Assert.IsTrue(!entry.IsEmptyEntry());
 		    Assert.IsFalse(entry.IsEmptyEntry());
 	    }
-
-		/*
-        [TestMethod]
-        public void Test()
-        {
-			MainFormWrapper mainFormWrapper = new MainFormWrapper();
-            mainFormWrapper.ProgrammaticLoad();
-
-            ImageButton buttonAddEntry = (ImageButton)mainFormWrapper.Controls.Find("buttonAddEntry", true).Single();
-            
-            buttonAddEntry.PerformClick();
-            
-            Assert.IsTrue(mainFormWrapper.EntryListCount() == 1, "Add entry button didn't add new entry");
-	        mainFormWrapper.Dispose();
-	        Application.Exit();
-			mainFormWrapper.Close();
-        }*/
 	}
 }
