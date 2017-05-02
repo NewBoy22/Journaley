@@ -290,6 +290,8 @@ namespace Journaley.Test
             buttonAddEntry.PerformClick();
             
             Assert.IsTrue(mainFormWrapper.EntryListCount() == 1, "Add entry button didn't add new entry");
+
+            mainFormWrapper.Close();
         }
 	}
 }
