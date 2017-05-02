@@ -130,7 +130,18 @@ namespace Journaley.Test
             Assert.IsFalse(target.VerifyPassword("wrong-password"));
         }
 
-        /*
+
+	    [TestMethod()]
+	    public void HasPasswordTest()
+	    {
+		    Settings target = new Settings();
+		    target.Password = "password";
+
+			Assert.IsTrue(target.HasPassword);
+		    Assert.IsFalse(!target.HasPassword);
+	    }
+
+		/*
         [TestMethod]
         public void StripEntriesTest()
         {
@@ -152,5 +163,5 @@ namespace Journaley.Test
             }
         }
         */
-    }
+	}
 }

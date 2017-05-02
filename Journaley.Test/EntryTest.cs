@@ -240,5 +240,41 @@ namespace Journaley.Test
 
             Assert.IsTrue(!entry.Tags.Any(), "Tags have not been cleared");
         }
-    }
+
+		[TestMethod]
+	    public void IsEmptyEntryTestWithEmptyEntry()
+	    {
+		    Entry entry = new Entry();
+
+		    Assert.IsTrue(entry.IsEmptyEntry());
+		    Assert.IsFalse(!entry.IsEmptyEntry());
+	    }
+
+	    [TestMethod]
+	    public void IsEmptyEntryTestWithEntryText()
+	    {
+		    Entry entry = new Entry{EntryText = "entryText"};
+
+		    Assert.IsTrue(!entry.IsEmptyEntry());
+		    Assert.IsFalse(entry.IsEmptyEntry());
+	    }
+
+	    [TestMethod]
+	    public void IsEmptyEntryTestWithPhotoPath()
+	    {
+		    Entry entry = new Entry { PhotoPath = "../myPhoto" };
+
+		    Assert.IsTrue(!entry.IsEmptyEntry());
+		    Assert.IsFalse(entry.IsEmptyEntry());
+	    }
+
+	    [TestMethod]
+	    public void IsEmptyEntryTestWithEntryTextAndPhotoPath()
+	    {
+		    Entry entry = new Entry { EntryText = "entryText", PhotoPath = "../myPhoto" };
+
+		    Assert.IsTrue(!entry.IsEmptyEntry());
+		    Assert.IsFalse(entry.IsEmptyEntry());
+	    }
+	}
 }
