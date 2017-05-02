@@ -79,7 +79,7 @@ namespace Journaley.Test
         [TestMethod()]
         public void GetSettingsFileTest1()
         {
-            string path = "../../Inputs/test1.settings";
+            string path = "test1.settings";
             Settings expected = new Settings
             {
                 Password = "password",

@@ -308,7 +308,7 @@
         /// <value>
         /// The entries.
         /// </value>
-        private Dictionary<Guid, Entry> Entries => this.EntryList.Entries;
+        protected Dictionary<Guid, Entry> Entries => this.EntryList.Entries;
 
         /// <summary>
         /// Gets or sets the selected entry.

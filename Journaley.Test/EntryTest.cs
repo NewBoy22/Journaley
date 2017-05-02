@@ -3,7 +3,9 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using Journaley.Controls;
 using Journaley.Core.Models;
+using Journaley.Forms;
 
 namespace Journaley.Test
 {
@@ -73,7 +75,7 @@ namespace Journaley.Test
         [TestMethod()]
         public void LoadFromFileTest()
         {
-            string path = "../../Inputs/3C5D6CCEABCB43858752E69A1CCF4C4B.doentry";
+            string path = "3C5D6CCEABCB43858752E69A1CCF4C4B.doentry";
 
             Entry expected = new Entry(
                 new DateTime(2011, 6, 20, 16, 0, 0, DateTimeKind.Utc),            // Creation Date
@@ -161,7 +163,7 @@ namespace Journaley.Test
         [TestMethod]
         public void EntryActivityLoadTest()
         {
-            string path = "../../Inputs/B84B750975EE4B3BBC519580804B5A19.doentry";
+            string path = "B84B750975EE4B3BBC519580804B5A19.doentry";
 
             Entry entry = Entry.LoadFromFile(path);
 
@@ -262,7 +264,7 @@ namespace Journaley.Test
 	    [TestMethod]
 	    public void IsEmptyEntryTestWithPhotoPath()
 	    {
-		    Entry entry = new Entry { PhotoPath = "../myPhoto" };
+		    Entry entry = new Entry { PhotoPath = "journaley.png" };
 
 		    Assert.IsTrue(!entry.IsEmptyEntry());
 		    Assert.IsFalse(entry.IsEmptyEntry());
@@ -271,10 +273,23 @@ namespace Journaley.Test
 	    [TestMethod]
 	    public void IsEmptyEntryTestWithEntryTextAndPhotoPath()
 	    {
-		    Entry entry = new Entry { EntryText = "entryText", PhotoPath = "../myPhoto" };
+		    Entry entry = new Entry { EntryText = "entryText", PhotoPath = "journaley.png" };
 
 		    Assert.IsTrue(!entry.IsEmptyEntry());
 		    Assert.IsFalse(entry.IsEmptyEntry());
 	    }
+
+        [TestMethod]
+        public void Test()
+        {
+            MainFormWrapper mainFormWrapper = new MainFormWrapper();
+            mainFormWrapper.ProgrammaticLoad();
+
+            ImageButton buttonAddEntry = (ImageButton)mainFormWrapper.Controls.Find("buttonAddEntry", true).Single();
+            
+            buttonAddEntry.PerformClick();
+            
+            Assert.IsTrue(mainFormWrapper.EntryListCount() == 1, "Add entry button didn't add new entry");
+        }
 	}
 }
