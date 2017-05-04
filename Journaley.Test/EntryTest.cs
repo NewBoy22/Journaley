@@ -77,7 +77,7 @@ namespace Journaley.Test
         [TestMethod()]
         public void LoadFromFileTest()
         {
-            string path = "../../Inputs/3C5D6CCEABCB43858752E69A1CCF4C4B.doentry";
+            string path = "3C5D6CCEABCB43858752E69A1CCF4C4B.doentry";
 
             Entry expected = new Entry(
                 new DateTime(2011, 6, 20, 16, 0, 0, DateTimeKind.Utc),            // Creation Date
@@ -165,7 +165,7 @@ namespace Journaley.Test
         [TestMethod]
         public void EntryActivityLoadTest()
         {
-            string path = "../../Inputs/B84B750975EE4B3BBC519580804B5A19.doentry";
+            string path = "B84B750975EE4B3BBC519580804B5A19.doentry";
 
             Entry entry = Entry.LoadFromFile(path);
 
