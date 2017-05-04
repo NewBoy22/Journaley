@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Activity</key>
+	<string>Stationary</string>
+	<key>Creation Date</key>
+	<date>2017-05-04T08:38:09Z</date>
+	<key>Entry Text</key>
+	<string>Hello Naplóm</string>
+	<key>Starred</key>
+	<true />
+	<key>UUID</key>
+	<string>A630A3D61C854C538B65A33CBFD79F6B</string>
+	<key>Creator</key>
+	<dict>
+		<key>Device Agent</key>
+		<string>PC</string>
+		<key>Generation Date</key>
+		<date>2017-05-04T08:38:09Z</date>
+		<key>Host Name</key>
+		<string>DESKTOP-6VD91GV</string>
+		<key>OS Agent</key>
+		<string>Microsoft Windows/10 Education</string>
+		<key>Software Agent</key>
+		<string>Journaley/2.1</string>
+	</dict>
+	<key>Tags</key>
+	<array>
+		<string>Journey</string>
+	</array>
+</dict>
+</plist>

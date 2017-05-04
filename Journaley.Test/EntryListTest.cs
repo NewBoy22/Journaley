@@ -1,6 +1,8 @@
 ﻿using Journaley.Core.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Journaley.Test
 {
@@ -144,6 +146,65 @@ namespace Journaley.Test
             int expected = 2;
             int actual = target.GetTodayCount(now);
             Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        ///A test for checking starred entries
+        ///</summary>
+        [TestMethod()]
+        public void StarredTest()
+        {
+            // Ignore this test on other timezones.
+            // TODO Make this test meaningful in other timezones.
+            if (TimeZone.CurrentTimeZone.StandardName != "Eastern Standard Time")
+            {
+                return;
+            }
+
+            EntryList el = new EntryList();
+            el.LoadEntries(null, "EntrySet02");
+            
+            Assert.AreEqual(3, el.GetAllEntriesCount());
+
+            int starredEntries = 0;
+            foreach (KeyValuePair<Guid, Entry> element in el.Entries)
+            {
+                Entry e = element.Value;
+                if (e.Starred)
+                    starredEntries++;
+            }
+
+            Assert.AreEqual(starredEntries, 1);
+        }
+
+        /// <summary>
+        ///A test for checking created entry tags
+        ///</summary>
+        [TestMethod()]
+        public void TagTest()
+        {
+            // Ignore this test on other timezones.
+            // TODO Make this test meaningful in other timezones.
+            if (TimeZone.CurrentTimeZone.StandardName != "Eastern Standard Time")
+            {
+                return;
+            }
+
+            EntryList el = new EntryList();
+            el.LoadEntries(null, "EntrySet02");
+
+            Assert.AreEqual(3, el.GetAllEntriesCount());
+
+            string expectedTagName = "Journey";
+            int numOfJourneys = 0;
+
+            foreach (KeyValuePair<Guid, Entry> element in el.Entries)
+            {
+                Entry e = element.Value;
+                numOfJourneys += e.Tags.Count(tag => tag.Equals(expectedTagName));
+            }
+
+            Assert.AreEqual(numOfJourneys, 2);
         }
     }
 }
