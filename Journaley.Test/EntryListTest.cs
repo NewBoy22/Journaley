@@ -73,7 +73,7 @@ namespace Journaley.Test
         public void GetAllEntriesCountTest()
         {
             EntryList target = new EntryList();
-            target.LoadEntries(null, "../../Inputs/EntrySet01/EntrySet01");
+            target.LoadEntries(null, "EntrySet01");
 
             int expected = 9;
             int actual = target.GetAllEntriesCount();
